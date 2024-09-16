@@ -2,15 +2,8 @@ body,
 html,
 #root,
 .app {
-    margin: 0;
-    height: 100%;
     width: 100%;
-    padding: 0;
-
-}
-
-* {
-    box-sizing: border-box;
+    height: 100%; //!!! If some div with position fixed overlapping scroll, remove height:100% from html
     margin: 0;
     padding: 0;
 }
@@ -28,7 +21,6 @@ html,
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-
 
 :focus,
 :active {
@@ -54,24 +46,25 @@ textarea {
     font-family: inherit;
 }
 
-
 input::-ms-clear {
     display: none;
 }
 
 button {
     cursor: pointer;
-}
+    background: transparent;
+    color: inherit;
 
-button::-moz-focus-inner {
-    padding: 0;
-    border: 0;
+    &::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+    }
 }
 
 a,
 a:visited {
-    color: var(--default-text-color);
     text-decoration: none;
+    color: var(--default-text-color);
 }
 
 a:hover {
@@ -83,9 +76,9 @@ ul li {
 }
 
 img {
-    vertical-align: top;
     max-width: 100%;
     height: auto;
+    vertical-align: top;
 }
 
 h1,
@@ -96,11 +89,4 @@ h5,
 h6 {
     font-size: inherit;
     font-weight: 400;
-}
-
-html {
-    //default text styles
-    line-height: var(--default-text-line-height);
-    font-size: var(--default-text-size);
-    color: var(--default-text-color);
 }
