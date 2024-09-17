@@ -1,5 +1,6 @@
-import { ResourceLanguage } from 'i18next/typescript/options';
+import {Translation} from "./ru";
 
-export const englishTranslation: ResourceLanguage = {
-  translation: {},
+export const englishTranslation: Translation = {
+   "Website Logo":"Лого вебсайта"
 };
+

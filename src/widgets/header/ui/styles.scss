@@ -1,0 +1,31 @@
+@import "../../../app/styles/variables";
+
+.header {
+
+
+  & .header-top {
+    display: grid;
+    grid-template-areas:
+    "logo select-city . . select-currency . open-wish-list open-user-menu";
+    align-items: center;
+    margin: 0 auto;
+    height: 80px;
+    max-width: $content-width;
+
+    & > .logo {
+      grid-area: logo;
+    }
+    & > .select-city-dropdown {
+      grid-area: select-city;
+    }
+    & > .select-currency-dropdown {
+      grid-area: select-currency;
+    }
+    & > .open-wish-list {
+      grid-area: open-wish-list;
+    }
+    & > .open-user-menu {
+      grid-area: open-user-menu;
+    }
+  }
+}
