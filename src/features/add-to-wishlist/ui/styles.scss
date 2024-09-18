@@ -1,12 +1,12 @@
 .open-wish-list-button {
   position: relative;
-  width: min-content;
   cursor: pointer;
+  width: min-content;
 
   & .open-wish-list-button__wishes-count {
     position: absolute;
-    right: -50%;
-    top: -45%;
+    right: -40%;
+    top: -40%;
     z-index: 2;
     border-radius: 50%;
     width: var(--wishes-count-size);
@@ -18,8 +18,14 @@
     font-size: 14px;
     font-family: "CeraPro", sans-serif;
 
-box-sizing: content-box;
+    box-sizing: content-box;
     border: 2px white solid;
     --wishes-count-size: 20px;
+  }
+
+  & .heart-icon {
+    width: 30px;
+    height: 30px;
+    color:gray;
   }
 }

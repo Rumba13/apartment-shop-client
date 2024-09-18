@@ -6,7 +6,7 @@
   & .header-top {
     display: grid;
     grid-template-areas:
-    "logo select-city . . select-currency . open-wish-list open-user-menu";
+    "logo select-city . . select-currency . open-wish-list user-menu";
     align-items: center;
     margin: 0 auto;
     height: 80px;
@@ -15,17 +15,45 @@
     & > .logo {
       grid-area: logo;
     }
+
     & > .select-city-dropdown {
       grid-area: select-city;
     }
+
     & > .select-currency-dropdown {
       grid-area: select-currency;
     }
+
     & > .open-wish-list-button {
       grid-area: open-wish-list;
     }
-    & > .open-user-menu {
-      grid-area: open-user-menu;
+
+    & > .user-menu {
+      grid-area: user-menu;
+    }
+  }
+
+  & .header-bottom {
+    width: 100%;
+    padding: 110px 0 44px;
+    background: url("../../../assets/images/temp/home-top.webp") center;
+
+    & .header-bottom-container {
+        max-width: $content-width;
+      margin: 0 auto;
+
+    & .header-bottom__title, & .header-bottom__sub-title {
+      color: white;
+      font-family: "CeraPro", Arial, sans-serif;
+      text-align: center;
+    }
+    & .header-bottom__title {
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+    & .header-bottom__sub-title {
+      font-size: 20px;
+    }
     }
   }
 }
