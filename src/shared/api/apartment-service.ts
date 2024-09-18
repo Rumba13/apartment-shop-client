@@ -45,6 +45,8 @@ class ApartmentService {
                     "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.confident-group.com%2Fflats-in-trivandrum%2F&psig=AOvVaw3Z9mnyzuqC1uDdXhlR_CZL&ust=1726599016462000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOiBjtuQyIgDFQAAAAAdAAAAABAJ"]
             }
         ]
+
+
         return await apartments;
     }
 }

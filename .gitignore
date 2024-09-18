@@ -7,7 +7,7 @@
 /node_modules
 /.pnp
 .pnp.js
-fsd-template
+/fsd-template
 
 # testing
 /coverage
