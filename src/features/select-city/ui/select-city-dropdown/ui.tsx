@@ -1,10 +1,10 @@
 import './styles.scss';
 import clsx from "clsx";
-import {City} from "../../../shared/api/types/city";
-import {UseTypedTranslation} from "../../../app/i18n/use-typed-translation";
-import {Select} from "../../../shared/ui/select";
+import {City} from "../../../../shared/api/types/city";
+import {UseTypedTranslation} from "../../../../app/i18n/use-typed-translation";
+import {Select} from "../../../../shared/ui/select";
 import {useState} from "react";
-import {CityStore} from "../model/city-store";
+import {CityStore} from "../../model/city-store";
 import {observer} from "mobx-react";
 
 export type Props = {

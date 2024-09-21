@@ -1,17 +1,13 @@
-import {makeAutoObservable} from "mobx";
-import {City} from "../../../shared/api/types/city";
 import {ApartmentType} from "../../../shared/api/types/apartment-type";
+import {makeAutoObservable} from "mobx";
 
-class SearchStore {
+class ApartmentTypeStore {
     constructor() {
         makeAutoObservable(this);
     }
 
     public apartmentType:ApartmentType  = "House";
     public setApartmentType = (type: ApartmentType) => { this.apartmentType = type; };
-
-    public guestsCount:number  = 1;
-    public setGuestsCount = (count: number) => { this.guestsCount = count; };
 }
 
-export const searchStore = new SearchStore()
+export const apartmentTypeStore= new ApartmentTypeStore()
