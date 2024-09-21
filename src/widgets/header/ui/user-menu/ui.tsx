@@ -2,11 +2,11 @@ import './styles.scss';
 import {SvgIcon} from "../../../../shared/ui/svg-icon";
 import UserProfileIcon from "../../../../assets/images/user-profile.svg"
 import BurgerIcon from "../../../../assets/images/burger-menu.svg"
-import {UseTypedTranslation} from "../../../../app/i18n/use-typed-translation";
+import {useTypedTranslation} from "../../../../app/i18n/use-typed-translation";
 
 
 export function UserMenu() {
-    const {t} = UseTypedTranslation();
+    const {t} = useTypedTranslation();
     return (
         <div className="user-menu">
             <SvgIcon className="burger-icon" icon={BurgerIcon}/>

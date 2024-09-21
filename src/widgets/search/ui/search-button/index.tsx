@@ -1,12 +1,12 @@
 import "./styles.scss";
-import {UseTypedTranslation} from "../../../../app/i18n/use-typed-translation";
+import {useTypedTranslation} from "../../../../app/i18n/use-typed-translation";
 import {SvgIcon} from "../../../../shared/ui/svg-icon";
 import SearchIcon from "../../../../assets/images/search.svg";
 
 type PropsType = {}
 
 export const SearchButton = ({}: PropsType) => {
-    const {t} = UseTypedTranslation();
+    const {t} = useTypedTranslation();
 
     return (
         <button className="search-button">

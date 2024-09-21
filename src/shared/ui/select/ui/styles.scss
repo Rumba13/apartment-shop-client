@@ -6,7 +6,7 @@
   max-width: fit-content;
   background-color: var(--weak-gray);
 
-  &::after {
+  &.arrow::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -28,7 +28,7 @@
     color: #444444;
     background-color: inherit;
     padding-right: 40px;
-    padding-left: 10px;
+    //TODO Here was padding-left:10px, if its deletion affected something return it
 
     & .select-option {
       user-select: none;

@@ -4,11 +4,11 @@ import {SelectCityDropdown} from "../../../features/select-city";
 import {SelectCurrencyDropdown} from "../../../features/select-currency";
 import {OpenWishListButton} from "../../../features/add-to-wishlist";
 import {UserMenu} from "./user-menu/ui";
-import {UseTypedTranslation} from "../../../app/i18n/use-typed-translation";
+import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {Search} from "../../search";
 
 export function Header() {
-const {t} = UseTypedTranslation();
+const {t} = useTypedTranslation();
 
     return <header className="header">
         <div className="header-top">

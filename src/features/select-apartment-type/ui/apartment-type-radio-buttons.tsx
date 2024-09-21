@@ -1,12 +1,12 @@
 import "./styles.scss";
 import {observer} from "mobx-react";
-import {UseTypedTranslation} from "../../../app/i18n/use-typed-translation";
+import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {apartmentTypeStore} from "../model/apartment-type-store";
 import {ApartmentType} from "../../../shared/api/types/apartment-type";
 import {ApartmentTypeRadioButton} from "./radio-item";
 
 export const ApartmentTypeRadioButtons = observer(() => {
-    const {t} = UseTypedTranslation();
+    const {t} = useTypedTranslation();
 
     return (
         <div className="apartment-type-radio-buttons">

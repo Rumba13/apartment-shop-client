@@ -15,5 +15,11 @@ export const englishTranslation: Translation = {
     "Find": "Find",
     "Apartments": "Apartments",
     "Houses": "Houses",
+    "Guests": "Guests",
+    "guest_zero":"{{count}} guests",
+    "guest_one":"{{count}} guest",
+    "guest_few":"{{count}} guests",
+    "guest_many":"{{count}} guests",
+
 };
 

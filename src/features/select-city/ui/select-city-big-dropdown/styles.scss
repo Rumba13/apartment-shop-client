@@ -1,23 +1,38 @@
+.select-city-big-dropdown {
+  position: relative;
+  border: 1px solid var(--gains-boro);
 
-
-.select-city-dropdown-wrapper {
-  &::before {
-    content: "";
+  & .dropdown__title {
     position: absolute;
-    top: 50%;
-    left: 18px;
-    z-index: 5;
-    display: block;
-    width: 16px;
-    height: 20px;
-    background: url("../../../../assets/images/geo-location.png") 0 0 no-repeat;
-    transform: translateY(-50%);
-    pointer-events: none;
+    top: 19%;
+    left: 8%;
+    font-size: 14px;
+    font-family: "CeraPro", Arial, sans-serif;
+    color: var(--slate-gray);
   }
 
-  & select.select-city-dropdown {
-    border-radius: 15px;
-    height: 40px;
-    padding-left: 40px;
+  & .dropdown-wrapper {
+    top: 50%;
+    left: 8%;
+    font-size: 16px;
+    font-family: "CeraPro", Arial, sans-serif;
+    color: var(--dark-blue);
+    font-weight: 500;
+    min-width: calc(100% - 40px);
+
+    & .dropdown {
+      width: 100%;
+    }
+  }
+
+  & .svg-icon {
+    position: absolute;
+    right: 7%;
+    top: 50%;
+
+    width: 15px;
+    height: 15px;
+    color: var(--taupe-gray);
+    transform: rotate(180deg) translateY(50%);
   }
 }

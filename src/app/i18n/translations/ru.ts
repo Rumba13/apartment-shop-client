@@ -15,6 +15,12 @@ export const russianTranslation = {
     "Find": "Найти",
     "Apartments": "Квартиры",
     "Houses": "Усадьбы",
+    "Guests": "Гости",
+
+    "guest_zero":"{{count}} гостей",
+    "guest_one":"{{count}} гость",
+    "guest_few":"{{count}} гостя",
+    "guest_many":"{{count}} гостей",
 };
 
 export type Translation = typeof russianTranslation;

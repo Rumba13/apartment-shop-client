@@ -1,7 +1,7 @@
 import {makeAutoObservable} from "mobx";
 import {City} from "../../../shared/api/types/city";
 
-export class CityStore {
+class CityStore {
     constructor() {
         makeAutoObservable(this);
     }
@@ -12,3 +12,4 @@ export class CityStore {
         this.city = city;
     }
 }
+export const cityStore= new CityStore()

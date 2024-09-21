@@ -1,9 +1,9 @@
 import './styles.scss';
 import {Header} from "../../../widgets/header";
-import {UseTypedTranslation} from "../../../app/i18n/use-typed-translation";
+import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 
 export function WishListPage() {
- const {t} = UseTypedTranslation();
+ const {t} = useTypedTranslation();
 
  return <div className="wish-list-page">
   <Header/>
