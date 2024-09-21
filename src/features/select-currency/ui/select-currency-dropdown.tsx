@@ -17,6 +17,6 @@ export const SelectCurrencyDropdown = observer(() => {
         value: currency
     }))
 
-    return <Select className={"select-currency-dropdown"} options={selectOptions} value={currencyStore.currency}
+    return <Select wrapperClassName={"select-currency-dropdown-wrapper"} className={"select-currency-dropdown"} options={selectOptions} value={currencyStore.currency}
                    onValueChanged={(value) => currencyStore.setCurrency(value as Currency)}/>
 });

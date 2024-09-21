@@ -12,14 +12,15 @@ type Option = {
 type PropsType = {
     options: Option[],
     className?: string,
+    wrapperClassName?:string,
     value: string,
     onValueChanged?: (value: string) => void,
 }
 
-export const Select = observer(({options, className, value,onValueChanged}: PropsType) => {
+export const Select = observer(({options, className, value,onValueChanged,wrapperClassName}: PropsType) => {
 
     return (
-        <div className={clsx("select-wrapper")}>
+        <div className={clsx("select-wrapper", wrapperClassName)}>
             <select className={clsx("select", className)} value={value}
                     onChange={(e) => onValueChanged?.(e.target.value)}>
                 {options.map(option => <option className="select-option" value={option.value}>{option.label}</option>)}

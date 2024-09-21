@@ -2,11 +2,12 @@
 
 .header {
 
-
   & .header-top {
     display: grid;
     grid-template-areas:
-    "logo select-city . . select-currency . open-wish-list user-menu";
+    "logo select-city . . select-currency  open-wish-list user-menu";
+    grid-template-columns:  auto auto auto 1fr min-content auto ;
+    grid-template-rows: 100%;
     align-items: center;
     margin: 0 auto;
     height: 80px;
@@ -16,16 +17,19 @@
       grid-area: logo;
     }
 
-    & > .select-city-dropdown {
+    & > .select-city-dropdown-wrapper {
       grid-area: select-city;
+      margin-left: 20px;
     }
 
-    & > .select-currency-dropdown {
+    & > .select-currency-dropdown-wrapper {
       grid-area: select-currency;
+      margin-left: auto;
     }
 
     & > .open-wish-list-button {
       grid-area: open-wish-list;
+      margin: 0 50px;
     }
 
     & > .user-menu {
@@ -39,21 +43,23 @@
     background: url("../../../assets/images/temp/home-top.webp") center;
 
     & .header-bottom-container {
-        max-width: $content-width;
+      max-width: $content-width;
       margin: 0 auto;
 
-    & .header-bottom__title, & .header-bottom__sub-title {
-      color: white;
-      font-family: "CeraPro", Arial, sans-serif;
-      text-align: center;
-    }
-    & .header-bottom__title {
-      font-size: 50px;
-      margin-bottom: 20px;
-    }
-    & .header-bottom__sub-title {
-      font-size: 20px;
-    }
+      & .header-bottom__title, & .header-bottom__sub-title {
+        color: white;
+        font-family: "CeraPro", Arial, sans-serif;
+        text-align: center;
+      }
+
+      & .header-bottom__title {
+        font-size: 50px;
+        margin-bottom: 20px;
+      }
+
+      & .header-bottom__sub-title {
+        font-size: 20px;
+      }
     }
   }
 }

@@ -1,4 +1,23 @@
-.select-city-dropdown {
-  border-radius: 15px;
-  height: 40px;
+
+
+.select-city-dropdown-wrapper {
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 18px;
+    z-index: 5;
+    display: block;
+    width: 16px;
+    height: 20px;
+    background: url("../../../assets/images/geo-location.png") 0 0 no-repeat;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  & select.select-city-dropdown {
+    border-radius: 15px;
+    height: 40px;
+    padding-left: 40px;
+  }
 }
