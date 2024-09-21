@@ -8,21 +8,19 @@ type PropsType = {
 };
 
 export function SvgIcon({icon, className, asImage = false}: PropsType) {
-    if (asImage) {
-        return (
-            <img
-                className={clsx('svg-icon', className)}
-                src={icon}
-                style={{backgroundColor: 'transparent'}}
-                alt=""
-            />
-        );
-    }
+    if (asImage) return (
+        <img
+            className={clsx('svg-icon', className)}
+            src={icon}
+            style={{backgroundColor: 'transparent'}}
+            alt=""
+        />
+    );
 
     return (
         <div
             className={clsx('svg-icon', className)}
-            style={{maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})`}}
+            style={{backgroundColor:"currentcolor",maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})`}}
         />
     );
 }

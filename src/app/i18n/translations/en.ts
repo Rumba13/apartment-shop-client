@@ -11,6 +11,9 @@ export const englishTranslation: Translation = {
     "Grodno": "Grodno",
     "Pinsk": "Pinsk",
     "Minsk": "Minsk",
-    "Mogilev": "Mogilev"
+    "Mogilev": "Mogilev",
+    "Find": "Find",
+    "Apartments": "Apartments",
+    "Houses": "Houses",
 };
 

@@ -11,7 +11,10 @@ export const russianTranslation = {
     "Grodno": "Гродно",
     "Pinsk": "Пинск",
     "Minsk": "Минск",
-    "Mogilev": "Могилёв"
+    "Mogilev": "Могилёв",
+    "Find": "Найти",
+    "Apartments": "Квартиры",
+    "Houses": "Усадьбы",
 };
 
 export type Translation = typeof russianTranslation;

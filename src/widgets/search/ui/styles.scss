@@ -5,18 +5,30 @@
   height: 83px;
   margin: 20px auto 0 auto;
   max-width: 960px;
+  padding: 10px;
 
 
   & .select-city-big-dropdown {
+    height: 100%;
+    border-radius: inherit;
 
   }
+
   & .apartment-type-radio-buttons {
+    margin-left: auto;
+    height: 100%;
+    border-radius: inherit;
 
   }
+
   & .select-guests-count-input-number {
-
+    height: 100%;
+    border-radius: inherit;
   }
+
   & .search-button {
+    height: 100%;
+    border-radius: inherit;
 
   }
 }

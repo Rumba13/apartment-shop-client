@@ -40,12 +40,14 @@
   & .header-bottom {
     width: 100%;
     padding: 110px 0 44px;
-    background: url("../../../assets/images/temp/home-top.webp") center;
+    background: url("../../../assets/images/temp/home-top.webp") center no-repeat;
+    background-size: cover;
 
     & .header-bottom-container {
       max-width: $content-width;
       margin: 0 auto;
       padding: 0 40px;
+
       & .header-bottom__title, & .header-bottom__sub-title {
         color: white;
         font-family: "CeraPro", Arial, sans-serif;
