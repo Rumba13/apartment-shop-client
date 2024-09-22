@@ -16,7 +16,6 @@ export const russianTranslation = {
     "Apartments": "Квартиры",
     "Houses": "Усадьбы",
     "Guests": "Гости",
-
     "guest_zero":"{{count}} гостей",
     "guest_one":"{{count}} гость",
     "guest_few":"{{count}} гостя",

@@ -95,8 +95,8 @@ select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    text-indent: 1px;
-    text-overflow: '';
+    //text-indent: 1px;
+    //text-overflow: '';
 
     &::-ms-expand {
         display: none;

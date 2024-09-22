@@ -14,7 +14,6 @@ export const SelectGuestsCountInputNumber = observer(({}: PropsType) => {
     const inputRef = React.createRef<HTMLInputElement>()
     const [inputValue, setInputValue] = useState<string>("");
 
-
     useEffect(() => {
         setInputValue(t("guest", {count: guestStore.guestsCount}))
     }, [guestStore.guestsCount]);
@@ -36,7 +35,7 @@ export const SelectGuestsCountInputNumber = observer(({}: PropsType) => {
     return (
         <div className="select-guests-count-input-number">
             <span className="input-number__title">{t("Guests")}</span>
-            <input className="input-number__value" value={inputValue} ref={inputRef} disabled
+            <input className="input-number__value" value={inputValue} ref={inputRef}
                    onChange={onChange}/>
 
             <button className="input-number-increase"
