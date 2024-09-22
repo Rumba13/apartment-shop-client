@@ -34,9 +34,9 @@ export const FilterByPrice = observer(() => {
 
     //const validateValue = (value:number) => Math.min(filterByPriceStore.maxPriceBound, Math.max(filterByPriceStore.minPriceBound, value));
 
-
     return (
         <div className="filter-by-price">
+            <span className="filter-by-price__title">{t("Price")}</span>
             <div className="filter-by-price-inputs">
                 <div className="price-input _min">
                     <span className="price-input__title">{t("From")}</span>

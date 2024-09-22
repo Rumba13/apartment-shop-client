@@ -22,7 +22,8 @@ export const englishTranslation: Translation = {
     "guest_many":"{{count}} guests",
     "Filters": "Filters",
     "From": "from",
-    "To": "to"
+    "To": "to",
+    "Price": "Price"
 
 };
 
