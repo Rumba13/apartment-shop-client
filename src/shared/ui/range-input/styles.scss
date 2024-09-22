@@ -1,0 +1,34 @@
+.range-inputs {
+  display: flex;
+  height: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--white-gray);
+  margin-top: 5px;
+  padding-right: 4px; //To prevent no border in angles(browser bug)
+
+  & .range-input {
+    display: flex;
+
+    &._max {
+      border-left: 1px solid var(--white-gray);
+    }
+  }
+
+  & .range-input__title {
+    font-size: 14px;
+    line-height: 20px;
+    font-family: "CeraPro", Arial, sans-serif;
+    color: var(--slate-gray);
+    height: 20px;
+    margin: auto 0;
+    padding-left: 10px;
+  }
+
+  & .range-input__input {
+    width: 100%;
+    padding: 10px 10px;
+    font-family: "CeraPro", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}

@@ -1,5 +1,3 @@
-import { ResourceLanguage } from 'i18next/typescript/options';
-
 export const russianTranslation = {
     "Website Logo": "Лого вебсайта",
     "Featured": "Избранное",
@@ -23,7 +21,8 @@ export const russianTranslation = {
     "Filters" : "Фильтры",
     "From": "от",
     "To": "до",
-    "Price": "Стоимость"
+    "Price": "Стоимость",
+    "Area": "Площадь"
 };
 
 export type Translation = typeof russianTranslation;

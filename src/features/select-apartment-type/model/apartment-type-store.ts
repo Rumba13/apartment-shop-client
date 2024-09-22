@@ -7,7 +7,7 @@ class ApartmentTypeStore {
     }
 
     public apartmentType:ApartmentType  = "House";
-    public setApartmentType = (type: ApartmentType) => { this.apartmentType = type; console.log(12); };
+    public setApartmentType = (type: ApartmentType) => { this.apartmentType = type; };
 }
 
 export const apartmentTypeStore= new ApartmentTypeStore()

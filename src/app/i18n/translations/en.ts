@@ -23,7 +23,7 @@ export const englishTranslation: Translation = {
     "Filters": "Filters",
     "From": "from",
     "To": "to",
-    "Price": "Price"
-
+    "Price": "Price",
+    "Area": "Area"
 };
 

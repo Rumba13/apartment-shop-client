@@ -2,10 +2,11 @@ import './styles.scss';
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {observer} from "mobx-react";
 import {filterByPriceStore} from "../model/filter-by-price-store";
-import {Slider} from "@mui/material";
 import {currencyStore, currencyToPostfixMap} from "../../select-currency";
 import {useEffect} from "react";
 import RangeImage from "../../../assets/images/mocked/price-range.png"
+import {Slider} from "../../../shared/ui/range/ui";
+import {RangeInput} from "../../../shared/ui/range-input/ui";
 
 export const FilterByPrice = observer(() => {
     const {t} = useTypedTranslation();
@@ -37,33 +38,20 @@ export const FilterByPrice = observer(() => {
     return (
         <div className="filter-by-price">
             <span className="filter-by-price__title">{t("Price")}</span>
-            <div className="filter-by-price-inputs">
-                <div className="price-input _min">
-                    <span className="price-input__title">{t("From")}</span>
-                    <input type="number" className="price-input__input" value={filterByPriceStore.minPrice} max={"222"}
-                           onChange={({target: {value}}) => filterByPriceStore.setMinPrice(parseInt(value))}/>
-                </div>
-                <div className="price-input _max">
-                    <span className="price-input__title">{t("To")}</span>
-                    <input type="number" className="price-input__input" value={filterByPriceStore.maxPrice}
-                           onChange={({target: {value}}) => filterByPriceStore.setMaxPrice(parseInt(value))}/>
-                </div>
-            </div>
+            <RangeInput className={"filter-by-price-inputs"}
+                        onChange={(values: number[]) => {
+                            filterByPriceStore.setMinPrice(values[0]);
+                            filterByPriceStore.setMaxPrice(values[1]);
+                        }}
+                        values={[filterByPriceStore.minPrice, filterByPriceStore.maxPrice]}/>
 
             <div className="slider-wrapper">
                 <img className={"slider-wrapper__image"} src={RangeImage} alt=''/>
-                <Slider
-                    className="price-range-slider"
-                    getAriaLabel={() => 'Temperature range'}
-                    value={[filterByPriceStore.minPrice, filterByPriceStore.maxPrice]}
-                    onChange={(e, value, activeThumb) => setSliderValue(value, activeThumb)}
-                    valueLabelDisplay="on"
-                    valueLabelFormat={getLabel}
-                    getAriaValueText={getLabel}
-                    max={filterByPriceStore.maxPriceBound}
-                    min={filterByPriceStore.minPriceBound}
-                    size={"small"}
-                />
+
+                <Slider className={"price-range-slider"} getLabel={getLabel}
+                        onChange={(e, value, activeThumb) => setSliderValue(value, activeThumb)}
+                        max={filterByPriceStore.maxPriceBound} min={filterByPriceStore.minPriceBound}
+                        value={[filterByPriceStore.minPrice, filterByPriceStore.maxPrice]}/>
             </div>
         </div>
     )

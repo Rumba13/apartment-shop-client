@@ -3,7 +3,6 @@ import {Price} from "./price";
 
 export type Apartment = {
     title:string,
-    cityId:UUID,
     landlordId:UUID,
     description:string,
     price:Price,

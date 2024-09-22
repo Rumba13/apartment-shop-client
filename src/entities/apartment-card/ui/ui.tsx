@@ -13,7 +13,6 @@ export function ApartmentCard({
                                       roomsQuantity,
                                       photos,
                                       price,
-                                      cityId,
                                       landlordId,
                                       addressId,
                                       description
