@@ -1,0 +1,20 @@
+.search {
+  --search-padding: 10px;
+  background: white;
+  border-radius: 82px;
+  height: 83px;
+  margin: 20px auto 0 auto;
+  padding: var(--search-padding);
+  max-width: 960px;
+  display: grid;
+  grid-template: auto /repeat(3, 1fr) auto;
+  column-gap: 5px;
+
+  & .select-city-big-dropdown,
+  & .apartment-type-radio-buttons,
+  & .select-guests-count-input-number,
+  & .search-button {
+    border-radius: inherit;
+    height: calc(100% - var(--search-padding));
+  }
+}

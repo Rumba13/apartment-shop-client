@@ -1,0 +1,37 @@
+.select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  max-width: fit-content;
+  background-color: var(--weak-gray);
+
+  &.arrow::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 18px;
+    z-index: 5;
+    display: block;
+    border-color: #888 transparent transparent transparent;
+    border-style: solid;
+    border-width: 5px 4px 0 4px;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+
+  & .select {
+    font-size: 16px;
+    font-family: "CeraPro", sans-serif;
+    font-weight: 500;
+    color: #444444;
+    background-color: inherit;
+    padding-right: 40px;
+    //TODO Here was padding-left:10px, if its deletion affected something return it
+
+    & .select-option {
+      user-select: none;
+    }
+  }
+}
