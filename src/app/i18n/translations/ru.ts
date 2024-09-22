@@ -23,7 +23,8 @@ export const russianTranslation = {
     "Filters" : "Фильтры",
     "From": "от",
     "To": "до",
-    "Price": "Стоимость"
+    "Price": "Стоимость",
+    "Area": "Площадь"
 };
 
 export type Translation = typeof russianTranslation;
