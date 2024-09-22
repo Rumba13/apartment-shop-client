@@ -1,8 +1,7 @@
 import './styles.scss';
 import {Currency} from "../../../shared/api/types/currency";
 import {Select} from "../../../shared/ui/select";
-import {useState} from "react";
-import {CurrencyStore} from "../model/currency-store";
+import {currencyStore} from "../model/currency-store";
 import {observer} from "mobx-react";
 
 type SelectOption = {
@@ -11,7 +10,6 @@ type SelectOption = {
 }
 
 export const SelectCurrencyDropdown = observer(() => {
-    const [currencyStore] = useState(new CurrencyStore())
     const selectOptions: SelectOption[] = (["BYN", "USD", "EUR"] as Currency[]).map((currency): SelectOption => ({
         label: currency,
         value: currency

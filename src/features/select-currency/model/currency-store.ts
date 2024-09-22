@@ -1,7 +1,7 @@
 import {makeAutoObservable} from "mobx";
 import {Currency} from "../../../shared/api/types/currency";
 
-export class CurrencyStore {
+class CurrencyStore {
     constructor() {
         makeAutoObservable(this);
     }
@@ -12,3 +12,4 @@ export class CurrencyStore {
         this.currency = currency;
     }
 }
+export const currencyStore = new CurrencyStore();

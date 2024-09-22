@@ -20,6 +20,9 @@ export const englishTranslation: Translation = {
     "guest_one":"{{count}} guest",
     "guest_few":"{{count}} guests",
     "guest_many":"{{count}} guests",
+    "Filters": "Filters",
+    "From": "from",
+    "To": "to"
 
 };
 

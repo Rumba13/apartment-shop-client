@@ -1,14 +1,12 @@
 import "./styles.scss";
 import {ApartmentList} from "../../../widgets/apartment-list";
-import {Header} from "../../../widgets/header";
+import {StandartLayout} from "../../standart-layout";
 
 export function ApartmentsPage() {
     return (
-        <div>
-            <Header/>
+        <StandartLayout className="apartments-page">
             ApartmentsPage
-
             <ApartmentList/>
-        </div>
+        </StandartLayout>
     )
 }

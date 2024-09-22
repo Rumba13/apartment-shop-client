@@ -1,0 +1,28 @@
+@import "../../../app/styles/variables";
+
+.standart-layout {
+  height: 100%;
+  //grid-template-areas:
+  //        "header header"
+  //        "aside content";
+  //
+  //grid-template-columns: 265px 1fr;
+  //grid-template-rows: auto 100%;
+
+  & .standart-layout-wrapper {
+    display: flex;
+    max-width: $content-width;
+    margin: 0 auto;
+    height: 100%;
+  }
+
+  & .header {
+    grid-area: header;
+  }
+  & .aside {
+    grid-area: aside;
+  }
+  & .content {
+    grid-area: content;
+  }
+}

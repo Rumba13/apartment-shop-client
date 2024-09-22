@@ -20,6 +20,9 @@ export const russianTranslation = {
     "guest_one":"{{count}} гость",
     "guest_few":"{{count}} гостя",
     "guest_many":"{{count}} гостей",
+    "Filters" : "Фильтры",
+    "From": "от",
+    "To": "до"
 };
 
 export type Translation = typeof russianTranslation;

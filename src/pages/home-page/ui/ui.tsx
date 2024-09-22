@@ -1,10 +1,10 @@
 import {Link} from "react-router-dom";
-import {Header} from "../../../widgets/header";
+import {StandartLayout} from "../../standart-layout";
+import {ApartmentList} from "../../../widgets/apartment-list";
 
 export function HomePage(){
-    return <div>
-        <Header/>
-        Home page
+   return <StandartLayout className="home-page">
         <Link to={"/apartments"}>View apartments</Link>
-    </div>
+       <ApartmentList/>
+    </StandartLayout>
 }
