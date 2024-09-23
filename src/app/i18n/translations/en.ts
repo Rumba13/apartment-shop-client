@@ -24,6 +24,7 @@ export const englishTranslation: Translation = {
     "From": "from",
     "To": "to",
     "Price": "Price",
-    "Area": "Area"
+    "Area": "Area",
+    "Amenities": "Amenities"
 };
 

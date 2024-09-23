@@ -13,6 +13,9 @@ class ApartmentListStore {
         this.apartments = await apartmentService.loadAllApartments();
     }
 
+    public setApartments = (apartments:Apartment[]) => {
+        this.apartments = apartments;
+    };
 }
 
 export const apartmentListStore = new ApartmentListStore();

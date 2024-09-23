@@ -3,6 +3,7 @@ import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {FilterByPrice} from "../../../features/filter-by-price";
 import React from "react";
 import {FilterBySpace} from "../../../features/filter-by-space";
+import {TagsList} from "../../../features/select-tags";
 
 export function Aside() {
     const{t} = useTypedTranslation();
@@ -12,6 +13,8 @@ export function Aside() {
          <span className="aside__title">{t("Filters")}</span>
          <FilterByPrice/>
          <FilterBySpace/>
+         <TagsList/>
+
      </aside>
  )
 }

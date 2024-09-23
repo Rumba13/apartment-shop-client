@@ -37,7 +37,7 @@ export const FilterByPrice = observer(() => {
 
     return (
         <div className="filter-by-price">
-            <span className="filter-by-price__title">{t("Price")}</span>
+            <span className="filters__title filter-by-price__title">{t("Price")}</span>
             <RangeInput className={"filter-by-price-inputs"}
                         onChange={(values: number[]) => {
                             filterByPriceStore.setMinPrice(values[0]);

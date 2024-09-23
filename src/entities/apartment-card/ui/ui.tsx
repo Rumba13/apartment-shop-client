@@ -15,10 +15,14 @@ export function ApartmentCard({
                                       price,
                                       landlordId,
                                       addressId,
-                                      description
+                                      description,
+                                      tags
                                   }
                               }: PropsType) {
     return <div className="apartment-card">
+        <span className="apartment-card__title">{title}</span>
+        <span className="apartment-card__guests-quantity">{guestsQuantity}</span>
+        <span className="apartment-card__tags">{tags.join(", ")}</span>
         <span className="apartment-card__price">{price.inBYN}</span>
     </div>
 }

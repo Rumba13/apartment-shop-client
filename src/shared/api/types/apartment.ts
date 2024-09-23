@@ -10,5 +10,7 @@ export type Apartment = {
     roomsQuantity:number,
     bedsQuantity:number,
     guestsQuantity:number,
-    photos: string[]
+    photos: string[],
+    tags:string[],
+    areaInSquareMeters:number
 }
