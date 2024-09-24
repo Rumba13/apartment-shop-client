@@ -8,6 +8,7 @@ import {searchService} from "../../../shared/api/search-service";
 import {priceFilterStore} from "../../../features/filter-by-price";
 import {areaFilterStore} from "../../../features/filter-by-space";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
+import {sortByStore} from "../../../features/sort-by/model/sort-by-store";
 
 type PropsType = {}
 
@@ -24,9 +25,10 @@ export const ApartmentList = observer(({}: PropsType) => {
             {
                 min: areaFilterStore.minArea,
                 max: areaFilterStore.maxArea
-            }
+            },
+            sortByStore.selectedSortBy
         ).then(apartmentListStore.setApartments)
-    }, [tagsFilterStore.selectedTags, areaFilterStore.minArea, areaFilterStore.maxArea, priceFilterStore.minPrice, priceFilterStore.maxPrice]);
+    }, [tagsFilterStore.selectedTags, areaFilterStore.minArea, areaFilterStore.maxArea, priceFilterStore.minPrice, priceFilterStore.maxPrice, sortByStore.selectedSortBy]);
 
     if (!apartments) {
         return <div>Loading...</div>

@@ -27,6 +27,10 @@ export const englishTranslation: Translation = {
     "Area": "Area",
     "Amenities": "Amenities",
     "Nothing Found": "Nothing found",
-    "Remove Filters": "Remove filters"
+    "Remove Filters": "Remove filters",
+    "Price Low To High": "Price low to high",
+    "Price High To Low": "Price high to low",
+    "Popularity Low To High": "Popularity low to high",
+    "Popularity High To Low": "Popularity high to low",
 };
 

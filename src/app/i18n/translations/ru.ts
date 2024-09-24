@@ -25,7 +25,12 @@ export const russianTranslation = {
     "Area": "Площадь",
     "Amenities": "Удобства",
     "Nothing Found": "Ничего не найдено",
-    "Remove Filters": "Сбросить все фильтры"
+    "Remove Filters": "Сбросить все фильтры",
+    "Price Low To High": "Сначала дешевле",
+    "Price High To Low": "Сначала дороже",
+    "Popularity Low To High": "Сначала популярнее",
+    "Popularity High To Low": "Сначала не популярнее",
+
 };
 
 export type Translation = typeof russianTranslation;

@@ -25,6 +25,8 @@ export const Select = observer(({
                                     noArrow = false
                                 }: PropsType) => {
 
+
+
     return (
         <div className={clsx("select-wrapper", wrapperClassName, !noArrow && "arrow")}>
             <select className={clsx("select", className)} value={value}
