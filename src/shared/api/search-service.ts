@@ -11,6 +11,7 @@ class SearchService {
         apartments = apartments.filter(apartment => searchTags.every(tag => apartment.tags.includes(tag)));
         apartments = apartments.filter(apartment => inRange(priceRange, apartment.price.inBYN))
         apartments = apartments.filter(apartment => inRange(areaRange, apartment.areaInSquareMeters))
+
         apartments = apartments.sort((a1,a2) =>  {
             if(sortBy === "price:asc") {
                 return a1.price.inBYN - a2.price.inBYN;
@@ -23,5 +24,6 @@ class SearchService {
         return apartments
     }
 }
+
 
 export const searchService = new SearchService();

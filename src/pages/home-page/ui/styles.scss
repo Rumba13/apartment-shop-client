@@ -1,8 +1,12 @@
-.home-page .content .temp-div {
-  display: flex;
+.home-page .content {
   width: 100%;
 
-  & .sort-by {
-    margin-left: auto;
+  & .temp-div {
+    display: flex;
+    width: 100%;
+
+    & .sort-by {
+      margin-left: auto;
+    }
   }
 }
