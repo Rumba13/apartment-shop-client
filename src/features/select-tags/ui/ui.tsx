@@ -6,7 +6,7 @@ import {tagsService} from "../../../shared/api/tags-service";
 import {tagsStore} from "../model/tags-store";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 
-export const TagsList = observer(() => { //TODO rename to tags
+export const TagsList = observer(() => {
     const {t} = useTypedTranslation()
 
     useEffect(() => {

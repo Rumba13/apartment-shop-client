@@ -14,7 +14,6 @@ export function Aside() {
          <FilterByPrice/>
          <FilterBySpace/>
          <TagsList/>
-
      </aside>
  )
 }
