@@ -1,5 +1,3 @@
-import {Tag} from "../../../shared/api/types/tag";
-
 export const russianTranslation = {
     "Website Logo": "Лого вебсайта",
     "Featured": "Избранное",
@@ -25,7 +23,9 @@ export const russianTranslation = {
     "To": "до",
     "Price": "Стоимость",
     "Area": "Площадь",
-    "Amenities": "Удобства"
+    "Amenities": "Удобства",
+    "Nothing Found": "Ничего не найдено",
+    "Remove Filters": "Сбросить все фильтры"
 };
 
 export type Translation = typeof russianTranslation;

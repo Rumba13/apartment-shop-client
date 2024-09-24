@@ -13,6 +13,11 @@ class FilterByPriceStore {
 
     public setMaxPrice = (maxPrice: number) => this.maxPrice = maxPrice
     public setMinPrice = (minPrice: number) => this.minPrice = minPrice
+
+    public removeFilter() {
+        this.setMaxPrice(this.maxPriceBound);
+        this.setMinPrice(this.minPriceBound);
+    }
 }
 
-export const filterByPriceStore  = new FilterByPriceStore()
+export const priceFilterStore  = new FilterByPriceStore()

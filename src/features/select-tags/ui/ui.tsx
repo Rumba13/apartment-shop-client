@@ -3,22 +3,22 @@ import {observer} from "mobx-react";
 import {CheckBox} from "../../../shared/ui/check-box/ui";
 import {useEffect} from "react";
 import {tagsService} from "../../../shared/api/tags-service";
-import {tagsStore} from "../model/tags-store";
+import {tagsFilterStore} from "../model/tags-filter-store";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 
 export const TagsList = observer(() => {
     const {t} = useTypedTranslation()
 
     useEffect(() => {
-        tagsService.loadTags().then(tagsStore.setTags);
+        tagsService.loadTags().then(tagsFilterStore.setTags);
     }, []);
 
     return <div className="tags">
         <span className="filters__title tags__title">{t("Amenities")}</span>
 
-        {tagsStore.tags.map(tag =>
-            <CheckBox value={tagsStore.selectedTags[tag]} name={tag}
-                      onValueChange={() => tagsStore.toggleIsTagSelected(tag)}/>
+        {tagsFilterStore.tags.map(tag =>
+            <CheckBox value={tagsFilterStore.selectedTags[tag]} name={tag}
+                      onValueChange={() => tagsFilterStore.toggleIsTagSelected(tag)}/>
         )}
     </div>
 });

@@ -1,2 +1,2 @@
-export {FilterBySpace} from './ui/ui';
-export {filterByAreaStore} from "./model/filter-by-area-store"
+export {AreaFilter} from './ui/ui';
+export {areaFilterStore} from "./model/area-filter-store"

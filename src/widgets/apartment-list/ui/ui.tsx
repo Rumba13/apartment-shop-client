@@ -3,32 +3,38 @@ import {useEffect} from "react";
 import {apartmentListStore} from "../model/model";
 import {observer} from "mobx-react";
 import {ApartmentCard} from "../../../entities/apartment-card";
-import {tagsStore} from "../../../features/select-tags/model/tags-store";
+import {tagsFilterStore} from "../../../features/select-tags/model/tags-filter-store";
 import {searchService} from "../../../shared/api/search-service";
-import {filterByPriceStore} from "../../../features/filter-by-price";
-import {filterByAreaStore} from "../../../features/filter-by-space";
+import {priceFilterStore} from "../../../features/filter-by-price";
+import {areaFilterStore} from "../../../features/filter-by-space";
+import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 
 type PropsType = {}
 
 export const ApartmentList = observer(({}: PropsType) => {
 
+    const {apartments} = apartmentListStore
+    const {t} = useTypedTranslation();
+
     useEffect(() => {
-        searchService.search(tagsStore.getSelectedTagsNames(), {
-                min: filterByPriceStore.minPrice,
-                max: filterByPriceStore.maxPrice
+        searchService.search(tagsFilterStore.getSelectedTagsNames(), {
+                min: priceFilterStore.minPrice,
+                max: priceFilterStore.maxPrice
             },
             {
-                min: filterByAreaStore.minArea,
-                max: filterByAreaStore.maxArea
+                min: areaFilterStore.minArea,
+                max: areaFilterStore.maxArea
             }
         ).then(apartmentListStore.setApartments)
-    }, [tagsStore.selectedTags, filterByAreaStore.minArea, filterByAreaStore.maxArea, filterByPriceStore.minPrice, filterByPriceStore.maxPrice]);
+    }, [tagsFilterStore.selectedTags, areaFilterStore.minArea, areaFilterStore.maxArea, priceFilterStore.minPrice, priceFilterStore.maxPrice]);
 
-    if (!apartmentListStore.apartments) {
+    if (!apartments) {
         return <div>Loading...</div>
     }
 
+
+
     return <div>
-        {apartmentListStore.apartments.map(apartment => <ApartmentCard apartment={apartment}/>)}
+        {(apartments.length === 0) ? t("Nothing Found") :apartments.map(apartment => <ApartmentCard apartment={apartment}/>)}
     </div>
 });

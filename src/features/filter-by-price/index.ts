@@ -1,2 +1,2 @@
-export { FilterByPrice } from './ui/ui';
-export {filterByPriceStore} from "./model/filter-by-price-store"
+export { PriceFilter } from './ui/ui';
+export {priceFilterStore} from "./model/price-filter-store"

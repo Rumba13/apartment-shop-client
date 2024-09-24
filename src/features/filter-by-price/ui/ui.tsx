@@ -1,14 +1,14 @@
 import './styles.scss';
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {observer} from "mobx-react";
-import {filterByPriceStore} from "../model/filter-by-price-store";
+import {priceFilterStore} from "../model/price-filter-store";
 import {currencyStore, currencyToPostfixMap} from "../../select-currency";
 import {useEffect} from "react";
 import RangeImage from "../../../assets/images/mocked/price-range.png"
 import {Slider} from "../../../shared/ui/range/ui";
 import {RangeInput} from "../../../shared/ui/range-input/ui";
 
-export const FilterByPrice = observer(() => {
+export const PriceFilter = observer(() => {
     const {t} = useTypedTranslation();
 
     //TODO add values validation
@@ -20,13 +20,13 @@ export const FilterByPrice = observer(() => {
 
     const setSliderValue = (value: number | number[], activeThumb: number) => {
         if (Array.isArray(value)) {
-            filterByPriceStore.setMinPrice(value[0]);
-            filterByPriceStore.setMaxPrice(value[1]);
+            priceFilterStore.setMinPrice(value[0]);
+            priceFilterStore.setMaxPrice(value[1]);
         } else {
             if (activeThumb === 0) {
-                filterByPriceStore.setMinPrice(value);
+                priceFilterStore.setMinPrice(value);
             } else {
-                filterByPriceStore.setMaxPrice(value);
+                priceFilterStore.setMaxPrice(value);
             }
         }
     }
@@ -40,18 +40,18 @@ export const FilterByPrice = observer(() => {
             <span className="filters__title filter-by-price__title">{t("Price")}</span>
             <RangeInput className={"filter-by-price-inputs"}
                         onChange={(values: number[]) => {
-                            filterByPriceStore.setMinPrice(values[0]);
-                            filterByPriceStore.setMaxPrice(values[1]);
+                            priceFilterStore.setMinPrice(values[0]);
+                            priceFilterStore.setMaxPrice(values[1]);
                         }}
-                        values={[filterByPriceStore.minPrice, filterByPriceStore.maxPrice]}/>
+                        values={[priceFilterStore.minPrice, priceFilterStore.maxPrice]}/>
 
             <div className="slider-wrapper">
                 <img className={"slider-wrapper__image"} src={RangeImage} alt=''/>
 
                 <Slider className={"price-range-slider"} getLabel={getLabel}
                         onChange={(e, value, activeThumb) => setSliderValue(value, activeThumb)}
-                        max={filterByPriceStore.maxPriceBound} min={filterByPriceStore.minPriceBound}
-                        value={[filterByPriceStore.minPrice, filterByPriceStore.maxPrice]}/>
+                        max={priceFilterStore.maxPriceBound} min={priceFilterStore.minPriceBound}
+                        value={[priceFilterStore.minPrice, priceFilterStore.maxPrice]}/>
             </div>
         </div>
     )

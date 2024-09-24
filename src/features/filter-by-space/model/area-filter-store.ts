@@ -13,6 +13,11 @@ class FilterByAreaStore {
 
     public setMaxArea = (maxArea: number) => {this.maxArea = maxArea}
     public setMinArea = (minArea: number) => {this.minArea = minArea}
+
+    public removeFilter() {
+        this.setMaxArea(this.upperAreaBound);
+        this.setMinArea(this.lowerAreaBound);
+    }
 }
 
-export const filterByAreaStore= new FilterByAreaStore()
+export const areaFilterStore= new FilterByAreaStore()

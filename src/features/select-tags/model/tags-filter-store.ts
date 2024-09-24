@@ -2,6 +2,7 @@ import {makeAutoObservable} from "mobx";
 import {Tag} from "../../../shared/api/types/tag";
 
 class SelectTagsStore {
+
     constructor() {
         makeAutoObservable(this)
     }
@@ -36,6 +37,10 @@ class SelectTagsStore {
 
         return selectedTagsNames;
     }
+
+    public removeFilter() {
+        this.selectedTags = {};
+    }
 }
 
-export const tagsStore = new SelectTagsStore()
+export const tagsFilterStore = new SelectTagsStore()
