@@ -1,3 +1,90 @@
 .apartment-card {
-  border : 1px solid black;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #E6EAED;
+  box-shadow: 0px 5px 20px rgba(44, 57, 78, 0.1);
+  //aspect-ratio: 0.79;
+  transition: box-shadow 200ms;
+  &:hover {
+    box-shadow: 0px 10px 30px rgba(44, 57, 78, 0.2);
+  }
+
+  & .apartment-card-slider {
+    border-radius: inherit;
+
+    & img {
+      width: 100%;
+      aspect-ratio: 1 / 0.74;
+      border-top-right-radius: inherit;
+      border-top-left-radius: inherit;
+    }
+  }
+
+  & .apartment-details {
+    display: grid;
+    grid-template-areas:
+  "price rooms guests"
+  "address address map-link"
+  "description description description";
+
+    grid-template-rows: auto auto 1fr;
+    padding: 8px 10px 10px 10px;
+
+    & .apartment-card__price {
+      grid-area: price;
+      color: var(--dark-blue);
+      font-size: 18px;
+      font-family: "CeraPro", Arial, sans-serif;
+      font-weight: 700;
+    }
+
+    & .apartment-details__rooms-quantity {
+      grid-area: rooms;
+    }
+
+    & .apartment-details__max-quests-quantity {
+      grid-area: guests;
+    }
+
+    & .apartment-details__on-map-link {
+      grid-area: map-link;
+
+      & .svg-icon {
+        width: 16px;
+        height: 16px
+      }
+    }
+
+    & .apartment-details__description {
+      grid-area: description;
+      color: var(--dark-blue);
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
+      font-family: "CeraPro", Arial, sans-serif;
+      margin-top: 5px;
+    }
+
+    & .apartment-details__address {
+      grid-area: address;
+      font-size: 14px;
+      font-family: "CeraPro", Arial, sans-serif;
+      color: var(--azure);
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  & .show-contacts-button {
+    height: 40px;
+    display: flex;
+    align-content: stretch;
+    border-bottom-right-radius: inherit;
+    border-bottom-left-radius: inherit;
+  }
+
 }

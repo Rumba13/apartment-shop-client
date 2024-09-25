@@ -6,7 +6,7 @@ export type Apartment = {
     landlordId:UUID,
     description:string,
     price:Price,
-    addressId: UUID,
+    addressUUID: UUID,
     roomsQuantity:number,
     bedsQuantity:number,
     guestsQuantity:number,

@@ -1,4 +1,6 @@
+import {Currency} from "./currency";
+
 export type Price = {
-    inUSD: number,
-    inBYN: number
+    amount: number,
+    currency: Currency
 };

@@ -34,9 +34,7 @@ export const ApartmentList = observer(({}: PropsType) => {
         return <div>Loading...</div>
     }
 
-
-
-    return <div>
+    return <div className="apartment-list">
         {(apartments.length === 0) ? t("Nothing Found") :apartments.map(apartment => <ApartmentCard apartment={apartment}/>)}
     </div>
 });

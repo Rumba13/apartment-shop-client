@@ -30,6 +30,8 @@ export const russianTranslation = {
     "Price High To Low": "Сначала дороже",
     "Popularity Low To High": "Сначала популярнее",
     "Popularity High To Low": "Сначала не популярнее",
+    "Show Contacts": "Показать контакты",
+    "Rooms": "{{count}}-комн.",
 
 };
 

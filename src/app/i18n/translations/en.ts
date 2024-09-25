@@ -32,5 +32,8 @@ export const englishTranslation: Translation = {
     "Price High To Low": "Price high to low",
     "Popularity Low To High": "Popularity low to high",
     "Popularity High To Low": "Popularity high to low",
+    "Show Contacts": "Show contacts",
+    "Rooms": "{{count}} rooms"
+
 };
 
