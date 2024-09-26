@@ -7,6 +7,7 @@ class ApartmentListStore {
         makeAutoObservable(this);
     }
 
+
     public apartments: Apartment[] | null = null;
 
     public async loadApartments(): Promise<void> {

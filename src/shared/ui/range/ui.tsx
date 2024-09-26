@@ -1,21 +1,36 @@
 import "./styles.scss";
-import {Slider as MuiSlider } from "@mui/material";
+import {Slider as MuiSlider} from "@mui/material";
 import clsx from "clsx";
+import {useState} from "react";
 
 type PropsType = {
     className?: string;
     getLabel: (value: any) => any,
-    onChange: (event: Event, value: number | number[], activeThumb: number) => void,
-    max:number,
-    min:number,
-    value:number[]
+    onChange: (value: number[]) => void,
+    onChangeCommitted?: ()=> void,
+    max: number,
+    min: number,
+    value: number[]
 }
 
-export function Slider({getLabel,onChange,min,max,className,value}: PropsType) {
+export function Slider({getLabel, onChange, min, max, className, value,onChangeCommitted}: PropsType) {
+    const [activeThumb, setActiveThumb] = useState<number>(0)
+
     return <MuiSlider
-        className={clsx("slider",className)}
-        value={[value[0], value[1]]}
-        onChange={onChange}
+        className={clsx("slider", className)}
+        onChange={(event, currentValue) => {
+            if (Array.isArray(currentValue)) {
+                onChange(currentValue)
+            } else {
+                if (activeThumb === 1) {
+                    onChange([value[0], currentValue])
+                } else {
+                    onChange([currentValue, value[1]])
+                }
+            }
+        }}
+        onChangeCommitted={onChangeCommitted}
+        value={value}
         valueLabelDisplay="on"
         valueLabelFormat={getLabel}
         getAriaValueText={getLabel}

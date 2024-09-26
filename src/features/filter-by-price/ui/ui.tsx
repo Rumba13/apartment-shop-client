@@ -18,17 +18,9 @@ export const PriceFilter = observer(() => {
     }, [currencyStore.currency]);
 
 
-    const setSliderValue = (value: number | number[], activeThumb: number) => {
-        if (Array.isArray(value)) {
-            priceFilterStore.setMinPrice(value[0]);
-            priceFilterStore.setMaxPrice(value[1]);
-        } else {
-            if (activeThumb === 0) {
-                priceFilterStore.setMinPrice(value);
-            } else {
-                priceFilterStore.setMaxPrice(value);
-            }
-        }
+    const setSliderValue = (value: number[]) => {
+        priceFilterStore.setMinPrice(value[0]);
+        priceFilterStore.setMaxPrice(value[1]);
     }
 
     const getLabel = (value: number) => `${value || 0} ${currencyToPostfixMap[currencyStore.currency]}`
@@ -42,6 +34,7 @@ export const PriceFilter = observer(() => {
                         onChange={(values: number[]) => {
                             priceFilterStore.setMinPrice(values[0]);
                             priceFilterStore.setMaxPrice(values[1]);
+
                         }}
                         values={[priceFilterStore.minPrice, priceFilterStore.maxPrice]}/>
 
@@ -49,7 +42,10 @@ export const PriceFilter = observer(() => {
                 <img className={"slider-wrapper__image"} src={RangeImage} alt=''/>
 
                 <Slider className={"price-range-slider"} getLabel={getLabel}
-                        onChange={(e, value, activeThumb) => setSliderValue(value, activeThumb)}
+                        onChange={(value) => {
+                            setSliderValue(value)
+                            priceFilterStore.setOnCooldown();
+                        }}
                         max={priceFilterStore.maxPriceBound} min={priceFilterStore.minPriceBound}
                         value={[priceFilterStore.minPrice, priceFilterStore.maxPrice]}/>
             </div>

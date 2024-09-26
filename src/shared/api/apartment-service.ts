@@ -1,8 +1,7 @@
 import {Apartment} from "./types/apartment";
 
 class ApartmentService {
-    constructor() {
-    }
+    constructor() {}
 
     public async loadAllApartments():Promise<Apartment[]> {
         return [
@@ -184,8 +183,6 @@ class ApartmentService {
             }
         ];
     }
-
-
 }
 
 export const apartmentService= new ApartmentService();

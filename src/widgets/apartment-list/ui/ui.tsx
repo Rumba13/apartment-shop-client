@@ -9,6 +9,7 @@ import {priceFilterStore} from "../../../features/filter-by-price";
 import {areaFilterStore} from "../../../features/filter-by-space";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {sortByStore} from "../../../features/sort-by/model/sort-by-store";
+import LoadingGif from "../../../assets/images/loading.gif"
 
 type PropsType = {}
 
@@ -18,6 +19,9 @@ export const ApartmentList = observer(({}: PropsType) => {
     const {t} = useTypedTranslation();
 
     useEffect(() => {
+        if(!priceFilterStore.readyToSearch) return;
+        console.log(1)
+
         searchService.search(tagsFilterStore.getSelectedTagsNames(), {
                 min: priceFilterStore.minPrice,
                 max: priceFilterStore.maxPrice
@@ -27,14 +31,26 @@ export const ApartmentList = observer(({}: PropsType) => {
                 max: areaFilterStore.maxArea
             },
             sortByStore.selectedSortBy
-        ).then(apartmentListStore.setApartments)
-    }, [tagsFilterStore.selectedTags, areaFilterStore.minArea, areaFilterStore.maxArea, priceFilterStore.minPrice, priceFilterStore.maxPrice, sortByStore.selectedSortBy]);
+        ).then(apartments => {
+            apartments && apartmentListStore.setApartments(apartments)
+        })
+    }, [tagsFilterStore.selectedTags,
+        areaFilterStore.minArea,
+        areaFilterStore.maxArea,
+        priceFilterStore.minPrice,
+        priceFilterStore.maxPrice,
+        sortByStore.selectedSortBy,
+        priceFilterStore.readyToSearch
+    ]);
 
     if (!apartments) {
         return <div>Loading...</div>
     }
 
     return <div className="apartment-list">
-        {(apartments.length === 0) ? t("Nothing Found") :apartments.map(apartment => <ApartmentCard apartment={apartment}/>)}
+        {searchService.isLoading &&
+            <div className="apartment-list-loading"><img className="loading__loading" src={LoadingGif} alt=""/></div>}
+        {(apartments.length === 0) ? t("Nothing Found") : apartments.map(apartment => <ApartmentCard
+            apartment={apartment}/>)}
     </div>
 });
