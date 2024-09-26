@@ -19,7 +19,7 @@ export function Aside() {
             <RemoveFiltersButton onClick={() => {
                 priceFilterStore.removeFilter();
                 areaFilterStore.removeFilter();
-                tagsFilterStore.removeFilter()
+                tagsFilterStore.removeFilter();
             }}/>
         </aside>
     )

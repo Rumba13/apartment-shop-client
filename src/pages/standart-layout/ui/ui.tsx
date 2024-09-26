@@ -6,15 +6,16 @@ import React from "react";
 
 type PropsType = {
     className?: string,
-    children: React.ReactNode
+    children: React.ReactNode,
+    noAside?:boolean
 }
 
-export function StandartLayout({className, children}: PropsType) {
+export function StandartLayout({className, children,noAside = false}: PropsType) {
     return (
         <div className={clsx("standart-layout", className)}>
             <Header/>
             <div className="standart-layout-wrapper">
-                <Aside/>
+                {!noAside &&<Aside/>}
                 <div className="content">{children}</div>
             </div>
         </div>

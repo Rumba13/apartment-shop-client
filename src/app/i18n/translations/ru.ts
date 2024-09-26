@@ -32,6 +32,7 @@ export const russianTranslation = {
     "Popularity High To Low": "Сначала не популярнее",
     "Show Contacts": "Показать контакты",
     "Rooms": "{{count}}-комн.",
+    "Create Apartment":"Добавить квартиру"
 
 };
 

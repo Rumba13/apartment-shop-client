@@ -33,7 +33,8 @@ export const englishTranslation: Translation = {
     "Popularity Low To High": "Popularity low to high",
     "Popularity High To Low": "Popularity high to low",
     "Show Contacts": "Show contacts",
-    "Rooms": "{{count}} rooms"
+    "Rooms": "{{count}} rooms",
+    "Create Apartment": "Create apartment",
 
 };
 
