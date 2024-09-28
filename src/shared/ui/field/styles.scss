@@ -1,0 +1,29 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+  margin-bottom: 6px;
+
+
+  & .field__label {
+    margin-bottom: 3px;
+    font-size: 14px;
+    font-family: "CeraPro", Arial,sans-serif;
+    color: var(--dark-blue);
+  }
+
+  & .field__field {
+    border: 1px solid var(--white-gray);
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 14px;
+    font-family: "CeraPro", Arial,sans-serif;
+
+  }
+  & textarea.field__field {
+    resize: vertical;
+    max-height: 200px;
+  }
+
+  & .field__error {}
+}

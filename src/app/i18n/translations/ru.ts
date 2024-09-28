@@ -32,8 +32,16 @@ export const russianTranslation = {
     "Popularity High To Low": "Сначала не популярнее",
     "Show Contacts": "Показать контакты",
     "Rooms": "{{count}}-комн.",
-    "Create Apartment":"Добавить квартиру"
-
+    "Create Apartment":"Добавить квартиру",
+    "Title": "Название",
+    "Apartment Description": "Описание квартиры",
+    "Rooms Quantity": "Количество комнат",
+    "Beds Quantity": "Количество кроватей",
+    "Quests Quantity": "Количество гостей",
+    "Currency": "Валюта",
+    "Address":"Адрес",
+    "Photos":"Фотографии",
+    "Add": "Добавить",
 };
 
 export type Translation = typeof russianTranslation;

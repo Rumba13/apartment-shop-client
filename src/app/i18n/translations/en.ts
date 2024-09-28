@@ -35,6 +35,14 @@ export const englishTranslation: Translation = {
     "Show Contacts": "Show contacts",
     "Rooms": "{{count}} rooms",
     "Create Apartment": "Create apartment",
-
+    "Title": "Title",
+    "Apartment Description": "Apartment description",
+    "Rooms Quantity": "Rooms quantity",
+    "Beds Quantity": "Beds quantity",
+    "Quests Quantity": "Quests quantity",
+    "Currency": "Currency",
+    "Address":"Address",
+    "Photos":"Photos",
+    "Add": "Добавить",
 };
 
