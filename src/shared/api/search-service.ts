@@ -28,7 +28,7 @@ class SearchService {
         // this.setSearchOnCooldown()
         this.setIsLoading(true);
 
-        let apartments: Apartment[] = await apartmentService.loadAllApartments();
+        let apartments: Apartment[] = await apartmentService.getAllApartments();
         apartments = apartments.filter(apartment => searchTags.every(tag => apartment.tags.includes(tag)));
         apartments = apartments.filter(apartment => inRange(priceRange, apartment.price.amount))
         apartments = apartments.filter(apartment => inRange(areaRange, apartment.areaInSquareMeters))

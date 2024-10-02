@@ -5,16 +5,7 @@
   <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="cross">
     <path d="M8 8l8 8m0-8l-8 8" stroke="#777D82" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
   </symbol>
-  <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" id="rate-full">
-    <g clip-path="url(#clip0)">
-      <path d="M6.712.59l1.504 3.17 3.078.327a.788.788 0 01.418 1.398L9.257 7.504l.76 3.394a.787.787 0 01-1.178.846l-2.84-1.727-2.84 1.726a.789.789 0 01-1.18-.846l.764-3.393L.288 5.486A.788.788 0 01.706 4.09l3.078-.326L5.288.59a.789.789 0 011.424 0z" fill="#FF9431"></path>
-    </g>
-    <defs>
-      <clipPath id="clip0">
-        <path fill="#fff" d="M0 0h12v12H0z"></path>
-      </clipPath>
-    </defs>
-  </symbol>
+
 
   <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" id="man">
     <path d="M7.6 1.6c0 .68-.52 1.2-1.2 1.2-.68 0-1.2-.52-1.2-1.2C5.2.92 5.72.4 6.4.4c.68 0 1.2.52 1.2 1.2zm1.72 4.64c-.24-.08-1.68-.76-1.68-.76l-.8-1.6c-.28-.56-.44-.68-.8-.68h-.56c-.28 0-.4.08-.56.2L3.4 4.6c-.12.08-.2.16-.28.32l-.32 2c-.04.32.12.44.36.48.16.04.4-.04.48-.28L4 5.28l1-.68c-.16.68-.32 1.44-.4 1.72-.08.44.16.76.32 1.04.16.24 2.4 3.48 2.68 3.84.28.36.56.52.96.32.36-.16.28-.6.08-.88S6.2 6.96 6.2 6.96l.36-1.52s.28.36.4.52c.08.08.12.12.32.2.2.12 1.2.52 1.52.64.28.12.6.16.76-.08.12-.16-.04-.4-.24-.48z" fill="#777D82"></path>
@@ -199,11 +190,6 @@
         <rect width="21" height="12" fill="white"></rect>
       </clipPath>
     </defs>
-  </symbol>
-  <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 19" id="convers">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15H16C17.657 15 19 13.657 19 12V4C19 2.343 17.657 1 16 1H4C2.343 1 1 2.343 1 4V12C1 13.657 2.343 15 4 15H5.5V18L10 15Z" stroke="#0752E4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15H16C17.657 15 19 13.657 19 12V4C19 2.343 17.657 1 16 1H4C2.343 1 1 2.343 1 4V12C1 13.657 2.343 15 4 15H5.5V18L10 15Z" stroke="#225FFB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M10 15H16C17.657 15 19 13.657 19 12V4C19 2.343 17.657 1 16 1H4C2.343 1 1 2.343 1 4V12C1 13.657 2.343 15 4 15H5.5V18L10 15Z" stroke="#0A71EB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
   </symbol>
   <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="credit">
     <path d="M3 9H21" stroke="#777D82" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>

@@ -44,5 +44,10 @@ export const englishTranslation: Translation = {
     "Address":"Address",
     "Photos":"Photos",
     "Add": "Добавить",
+    "Save":"Save",
+    "Share": "Share",
+    "Day": "day",
+    "Leave Request": "Leave a request",
+
 };
 

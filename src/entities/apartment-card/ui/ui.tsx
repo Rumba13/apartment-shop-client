@@ -1,15 +1,16 @@
 import "./styles.scss";
 import {Apartment} from "../../../shared/api/types/apartment";
-import {currencyToPostfixMap} from "../../../features/select-currency";
-import {TitleWithIcon} from "./title-with-icon";
+import {TitleWithIcon} from "../../../shared/ui/title-with-icon";
 import UsersIcon from "../../../assets/images/users.svg"
 import GeoIcon from "../../../assets/images/geo-location-colorfull.svg"
 import CardsIcon from "../../../assets/images/cards.svg"
 import React, {useEffect, useState} from "react";
 import {addressService} from "../../../shared/api/address-service";
-import {LinkWithIcon} from "./link-with-icon";
+import {LinkWithIcon} from "../../../shared/ui/link-with-icon";
 import {ShowContactsButton} from "./show-contacts";
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
+import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map";
 
 type PropsType = {
     apartment: Apartment;
@@ -27,7 +28,8 @@ export function ApartmentCard({
                                       addressUUID,
                                       description,
                                       tags,
-                                      areaInSquareMeters
+                                      areaInSquareMeters,
+                                      apartmentId
                                   }
                               }: PropsType) {
     const [address, setAddress] = useState<string | null>(null)
@@ -41,9 +43,10 @@ export function ApartmentCard({
     }
 
     return <div className="apartment-card">
-        <div className={"apartment-card-slider"}>
+
+        <Link className={"apartment-card-slider"} to={"/apartment-details/" + apartmentId}>
             <img src={photos[0]} alt=""/>
-        </div>
+        </Link>
         <div className="apartment-details">
             <span className="apartment-card__price">{price.amount} {currencyToPostfixMap[price.currency]}</span>
             <TitleWithIcon className="apartment-details__rooms-quantity"

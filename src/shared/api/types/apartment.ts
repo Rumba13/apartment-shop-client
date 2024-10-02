@@ -2,6 +2,7 @@ import {UUID} from "./uuid";
 import {Price} from "./price";
 
 export type Apartment = {
+    apartmentId: UUID;
     title:string,
     landlordId:UUID,
     description:string,

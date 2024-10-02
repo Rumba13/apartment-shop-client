@@ -1,0 +1,29 @@
+.open-order-modal-button {
+  width: 100%;
+  justify-content: center;
+  border: 1px solid var(--gains-boro);
+  border-radius: 8px;
+  padding: 14px 20px;
+  margin-top: 15px;
+
+  & .svg-icon {
+    width: 18px;
+    height: 17px;
+    transition: opacity 130ms;
+    color: var(--azure);
+  }
+
+  & .button__title {
+    margin-left: 8px;
+    transition: opacity 130ms;
+    color: var(--azure);
+  }
+
+  &:hover {
+    & .svg-icon,
+    & .button__title {
+      opacity: 0.85;
+    }
+
+  }
+}

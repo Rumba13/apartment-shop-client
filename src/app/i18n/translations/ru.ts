@@ -42,6 +42,10 @@ export const russianTranslation = {
     "Address":"Адрес",
     "Photos":"Фотографии",
     "Add": "Добавить",
+    "Save":"Сохранить",
+    "Share": "Поделится",
+    "Day": "сутки",
+    "Leave Request": "Сделать заявку",
 };
 
 export type Translation = typeof russianTranslation;

@@ -11,7 +11,7 @@ class ApartmentListStore {
     public apartments: Apartment[] | null = null;
 
     public async loadApartments(): Promise<void> {
-        this.apartments = await apartmentService.loadAllApartments();
+        this.apartments = await apartmentService.getAllApartments();
     }
 
     public setApartments = (apartments:Apartment[]) => {

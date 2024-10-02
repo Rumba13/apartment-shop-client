@@ -6,5 +6,5 @@ export function OpenCreateApartmentPageButton() {
     const {t} = useTypedTranslation();
 
     return <Link className="open-create-apartment-page-button"
-                 to={"create-apartment-page"}>{t("Create Apartment")}</Link>
+                 to={"create-apartment"}>{t("Create Apartment")}</Link>
 }

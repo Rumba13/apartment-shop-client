@@ -1,6 +1,6 @@
 import "./styles.scss";
 import React from "react";
-import {SvgIcon} from "../../../../shared/ui/svg-icon";
+import {SvgIcon} from "../svg-icon";
 import clsx from "clsx";
 
 type Props = {

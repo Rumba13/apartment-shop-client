@@ -1,7 +1,7 @@
-import {Currency} from "../../../shared/api/types/currency";
+import {Currency} from "../api/types/currency";
 
 export const currencyToPostfixMap:{[key in Currency]: string} = {
     "USD": "$",
-    "BYN" : "Br",
+    "BYN" : "р",
     "EUR":"€"
 }
