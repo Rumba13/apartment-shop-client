@@ -48,6 +48,16 @@ export const englishTranslation: Translation = {
     "Share": "Share",
     "Day": "day",
     "Leave Request": "Leave a request",
+    "Book Apartment": "Book The Apartment",
+    "Enter Your Name": "Enter your name",
+    "Name": "Name",
+    "Phone":"Phone",
+    "Email":"E-mail",
+    "Number Of People": "Number Of People",
+    "Check-in Date": "Check-in date",
+    "Check-out Date": "Check-out date",
+    "Send Request": "Send a request",
+    "Additional Information": "Additional information"
 
 };
 

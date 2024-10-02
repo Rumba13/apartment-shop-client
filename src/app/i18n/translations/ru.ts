@@ -46,6 +46,16 @@ export const russianTranslation = {
     "Share": "Поделится",
     "Day": "сутки",
     "Leave Request": "Сделать заявку",
+    "Book Apartment": "Забронировать квартиру",
+    "Enter Your Name": "Введите ваше имя",
+    "Name": "Имя",
+    "Phone":"Телефон",
+    "Email":"E-mail",
+    "Number Of People": "Количество человек",
+    "Check-in Date": "Дата заезда",
+    "Check-out Date": "Дата отъезда",
+    "Send Request": "Отправить Заявку",
+    "Additional Information": "Дополнительно"
 };
 
 export type Translation = typeof russianTranslation;

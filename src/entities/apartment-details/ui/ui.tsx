@@ -7,17 +7,21 @@ import GeoIcon from "../../../assets/images/geo-location-colorfull.svg";
 import MetroIcon from "../../../assets/images/metro.svg";
 import RatingIcon from "../../../assets/images/star.svg";
 
-import React from "react";
+import React, {useEffect} from "react";
 import {TitleWithIcon} from "../../../shared/ui/title-with-icon";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map";
 import {OpenOrderModalButton} from "./open-order-modal/ui";
+import {observer} from "mobx-react";
+import {currencyStore} from "../../../features/select-currency";
+import {OrderModal} from "../../../widgets/order-modal";
+import {useModal} from "../../../shared/lib/use-modal";
 
 type PropsType = {
     apartment: Apartment
 }
 
-export function ApartmentDetails({
+export const ApartmentDetails = observer(({
                                      apartment: {
                                          price,
                                          apartmentId,
@@ -32,8 +36,14 @@ export function ApartmentDetails({
                                          landlordId,
                                          addressUUID
                                      }
-                                 }: PropsType) {
+                                 }: PropsType) => {
     const {t} = useTypedTranslation()
+
+
+
+    useEffect(() => {
+
+    }, [currencyStore.currency]);
 
 
     return <div className="apartment-details">
@@ -71,7 +81,8 @@ export function ApartmentDetails({
                     </div>
                 </div>
                 <OpenOrderModalButton />
+                <OrderModal apartmentAddress={addressUUID} apartmentImage={photos[0]} apartmentPrice={price}/>
             </div>
         </div>
     </div>
-}
+});
