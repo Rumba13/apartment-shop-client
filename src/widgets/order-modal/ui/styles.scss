@@ -9,10 +9,12 @@
   background-color: white;
   border-radius: 10px;
   opacity: 0;
-  transition: opacity 300ms;
+  visibility: hidden;
+  transition: opacity 300ms, visibility 300ms;
 
   &.opened {
     opacity: 1;
+    visibility: visible;
   }
 
   & .order-modal-header {
@@ -135,4 +137,6 @@
       }
     }
   }
+
+
 }

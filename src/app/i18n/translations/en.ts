@@ -57,7 +57,23 @@ export const englishTranslation: Translation = {
     "Check-in Date": "Check-in date",
     "Check-out Date": "Check-out date",
     "Send Request": "Send a request",
-    "Additional Information": "Additional information"
-
+    "Additional Information": "Additional information",
+    "Room_zero":"Rooms",
+    "Room_one":"Room",
+    "Room_few":"Rooms",
+    "Room_many":"Rooms",
+    "Bed_zero":"Beds",
+    "Bed_one":"Bed",
+    "Bed_few":"Beds",
+    "Bed_many":"Beds",
+    "Guest_zero":"Guests",
+    "Guest_one":"Guest",
+    "Guest_few":"Guests",
+    "Guest_many":"Guests",
+    "On Map": "On the map",
+    "Description": "Description",
+    "Rules Of Residence": "Rules of residence",
+    "Near The House": "Near the house",
+    "Reviews": "Reviews",
 };
 

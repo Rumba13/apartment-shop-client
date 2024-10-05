@@ -6,7 +6,6 @@ import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {SvgButton} from "../../../shared/ui/svg-button";
 import CrossIcon from "../../../assets/images/cross.svg";
 import {Price} from "../../../shared/api/types/price";
-import {addressService} from "../../../shared/api/address-service";
 import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map";
 import {Form, Formik} from "formik";
 import {Field} from "../../../shared/ui/field/ui";
@@ -21,7 +20,7 @@ export const OrderModal = observer(({apartmentPrice, apartmentImage, apartmentAd
     const {t} = useTypedTranslation();
 
     return (
-        <div className={clsx("order-modal", orderModalStore.isOpened && "opened")}
+        <div className={clsx("order-modal", orderModalStore.isOpened && "opened")} aria-hidden={!orderModalStore.isOpened}
              onClick={orderModalStore.stopPropagationInModal}>
             <header className="order-modal-header">
                 <h2 className="header__title">
@@ -60,7 +59,6 @@ export const OrderModal = observer(({apartmentPrice, apartmentImage, apartmentAd
                         className="apartment-details__price">{apartmentPrice.amount}{currencyToPostfixMap[apartmentPrice.currency]}.</span>
                 </div>
             </div>
-
         </div>
     )
 });

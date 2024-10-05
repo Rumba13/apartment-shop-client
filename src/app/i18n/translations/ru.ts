@@ -55,7 +55,24 @@ export const russianTranslation = {
     "Check-in Date": "Дата заезда",
     "Check-out Date": "Дата отъезда",
     "Send Request": "Отправить Заявку",
-    "Additional Information": "Дополнительно"
+    "Additional Information": "Дополнительно",
+    "Room_zero":"Комнат",
+    "Room_one":"Комната",
+    "Room_few":"Комнаты",
+    "Room_many":"Комнат",
+    "Bed_zero":"Кроватей",
+    "Bed_one":"Кровать",
+    "Bed_few":"Кровати",
+    "Bed_many":"Кроватей",
+    "Guest_zero":"Гостей",
+    "Guest_one":"Гость",
+    "Guest_few":"Гостя",
+    "Guest_many":"Гостей",
+    "On Map": "На карте", //TODO rename to On The map, and in the future always use articles it translations keys
+    "Description": "Описание",
+    "Rules Of Residence": "Правила проживания",
+    "Near The House": "Рядом с жилищем",
+    "Reviews": "Отзывы",
 };
 
 export type Translation = typeof russianTranslation;
