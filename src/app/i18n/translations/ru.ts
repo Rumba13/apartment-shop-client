@@ -73,6 +73,15 @@ export const russianTranslation = {
     "Rules Of Residence": "Правила проживания",
     "Near The House": "Рядом с жилищем",
     "Reviews": "Отзывы",
+    "House Description": "Описание дома",
+    "In The Kitchen": "На кухне",
+    "In The Bathroom": "В ванной",
+    "Entertainment And Multimedia": "Развлечения и мультимедиа",
+    "Security": "Безопасность",
+    "Laundry And Linen": "Стирка и белье",
+    "Amenities Outside": "Удобства снаружи",
+    "Methods Of Payments": "Способы оплаты",
+    "Show More": "Показать больше"
 };
 
 export type Translation = typeof russianTranslation;
