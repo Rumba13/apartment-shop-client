@@ -10,8 +10,8 @@ import RoomsIcon from "../../../assets/images/sleeping-man.svg";
 import BedIcon from "../../../assets/images/bed.svg";
 import GuestsIcon from "../../../assets/images/people.svg";
 import ApartmentAreaIcon from "../../../assets/images/apartment-area.svg";
-
-import React, {useEffect} from "react";
+import MarkIcon from "../../../assets/images/check.svg";
+import React, {useEffect, useState} from "react";
 import {TitleWithIcon} from "../../../shared/ui/title-with-icon";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map";
@@ -22,7 +22,6 @@ import {OrderModal} from "../../../widgets/order-modal";
 import FlatIcon from "../../../assets/images/temp/flat1.webp";
 import {IconWithTwoTitles} from "../../../shared/ui/icon-with-two-titles";
 import {useTranslation} from "react-i18next";
-import {Separator} from "./separator";
 
 type PropsType = {
     apartment: Apartment
@@ -46,6 +45,12 @@ export const ApartmentDetails = observer(({
                                           }: PropsType) => {
     const {t} = useTypedTranslation()
     const {t: tr} = useTranslation()
+    const [isCollapsibleExpanded, setIsCollapsibleExpanded] = useState<boolean>(false)
+
+    const testItems = ["Кирпичный дом", "Лифт", "Этаж: 2", "Этажей: 6"].map(li =>
+        <TitleWithIcon className={"tags-list__item amenities-list__item"} withLi icon={MarkIcon}>
+            {li}
+        </TitleWithIcon>);
 
     useEffect(() => {
     }, [currencyStore.currency]);
@@ -80,13 +85,100 @@ export const ApartmentDetails = observer(({
                     <span className="apartment-tabs__tab">{t("Near The House")}</span>
                     <span className="apartment-tabs__tab">{t("Reviews")}</span>
                 </div>
-
                 <div className="apartment-properties">
                     {/*TODO refactor*/}
                     <IconWithTwoTitles icon={RoomsIcon} title={3} subTitle={tr("Room", {count: 3})}/>
                     <IconWithTwoTitles icon={BedIcon} title={3} subTitle={tr("Bed", {count: 3})}/>
                     <IconWithTwoTitles icon={GuestsIcon} title={3} subTitle={tr("Guest", {count: 3})}/>
                     <IconWithTwoTitles icon={ApartmentAreaIcon} title={3 + " м²"} subTitle={t("Area")}/>
+                </div>
+                <div className="apartment-description">
+                    <h2 className="apartment-description__title">{t("Description")}</h2>
+                    <span className="apartment-description__description"
+                          dangerouslySetInnerHTML={{__html: description}}></span>
+                </div>
+                <div className="house-description">
+                    <h2 className="house-description__title">{t("House Description")}</h2>
+                    <ul className="house-description-list">
+                        {["Кирпичный дом", "Лифт", "Этаж: 2", "Этажей: 6"].map(li =>
+                            <TitleWithIcon className={"house-description__item"} withLi icon={MarkIcon}>
+                                {li}
+                            </TitleWithIcon>)}
+                    </ul>
+                </div>
+                <div className="section amenities">
+                    <h2 className="amenities__title">{t("Amenities")}</h2>
+
+                    <div className="amenities-list-wrapper">
+                        <h3 className="amenities-list__title">{t("In The Kitchen")}</h3>
+                        <ul className="amenities-list">
+                            {testItems}
+                            {testItems}
+                        </ul>
+                    </div>
+                    <div className="amenities-list-wrapper">
+                        <h3 className="amenities-list__title">{t("In The Bathroom")}</h3>
+                        <ul className="amenities-list">
+                            {testItems}
+                        </ul>
+                    </div>
+                    <div className="amenities-list-wrapper">
+                        <h3 className="amenities-list__title">{t("Entertainment And Multimedia")}</h3>
+                        <ul className="amenities-list">
+                            {testItems}
+                        </ul>
+                    </div>
+                    <div className="amenities-list-wrapper">
+                        <h3 className="amenities-list__title">{t("Security")}</h3>
+                        <ul className="amenities-list">
+                            {testItems}
+                        </ul>
+                    </div>
+                    <div className="amenities-list-wrapper">
+                        <h3 className="amenities-list__title">{t("Laundry And Linen")}</h3>
+                        <ul className="amenities-list">
+                            {testItems}
+                        </ul>
+                    </div>
+                    <div className="amenities-list-wrapper">
+                        <h3 className="amenities-list__title">{t("Amenities Outside")}</h3>
+                        <ul className="amenities-list">
+                            {testItems}
+                        </ul>
+                    </div>
+
+
+                </div>
+                <div className="section rules-of-residence">
+                    <h3 className="title">{t("Rules Of Residence")}</h3>
+                    <ul className="tags-list">
+                        {testItems}
+                    </ul>
+                </div>
+                <div className="section methods-of-payments">
+                    <h3 className="title">{t("Methods Of Payments")}</h3>
+                    <ul className="tags-list">
+                        {testItems}
+                    </ul>
+                </div>
+                <div className="section near-the-house">
+                    <h3 className="title">{t("Near The House")}</h3>
+                    <ul className="near-the-house-list">
+                        <li>Центральный детский парк культуры и отдыха им. Максима Горького - 1.15 км</li>
+                        <li>Петропавловский собор - 0.79 км</li>
+                        <li>Белорусский государственный цирк - 0.85 км</li>
+                        {isCollapsibleExpanded && <>
+                            <li>Верхний город - 0.44 км</li>
+                            <li>Ворота Минска - 0.96 км</li>
+                            <li>Государственный музей истории белорусской литературы - 0.96 км</li>
+                            <li>Дворец Республики - 0.43 км</li>
+                            <li>Дом Ваньковичей - 0.6 км</li>
+                            <li>Дом-музей I съезда РСДРП - 1.3 км</li>
+                            <li>Железнодорожный вокзал - 1.07 км</li>
+                        </>}
+                    </ul>
+                    {!isCollapsibleExpanded &&
+                        <button className="show-more" onClick={() => setIsCollapsibleExpanded(true)}>{t("Show More")}</button>}
                 </div>
             </div>
             <div className="order-menu">

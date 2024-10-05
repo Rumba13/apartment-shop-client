@@ -75,5 +75,16 @@ export const englishTranslation: Translation = {
     "Rules Of Residence": "Rules of residence",
     "Near The House": "Near the house",
     "Reviews": "Reviews",
+    "House Description": "House description",
+    "In The Kitchen": "In the Kitchen",
+    "In The Bathroom": "In the Bathroom",
+    "Entertainment And Multimedia": "Entertainment and multimedia",
+    "Security": "Security",
+    "Laundry And Linen": "Laundry and linen",
+    "Amenities Outside": "Удобства Снаружи",
+    "Methods Of Payments": "Methods Of Payments",
+    "Show More": "Show more"
+
+
 };
 

@@ -76,6 +76,32 @@
       }
     }
 
+    & .title {
+      margin-bottom: 5px;
+      font-family: "CeraPro", sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--dark-blue);
+    }
+
+    & .tags-list {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      grid-auto-columns: 1fr;
+
+      & .tags-list__item {
+        font-family: "CeraPro", sans-serif;
+        font-size: 16px;
+        margin: 0 0 11px;
+      }
+    }
+
+    & .section {
+      border-bottom: 1px solid #E5E7E9;
+      padding-bottom: 30px;
+      padding-top: 30px;
+
+    }
 
 
     & .apartment-details-wrapper {
@@ -105,6 +131,7 @@
         }
 
       }
+
       & .apartment-properties {
         display: flex;
         padding: 30px 0;
@@ -116,9 +143,141 @@
           }
         }
       }
+
+      & .apartment-description {
+        margin-top: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #E5E7E9;
+
+        & .apartment-description__title {
+          margin-bottom: 10px;
+          font-family: "CeraPro", sans-serif;
+          font-size: 24px;
+          font-weight: 700;
+          color: var(--dark-blue);
+        }
+
+        & .apartment-description__description {
+          color: var(--azure-dragon);
+          font-family: 'Cera Pro', sans-serif;
+          font-size: 16px;
+        }
+      }
+
+      & .house-description {
+        padding-bottom: 30px;
+        border-bottom: 1px solid #E5E7E9;
+
+        & .house-description__title {
+          margin-top: 30px;
+          margin-bottom: 20px;
+          font-family: "CeraPro", sans-serif;
+          font-size: 24px;
+          font-weight: 700;
+          color: var(--dark-blue);
+        }
+
+        & .house-description-list {
+          display: grid;
+          grid-template-columns: repeat(3, auto);
+          grid-auto-columns: 1fr;
+
+          & .house-description__item {
+            font-family: "CeraPro", sans-serif;
+            font-size: 16px;
+            margin: 0 0 11px;
+          }
+        }
+      }
+
+      & .amenities {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #E5E7E9;
+
+        & .amenities__title {
+          margin-bottom: 5px;
+          font-family: "CeraPro", sans-serif;
+          font-size: 24px;
+          font-weight: 700;
+          color: var(--dark-blue);
+        }
+
+        & .amenities-list__title {
+          font-family: "CeraPro", sans-serif;
+          font-size: 18px;
+          margin-bottom: 10px;
+          color: var(--dark-blue);
+          font-weight: 700;
+
+          &:not(:last-child) {
+            margin-top: 15px;
+          }
+        }
+
+        & .amenities-list {
+          display: grid;
+          grid-template-columns: repeat(3, auto);
+          grid-auto-columns: 1fr;
+
+          & .amenities-list__item {
+            font-family: "CeraPro", sans-serif;
+            font-size: 16px;
+            margin: 0 0 11px;
+          }
+        }
+      }
+
+      & .rules-of-residence {
+        & .title {
+          margin-bottom: 30px;
+        }
+
+        & .tags-list {
+          grid-template-columns: repeat(2, auto);
+
+          & .tags-list__item {
+            margin: 0 0 22px;
+          }
+        }
+      }
+
+      & .methods-of-payments {
+        & .title {
+          margin-bottom: 30px;
+        }
+
+        & .tags-list {
+          grid-template-columns: repeat(2, auto);
+
+          & .tags-list__item {
+            margin: 0 0 22px;
+          }
+        }
+      }
+
+      & .near-the-house {
+        & .show-more {
+          color:var(--azure);
+          font-family: "CeraPro", Arial,sans-serif;
+          font-size: 16px;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        & .near-the-house-list {
+        & li {
+          font-size: 16px;
+          font-family: "CeraPro", Arial,sans-serif;
+          color:var(--dark-blue);
+        }
+        }
+      }
     }
 
     & .order-menu {
+      position: sticky;
+      top: 30px;
       display: inline-block;
       border: 1px solid var(--gains-boro);
       padding: 20px 30px;
