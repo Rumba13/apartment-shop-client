@@ -1,6 +1,6 @@
 import {Tag} from "./types/tag";
 import {Apartment} from "./types/apartment";
-import {apartmentService} from "./apartment-service";
+import {apartmentService} from "./apartment-service.mocked";
 import {Range} from "./types/range";
 import {inRange} from "../lib/in-range";
 import {SortBy} from "./types/sort-by";
@@ -21,17 +21,12 @@ class SearchService {
     }
 
     public async search(searchTags: Tag[], priceRange: Range, areaRange: Range, sortBy: SortBy): Promise<Apartment[] | null> {
-        // if (this.isSearchOnRequestCooldown) {
-        //     this.setSearchOnCooldown();
-        //     return null
-        // }
-        // this.setSearchOnCooldown()
         this.setIsLoading(true);
 
-        let apartments: Apartment[] = await apartmentService.getAllApartments();
-        apartments = apartments.filter(apartment => searchTags.every(tag => apartment.tags.includes(tag)));
+        let apartments: Apartment[] = (await apartmentService.getAllApartments()).content;
+        apartments = apartments.filter(apartment => searchTags.every(tag => apartment.amenities.includes(tag)));
         apartments = apartments.filter(apartment => inRange(priceRange, apartment.price.amount))
-        apartments = apartments.filter(apartment => inRange(areaRange, apartment.areaInSquareMeters))
+        apartments = apartments.filter(apartment => inRange(areaRange, apartment.square))
 
         apartments = apartments.sort((a1, a2) => {
             if (sortBy === "price:asc") {

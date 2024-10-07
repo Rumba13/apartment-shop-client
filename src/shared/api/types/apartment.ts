@@ -2,16 +2,16 @@ import {UUID} from "./uuid";
 import {Price} from "./price";
 
 export type Apartment = {
-    apartmentId: UUID;
+    id: UUID;
     title:string,
     landlordId:UUID,
     description:string,
-    price:Price,
-    addressUUID: UUID,
+    price:Price, //TODO map
+    address: string,
     roomsQuantity:number,
     bedsQuantity:number,
-    guestsQuantity:number,
+    guestQuantity:number, //TODO update naming when backend rename to guestsQuantity
     photos: string[],
-    tags:string[],
-    areaInSquareMeters:number
+    amenities:string[],
+    square:number//TODO update naming when backend rename to area
 }

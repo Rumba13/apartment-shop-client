@@ -4,7 +4,7 @@ import {MinimalLayout} from "../../minimal-layout";
 import {ApartmentDetails} from "../../../entities/apartment-details";
 import {useEffect, useState} from "react";
 import {Apartment} from "../../../shared/api/types/apartment";
-import {apartmentService} from "../../../shared/api/apartment-service";
+import {apartmentService} from "../../../shared/api/apartment-service.mocked";
 
 export function ApartmentDetailsPage() {
     const [currentApartment, setCurrentApartment] = useState<Apartment | null>(null);

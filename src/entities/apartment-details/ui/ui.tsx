@@ -30,17 +30,17 @@ type PropsType = {
 export const ApartmentDetails = observer(({
                                               apartment: {
                                                   price,
-                                                  apartmentId,
+                                                  id,
                                                   description,
                                                   photos,
                                                   title,
-                                                  guestsQuantity,
+                                                  guestQuantity,
                                                   bedsQuantity,
                                                   roomsQuantity,
-                                                  areaInSquareMeters,
-                                                  tags,
+                                                  square,
+                                                  amenities,
                                                   landlordId,
-                                                  addressUUID
+                                                  address
                                               }
                                           }: PropsType) => {
     const {t} = useTypedTranslation()
@@ -60,9 +60,9 @@ export const ApartmentDetails = observer(({
         <div className="apartment-details-top">
             <div className="max-width-wrapper">
                 <h2 className="top__title">{title}</h2>
-                <h3 className="top__sub-title">ID: {apartmentId}</h3>
+                <h3 className="top__sub-title">ID: {id}</h3>
             </div>
-            <AddToWishListButton apartmentId={apartmentId}/>
+            <AddToWishListButton apartmentId={id}/>
             <OpenShareModal/>
         </div>
         <div className="apartment-details-mid">
@@ -205,7 +205,7 @@ export const ApartmentDetails = observer(({
                     </div>
                 </div>
                 <OpenOrderModalButton/>
-                <OrderModal apartmentAddress={addressUUID} apartmentImage={photos[0]} apartmentPrice={price}/>
+                <OrderModal apartmentAddress={address} apartmentImage={photos[0]} apartmentPrice={price}/>
             </div>
         </div>
     </div>

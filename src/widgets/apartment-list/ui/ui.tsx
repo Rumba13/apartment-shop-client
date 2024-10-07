@@ -10,30 +10,32 @@ import {areaFilterStore} from "../../../features/filter-by-space";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {sortByStore} from "../../../features/sort-by/model/sort-by-store";
 import LoadingGif from "../../../assets/images/loading.gif"
+import {apartmentService} from "../../../shared/api/apartment-service.mocked";
 
 type PropsType = {}
 
 export const ApartmentList = observer(({}: PropsType) => {
 
-    const {apartments} = apartmentListStore
     const {t} = useTypedTranslation();
 
     useEffect(() => {
-        if(!priceFilterStore.readyToSearch) return;
-        console.log(1)
-
-        searchService.search(tagsFilterStore.getSelectedTagsNames(), {
-                min: priceFilterStore.minPrice,
-                max: priceFilterStore.maxPrice
-            },
-            {
-                min: areaFilterStore.minArea,
-                max: areaFilterStore.maxArea
-            },
-            sortByStore.selectedSortBy
-        ).then(apartments => {
-            apartments && apartmentListStore.setApartments(apartments)
+        if (!priceFilterStore.readyToSearch) return;
+        apartmentService.getAllApartments().then(pagination => {
+            apartmentListStore.setApartments(pagination.content)
         })
+
+        // searchService.search(tagsFilterStore.getSelectedTagsNames(), {
+        //         min: priceFilterStore.minPrice,
+        //         max: priceFilterStore.maxPrice
+        //     },
+        //     {
+        //         min: areaFilterStore.minArea,
+        //         max: areaFilterStore.maxArea
+        //     },
+        //     sortByStore.selectedSortBy
+        // ).then(apartments => {
+        //     apartments && apartmentListStore.setApartments(apartments)
+        // })
     }, [tagsFilterStore.selectedTags,
         areaFilterStore.minArea,
         areaFilterStore.maxArea,
@@ -43,14 +45,14 @@ export const ApartmentList = observer(({}: PropsType) => {
         priceFilterStore.readyToSearch
     ]);
 
-    if (!apartments) {
+    if (!apartmentListStore.apartments) {
         return <div>Loading...</div>
     }
 
     return <div className="apartment-list">
         {searchService.isLoading &&
             <div className="apartment-list-loading"><img className="loading__loading" src={LoadingGif} alt=""/></div>}
-        {(apartments.length === 0) ? t("Nothing Found") : apartments.map(apartment => <ApartmentCard
+        {(apartmentListStore.apartments.length === 0) ? t("Nothing Found") : apartmentListStore.apartments.map(apartment => <ApartmentCard
             apartment={apartment}/>)}
     </div>
 });

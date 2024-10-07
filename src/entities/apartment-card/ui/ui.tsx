@@ -19,32 +19,24 @@ type PropsType = {
 export function ApartmentCard({
                                   apartment: {
                                       title,
-                                      guestsQuantity,
+                                      guestQuantity,
                                       bedsQuantity,
                                       roomsQuantity,
                                       photos,
                                       price,
                                       landlordId,
-                                      addressUUID,
+                                      address,
                                       description,
-                                      tags,
-                                      areaInSquareMeters,
-                                      apartmentId
+                                      amenities,
+                                      square,
+                                      id
                                   }
                               }: PropsType) {
-    const [address, setAddress] = useState<string | null>(null)
     const {t} = useTranslation();
-    useEffect(() => {
-        addressService.getAddressByUUID(addressUUID).then(setAddress);
-    }, [addressUUID]);
-
-    if (!address) {
-        return <></>
-    }
 
     return <div className="apartment-card">
 
-        <Link className={"apartment-card-slider"} to={"/apartment-details/" + apartmentId}>
+        <Link className={"apartment-card-slider"} to={"/apartment-details/" + id}>
             <img src={photos[0]} alt=""/>
         </Link>
         <div className="apartment-details">
@@ -52,7 +44,7 @@ export function ApartmentCard({
             <TitleWithIcon className="apartment-details__rooms-quantity"
                            icon={CardsIcon}>{t("Rooms", {count: roomsQuantity})}</TitleWithIcon>
             <TitleWithIcon className="apartment-details__max-quests-quantity"
-                           icon={UsersIcon}>{t("guest", {count: guestsQuantity})} </TitleWithIcon>
+                           icon={UsersIcon}>{t("guest", {count: guestQuantity})} </TitleWithIcon>
             <a className="apartment-details__address" href={"./"}>{address}</a>
             <LinkWithIcon className="apartment-details__on-map-link" icon={GeoIcon} href={"/"}>На карте </LinkWithIcon>
             <span className="apartment-details__description">{description}</span>

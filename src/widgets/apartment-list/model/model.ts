@@ -1,5 +1,5 @@
 import {Apartment} from "../../../shared/api/types/apartment";
-import {apartmentService} from "../../../shared/api/apartment-service";
+import {apartmentService} from "../../../shared/api/apartment-service.mocked";
 import {makeAutoObservable} from "mobx";
 
 class ApartmentListStore {
@@ -7,11 +7,10 @@ class ApartmentListStore {
         makeAutoObservable(this);
     }
 
-
     public apartments: Apartment[] | null = null;
 
     public async loadApartments(): Promise<void> {
-        this.apartments = await apartmentService.getAllApartments();
+        this.apartments = (await apartmentService.getAllApartments()).content;
     }
 
     public setApartments = (apartments:Apartment[]) => {
