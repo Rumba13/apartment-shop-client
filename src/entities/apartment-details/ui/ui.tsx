@@ -1,5 +1,4 @@
 import './styles.scss';
-import {Apartment} from "../../../shared/api/types/apartment";
 import {AddToWishListButton} from "../../../features/add-to-wishlist/ui/add-to-wish-list-button";
 import {OpenShareModal} from "./open-share-modal";
 import {LinkWithIcon} from "../../../shared/ui/link-with-icon";
@@ -17,31 +16,19 @@ import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map";
 import {OpenOrderModalButton} from "./open-order-modal/ui";
 import {observer} from "mobx-react";
-import {currencyStore} from "../../../features/select-currency";
 import {OrderModal} from "../../../widgets/order-modal";
 import FlatIcon from "../../../assets/images/temp/flat1.webp";
 import {IconWithTwoTitles} from "../../../shared/ui/icon-with-two-titles";
 import {useTranslation} from "react-i18next";
+import {UUID} from "../../../shared/api/types/uuid";
+import {apartmentDetailsStore} from "../model/apartment-details-store";
 
 type PropsType = {
-    apartment: Apartment
+    apartmentId: UUID
 }
 
 export const ApartmentDetails = observer(({
-                                              apartment: {
-                                                  price,
-                                                  id,
-                                                  description,
-                                                  photos,
-                                                  title,
-                                                  guestQuantity,
-                                                  bedsQuantity,
-                                                  roomsQuantity,
-                                                  square,
-                                                  amenities,
-                                                  landlordId,
-                                                  address
-                                              }
+                                              apartmentId
                                           }: PropsType) => {
     const {t} = useTypedTranslation()
     const {t: tr} = useTranslation()
@@ -53,8 +40,29 @@ export const ApartmentDetails = observer(({
         </TitleWithIcon>);
 
     useEffect(() => {
-    }, [currencyStore.currency]);
+        apartmentDetailsStore.loadApartmentDetails(apartmentId);
+    }, []);
 
+    if (apartmentDetailsStore.isError) {
+        return <div>Error...</div>
+    }
+    if (apartmentDetailsStore.isLoading || !apartmentDetailsStore.apartment) {
+        return <div>Loading...</div>
+    }
+    const {
+        price,
+        id,
+        description,
+        photos,
+        title,
+        guestQuantity,
+        bedsQuantity,
+        roomsQuantity,
+        square,
+        amenities,
+        landlordId,
+        address
+    } = apartmentDetailsStore.apartment;
 
     return <div className="apartment-details">
         <div className="apartment-details-top">
@@ -87,10 +95,12 @@ export const ApartmentDetails = observer(({
                 </div>
                 <div className="apartment-properties">
                     {/*TODO refactor*/}
-                    <IconWithTwoTitles icon={RoomsIcon} title={3} subTitle={tr("Room", {count: 3})}/>
-                    <IconWithTwoTitles icon={BedIcon} title={3} subTitle={tr("Bed", {count: 3})}/>
-                    <IconWithTwoTitles icon={GuestsIcon} title={3} subTitle={tr("Guest", {count: 3})}/>
-                    <IconWithTwoTitles icon={ApartmentAreaIcon} title={3 + " м²"} subTitle={t("Area")}/>
+                    <IconWithTwoTitles icon={RoomsIcon} title={roomsQuantity}
+                                       subTitle={tr("Room", {count: roomsQuantity})}/>
+                    <IconWithTwoTitles icon={BedIcon} title={bedsQuantity} subTitle={tr("Bed", {count: bedsQuantity})}/>
+                    <IconWithTwoTitles icon={GuestsIcon} title={guestQuantity}
+                                       subTitle={tr("Guest", {count: guestQuantity})}/>
+                    <IconWithTwoTitles icon={ApartmentAreaIcon} title={square + " м²"} subTitle={t("Area")}/>
                 </div>
                 <div className="apartment-description">
                     <h2 className="apartment-description__title">{t("Description")}</h2>
@@ -112,8 +122,11 @@ export const ApartmentDetails = observer(({
                     <div className="amenities-list-wrapper">
                         <h3 className="amenities-list__title">{t("In The Kitchen")}</h3>
                         <ul className="amenities-list">
-                            {testItems}
-                            {testItems}
+                            {amenities.map(li =>
+                                <TitleWithIcon className={"tags-list__item amenities-list__item"} withLi
+                                               icon={MarkIcon}>
+                                    {li}
+                                </TitleWithIcon>)}
                         </ul>
                     </div>
                     <div className="amenities-list-wrapper">
@@ -178,7 +191,8 @@ export const ApartmentDetails = observer(({
                         </>}
                     </ul>
                     {!isCollapsibleExpanded &&
-                        <button className="show-more" onClick={() => setIsCollapsibleExpanded(true)}>{t("Show More")}</button>}
+                        <button className="show-more"
+                                onClick={() => setIsCollapsibleExpanded(true)}>{t("Show More")}</button>}
                 </div>
             </div>
             <div className="order-menu">

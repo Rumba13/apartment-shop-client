@@ -5,18 +5,24 @@ class FilterByAreaStore {
         makeAutoObservable(this)
     }
 
-    public readonly lowerAreaBound = 25;
-    public readonly upperAreaBound = 175;
+    public minAreaBound = 0;
+    public maxAreaBound = 0;
 
-    public minArea = this.lowerAreaBound;
-    public maxArea = this.upperAreaBound;
+    public setAreaBounds = (minAreaBound: number, maxAreaBound: number) => {
+        this.minAreaBound = minAreaBound;
+        this.maxAreaBound = maxAreaBound;
+        this.removeFilter()
+    }
+
+    public minArea = this.minAreaBound;
+    public maxArea = this.maxAreaBound;
 
     public setMaxArea = (maxArea: number) => {this.maxArea = maxArea}
     public setMinArea = (minArea: number) => {this.minArea = minArea}
 
     public removeFilter() {
-        this.setMaxArea(this.upperAreaBound);
-        this.setMinArea(this.lowerAreaBound);
+        this.setMaxArea(this.maxAreaBound);
+        this.setMinArea(this.minAreaBound);
     }
 }
 

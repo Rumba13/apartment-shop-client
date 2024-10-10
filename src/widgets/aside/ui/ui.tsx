@@ -1,14 +1,23 @@
 import './styles.scss';
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {PriceFilter, priceFilterStore} from "../../../features/filter-by-price";
-import React from "react";
+import React, {useEffect} from "react";
 import {areaFilterStore, AreaFilter} from "../../../features/filter-by-space";
 import {TagsList} from "../../../features/select-tags";
 import {RemoveFiltersButton} from "./remove-filters/remove-filters-button";
 import {tagsFilterStore} from "../../../features/select-tags/model/tags-filter-store";
+import {currencyStore} from "../../../features/select-currency";
+import {filtersBoundsService} from "../../../shared/api/filters-bounds-service.mocked";
 
 export function Aside() {
     const {t} = useTypedTranslation();
+
+    useEffect(() => {
+        filtersBoundsService.loadFiltersBound(currencyStore.currency).then((filtersBounds) => {
+            priceFilterStore.setPriceBounds(filtersBounds.minPrice, filtersBounds.maxPrice);
+            areaFilterStore.setAreaBounds(filtersBounds.minSquare, filtersBounds.maxSquare);
+        })
+    }, [currencyStore.currency]);
 
     return (
         <aside className="aside">

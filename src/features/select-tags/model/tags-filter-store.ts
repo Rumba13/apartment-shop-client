@@ -1,8 +1,8 @@
-import {makeAutoObservable} from "mobx";
+import {makeAutoObservable, runInAction} from "mobx";
 import {Tag} from "../../../shared/api/types/tag";
+import {tagsService} from "../../../shared/api/tags-service";
 
 class SelectTagsStore {
-
     constructor() {
         makeAutoObservable(this)
     }
@@ -11,10 +11,16 @@ class SelectTagsStore {
 
     public tags: Tag[] = []
 
-    public setTags = (tags: Tag[]) => {
-        this.tags = tags
+    private _setTags = (tags: Tag[]) => this.tags = tags;
+    private _setSelectedTags = (tags: { [key in string]: boolean }) => this.selectedTags = tags;
 
-        this.selectedTags = {};
+    public async loadTags() {
+        this._setTags(await tagsService.loadTags())
+    }
+
+    public setTags = (tags: Tag[]) => {
+        this._setTags(tags);
+        this._setSelectedTags({})
 
         for (let i = 0; i < tags.length; i++) {
             this.selectedTags[tags[i]] = false;
@@ -22,15 +28,15 @@ class SelectTagsStore {
     };
 
     public toggleIsTagSelected = (tagName: string) => {
-        this.selectedTags = {...this.selectedTags}
+        this._setSelectedTags({...this.selectedTags})
         this.selectedTags[tagName] = !this.selectedTags[tagName];
     };
+
     public getSelectedTagsNames() {
-        const selectedTagsNames:string[] = []
+        const selectedTagsNames: string[] = []
 
         for (const selectedTagName in this.selectedTags) {
-
-            if(this.selectedTags[selectedTagName]) {
+            if (this.selectedTags[selectedTagName]) {
                 selectedTagsNames.push(selectedTagName);
             }
         }
@@ -39,8 +45,11 @@ class SelectTagsStore {
     }
 
     public removeFilter() {
-        this.selectedTags = {};
+        runInAction(() => {
+            this.selectedTags = {};
+        })
     }
+
 }
 
 export const tagsFilterStore = new SelectTagsStore()

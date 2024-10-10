@@ -1,4 +1,5 @@
 import {Tag} from "./types/tag";
+import {serverConnection} from "./server-connection.mocked";
 
 class TagsService {
     constructor() {
@@ -6,20 +7,11 @@ class TagsService {
 
     }
 
-    public async loadTags():Promise<Tag[]> {
-        return [
-            "Холодильник",
-            "Газовая плита",
-            "Электроплита",
-            "Электрочайник",
-            "Блендер",
-            "Кофеварка",
-            "Микроволновая печь",
-            "Столовые приборы",
-            "Тостер",
-            "Посудомоечная машина",
-        ]
+    public async loadTags(): Promise<Tag[]> {
+        return (await serverConnection.get("apartments/amenities")).data
     }
 }
 
-export const tagsService= new TagsService()
+    export
+    const
+    tagsService = new TagsService()

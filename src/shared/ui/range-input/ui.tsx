@@ -7,9 +7,11 @@ type PropsType = {
     className?: string;
     values: number[],
     onChange: (value: number[]) => void,
+    min:number,
+    max:number,
 }
 
-export const RangeInput = observer(({ values, onChange,className}: PropsType) => {
+export const RangeInput = observer(({ values, onChange,className,min,max}: PropsType) => {
     const {t} = useTypedTranslation();
 
     return (
@@ -17,12 +19,12 @@ export const RangeInput = observer(({ values, onChange,className}: PropsType) =>
                 <div className="range-input _min">
                     <span className="range-input__title">{t("From")}</span>
                     <input type="number" className="range-input__input" value={values[0]}
-                           onChange={({target: {value}}) => onChange([parseInt(value), values[1]])}/>
+                           onChange={({target: {value}}) => onChange([parseInt(value) ||min, values[1]])}/>
                 </div>
                 <div className="range-input _max">
                     <span className="range-input__title">{t("To")}</span>
                     <input type="number" className="range-input__input" value={values[1]}
-                           onChange={({target: {value}}) => onChange([values[0], parseInt(value)])}/>
+                           onChange={({target: {value}}) => onChange([values[0], parseInt(value) || max])}/>
                 </div>
             </div>
     )

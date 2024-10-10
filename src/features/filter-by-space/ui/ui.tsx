@@ -11,7 +11,10 @@ export const AreaFilter = observer(() => {
     return (
         <div className={"filter-by-space"}>
             <span className="filters__title filter-by-space__title">{t("Area")}</span>
-            <RangeInput values={[areaFilterStore.minArea, areaFilterStore.maxArea]} onChange={(values) => {
+            <RangeInput
+                max={areaFilterStore.maxAreaBound}
+                min={areaFilterStore.minAreaBound}
+                values={[areaFilterStore.minArea, areaFilterStore.maxArea]} onChange={(values) => {
                 areaFilterStore.setMinArea(values[0]);
                 areaFilterStore.setMaxArea(values[1]);
             }}/>

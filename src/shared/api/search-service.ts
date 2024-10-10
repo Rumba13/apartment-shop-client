@@ -4,46 +4,42 @@ import {apartmentService} from "./apartment-service.mocked";
 import {Range} from "./types/range";
 import {inRange} from "../lib/in-range";
 import {SortBy} from "./types/sort-by";
+import {serverConnection} from "./server-connection.mocked";
+import {Pagination} from "./types/pagination";
+import {Currency} from "./types/currency";
 
 class SearchService {
-    private readonly _searchTimeout = 500;
-
+    private readonly _searchTimeout = 200;
     public isSearchOnRequestCooldown: boolean = false;
-    public searchCooldownTimer:any = 0; //TODO
+    public searchCooldownTimer: any = 0; //TODO
+    public isLoading: boolean = false;
+    public setIsLoading = (isLoading: boolean) => this.isLoading = isLoading
 
-    public isLoading:boolean = false;
-    public  setIsLoading = (isLoading:boolean) => this.isLoading = isLoading
-
-    private setSearchOnCooldown = () => {
+    public setSearchOnCooldown = () => {
         clearTimeout(this.searchCooldownTimer);
         this.isSearchOnRequestCooldown = true;
         this.searchCooldownTimer = setTimeout(() => this.isSearchOnRequestCooldown = false, this._searchTimeout)
     }
 
-    public async search(searchTags: Tag[], priceRange: Range, areaRange: Range, sortBy: SortBy): Promise<Apartment[] | null> {
+    public async search(searchTags: Tag[], priceRange: Range, areaRange: Range, sortBy: SortBy, resultCurrency:Currency): Promise<Apartment[] | null> {
         this.setIsLoading(true);
 
-        let apartments: Apartment[] = (await apartmentService.getAllApartments()).content;
-        apartments = apartments.filter(apartment => searchTags.every(tag => apartment.amenities.includes(tag)));
-        apartments = apartments.filter(apartment => inRange(priceRange, apartment.price.amount))
-        apartments = apartments.filter(apartment => inRange(areaRange, apartment.square))
-
-        apartments = apartments.sort((a1, a2) => {
-            if (sortBy === "price:asc") {
-                return a1.price.amount - a2.price.amount;
+        const paginationResult:Pagination<Apartment> = (await serverConnection.get("/apartments", {
+            params: {
+                pageSize: 20,
+                page: 1,
+                minPrice: priceRange.min,
+                maxPrice: priceRange.max,
+                minSquare: areaRange.min,
+                maxSquare: areaRange.max,
+                sortBy,
+                resultCurrency: resultCurrency,
+                amenities: searchTags.join(", ")
             }
-            if (sortBy === "price:desc") {
-                return a2.price.amount - a1.price.amount;
-            }
-            return 0;
-        })
+        })).data
 
-        return new Promise((resolve) => {
-            // setTimeout(() => {
-            resolve(apartments);
-                 searchService.setIsLoading(false)
-             //}, 200)
-        })
+        this.setIsLoading(false);
+        return paginationResult.content;
     }
 }
 

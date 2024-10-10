@@ -8,6 +8,7 @@ import RangeImage from "../../../assets/images/mocked/price-range.png"
 import {Slider} from "../../../shared/ui/range/ui";
 import {RangeInput} from "../../../shared/ui/range-input/ui";
 import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map";
+import {searchService} from "../../../shared/api/search-service";
 
 export const PriceFilter = observer(() => {
     const {t} = useTypedTranslation();
@@ -35,7 +36,10 @@ export const PriceFilter = observer(() => {
                         onChange={(values: number[]) => {
                             priceFilterStore.setMinPrice(values[0]);
                             priceFilterStore.setMaxPrice(values[1]);
+                            priceFilterStore.setOnCooldown()
                         }}
+                        min={priceFilterStore.minPriceBound}
+                        max={priceFilterStore.maxPriceBound}
                         values={[priceFilterStore.minPrice, priceFilterStore.maxPrice]}/>
 
             <div className="slider-wrapper">
@@ -44,7 +48,7 @@ export const PriceFilter = observer(() => {
                 <Slider className={"price-range-slider"} getLabel={getLabel}
                         onChange={(value) => {
                             setSliderValue(value)
-                            priceFilterStore.setOnCooldown();
+                            priceFilterStore.setOnCooldown()
                         }}
                         max={priceFilterStore.maxPriceBound} min={priceFilterStore.minPriceBound}
                         value={[priceFilterStore.minPrice, priceFilterStore.maxPrice]}/>

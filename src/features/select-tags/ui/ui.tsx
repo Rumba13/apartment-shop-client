@@ -10,7 +10,7 @@ export const TagsList = observer(() => {
     const {t} = useTypedTranslation()
 
     useEffect(() => {
-        tagsService.loadTags().then(tagsFilterStore.setTags);
+        tagsFilterStore.loadTags();
     }, []);
 
     return <div className="tags">

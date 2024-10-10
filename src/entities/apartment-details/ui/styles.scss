@@ -45,7 +45,6 @@
     & .apartment-images {
       display: flex;
       flex-direction: column;
-      margin-right: 25px;
       //border: 1px solid red;
 
       & .main-image {
@@ -260,8 +259,8 @@
         & .show-more {
           color:var(--azure);
           font-family: "CeraPro", Arial,sans-serif;
-          font-size: 16px;
           &:hover {
+            font-size: 16px;
             text-decoration: underline;
           }
         }
@@ -281,6 +280,7 @@
       display: inline-block;
       border: 1px solid var(--gains-boro);
       padding: 20px 30px;
+      margin-left: 25px;
       box-shadow: 0 20px 40px rgba(44, 57, 78, 0.08);
       border-radius: 10px;
       height: min-content;
