@@ -12,6 +12,7 @@ import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
 import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map";
 import NoImage from "../../../assets/images/no-image.jpg";
+import {CONSTANTS} from "../../../shared/lib/constants";
 
 type PropsType = {
     apartment: Apartment;
@@ -36,9 +37,8 @@ export function ApartmentCard({
     const {t} = useTranslation();
 
     return <div className="apartment-card">
-
         <Link className={"apartment-card-slider"} to={"/apartment-details/" + id}>
-            <img src={photos[0] ||NoImage} alt=""/>
+            <img src={photos[0] ? CONSTANTS.SERVER_URL + photos[0] : NoImage} alt=""/>
         </Link>
         <div className="apartment-details">
             <span className="apartment-card__price">{price.amount} {currencyToPostfixMap[price.currency]}</span>

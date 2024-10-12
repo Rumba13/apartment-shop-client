@@ -30,8 +30,8 @@ class SearchService {
                 page: 1,
                 minPrice: priceRange.min,
                 maxPrice: priceRange.max,
-                minSquare: areaRange.min,
-                maxSquare: areaRange.max,
+                minArea: areaRange.min,
+                maxArea: areaRange.max,
                 sortBy,
                 resultCurrency: resultCurrency,
                 amenities: searchTags.join(", ")

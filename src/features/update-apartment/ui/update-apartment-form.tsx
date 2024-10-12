@@ -1,6 +1,6 @@
 import './styles.scss';
 import {Form, Formik, FormikValues} from "formik";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Field} from "../../../shared/ui/field/ui";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {apartmentService} from "../../../shared/api/apartment-service.mocked";
@@ -36,7 +36,6 @@ export function UpdateApartmentForm({apartmentId}: PropsType) {
     const navigate = useNavigate()
     const [cookies] = useCookies(["ACCESS-TOKEN"])
     const [updatedApartment, setUpdateApartment] = useState<Apartment | null>(null);
-
     useEffect(() => {
         apartmentService.getApartmentById(apartmentId, currencyStore.currency)
             .then((apartment) => {
@@ -65,31 +64,47 @@ export function UpdateApartmentForm({apartmentId}: PropsType) {
             amenities: updatedApartment.amenities.join(", "),
             address: updatedApartment.address,
             bedsQuantity: updatedApartment.bedsQuantity,
+        }} validate={validate} onSubmit={(values, {setSubmitting}) => {
 
-        }} validate={validate}
-                              onSubmit={(values, {setSubmitting}) => {
-                                  apartmentService.updateApartment(apartmentId, {
-                                      title: values.title,
-                                      area: values.area,
-                                      amenities: values.amenities.split(", "),
-                                      address: values.address,
-                                      price: {
-                                          currency: currencyStore.currency,
-                                          amount: values.price
-                                      },
-                                      description: values.description,
-                                      bedsQuantity: values.bedsQuantity,
-                                      guestsQuantity: values.guestsQuantity,
-                                      roomsQuantity: values.roomsQuantity,
-                                      draft: false
-                                  }, cookies["ACCESS-TOKEN"]).catch(console.log).then((res) => {
-                                      navigate(`../../apartment-details/${apartmentId}`, {
-                                          replace: true,
-                                          preventScrollReset: true
-                                      });
-                                  })
-                              }}>
-            {({}) => (
+
+            apartmentService.updateApartment(apartmentId, {
+                title: values.title,
+                area: values.area,
+                amenities: values.amenities.split(", "),
+                address: values.address,
+                price: {
+                    currency: currencyStore.currency,
+                    amount: values.price
+                },
+                description: values.description,
+                bedsQuantity: values.bedsQuantity,
+                guestsQuantity: values.guestsQuantity,
+                roomsQuantity: values.roomsQuantity,
+                draft: false
+            }, cookies["ACCESS-TOKEN"]).catch(console.log).then((res) => {
+                navigate(`../../apartment-details/${apartmentId}`, {
+                    replace: true,
+                    preventScrollReset: true
+                });
+            }).then(() => {
+                const formData = new FormData();
+
+
+
+
+                for(let i = 0; i < values.photo.length; i++)
+                {
+                    formData.append("photos", values.photo[i]);
+                }
+
+                console.log(formData)
+
+                apartmentService.updateApartmentPhotos(apartmentId, formData, cookies["ACCESS-TOKEN"]).catch(console.log)
+            })
+
+
+        }}>
+            {({setFieldValue}) => (
                 <Form className="update-apartment-form" id="update-apartment-form">
                     <Field placeholder={"Название квартиры"} name="title" label={t("Title")}/>
                     <Field name="description" as="textarea" label={t("Apartment Description")}/>
@@ -100,7 +115,9 @@ export function UpdateApartmentForm({apartmentId}: PropsType) {
                     <Field name="address" label={t("Address")}/>
                     <Field name="area" label={t("Area")}/>
                     <Field name="amenities" label={t("Amenities")}/>
-                    <Field name="photos" type="file" accept={"image/*"} label={t("Photos")} multiple/>
+                    <Field onChange={(event:any) => {
+                        setFieldValue("photo", event.currentTarget.files)
+                    }} name="photos" type="file" accept={"image/*"} label={t("Photos")} multiple/>
                     <button className={"update-apartment-form__submit"} type="submit">{t("Add")}</button>
                 </Form>
             )}
