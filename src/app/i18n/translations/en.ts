@@ -88,6 +88,7 @@ export const englishTranslation: Translation = {
     "Password": "Password",
     "User With That Name Already Exists": "User with that name already exists",
     "User With That Email Already Exists": "User with that email already exists",
+    "Incorrect Password Or Username": "Incorrect password or username",
 
 };
 

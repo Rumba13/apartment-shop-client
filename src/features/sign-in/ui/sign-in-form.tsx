@@ -6,6 +6,7 @@ import {signInService} from "../../../shared/api/sign-in-service";
 import {SignInDto} from "../../../shared/api/types/sign-in.dto";
 import {useCookies} from "react-cookie";
 import {userStore} from "../../../entities/user";
+import {ERRORS} from "../../../shared/lib/backend-error-constants";
 
 type ValuesType = SignInDto;
 
@@ -27,8 +28,12 @@ export function SignInForm({onSignIn}: PropsType) {
                 userStore.auth(response.access_token);
                 onSignIn?.();
             }).catch((err) => {
-                    console.log(err)
-                })
+                console.log(err)
+
+                if (err.response.data.detail === ERRORS.INCORRECT_USERNAME_OR_PASSWORD) {
+                    formikHelpers.setFieldError("password", t("Incorrect Password Or Username"))
+                }
+            })
         }}>
             {({}) => <Form className="sign-in-form">
                 <Field name="username" label={t("Name") + ":"} placeholder={t("Enter Your Name")}/>

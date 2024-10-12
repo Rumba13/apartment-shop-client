@@ -86,7 +86,7 @@ export const russianTranslation = {
     "Password": "Пароль",
     "User With That Name Already Exists": "Пользователь с этим именем уже существует",
     "User With That Email Already Exists": "Пользователь с этой почтой уже существует",
-
+"Incorrect Password Or Username": "Неверный пароль или имя пользователя"
 };
 
 export type Translation = typeof russianTranslation;

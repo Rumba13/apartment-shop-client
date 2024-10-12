@@ -36,6 +36,7 @@ export function SignUpForm({onSignUp}:PropsType) {
                                 });
                             }}>
             {({}) => <Form className="sign-in-form">
+                {/*TODO rename to sign-up*/}
                 <Field name="username" label={t("Name") + ":"} placeholder={t("Enter Your Name")}/>
                 <Field name="email" label={t("Email") + ":"} placeholder={"djonson@gmail.com"}/>
                 <Field name="password" label={t("Password") + ":"} type={"password"} placeholder="********"/>
