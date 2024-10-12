@@ -7,7 +7,7 @@ class FiltersBoundsService {
     }
 
     public async loadFiltersBound(resultCurrency: Currency): Promise<FilterBounds> {
-        const response =  (await serverConnection.get("apartments/minmax-price-square", {
+        const response =  (await serverConnection.get("apartments/minmax-price-area", {
             params: {
                 resultCurrency
             }
@@ -15,8 +15,8 @@ class FiltersBoundsService {
 
         response.minPrice = +response.minPrice;
         response.maxPrice = +response.maxPrice;
-        response.minSquare = +response.minSquare;
-        response.maxSquare = +response.maxSquare;
+        response.minArea = +response.minArea;
+        response.maxArea = +response.maxArea;
 
         return response;
     }

@@ -83,8 +83,11 @@ export const englishTranslation: Translation = {
     "Laundry And Linen": "Laundry and linen",
     "Amenities Outside": "Удобства Снаружи",
     "Methods Of Payments": "Methods Of Payments",
-    "Show More": "Show more"
-
+    "Show More": "Show more",
+    "Sign Up": "Sign Up",
+    "Password": "Password",
+    "User With That Name Already Exists": "User with that name already exists",
+    "User With That Email Already Exists": "User with that email already exists",
 
 };
 

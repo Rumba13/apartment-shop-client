@@ -4,9 +4,8 @@
   padding: 3px;
   margin-bottom: 6px;
 
-
   & .field__label {
-    margin-bottom: 3px;
+    margin-bottom: 4px;
     font-size: 14px;
     font-family: "CeraPro", Arial,sans-serif;
     color: var(--dark-blue);
@@ -14,11 +13,10 @@
 
   & .field__field {
     border: 1px solid var(--white-gray);
-    border-radius: 4px;
-    padding: 6px 10px;
+    border-radius: 8px;
+    padding: 14px 20px;
     font-size: 14px;
     font-family: "CeraPro", Arial,sans-serif;
-
   }
   & textarea.field__field {
     resize: vertical;

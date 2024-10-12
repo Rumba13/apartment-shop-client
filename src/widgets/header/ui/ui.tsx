@@ -6,6 +6,7 @@ import {OpenWishListButton} from "../../../features/add-to-wishlist";
 import {UserMenu} from "./user-menu/ui";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {Search} from "../../search";
+import {AuthModal} from "../../auth-modal";
 
 type PropsType = {
     noSearch?: boolean;
@@ -15,6 +16,7 @@ export function Header({noSearch = false}: PropsType) {
     const {t} = useTypedTranslation();
 
     return <header className="header">
+        <AuthModal/>
         <div className="header-top">
             <Logo/>
             <SelectCityDropdown/>

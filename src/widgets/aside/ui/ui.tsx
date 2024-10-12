@@ -15,7 +15,7 @@ export function Aside() {
     useEffect(() => {
         filtersBoundsService.loadFiltersBound(currencyStore.currency).then((filtersBounds) => {
             priceFilterStore.setPriceBounds(filtersBounds.minPrice, filtersBounds.maxPrice);
-            areaFilterStore.setAreaBounds(filtersBounds.minSquare, filtersBounds.maxSquare);
+            areaFilterStore.setAreaBounds(filtersBounds.minArea, filtersBounds.maxArea);
         })
     }, [currencyStore.currency]);
 

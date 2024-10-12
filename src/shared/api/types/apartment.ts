@@ -10,8 +10,8 @@ export type Apartment = {
     address: string,
     roomsQuantity:number,
     bedsQuantity:number,
-    guestQuantity:number, //TODO update naming when backend rename to guestsQuantity
+    guestsQuantity:number,
     photos: string[],
     amenities:string[],
-    square:number//TODO update naming when backend rename to area
+    area:number
 }

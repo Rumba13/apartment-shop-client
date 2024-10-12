@@ -20,7 +20,7 @@ type PropsType = {
 export function ApartmentCard({
                                   apartment: {
                                       title,
-                                      guestQuantity,
+                                      guestsQuantity,
                                       bedsQuantity,
                                       roomsQuantity,
                                       photos,
@@ -29,7 +29,7 @@ export function ApartmentCard({
                                       address,
                                       description,
                                       amenities,
-                                      square,
+                                      area,
                                       id
                                   }
                               }: PropsType) {
@@ -45,7 +45,7 @@ export function ApartmentCard({
             <TitleWithIcon className="apartment-details__rooms-quantity"
                            icon={CardsIcon}>{t("Rooms", {count: roomsQuantity})}</TitleWithIcon>
             <TitleWithIcon className="apartment-details__max-quests-quantity"
-                           icon={UsersIcon}>{t("guest", {count: guestQuantity})} </TitleWithIcon>
+                           icon={UsersIcon}>{t("guest", {count: guestsQuantity})} </TitleWithIcon>
             <a className="apartment-details__address" href={"./"}>{address}</a>
             <LinkWithIcon className="apartment-details__on-map-link" icon={GeoIcon} href={"/"}>На карте </LinkWithIcon>
             <span className="apartment-details__description">{description}</span>

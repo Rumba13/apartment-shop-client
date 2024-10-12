@@ -49,7 +49,7 @@ export const OrderModal = observer(({apartmentPrice, apartmentImage, apartmentAd
                                placeholder={t("Additional Information")}
                                label={t("Additional Information")}/>
 
-                        <button className="order-form__submit-button" type="submit">{t("Send Request")}</button>
+                        <button className="order-form__submit-button submit-button" type="submit">{t("Send Request")}</button>
                     </Form>}
                 </Formik>
                 <div className="apartment-details">

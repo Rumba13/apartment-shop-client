@@ -55,16 +55,17 @@ export const ApartmentDetails = observer(({
         description,
         photos,
         title,
-        guestQuantity,
+        guestsQuantity,
         bedsQuantity,
         roomsQuantity,
-        square,
+        area,
         amenities,
         landlordId,
         address
     } = apartmentDetailsStore.apartment;
 
     return <div className="apartment-details">
+        <OrderModal apartmentAddress={address} apartmentImage={photos[0]} apartmentPrice={price}/>
         <div className="apartment-details-top">
             <div className="max-width-wrapper">
                 <h2 className="top__title">{title}</h2>
@@ -98,9 +99,9 @@ export const ApartmentDetails = observer(({
                     <IconWithTwoTitles icon={RoomsIcon} title={roomsQuantity}
                                        subTitle={tr("Room", {count: roomsQuantity})}/>
                     <IconWithTwoTitles icon={BedIcon} title={bedsQuantity} subTitle={tr("Bed", {count: bedsQuantity})}/>
-                    <IconWithTwoTitles icon={GuestsIcon} title={guestQuantity}
-                                       subTitle={tr("Guest", {count: guestQuantity})}/>
-                    <IconWithTwoTitles icon={ApartmentAreaIcon} title={square + " м²"} subTitle={t("Area")}/>
+                    <IconWithTwoTitles icon={GuestsIcon} title={guestsQuantity}
+                                       subTitle={tr("Guest", {count: guestsQuantity})}/>
+                    <IconWithTwoTitles icon={ApartmentAreaIcon} title={area + " м²"} subTitle={t("Area")}/>
                 </div>
                 <div className="apartment-description">
                     <h2 className="apartment-description__title">{t("Description")}</h2>
@@ -219,7 +220,6 @@ export const ApartmentDetails = observer(({
                     </div>
                 </div>
                 <OpenOrderModalButton/>
-                <OrderModal apartmentAddress={address} apartmentImage={photos[0]} apartmentPrice={price}/>
             </div>
         </div>
     </div>

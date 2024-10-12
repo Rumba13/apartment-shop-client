@@ -1,0 +1,14 @@
+.sign-in-form {
+ & .field {
+   &:not(:last-child) {
+     margin-bottom: 15px;
+   }
+ }
+  input[name="password"]
+  {
+    font-family: Helvetica, sans-serif;
+  }
+  & .submit-button {
+    width: 100%;
+  }
+}

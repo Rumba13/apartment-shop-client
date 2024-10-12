@@ -81,7 +81,12 @@ export const russianTranslation = {
     "Laundry And Linen": "Стирка и белье",
     "Amenities Outside": "Удобства снаружи",
     "Methods Of Payments": "Способы оплаты",
-    "Show More": "Показать больше"
+    "Show More": "Показать больше",
+    "Sign Up": "Регистрация",
+    "Password": "Пароль",
+    "User With That Name Already Exists": "Пользователь с этим именем уже существует",
+    "User With That Email Already Exists": "Пользователь с этой почтой уже существует",
+
 };
 
 export type Translation = typeof russianTranslation;
