@@ -13,7 +13,7 @@ type PropsType = {
     onSignUp?: Function
 }
 
-export function SignUpForm({onSignUp}:PropsType) {
+export function SignUpForm({onSignUp}: PropsType) {
     const {t} = useTypedTranslation()
     const [cookies, setCookie, removeCookie] = useCookies(["ACCESS-TOKEN", "REFRESH-TOKEN"], {
         doNotParse: true,
@@ -23,8 +23,8 @@ export function SignUpForm({onSignUp}:PropsType) {
         <Formik<ValuesType> initialValues={{username: "", email: "", password: ""}}
                             onSubmit={(signUpDto, formikHelpers) => {
                                 signUpService.signUp(signUpDto).then(response => {
-                                    setCookie("ACCESS-TOKEN", response.access_token, {secure: true});
-                                    setCookie("REFRESH-TOKEN", response.refresh_token, {secure: true});
+                                    setCookie("ACCESS-TOKEN", response.access_token,);
+                                    setCookie("REFRESH-TOKEN", response.refresh_token);
                                     userStore.auth(response.access_token);
                                     onSignUp?.();
                                 }).catch((error) => {

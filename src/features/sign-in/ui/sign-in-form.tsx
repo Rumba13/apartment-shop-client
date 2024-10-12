@@ -21,7 +21,7 @@ export function SignInForm({onSignIn}: PropsType) {
     });
 
     return (
-        <Formik<ValuesType> initialValues={{username: "", password: ""}} onSubmit={(values, formikHelpers) => {
+        <Formik<ValuesType> initialValues={{username: "sad", password: "sadad"}} onSubmit={(values, formikHelpers) => {
             signInService.signIn(values).then((response) => {
                 setCookie("ACCESS-TOKEN", response.access_token, {secure: true});
                 setCookie("REFRESH-TOKEN", response.refresh_token, {secure: true});

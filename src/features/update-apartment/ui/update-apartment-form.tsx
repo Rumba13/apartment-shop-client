@@ -89,15 +89,10 @@ export function UpdateApartmentForm({apartmentId}: PropsType) {
             }).then(() => {
                 const formData = new FormData();
 
-
-
-
                 for(let i = 0; i < values.photo.length; i++)
                 {
                     formData.append("photos", values.photo[i]);
                 }
-
-                console.log(formData)
 
                 apartmentService.updateApartmentPhotos(apartmentId, formData, cookies["ACCESS-TOKEN"]).catch(console.log)
             })
