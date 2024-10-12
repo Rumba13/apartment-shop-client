@@ -35,6 +35,15 @@ class ApartmentService {
             }
         })).data
     }
+
+    public async updateApartmentPhotos(apartmentId: UUID, photos: any, accessUserJWT: string) {
+        return (await serverConnection.put(`apartments/${apartmentId}/photos`, photos, {
+            headers: {
+                Authorization: "Bearer " + accessUserJWT,
+                "Content-Type":"multipart/form-data"
+            }
+        })).data
+    }
 }
 
 export const apartmentService = new ApartmentService();

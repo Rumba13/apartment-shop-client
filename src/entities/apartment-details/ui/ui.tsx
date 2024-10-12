@@ -25,6 +25,7 @@ import {userStore} from "../../user";
 import {currencyStore} from "../../../features/select-currency";
 import {Link} from "react-router-dom";
 import {DeleteApartment} from "./delete-apartment-button";
+import {CONSTANTS} from "../../../shared/lib/constants";
 
 type PropsType = {
     apartmentId: UUID
@@ -41,6 +42,7 @@ export const ApartmentDetails = observer(({
         <TitleWithIcon className={"tags-list__item amenities-list__item"} withLi icon={MarkIcon}>
             {li}
         </TitleWithIcon>);
+
 
     useEffect(() => {
         apartmentDetailsStore.loadApartmentDetails(apartmentId, currencyStore.currency);
@@ -67,6 +69,8 @@ export const ApartmentDetails = observer(({
         address
     } = apartmentDetailsStore.apartment;
 
+    console.log(photos.join(" "))
+
     return <div className="apartment-details">
         <OrderModal apartmentAddress={address} apartmentImage={photos[0]} apartmentPrice={price}/>
         <div className="apartment-details-top">
@@ -86,11 +90,11 @@ export const ApartmentDetails = observer(({
         <div className="apartment-details-mid">
             <div className="apartment-details-wrapper">
                 <div className="apartment-images">
-                    <img className="main-image" src={FlatIcon} alt=""/>
+                    <img className="main-image" src={CONSTANTS.SERVER_URL_DEV + photos[0]} alt=""/>
                     <div className="other-images">
                         {photos.slice(1).map(photo =>
                             <div className="image-wrapper">
-                                <img className="image" src={FlatIcon} alt=""/>
+                                <img className="image" src={CONSTANTS.SERVER_URL_DEV + photo} alt=""/>
                             </div>
                         )}
                     </div>

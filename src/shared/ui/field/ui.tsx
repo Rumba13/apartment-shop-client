@@ -5,16 +5,17 @@ import clsx from "clsx";
 
 type PropsType = {
     label: string,
-    className?: string
+    className?: string,
+    onChange?: Function
 } & FieldHookConfig<any>
 
-export function Field({label, className, ...props}: PropsType) {
+export function Field({label, className, onChange, ...props}: PropsType) {
     const [field, meta] = useField(props);
 
     return (
         <div className={clsx("field", className)}>
             <label className="field__label" htmlFor={props.id || props.name}>{label}</label>
-            <FormikField {...props} {...field} className={clsx("field__field")} name={props.name}
+            <FormikField {...props} {...field} onChange={onChange} className={clsx("field__field")} name={props.name}
                          id={props.id || props.name}/>
             <ErrorMessage className={"field__error"} name={props.name}/>
         </div>
