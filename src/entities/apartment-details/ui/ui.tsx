@@ -1,6 +1,5 @@
 import './styles.scss';
 import {AddToWishListButton} from "../../../features/add-to-wishlist/ui/add-to-wish-list-button";
-import {OpenShareModal} from "./open-share-modal";
 import {LinkWithIcon} from "../../../shared/ui/link-with-icon";
 import GeoIcon from "../../../assets/images/geo-location-colorfull.svg";
 import MetroIcon from "../../../assets/images/metro.svg";
@@ -22,6 +21,10 @@ import {IconWithTwoTitles} from "../../../shared/ui/icon-with-two-titles";
 import {useTranslation} from "react-i18next";
 import {UUID} from "../../../shared/api/types/uuid";
 import {apartmentDetailsStore} from "../model/apartment-details-store";
+import {userStore} from "../../user";
+import {currencyStore} from "../../../features/select-currency";
+import {Link} from "react-router-dom";
+import {DeleteApartment} from "./delete-apartment-button";
 
 type PropsType = {
     apartmentId: UUID
@@ -40,8 +43,8 @@ export const ApartmentDetails = observer(({
         </TitleWithIcon>);
 
     useEffect(() => {
-        apartmentDetailsStore.loadApartmentDetails(apartmentId);
-    }, []);
+        apartmentDetailsStore.loadApartmentDetails(apartmentId, currencyStore.currency);
+    }, [currencyStore.currency]);
 
     if (apartmentDetailsStore.isError) {
         return <div>Error...</div>
@@ -69,10 +72,16 @@ export const ApartmentDetails = observer(({
         <div className="apartment-details-top">
             <div className="max-width-wrapper">
                 <h2 className="top__title">{title}</h2>
-                <h3 className="top__sub-title">ID: {id}</h3>
+
+                {userStore.user?.isSuperuser
+                    ? <Link className="top__sub-title" to={`/update-apartment/${apartmentId}`}>ID: {id}</Link>
+                    : <h3 className="top__sub-title">ID: {id}</h3>
+                }
+
+
             </div>
             <AddToWishListButton apartmentId={id}/>
-            <OpenShareModal/>
+            {userStore.user?.isSuperuser && <DeleteApartment apartmentId={apartmentId}/>}
         </div>
         <div className="apartment-details-mid">
             <div className="apartment-details-wrapper">

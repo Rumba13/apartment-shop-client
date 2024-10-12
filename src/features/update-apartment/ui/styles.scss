@@ -1,0 +1,24 @@
+.update-apartment-form-wrapper {
+  margin: 15px auto 0;
+  max-width: 300px;
+
+  & .update-apartment-form-wrapper__title {
+    text-align: center;
+
+    display: block;
+    font-size: 16px;
+    font-family: "CeraPro", Arial, sans-serif;
+    margin: 5px 0;
+  }
+  & .update-apartment-form__submit {
+    display: block;
+    background-color: var(--light-azure);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-family: "CeraPro",Arial, sans-serif;
+    font-size: 16px;
+    margin-top: 10px;
+    width: 100%;
+  }
+}

@@ -12,12 +12,28 @@ class ApartmentService {
         return (await serverConnection.get("apartments/" + apartmentId, {params: {resultCurrency}})).data as Apartment;
     }
 
-    public async createApartment(apartment: CreateApartmentDto, accessUserJWT: string) {
-        await serverConnection.post("apartments", apartment, {
+    public async createApartment(apartmentDto: CreateApartmentDto, accessUserJWT: string) {
+        return (await serverConnection.post("apartments", apartmentDto, {
             headers: {
-                Authorization: `bearer ${accessUserJWT}`
+                Authorization: "Bearer " + accessUserJWT
             }
-        })
+        })).data
+    }
+
+    public async deleteApartment(apartmentId: UUID, accessUserJWT: string) {
+        return (await serverConnection.delete(`apartments/${apartmentId}`, {
+            headers: {
+                Authorization: "Bearer " + accessUserJWT
+            }
+        })).data
+    }
+
+    public async updateApartment(apartmentId: UUID, apartment: CreateApartmentDto, accessUserJWT: string) {
+        return (await serverConnection.patch(`apartments/${apartmentId}`, apartment, {
+            headers: {
+                Authorization: "Bearer " + accessUserJWT
+            }
+        })).data
     }
 }
 

@@ -13,6 +13,6 @@ export const CreateApartmentPage = observer(() => {
     }
 
     return <StandartLayout className="create-apartment-page" noAside>
-        <CreateApartmentForm/>
+        <CreateApartmentForm />
     </StandartLayout>
 });

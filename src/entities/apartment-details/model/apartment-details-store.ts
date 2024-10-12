@@ -2,6 +2,7 @@ import {Apartment} from "../../../shared/api/types/apartment";
 import {UUID} from "../../../shared/api/types/uuid";
 import {apartmentService} from "../../../shared/api/apartment-service.mocked";
 import {makeAutoObservable} from "mobx";
+import {Currency} from "../../../shared/api/types/currency";
 
 class ApartmentDetailsStore {
     constructor() {
@@ -16,11 +17,11 @@ class ApartmentDetailsStore {
     public setIsLoading = (isLoading: boolean) => this.isLoading = isLoading;
     public setApartment = (apartment: Apartment | null) => this.apartment = apartment;
 
-    public async loadApartmentDetails(apartmentId: UUID) {
+    public async loadApartmentDetails(apartmentId: UUID, resultCurrency:Currency) {
         this.setIsLoading(true);
 
         try {
-            const apartment = await apartmentService.getApartmentById(apartmentId, "USD");
+            const apartment = await apartmentService.getApartmentById(apartmentId, resultCurrency);
 
             if (!apartment) {
                 this.setIsError(true);

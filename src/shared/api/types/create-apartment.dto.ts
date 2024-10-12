@@ -1,15 +1,15 @@
 import {Currency} from "./currency";
+import {Price} from "./price";
 
 export type CreateApartmentDto = {
     title: string,
     description: string,
     roomsQuantity: number,
     bedsQuantity: number,
-    guestQuantity: number,
-    priceAmount: number,
-    priceCurrency: Currency,
+    guestsQuantity: number,
+    price: Price,
     address: string,
-    square: number,
+    area: number,
     amenities: string[],
-    photos: any[],
+    draft:boolean
 }

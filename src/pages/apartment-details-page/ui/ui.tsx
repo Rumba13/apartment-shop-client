@@ -4,7 +4,6 @@ import {MinimalLayout} from "../../minimal-layout";
 import {ApartmentDetails} from "../../../entities/apartment-details";
 
 export function ApartmentDetailsPage() {
-
     const {apartmentId} = useParams()
 
     if (!apartmentId) {

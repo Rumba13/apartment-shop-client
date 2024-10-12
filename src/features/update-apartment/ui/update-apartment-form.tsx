@@ -1,11 +1,15 @@
 import './styles.scss';
 import {Form, Formik, FormikValues} from "formik";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Field} from "../../../shared/ui/field/ui";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {apartmentService} from "../../../shared/api/apartment-service.mocked";
-import {userStore} from "../../../entities/user";
 import {useCookies} from "react-cookie";
+import {UUID} from "../../../shared/api/types/uuid";
+import {Apartment} from "../../../shared/api/types/apartment";
+import {currencyStore} from "../../select-currency";
+import {throws} from "node:assert";
+import {redirect, useNavigate} from "react-router-dom";
 
 type FormValuesType = {}
 
@@ -23,34 +27,70 @@ const validate = (values: FormikValues) => {
     return errors;
 }
 
-export function CreateApartmentForm() {
+type PropsType = {
+    apartmentId: UUID
+}
+
+export function UpdateApartmentForm({apartmentId}: PropsType) {
     const {t} = useTypedTranslation();
+    const navigate = useNavigate()
     const [cookies] = useCookies(["ACCESS-TOKEN"])
+    const [updatedApartment, setUpdateApartment] = useState<Apartment | null>(null);
 
-    return <div className="create-apartment-form-wrapper">
-        <span className="create-apartment-form-wrapper__title">{t("Create Apartment")}</span>
+    useEffect(() => {
+        apartmentService.getApartmentById(apartmentId, currencyStore.currency)
+            .then((apartment) => {
+                if (!apartment) {
+                    navigate("/404")
+                } else {
+                    setUpdateApartment(apartment)
+                }
+            })
+    }, []);
 
-        <Formik<FormikValues> initialValues={{title: ""}} validate={validate}
+    if (!updatedApartment) {
+        return <></>;
+    }
+
+    return <div className="update-apartment-form-wrapper">
+        <span className="update-apartment-form-wrapper__title">{t("Update Apartment Data")}</span>
+
+        <Formik<FormikValues> initialValues={{
+            title: updatedApartment.title,
+            description: updatedApartment.description,
+            roomsQuantity: updatedApartment.roomsQuantity,
+            guestsQuantity: updatedApartment.guestsQuantity,
+            price: updatedApartment.price.amount,
+            area: updatedApartment.area,
+            amenities: updatedApartment.amenities.join(", "),
+            address: updatedApartment.address,
+            bedsQuantity: updatedApartment.bedsQuantity,
+
+        }} validate={validate}
                               onSubmit={(values, {setSubmitting}) => {
-
-                                  apartmentService.createApartment({
+                                  apartmentService.updateApartment(apartmentId, {
                                       title: values.title,
                                       area: values.area,
-                                      amenities: [],
+                                      amenities: values.amenities.split(", "),
                                       address: values.address,
                                       price: {
-                                          currency: "USD",
+                                          currency: currencyStore.currency,
                                           amount: values.price
                                       },
                                       description: values.description,
                                       bedsQuantity: values.bedsQuantity,
                                       guestsQuantity: values.guestsQuantity,
                                       roomsQuantity: values.roomsQuantity,
-                                      draft:false
-                                  }, cookies["ACCESS-TOKEN"]).catch(console.log).then(console.log)
+                                      draft: false
+                                  }, cookies["ACCESS-TOKEN"]).catch(console.log).then((res) => {
+                                      navigate(`../../apartment-details/${apartmentId}`, {
+                                          replace: true,
+                                          preventScrollReset: true
+                                      });
+                                  })
                               }}>
             {({}) => (
-                <Form className="create-apartment-form" id="create-apartment-form">
+                <Form className="update-apartment-form" id="update-apartment-form">
                     <Field placeholder={"Название квартиры"} name="title" label={t("Title")}/>
                     <Field name="description" as="textarea" label={t("Apartment Description")}/>
                     <Field name="roomsQuantity" type="number" label={t("Rooms Quantity")}/>
@@ -61,10 +101,7 @@ export function CreateApartmentForm() {
                     <Field name="area" label={t("Area")}/>
                     <Field name="amenities" label={t("Amenities")}/>
                     <Field name="photos" type="file" accept={"image/*"} label={t("Photos")} multiple/>
-                    <button className={"create-apartment-form__submit"}
-                            onClick={() => {
-                            }} type="submit">
-                        {t("Add")}</button>
+                    <button className={"update-apartment-form__submit"} type="submit">{t("Add")}</button>
                 </Form>
             )}
         </Formik>

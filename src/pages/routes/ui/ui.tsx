@@ -6,6 +6,7 @@ import {ApartmentsPage} from "../../apartments-page";
 import {WishListPage} from "../../wish-list-page";
 import {CreateApartmentPage} from "../../create-apartment-page";
 import {ApartmentDetailsPage} from "../../apartment-details-page";
+import {UpdateApartmentPage} from "../../update-apartment-page";
 
 export function Routes(){
     return (
@@ -16,7 +17,8 @@ export function Routes(){
                 <Route path="/wish-list" element={<WishListPage/>} />
                 <Route path="/create-apartment" element={<CreateApartmentPage/>} />
                 <Route path="/apartment-details/:apartmentId" element={<ApartmentDetailsPage/>}  />
-                <Route path="*" element={<div>404</div>}  />
+                <Route path="/update-apartment/:apartmentId" element={<UpdateApartmentPage/>}  />
+                <Route path="/404" element={<div>404</div>}  />
             </ReactRoutes>
         </BrowserRouter>
     )
