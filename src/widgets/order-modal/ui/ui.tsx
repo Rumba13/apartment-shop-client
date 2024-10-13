@@ -7,10 +7,9 @@ import {SvgButton} from "../../../shared/ui/svg-button";
 import CrossIcon from "../../../assets/images/cross.svg";
 import {Price} from "../../../shared/api/types/price";
 import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map";
-import {Form, Formik} from "formik";
-import {Field} from "../../../shared/ui/field/ui";
 import {currencyStore} from "../../../features/select-currency";
 import {useEffect} from "react";
+import {OrderApartmentForm} from "../../../features/order-apartment";
 
 type PropsType = {
     apartmentImage: any,
@@ -21,9 +20,7 @@ type PropsType = {
 export const OrderModal = observer(({apartmentPrice, apartmentImage, apartmentAddress}: PropsType) => {
     const {t} = useTypedTranslation();
 
-    useEffect(() => {
-
-    }, [currencyStore.currency]);
+    useEffect(() => {}, [currencyStore.currency]);
 
     return (
         <div className={clsx("order-modal", orderModalStore.isOpened && "opened")} aria-hidden={!orderModalStore.isOpened}
@@ -36,28 +33,7 @@ export const OrderModal = observer(({apartmentPrice, apartmentImage, apartmentAd
                            onClick={() => orderModalStore.setIsOpened(false)}/>
             </header>
             <div className="order-modal-content">
-                <Formik initialValues={{}} onSubmit={(values) => {
-                }}>
-                    {({}) => <Form className="order-form">
-                        <Field className={"order-form-name"} placeholder={t("Enter Your Name")} name="name"
-                               label={t("Name") + " *"}/>
-                        <Field className={"order-form-phone"} placeholder={"+375"} type={"tel"} name="phone"
-                               label={t("Phone") + " *"}/>
-                        <Field className={"order-form-email"} placeholder={"djonson@gmail.com"} type={"email"}
-                               name="email" label={t("Email")}/>
-                        <Field className={"order-form-people-count"} type="number" name="peopleCount"
-                               label={t("Number Of People")}/>
-                        <Field className={"order-form-check-in-date"} type={"date"} name="checkInDate"
-                               label={t("Check-in Date")}/>
-                        <Field className={"order-form-check-out-date"} type={"date"} name="checkOutDate"
-                               label={t("Check-out Date")}/>
-                        <Field className={"order-form-information"} as={"textarea"} name="additionalInformation"
-                               placeholder={t("Additional Information")}
-                               label={t("Additional Information")}/>
-
-                        <button className="order-form__submit-button submit-button" type="submit">{t("Send Request")}</button>
-                    </Form>}
-                </Formik>
+                <OrderApartmentForm/>
                 <div className="apartment-details">
                     <img className="apartment-details__image" src={apartmentImage} alt=""/>
                     <span className="apartment-details__address">{apartmentAddress}</span>

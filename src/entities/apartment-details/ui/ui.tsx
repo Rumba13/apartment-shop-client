@@ -72,7 +72,7 @@ export const ApartmentDetails = observer(({
     console.log(photos.join(" "))
 
     return <div className="apartment-details">
-        <OrderModal apartmentAddress={address} apartmentImage={photos[0]} apartmentPrice={price}/>
+        <OrderModal apartmentAddress={address} apartmentImage={CONSTANTS.IMAGE_SERVER_URL  + photos[0]} apartmentPrice={price}/>
         <div className="apartment-details-top">
             <div className="max-width-wrapper">
                 <h2 className="top__title">{title}</h2>
