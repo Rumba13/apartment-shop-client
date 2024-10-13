@@ -1,6 +1,6 @@
 import axios from "axios";
+import {CONSTANTS} from "../lib/constants";
 
 export const serverConnection = axios.create({
-    baseURL: 'http://91.210.107.132:8080/api/v1',
-    withCredentials: true
+    baseURL: CONSTANTS.SERVER_URL_DEV,
 });

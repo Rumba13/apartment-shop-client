@@ -90,11 +90,11 @@ export const ApartmentDetails = observer(({
         <div className="apartment-details-mid">
             <div className="apartment-details-wrapper">
                 <div className="apartment-images">
-                    <img className="main-image" src={CONSTANTS.SERVER_URL_DEV + photos[0]} alt=""/>
+                    <img className="main-image" src={CONSTANTS.IMAGE_SERVER_URL  + photos[0]} alt=""/>
                     <div className="other-images">
                         {photos.slice(1).map(photo =>
                             <div className="image-wrapper">
-                                <img className="image" src={CONSTANTS.SERVER_URL_DEV + photo} alt=""/>
+                                <img className="image" src={CONSTANTS.IMAGE_SERVER_URL  + photo} alt=""/>
                             </div>
                         )}
                     </div>
