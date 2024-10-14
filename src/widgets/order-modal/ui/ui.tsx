@@ -16,10 +16,11 @@ type PropsType = {
     apartmentImage: any,
     apartmentAddress: string,
     apartmentPrice: Price,
-    apartmentId:UUID
+    apartmentId:UUID,
+    apartmentMaxGuests:number
 }
 
-export const OrderModal = observer(({apartmentPrice, apartmentImage, apartmentAddress,apartmentId}: PropsType) => {
+export const OrderModal = observer(({apartmentPrice, apartmentImage, apartmentAddress,apartmentId,apartmentMaxGuests}: PropsType) => {
     const {t} = useTypedTranslation();
 
     useEffect(() => {}, [currencyStore.currency]);
@@ -35,7 +36,7 @@ export const OrderModal = observer(({apartmentPrice, apartmentImage, apartmentAd
                            onClick={() => orderModalStore.setIsOpened(false)}/>
             </header>
             <div className="order-modal-content">
-                <OrderApartmentForm apartmentId={apartmentId}/>
+                <OrderApartmentForm apartmentMaxGuests={apartmentMaxGuests} apartmentId={apartmentId}/>
                 <div className="apartment-details">
                     <img className="apartment-details__image" src={apartmentImage} alt=""/>
                     <span className="apartment-details__address">{apartmentAddress}</span>

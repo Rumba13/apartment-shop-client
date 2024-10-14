@@ -23,6 +23,7 @@ type ValuesType = {
 
 type PropsType = {
     apartmentId: UUID,
+    apartmentMaxGuests:number
 }
 
 export const OrderApartmentForm = observer(({apartmentId}:PropsType) => {
@@ -38,7 +39,7 @@ export const OrderApartmentForm = observer(({apartmentId}:PropsType) => {
             email: userStore.user?.email || "",
             phone: "",
             bookDateRange: ["", ""],
-            guestsCount: 3,
+            guestsCount: 0,
             comment: ""
         }} onSubmit={(values) => {
 

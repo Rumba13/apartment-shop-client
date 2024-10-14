@@ -17,6 +17,7 @@ export function Header({noSearch = false}: PropsType) {
 
     return <header className="header">
         <AuthModal/>
+
         <div className="header-top">
             <Logo/>
             <SelectCityDropdown/>

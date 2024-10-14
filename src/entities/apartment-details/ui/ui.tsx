@@ -16,7 +16,6 @@ import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map"
 import {OpenOrderModalButton} from "./open-order-modal/ui";
 import {observer} from "mobx-react";
 import {OrderModal} from "../../../widgets/order-modal";
-import FlatIcon from "../../../assets/images/temp/flat1.webp";
 import {IconWithTwoTitles} from "../../../shared/ui/icon-with-two-titles";
 import {useTranslation} from "react-i18next";
 import {UUID} from "../../../shared/api/types/uuid";
@@ -25,7 +24,7 @@ import {userStore} from "../../user";
 import {currencyStore} from "../../../features/select-currency";
 import {Link} from "react-router-dom";
 import {DeleteApartment} from "./delete-apartment-button";
-import {CONSTANTS} from "../../../shared/lib/constants";
+import NoImage from "../../../assets/images/no-image.jpg"
 
 type PropsType = {
     apartmentId: UUID
@@ -72,7 +71,7 @@ export const ApartmentDetails = observer(({
     console.log(photos.join(" "))
 
     return <div className="apartment-details">
-        <OrderModal apartmentId={apartmentId} apartmentAddress={address} apartmentImage={photos[0]} apartmentPrice={price}/>
+        <OrderModal apartmentMaxGuests={guestsQuantity} apartmentId={apartmentId} apartmentAddress={address} apartmentImage={photos[0] || NoImage} apartmentPrice={price}/>
         <div className="apartment-details-top">
             <div className="max-width-wrapper">
                 <h2 className="top__title">{title}</h2>
@@ -87,7 +86,7 @@ export const ApartmentDetails = observer(({
         <div className="apartment-details-mid">
             <div className="apartment-details-wrapper">
                 <div className="apartment-images">
-                    <img className="main-image" src={photos[0]} alt=""/>
+                    <img className="main-image" src={photos[0] || NoImage} alt=""/>
                     <div className="other-images">
                         {photos.slice(1).map(photo =>
                             <div className="image-wrapper">
