@@ -1,14 +1,13 @@
 import {Tag} from "./types/tag";
 import {Apartment} from "./types/apartment";
-import {apartmentService} from "./apartment-service.mocked";
 import {Range} from "./types/range";
-import {inRange} from "../lib/in-range";
 import {SortBy} from "./types/sort-by";
 import {serverConnection} from "./server-connection.mocked";
 import {Pagination} from "./types/pagination";
 import {Currency} from "./types/currency";
+import {setPhotosAbsolutePath} from "../lib/set-photos-absolute-path";
 
-class SearchService {
+class SearchStore {
     private readonly _searchTimeout = 200;
     public isSearchOnRequestCooldown: boolean = false;
     public searchCooldownTimer: any = 0; //TODO
@@ -21,10 +20,10 @@ class SearchService {
         this.searchCooldownTimer = setTimeout(() => this.isSearchOnRequestCooldown = false, this._searchTimeout)
     }
 
-    public async search(searchTags: Tag[], priceRange: Range, areaRange: Range, sortBy: SortBy, resultCurrency:Currency): Promise<Apartment[] | null> {
+    public async search(searchTags: Tag[], priceRange: Range, areaRange: Range, sortBy: SortBy, resultCurrency: Currency): Promise<Apartment[] | null> {
         this.setIsLoading(true);
 
-        const paginationResult:Pagination<Apartment> = (await serverConnection.get("/apartments", {
+        const paginationResult: Pagination<Apartment> = (await serverConnection.get("/apartments", {
             params: {
                 pageSize: 20,
                 page: 1,
@@ -38,10 +37,14 @@ class SearchService {
             }
         })).data
 
+        for (let i = 0; i < paginationResult.content.length; i++) {
+            setPhotosAbsolutePath(paginationResult.content[i].photos);
+        }
+
         this.setIsLoading(false);
         return paginationResult.content;
     }
 }
 
 
-export const searchService = new SearchService();
+export const searchStore = new SearchStore();

@@ -4,7 +4,7 @@ import {apartmentListStore} from "../model/model";
 import {observer} from "mobx-react";
 import {ApartmentCard} from "../../../entities/apartment-card";
 import {tagsFilterStore} from "../../../features/select-tags/model/tags-filter-store";
-import {searchService} from "../../../shared/api/search-service";
+import {searchStore} from "../../../shared/api/search-store";
 import {priceFilterStore} from "../../../features/filter-by-price";
 import {areaFilterStore} from "../../../features/filter-by-space";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
@@ -19,16 +19,16 @@ export const ApartmentList = observer(({}: PropsType) => {
     const {t} = useTypedTranslation();
 
     useEffect(() => {
-        if (searchService.isSearchOnRequestCooldown) {
-            searchService.setSearchOnCooldown()
+        if (searchStore.isSearchOnRequestCooldown) {
+            searchStore.setSearchOnCooldown()
             return;
         }
         if (priceFilterStore.isOnCooldown) {
             return;
         }
-        searchService.setSearchOnCooldown()
+        searchStore.setSearchOnCooldown()
 
-        searchService.search(tagsFilterStore.getSelectedTagsNames(), {
+        searchStore.search(tagsFilterStore.getSelectedTagsNames(), {
                 min: priceFilterStore.minPrice,
                 max: priceFilterStore.maxPrice
             },
@@ -52,7 +52,7 @@ export const ApartmentList = observer(({}: PropsType) => {
     }
 
     return <div className="apartment-list">
-        {searchService.isLoading &&
+        {searchStore.isLoading &&
             <div className="apartment-list-loading"><img className="loading__loading" src={LoadingGif} alt=""/></div>}
         {(apartmentListStore.apartments.length === 0) ? t("Nothing Found") : apartmentListStore.apartments.map(apartment =>
             <ApartmentCard

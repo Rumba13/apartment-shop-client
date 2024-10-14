@@ -8,7 +8,7 @@ import RangeImage from "../../../assets/images/mocked/price-range.png"
 import {Slider} from "../../../shared/ui/range/ui";
 import {RangeInput} from "../../../shared/ui/range-input/ui";
 import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map";
-import {searchService} from "../../../shared/api/search-service";
+import {searchStore} from "../../../shared/api/search-store";
 
 export const PriceFilter = observer(() => {
     const {t} = useTypedTranslation();

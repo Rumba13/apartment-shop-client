@@ -10,14 +10,16 @@ import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map"
 import {currencyStore} from "../../../features/select-currency";
 import {useEffect} from "react";
 import {OrderApartmentForm} from "../../../features/order-apartment";
+import {UUID} from "../../../shared/api/types/uuid";
 
 type PropsType = {
     apartmentImage: any,
     apartmentAddress: string,
-    apartmentPrice: Price
+    apartmentPrice: Price,
+    apartmentId:UUID
 }
 
-export const OrderModal = observer(({apartmentPrice, apartmentImage, apartmentAddress}: PropsType) => {
+export const OrderModal = observer(({apartmentPrice, apartmentImage, apartmentAddress,apartmentId}: PropsType) => {
     const {t} = useTypedTranslation();
 
     useEffect(() => {}, [currencyStore.currency]);
@@ -33,7 +35,7 @@ export const OrderModal = observer(({apartmentPrice, apartmentImage, apartmentAd
                            onClick={() => orderModalStore.setIsOpened(false)}/>
             </header>
             <div className="order-modal-content">
-                <OrderApartmentForm/>
+                <OrderApartmentForm apartmentId={apartmentId}/>
                 <div className="apartment-details">
                     <img className="apartment-details__image" src={apartmentImage} alt=""/>
                     <span className="apartment-details__address">{apartmentAddress}</span>

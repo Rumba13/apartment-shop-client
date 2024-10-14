@@ -3,6 +3,7 @@ import {UUID} from "../../../shared/api/types/uuid";
 import {apartmentService} from "../../../shared/api/apartment-service.mocked";
 import {makeAutoObservable} from "mobx";
 import {Currency} from "../../../shared/api/types/currency";
+import {setPhotosAbsolutePath} from "../../../shared/lib/set-photos-absolute-path";
 
 class ApartmentDetailsStore {
     constructor() {
@@ -28,6 +29,7 @@ class ApartmentDetailsStore {
                 return;
             }
 
+            setPhotosAbsolutePath(apartment.photos);
             this.setApartment(apartment)
         } catch (err) {
             console.log(err)

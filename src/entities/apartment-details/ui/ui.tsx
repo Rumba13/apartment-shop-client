@@ -72,17 +72,14 @@ export const ApartmentDetails = observer(({
     console.log(photos.join(" "))
 
     return <div className="apartment-details">
-        <OrderModal apartmentAddress={address} apartmentImage={CONSTANTS.IMAGE_SERVER_URL  + photos[0]} apartmentPrice={price}/>
+        <OrderModal apartmentId={apartmentId} apartmentAddress={address} apartmentImage={photos[0]} apartmentPrice={price}/>
         <div className="apartment-details-top">
             <div className="max-width-wrapper">
                 <h2 className="top__title">{title}</h2>
-
                 {userStore.user?.isSuperuser
                     ? <Link className="top__sub-title" to={`/update-apartment/${apartmentId}`}>ID: {id}</Link>
                     : <h3 className="top__sub-title">ID: {id}</h3>
                 }
-
-
             </div>
             <AddToWishListButton apartmentId={id}/>
             {userStore.user?.isSuperuser && <DeleteApartment apartmentId={apartmentId}/>}
@@ -90,11 +87,11 @@ export const ApartmentDetails = observer(({
         <div className="apartment-details-mid">
             <div className="apartment-details-wrapper">
                 <div className="apartment-images">
-                    <img className="main-image" src={CONSTANTS.IMAGE_SERVER_URL  + photos[0]} alt=""/>
+                    <img className="main-image" src={photos[0]} alt=""/>
                     <div className="other-images">
                         {photos.slice(1).map(photo =>
                             <div className="image-wrapper">
-                                <img className="image" src={CONSTANTS.IMAGE_SERVER_URL  + photo} alt=""/>
+                                <img className="image" src={photo} alt=""/>
                             </div>
                         )}
                     </div>

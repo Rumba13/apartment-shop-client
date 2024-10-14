@@ -38,7 +38,7 @@ export function ApartmentCard({
 
     return <div className="apartment-card">
         <Link className={"apartment-card-slider"} to={"/apartment-details/" + id}>
-            <img src={photos[0] ? CONSTANTS.IMAGE_SERVER_URL + photos[0] : NoImage} alt=""/>
+            <img src={photos[0] ? photos[0] : NoImage} alt={""}/>
         </Link>
         <div className="apartment-details">
             <span className="apartment-card__price">{price.amount} {currencyToPostfixMap[price.currency]}</span>

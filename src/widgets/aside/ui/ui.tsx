@@ -8,14 +8,17 @@ import {RemoveFiltersButton} from "./remove-filters/remove-filters-button";
 import {tagsFilterStore} from "../../../features/select-tags/model/tags-filter-store";
 import {currencyStore} from "../../../features/select-currency";
 import {filtersBoundsService} from "../../../shared/api/filters-bounds-service.mocked";
+import {observer} from "mobx-react";
 
-export function Aside() {
+export const Aside = observer(() => {
     const {t} = useTypedTranslation();
 
     useEffect(() => {
         filtersBoundsService.loadFiltersBound(currencyStore.currency).then((filtersBounds) => {
             priceFilterStore.setPriceBounds(filtersBounds.minPrice, filtersBounds.maxPrice);
             areaFilterStore.setAreaBounds(filtersBounds.minArea, filtersBounds.maxArea);
+            priceFilterStore.removeFilter();
+            areaFilterStore.removeFilter();
         })
     }, [currencyStore.currency]);
 
@@ -32,4 +35,4 @@ export function Aside() {
             }}/>
         </aside>
     )
-}
+});
