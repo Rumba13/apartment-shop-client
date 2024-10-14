@@ -18,7 +18,6 @@ export function FieldNumber({label, className, onChange, max, min, ...props}: Pr
     const [localValue, setLocalValue] = useState<string>(min + "")
 
     const setValue = (value: number) => {
-        console.log(value)
         const limitedValue = Math.max(Math.min(value , max), min)
         setGlobalValue(limitedValue);
         setLocalValue(limitedValue.toString())

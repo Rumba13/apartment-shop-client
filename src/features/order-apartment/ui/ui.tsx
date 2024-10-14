@@ -9,6 +9,7 @@ import {DatePicker} from "antd";
 import ruRu from "antd/es/date-picker/locale/ru_RU"
 import {orderService} from "../../../shared/api/order-service";
 import {UUID} from "../../../shared/api/types/uuid";
+import {FieldNumber} from "../../../shared/ui/field-number";
 
 const {RangePicker} = DatePicker;
 
@@ -23,10 +24,10 @@ type ValuesType = {
 
 type PropsType = {
     apartmentId: UUID,
-    apartmentMaxGuests:number
+    apartmentMaxGuests: number,
 }
 
-export const OrderApartmentForm = observer(({apartmentId}:PropsType) => {
+export const OrderApartmentForm = observer(({apartmentId, apartmentMaxGuests}: PropsType) => {
     const {t} = useTypedTranslation();
 
     useEffect(() => {
@@ -60,12 +61,10 @@ export const OrderApartmentForm = observer(({apartmentId}:PropsType) => {
                        label={t("Phone") + " *"}/>
                 <Field className="order-form-email" placeholder="djonson@gmail.com" type="email"
                        name="email" label={t("Email")}/>
-                <Field className={"order-form-people-count"} type="number" name="guestsCount"
-                       label={t("Number Of People")}/>
-                {/*<Field className={"order-form-check-in-date"} type={"date"} name="checkInDate"*/}
-                {/*       label={t("Check-in Date")}/>*/}
-                {/*<Field className={"order-form-check-out-date"} type={"date"} name="checkOutDate"*/}
-                {/*       label={t("Check-out Date")}/>*/}
+
+                <FieldNumber className="order-form-people-count" min={0} max={apartmentMaxGuests}
+                             label={t("Number Of People")} name="guestsCount"/>
+
                 <div className="book-date field">
                     <h2 className="book-date__title field__label">{t("Check-in Date")}</h2>
                     <RangePicker locale={ruRu} className="date-picker field__field" onChange={(a, values) => {
