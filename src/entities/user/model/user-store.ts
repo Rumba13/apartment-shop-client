@@ -9,11 +9,22 @@ class UserStore {
 
     public user: User | null = null;
     public setUser = (user: User | null) => this.user = user
+    public isLoading: boolean = false;
+    public setIsLoading = (isLoading: boolean) => this.isLoading = isLoading
+    public isError: boolean = false;
+    public setIsError = (isError: boolean) => this.isError = isError
 
     public async auth(accessToken: string) {
-        authService.auth(accessToken).then(user => {
-            this.setUser(user)
-        }).catch(err => {})
+        this.setIsLoading(true);
+        try {
+            const user = await authService.auth(accessToken)
+            this.setUser(user);
+        } catch (err) {
+            console.log(err)
+            this.setIsError(true);
+        }
+
+        this.setIsLoading(false);
     }
 }
 

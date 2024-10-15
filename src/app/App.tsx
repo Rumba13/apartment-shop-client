@@ -7,8 +7,10 @@ import {userStore} from "../entities/user";
 import {useCookies} from "react-cookie";
 import "dayjs/locale/ru.js"
 import dayjs from "dayjs";
+import {observer} from "mobx-react";
+import {AppLoader} from "../entities/app-loader";
 
-export function App() {
+export const App = observer(() => {
     const {t, i18n} = useTypedTranslation();
     const [cookies] = useCookies(["ACCESS-TOKEN"]);
 
@@ -19,10 +21,11 @@ export function App() {
         userStore.auth(cookies["ACCESS-TOKEN"])
     }, []);
 
+
     return (
         <div className="app">
             <Overlay/>
             <Routes/>
         </div>
     );
-}
+});
