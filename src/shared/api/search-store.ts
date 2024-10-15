@@ -35,9 +35,9 @@ class SearchStore {
                 maxArea: areaRange.max,
                 sortBy,
                 resultCurrency: resultCurrency,
-                // fromDate: dates[0] || undefined,
-                // toDate: dates[1] || undefined,
-                amenities:  searchTags.length === 0 ? undefined : searchTags.join(", ")
+                fromDate: dates[0] || undefined,
+                toDate: dates[1] || undefined,
+                amenities: searchTags.length === 0 ? undefined : searchTags.join(", ")
             }
         })).data
 
