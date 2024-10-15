@@ -3,6 +3,8 @@ import {Header} from "../../../widgets/header";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {FieldNumber} from "../../../shared/ui/field-number";
 import {Form, Formik} from "formik";
+import {SnackBar} from "../../../shared/ui/snack-bar/ui";
+import {snackBarStore} from "../../../shared/ui/snack-bar/snack-bar-store";
 
 type ValuesType = {
     guestsCount: number
@@ -16,7 +18,7 @@ export function WishListPage() {
         <h2 className="wish-list-page__title">{t("Featured")}</h2>
 
         <Formik<ValuesType> initialValues={{guestsCount: 0}} onSubmit={(values) => {
-            alert(values.guestsCount)
+            snackBarStore.showSnackBar("Gay")
         }}>{({}) =>
             <Form className="form">
                 <FieldNumber min={0} max={10} label={t("Guests")} name={"guestsCount"}/>
@@ -24,7 +26,6 @@ export function WishListPage() {
             </Form>
         }
         </Formik>
-
 
     </div>
 }

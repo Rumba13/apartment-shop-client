@@ -1,14 +1,18 @@
 import "./styles.scss";
 import {Route, Routes as ReactRoutes} from 'react-router';
-import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, ScrollRestoration} from 'react-router-dom';
 import {HomePage} from "../../home-page";
 import {WishListPage} from "../../wish-list-page";
 import {CreateApartmentPage} from "../../create-apartment-page";
 import {ApartmentDetailsPage} from "../../apartment-details-page";
 import {UpdateApartmentPage} from "../../update-apartment-page";
 import {OrdersPage} from "../../orders-page";
+import React from "react";
 
 export function Routes() {
+
+
+
     return (
         <BrowserRouter>
             <ReactRoutes>

@@ -1,0 +1,31 @@
+.open-favorites-button {
+  position: relative;
+  cursor: pointer;
+  width: min-content;
+
+  & .open-favorites-button__count {
+    position: absolute;
+    right: -40%;
+    top: -40%;
+    z-index: 2;
+    border-radius: 50%;
+    width: var(--favorites-count-size);
+    height: var(--favorites-count-size);
+    text-align: center;
+    line-height: 20px;
+    background-color: var(--coral-red);
+    color: white;
+    font-size: 14px;
+    font-family: "CeraPro", sans-serif;
+
+    box-sizing: content-box;
+    border: 2px white solid;
+    --favorites-count-size: 20px;
+  }
+
+  & .heart-icon {
+    width: 30px;
+    height: 30px;
+    color:gray;
+  }
+}

@@ -1,4 +1,4 @@
-import {CreateOrderDto} from "./create-order.dto";
+import {CreateOrderDto} from "./types/create-order.dto";
 import {serverConnection} from "./server-connection";
 import {Pagination} from "./types/pagination";
 import {Order} from "./types/order";
@@ -20,11 +20,26 @@ class OrderService {
             }
         })).data;
     }
-    public async approveOrder(orderId:UUID) {
+
+    public async approveOrder(orderId: UUID) {
         return (await serverConnection.patch(`/orders/${orderId}/approve`)).data
     }
-    public async rejectOrder(orderId:UUID) {
+
+    public async rejectOrder(orderId: UUID) {
         return (await serverConnection.patch(`/orders/${orderId}/reject`)).data
+    }
+
+    public async calculateOrderPrice(apartmentId: UUID, guestsCount: number, fromDate: string, toDate: string) {
+        return (await serverConnection.get("/orders/total-price", {
+            params: {
+                apartmentId,
+                guestsQuantity: guestsCount,
+                fromDate,
+                toDate,
+                resultCurrency: "USD" //TODO add result-currency
+            }
+        })).data
+
     }
 }
 

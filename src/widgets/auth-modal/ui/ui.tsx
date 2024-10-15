@@ -8,6 +8,7 @@ import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {useState} from "react";
 import {SignUpForm} from "../../../features/sign-up";
 import {SignInForm} from "../../../features/sign-in";
+import {snackBarStore} from "../../../shared/ui/snack-bar/snack-bar-store";
 
 export const AuthModal = observer(() => {
     const {t} = useTypedTranslation()
@@ -27,10 +28,16 @@ export const AuthModal = observer(() => {
         </div>
         <div className="content">
             {activeTabIndex === 0 && (
-                <SignInForm onSignIn={() => authModalStore.setIsOpened(false)}/>
+                <SignInForm onSignIn={() => {
+                    authModalStore.setIsOpened(false)
+                    snackBarStore.showSnackBar("Авторизация прошла успешно")
+                }}/>
             )}
             {activeTabIndex === 1 && (
-                <SignUpForm onSignUp={() => authModalStore.setIsOpened(false)}/>
+                <SignUpForm onSignUp={() => {
+                    authModalStore.setIsOpened(false)
+                    snackBarStore.showSnackBar("Авторизация прошла успешно")
+                }}/>
             )}
         </div>
     </div>

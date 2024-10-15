@@ -1,5 +1,4 @@
 import './styles.scss';
-import {AddToWishListButton} from "../../../features/add-to-wishlist/ui/add-to-wish-list-button";
 import {LinkWithIcon} from "../../../shared/ui/link-with-icon";
 import GeoIcon from "../../../assets/images/geo-location-colorfull.svg";
 import MetroIcon from "../../../assets/images/metro.svg";
@@ -25,6 +24,7 @@ import {currencyStore} from "../../../features/select-currency";
 import {Link} from "react-router-dom";
 import {DeleteApartment} from "./delete-apartment-button";
 import NoImage from "../../../assets/images/no-image.jpg"
+import {AddApartmentToFavorites} from "../../../features/APARTMENT/add-apartment-to-favorites";
 
 type PropsType = {
     apartmentId: UUID
@@ -80,7 +80,7 @@ export const ApartmentDetails = observer(({
                     : <h3 className="top__sub-title">ID: {id}</h3>
                 }
             </div>
-            <AddToWishListButton apartmentId={id}/>
+            <AddApartmentToFavorites apartmentId={id}/>
             {userStore.user?.isSuperuser && <DeleteApartment apartmentId={apartmentId}/>}
         </div>
         <div className="apartment-details-mid">

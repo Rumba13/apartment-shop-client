@@ -1,14 +1,14 @@
 import './styles.scss';
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
-import {PriceFilter, priceFilterStore} from "../../../features/filter-by-price";
+import {PriceFilter, priceFilterStore} from "../../../features/FILTER/filter-by-price";
 import React, {useEffect} from "react";
-import {areaFilterStore, AreaFilter} from "../../../features/filter-by-space";
 import {TagsList} from "../../../features/select-tags";
 import {RemoveFiltersButton} from "./remove-filters/remove-filters-button";
 import {tagsFilterStore} from "../../../features/select-tags/model/tags-filter-store";
 import {currencyStore} from "../../../features/select-currency";
 import {filtersBoundsService} from "../../../shared/api/filters-bounds-service";
 import {observer} from "mobx-react";
+import {AreaFilter, areaFilterStore} from "../../../features/FILTER/filter-by-area";
 
 export const Aside = observer(() => {
     const {t} = useTypedTranslation();

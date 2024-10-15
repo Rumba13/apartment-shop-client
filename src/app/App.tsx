@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import {} from "./i18n";
 import {Routes} from "../pages/routes";
 import {useTypedTranslation} from "./i18n/use-typed-translation";
@@ -9,6 +9,8 @@ import "dayjs/locale/ru.js"
 import dayjs from "dayjs";
 import {observer} from "mobx-react";
 import {AppLoader} from "../entities/app-loader";
+import {SnackBar} from "../shared/ui/snack-bar/ui";
+import {ScrollRestoration, useLocation} from "react-router-dom";
 
 export const App = observer(() => {
     const {t, i18n} = useTypedTranslation();
@@ -24,6 +26,7 @@ export const App = observer(() => {
 
     return (
         <div className="app">
+            <SnackBar/>
             <Overlay/>
             <Routes/>
         </div>
