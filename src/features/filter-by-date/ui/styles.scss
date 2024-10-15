@@ -1,0 +1,20 @@
+.apartment-type-radio-buttons {
+  display: flex;
+  border: 1px solid var(--gains-boro);
+  align-items: center;
+  padding: 5px;
+  background-color: var(--ghost-white);
+
+  & .ant-picker-input {
+
+    & input {
+      text-align: center;
+    }
+  }
+
+  & .ant-picker-input:first-child {
+  }
+  & .ant-picker-input:nth-child(2) {
+
+  }
+}

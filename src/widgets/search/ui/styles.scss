@@ -6,8 +6,7 @@
   margin: 20px auto 0 auto;
   padding: var(--search-padding);
   max-width: 960px;
-  display: grid;
-  grid-template: auto /repeat(3, 1fr) auto;
+  display: flex;
   column-gap: 5px;
 
   & .select-city-big-dropdown,
@@ -15,6 +14,21 @@
   & .select-guests-count-input-number,
   & .search-button {
     border-radius: inherit;
-    height: calc(100% - var(--search-padding));
+    height: 100%;
+    flex-grow: 1;
+  }
+  & .select-guests-count-input-number {
+    flex-grow: 1;
+  }
+
+  & .select-city-big-dropdown {
+    flex: 1 0 auto;
+  }
+  & .search-button {
+    flex-grow: 1;
+  }
+  & .apartment-type-radio-buttons, {
+    flex-grow: 0;
+    max-width: fit-content;
   }
 }

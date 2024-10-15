@@ -91,5 +91,6 @@ export const englishTranslation: Translation = {
     "Incorrect Password Or Username": "Incorrect password or username",
     "Delete": "Delete",
     "Update Apartment Data": "Update apartment data",
+    "Orders": "Orders"
 };
 

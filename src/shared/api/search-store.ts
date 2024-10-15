@@ -20,8 +20,10 @@ class SearchStore {
         this.searchCooldownTimer = setTimeout(() => this.isSearchOnRequestCooldown = false, this._searchTimeout)
     }
 
-    public async search(searchTags: Tag[], priceRange: Range, areaRange: Range, sortBy: SortBy, resultCurrency: Currency): Promise<Apartment[] | null> {
+    public async search(searchTags: Tag[], priceRange: Range, areaRange: Range, sortBy: SortBy, resultCurrency: Currency, dates: string[]): Promise<Apartment[] | null> {
         this.setIsLoading(true);
+
+        console.log("range", searchTags)
 
         const paginationResult: Pagination<Apartment> = (await serverConnection.get("/apartments", {
             params: {
@@ -33,7 +35,9 @@ class SearchStore {
                 maxArea: areaRange.max,
                 sortBy,
                 resultCurrency: resultCurrency,
-                amenities: searchTags.join(", ")
+                // fromDate: dates[0] || undefined,
+                // toDate: dates[1] || undefined,
+                amenities:  searchTags.length === 0 ? undefined : searchTags.join(", ")
             }
         })).data
 

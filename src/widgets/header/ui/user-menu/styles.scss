@@ -33,6 +33,12 @@ padding: 6px;
     font-family: "CeraPro", serif;
     padding-top: 5px;
 
+    & > *:not(:first-child) {
+      margin-top: 5px;
+    }
+    & a {
+      display: block;
+    }
 
     & .options-item {
       padding: 5px 15px;
@@ -44,13 +50,13 @@ padding: 6px;
       white-space: nowrap;
       background-color: white;
 
+
+
       & .options-item__title{
         transition: color 120ms;
       }
 
-      &:not(:first-child) {
-        margin-top: 5px;
-      }
+
 
       &:hover .options-item__title {
           color: var(--azure);

@@ -11,6 +11,7 @@ import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {sortByStore} from "../../../features/sort-by/model/sort-by-store";
 import LoadingGif from "../../../assets/images/loading.gif"
 import {currencyStore} from "../../../features/select-currency";
+import {filterByDateStore} from "../../../features/filter-by-date";
 
 type PropsType = {}
 
@@ -35,7 +36,9 @@ export const ApartmentList = observer(({}: PropsType) => {
             {
                 min: areaFilterStore.minArea,
                 max: areaFilterStore.maxArea
-            }, sortByStore.selectedSortBy, currencyStore.currency).then(apartments => apartments && apartmentListStore.setApartments(apartments)
+            }, sortByStore.selectedSortBy, currencyStore.currency,
+            filterByDateStore.dates
+        ).then(apartments => apartments && apartmentListStore.setApartments(apartments)
         )
     }, [tagsFilterStore.selectedTags,
         areaFilterStore.minArea,
@@ -44,7 +47,8 @@ export const ApartmentList = observer(({}: PropsType) => {
         priceFilterStore.maxPrice,
         sortByStore.selectedSortBy,
         currencyStore.currency,
-        priceFilterStore.isOnCooldown
+        priceFilterStore.isOnCooldown,
+        filterByDateStore.dates
     ]);
 
     if (!apartmentListStore.apartments) {
