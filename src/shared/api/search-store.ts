@@ -2,7 +2,7 @@ import {Tag} from "./types/tag";
 import {Apartment} from "./types/apartment";
 import {Range} from "./types/range";
 import {SortBy} from "./types/sort-by";
-import {serverConnection} from "./server-connection.mocked";
+import {serverConnection} from "./server-connection";
 import {Pagination} from "./types/pagination";
 import {Currency} from "./types/currency";
 import {setPhotosAbsolutePath} from "../lib/set-photos-absolute-path";

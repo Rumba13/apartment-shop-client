@@ -1,6 +1,6 @@
 import {Apartment} from "./types/apartment";
 import {UUID} from "./types/uuid";
-import {serverConnection} from "./server-connection.mocked";
+import {serverConnection} from "./server-connection";
 import {Currency} from "./types/currency";
 import {CreateApartmentDto} from "./types/create-apartment.dto";
 

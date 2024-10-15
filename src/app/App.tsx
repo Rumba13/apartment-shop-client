@@ -5,6 +5,8 @@ import {useTypedTranslation} from "./i18n/use-typed-translation";
 import {Overlay} from "./overlay";
 import {userStore} from "../entities/user";
 import {useCookies} from "react-cookie";
+import "dayjs/locale/ru.js"
+import dayjs from "dayjs";
 
 export function App() {
     const {t, i18n} = useTypedTranslation();
@@ -13,6 +15,7 @@ export function App() {
 
     useEffect(() => {
         i18n.changeLanguage("ru");
+        dayjs.locale("ru")
         userStore.auth(cookies["ACCESS-TOKEN"])
     }, []);
 

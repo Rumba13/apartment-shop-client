@@ -1,5 +1,5 @@
 import {Currency} from "./types/currency";
-import {serverConnection} from "./server-connection.mocked";
+import {serverConnection} from "./server-connection";
 import {FilterBounds} from "./types/filters-bounds";
 
 class FiltersBoundsService {

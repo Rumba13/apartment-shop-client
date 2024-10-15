@@ -1,7 +1,8 @@
 import {CreateOrderDto} from "./create-order.dto";
-import {serverConnection} from "./server-connection.mocked";
+import {serverConnection} from "./server-connection";
 import {Pagination} from "./types/pagination";
 import {Order} from "./types/order";
+import {UUID} from "./types/uuid";
 
 class OrderService {
     constructor() {
@@ -18,6 +19,12 @@ class OrderService {
                 pageSize: 10
             }
         })).data;
+    }
+    public async approveOrder(orderId:UUID) {
+        return (await serverConnection.patch(`/orders/${orderId}/approve`)).data
+    }
+    public async rejectOrder(orderId:UUID) {
+        return (await serverConnection.patch(`/orders/${orderId}/reject`)).data
     }
 }
 

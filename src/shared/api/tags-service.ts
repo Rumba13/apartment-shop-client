@@ -1,5 +1,5 @@
 import {Tag} from "./types/tag";
-import {serverConnection} from "./server-connection.mocked";
+import {serverConnection} from "./server-connection";
 
 class TagsService {
     constructor() {

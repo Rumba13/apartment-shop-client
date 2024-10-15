@@ -89,7 +89,9 @@ export const russianTranslation = {
 "Incorrect Password Or Username": "Неверный пароль или имя пользователя",
     "Delete": "Удалить",
     "Update Apartment Data" : "Обновите информацию о квартире",
-    "Orders": "Заказы"
+    "Orders": "Заказы",
+    "Long Term Rental": "Аренда на длительный срок",
+
 };
 
 export type Translation = typeof russianTranslation;

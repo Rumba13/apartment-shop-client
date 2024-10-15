@@ -1,4 +1,4 @@
-import {serverConnection} from "./server-connection.mocked";
+import {serverConnection} from "./server-connection";
 import {User} from "./types/user";
 
 class AuthService {

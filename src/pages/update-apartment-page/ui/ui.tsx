@@ -5,7 +5,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {observer} from "mobx-react";
 import {UpdateApartmentForm} from "../../../features/update-apartment";
 import {useEffect} from "react";
-import {apartmentService} from "../../../shared/api/apartment-service.mocked";
+import {apartmentService} from "../../../shared/api/apartment-service";
 import {currencyStore} from "../../../features/select-currency";
 
 export const UpdateApartmentPage = observer(() => {

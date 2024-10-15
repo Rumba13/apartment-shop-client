@@ -7,7 +7,7 @@ import {TagsList} from "../../../features/select-tags";
 import {RemoveFiltersButton} from "./remove-filters/remove-filters-button";
 import {tagsFilterStore} from "../../../features/select-tags/model/tags-filter-store";
 import {currencyStore} from "../../../features/select-currency";
-import {filtersBoundsService} from "../../../shared/api/filters-bounds-service.mocked";
+import {filtersBoundsService} from "../../../shared/api/filters-bounds-service";
 import {observer} from "mobx-react";
 
 export const Aside = observer(() => {

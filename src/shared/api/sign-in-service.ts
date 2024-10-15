@@ -1,4 +1,4 @@
-import {serverConnection} from "./server-connection.mocked";
+import {serverConnection} from "./server-connection";
 import {SignInDto} from "./types/sign-in.dto";
 import {AuthResult} from "./types/auth-result";
 

@@ -1,5 +1,5 @@
 import {SignUpDto} from "./types/sign-up.dto";
-import {serverConnection} from "./server-connection.mocked";
+import {serverConnection} from "./server-connection";
 import {AuthResult} from "./types/auth-result";
 
 class SignUpService {

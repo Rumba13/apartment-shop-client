@@ -1,4 +1,4 @@
-import {serverConnection} from "./server-connection.mocked";
+import {serverConnection} from "./server-connection";
 
 class SignOutService {
     constructor() {

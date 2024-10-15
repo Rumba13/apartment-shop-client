@@ -3,7 +3,7 @@ import {Form, Formik, FormikValues} from "formik";
 import React from "react";
 import {Field} from "../../../shared/ui/field/ui";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
-import {apartmentService} from "../../../shared/api/apartment-service.mocked";
+import {apartmentService} from "../../../shared/api/apartment-service";
 import {userStore} from "../../../entities/user";
 import {useCookies} from "react-cookie";
 

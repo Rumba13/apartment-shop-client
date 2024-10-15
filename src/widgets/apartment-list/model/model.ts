@@ -1,5 +1,5 @@
 import {Apartment} from "../../../shared/api/types/apartment";
-import {apartmentService} from "../../../shared/api/apartment-service.mocked";
+import {apartmentService} from "../../../shared/api/apartment-service";
 import {makeAutoObservable} from "mobx";
 
 class ApartmentListStore {
