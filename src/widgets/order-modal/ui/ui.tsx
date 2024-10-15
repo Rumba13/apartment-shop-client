@@ -9,7 +9,7 @@ import {Price} from "../../../shared/api/types/price";
 import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map";
 import {currencyStore} from "../../../features/select-currency";
 import {useEffect} from "react";
-import {OrderApartmentForm} from "../../../features/order-apartment";
+import {OrderApartmentForm} from "../../../features/APARTMENT/order-apartment";
 import {UUID} from "../../../shared/api/types/uuid";
 
 type PropsType = {
@@ -36,7 +36,7 @@ export const OrderModal = observer(({apartmentPrice, apartmentImage, apartmentAd
                            onClick={() => orderModalStore.setIsOpened(false)}/>
             </header>
             <div className="order-modal-content">
-                <OrderApartmentForm apartmentMaxGuests={apartmentMaxGuests} apartmentId={apartmentId}/>
+                <OrderApartmentForm onCreateOrder={() => orderModalStore.setIsOpened(false)} apartmentMaxGuests={apartmentMaxGuests} apartmentId={apartmentId}/>
                 <div className="apartment-details">
                     <img className="apartment-details__image" src={apartmentImage} alt=""/>
                     <span className="apartment-details__address">{apartmentAddress}</span>

@@ -23,8 +23,8 @@ export function SignInForm({onSignIn}: PropsType) {
     return (
         <Formik<ValuesType> initialValues={{username: "sad", password: "sadad"}} onSubmit={(values, formikHelpers) => {
             signInService.signIn(values).then((response) => {
-                setCookie("ACCESS-TOKEN", response.access_token, {secure: true});
-                setCookie("REFRESH-TOKEN", response.refresh_token, {secure: true});
+                setCookie("ACCESS-TOKEN", response.access_token, {secure: true, maxAge: 3600 * 6});
+                setCookie("REFRESH-TOKEN", response.refresh_token, {secure: true, maxAge: 3600 * 6});
                 userStore.auth(response.access_token);
                 onSignIn?.();
             }).catch((err) => {

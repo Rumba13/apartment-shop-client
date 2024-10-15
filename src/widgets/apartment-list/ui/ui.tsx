@@ -5,13 +5,13 @@ import {observer} from "mobx-react";
 import {ApartmentCard} from "../../../entities/apartment-card";
 import {tagsFilterStore} from "../../../features/select-tags/model/tags-filter-store";
 import {searchStore} from "../../../shared/api/search-store";
-import {priceFilterStore} from "../../../features/filter-by-price";
-import {areaFilterStore} from "../../../features/filter-by-space";
+import {priceFilterStore} from "../../../features/FILTER/filter-by-price";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {sortByStore} from "../../../features/sort-by/model/sort-by-store";
 import LoadingGif from "../../../assets/images/loading.gif"
 import {currencyStore} from "../../../features/select-currency";
-import {filterByDateStore} from "../../../features/filter-by-date";
+import {filterByDateStore} from "../../../features/FILTER/filter-by-date";
+import {areaFilterStore} from "../../../features/FILTER/filter-by-area";
 
 type PropsType = {}
 

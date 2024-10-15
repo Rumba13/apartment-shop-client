@@ -9,16 +9,14 @@ class ApartmentService {
     }
 
     public async getApartmentById(apartmentId: UUID, resultCurrency: Currency): Promise<Apartment | null> {
-
-
         return (await serverConnection.get("apartments/" + apartmentId, {params: {resultCurrency}})).data as Apartment;
     }
 
-    public async createApartment(apartmentDto: CreateApartmentDto, accessUserJWT: string) {
+    public async createApartment(apartmentDto: CreateApartmentDto, accessUserJWT: string):Promise<Apartment> {
         return (await serverConnection.post("apartments", apartmentDto, {
             headers: {
                 Authorization: "Bearer " + accessUserJWT
-            }
+            },
         })).data
     }
 

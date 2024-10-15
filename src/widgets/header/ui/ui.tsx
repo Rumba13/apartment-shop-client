@@ -2,11 +2,11 @@ import './styles.scss';
 import {Logo} from "../../../entities/logo";
 import {SelectCityDropdown} from "../../../features/select-city";
 import {SelectCurrencyDropdown} from "../../../features/select-currency";
-import {OpenWishListButton} from "../../../features/add-to-wishlist";
 import {UserMenu} from "./user-menu/ui";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {Search} from "../../search";
 import {AuthModal} from "../../auth-modal";
+import {FavoritesCount} from "../../../features/APARTMENT/add-apartment-to-favorites";
 
 type PropsType = {
     noSearch?: boolean;
@@ -20,9 +20,8 @@ export function Header({noSearch = false}: PropsType) {
 
         <div className="header-top">
             <Logo/>
-            <SelectCityDropdown/>
             <SelectCurrencyDropdown/>
-            <OpenWishListButton/>
+            <FavoritesCount/>
             <UserMenu/>
         </div>
 
