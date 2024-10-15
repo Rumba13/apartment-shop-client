@@ -18,17 +18,17 @@
     flex-grow: 1;
   }
   & .select-guests-count-input-number {
-    flex-grow: 1;
+    flex-grow: 2;
   }
 
   & .select-city-big-dropdown {
-    flex: 1 0 auto;
-  }
-  & .search-button {
     flex-grow: 1;
   }
+  & .search-button {
+      max-width: fit-content;
+  }
   & .apartment-type-radio-buttons, {
-    flex-grow: 0;
+    flex-grow: 1;
     max-width: fit-content;
   }
 }
