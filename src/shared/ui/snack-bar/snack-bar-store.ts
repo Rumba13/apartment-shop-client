@@ -9,6 +9,8 @@ class SnackBarStore {
         makeAutoObservable(this)
     }
 
+
+    private previousTimerId: ReturnType<typeof setTimeout> | null = null;
     public isOpened: boolean = false;
     public setIsOpened = (isReallyOpened: boolean) => this.isOpened = isReallyOpened
     public isAnimatingOpening: boolean = false;
@@ -18,9 +20,15 @@ class SnackBarStore {
 
     public showSnackBar = (title: string, config?: ShowSnackBarConfig) => {
         this.setTitle(title);
-        this.setIsAnimatingOpening(true);
-        this.setIsOpened(true)
-        setTimeout(() => this.setIsAnimatingOpening(false), config?.timeout || 3000);
+
+        if (this.isOpened || this.isAnimatingOpening) {
+            this.previousTimerId && clearTimeout(this.previousTimerId);
+        } else {
+            this.setIsAnimatingOpening(true);
+            this.setIsOpened(true)
+        }
+
+        this.previousTimerId = setTimeout(() => this.setIsAnimatingOpening(false), config?.timeout || 3000);
     }
 }
 

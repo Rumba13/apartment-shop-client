@@ -2,14 +2,19 @@ import './styles.scss';
 import {UUID} from "../../../../shared/api/types/uuid";
 import {orderService} from "../../../../shared/api/order-service";
 import {Order} from "../../../../shared/api/types/order";
+import {confirmModalStore} from "../../../../shared/ui/confirm-modal/confirm-modal-store";
+import {ConfirmModalOptions} from "../../../../shared/api/types/confirm-modal-options";
+import {useTypedTranslation} from "../../../../app/i18n/use-typed-translation";
 
 type PropsType = {
-    order:Order
+    order: Order
 }
 
-export function ApproveOrderButton({order}:PropsType) {
+export function ApproveOrderButton({order}: PropsType) {
 
-    async function approveOrder(orderId:UUID) {
+    const {t} = useTypedTranslation();
+
+    async function approveOrder(orderId: UUID) {
         try {
             await orderService.approveOrder(orderId);
             order.status = "APPROVED"; //! Multiple truths
@@ -18,8 +23,15 @@ export function ApproveOrderButton({order}:PropsType) {
         }
     }
 
+    const modalOptions: ConfirmModalOptions = {
+        description: t("Approve Order"),
+        confirmButtonText: t("Approve"),
+    }
+
     return (
-        <button className="order-approve" onClick={() => approveOrder(order.id)}>
+        <button className="order-approve"
+                onClick={() => confirmModalStore.askForConfirm(modalOptions).then(() => approveOrder(order.id))}
+        >
             Approve
         </button>
     )

@@ -6,6 +6,8 @@
   border-radius: 22px;
 padding: 6px;
   width: min-content;
+  cursor: pointer;
+
 
   & .burger-icon,
   & .user-profile-icon {
@@ -50,13 +52,9 @@ padding: 6px;
       white-space: nowrap;
       background-color: white;
 
-
-
       & .options-item__title{
         transition: color 120ms;
       }
-
-
 
       &:hover .options-item__title {
           color: var(--azure);

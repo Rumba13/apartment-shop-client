@@ -4,9 +4,9 @@ import {Field} from "../../../shared/ui/field/ui";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {signInService} from "../../../shared/api/sign-in-service";
 import {SignInDto} from "../../../shared/api/types/sign-in.dto";
-import {useCookies} from "react-cookie";
 import {userStore} from "../../../entities/user";
 import {ERRORS} from "../../../shared/lib/backend-error-constants";
+import useLocalStorageState from "use-local-storage-state";
 
 type ValuesType = SignInDto;
 
@@ -16,15 +16,14 @@ type PropsType = {
 
 export function SignInForm({onSignIn}: PropsType) {
     const {t} = useTypedTranslation()
-    const [cookies, setCookie] = useCookies(["ACCESS-TOKEN", "REFRESH-TOKEN"], {
-        doNotParse: true,
-    });
+    const [accessToken, setAccessToken] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
+    const [refreshToken, setRefreshToken] = useLocalStorageState<string>("REFRESH-TOKEN", {defaultValue: ""});
 
     return (
         <Formik<ValuesType> initialValues={{username: "sad", password: "sadad"}} onSubmit={(values, formikHelpers) => {
             signInService.signIn(values).then((response) => {
-                setCookie("ACCESS-TOKEN", response.access_token, {secure: true, maxAge: 3600 * 6});
-                setCookie("REFRESH-TOKEN", response.refresh_token, {secure: true, maxAge: 3600 * 6});
+                setAccessToken(response.access_token);
+                setRefreshToken(response.refresh_token);
                 userStore.auth(response.access_token);
                 onSignIn?.();
             }).catch((err) => {

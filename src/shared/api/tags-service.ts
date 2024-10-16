@@ -12,6 +12,4 @@ class TagsService {
     }
 }
 
-    export
-    const
-    tagsService = new TagsService()
+export const tagsService = new TagsService()

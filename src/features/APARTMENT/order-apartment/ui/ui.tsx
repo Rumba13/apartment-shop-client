@@ -11,6 +11,8 @@ import {UUID} from "../../../../shared/api/types/uuid";
 import {FieldNumber} from "../../../../shared/ui/field-number";
 import {snackBarStore} from "../../../../shared/ui/snack-bar/snack-bar-store";
 import {createOrder} from "../api/create-order";
+import {UpdateApartmentPriceDto} from "../../../../shared/api/types/update-apartment-price.dto";
+import dayjs from "dayjs";
 
 const {RangePicker} = DatePicker;
 
@@ -26,10 +28,16 @@ export type ValuesType = {
 type PropsType = {
     apartmentId: UUID,
     apartmentMaxGuests: number,
-    onCreateOrder: Function
+    onCreateOrder: Function,
+    updateApartmentPrice: (dto: UpdateApartmentPriceDto) => void,
 }
 
-export const OrderApartmentForm = observer(({apartmentId, apartmentMaxGuests, onCreateOrder}: PropsType) => {
+export const OrderApartmentForm = observer(({
+                                                apartmentId,
+                                                apartmentMaxGuests,
+                                                onCreateOrder,
+                                                updateApartmentPrice
+                                            }: PropsType) => {
     const {t} = useTypedTranslation();
 
     useEffect(() => {
@@ -58,11 +66,26 @@ export const OrderApartmentForm = observer(({apartmentId, apartmentMaxGuests, on
                 <Field className="order-form-email" placeholder="djonson@gmail.com" type="email"
                        name="email" label={t("Email")}/>
                 <FieldNumber className="order-form-people-count" min={0} max={apartmentMaxGuests}
+                             onChange={(event: any) => {
+                                 const todayDate = dayjs().format("YYYY-MM-DD");
+                                 updateApartmentPrice({
+                                     apartmentId,
+                                     fromDate: values.bookDateRange[0] || todayDate,
+                                     toDate: values.bookDateRange[1] || todayDate,
+                                     guestsCount: event.target.value
+                                 })
+                             }}
                              label={t("Number Of People")} name="guestsCount"/>
                 <div className="book-date field">
                     <h2 className="book-date__title field__label">{t("Check-in Date")}</h2>
-                    <RangePicker locale={ruRu} className="date-picker field__field" onChange={(a, values) => {
-                        setFieldValue("bookDateRange", values);
+                    <RangePicker locale={ruRu} className="date-picker field__field" onChange={(a, dates) => {
+                        setFieldValue("bookDateRange", dates);
+                        updateApartmentPrice({
+                            apartmentId,
+                            fromDate: dates[0],
+                            toDate: dates[1],
+                            guestsCount: values.guestsCount
+                        })
                     }}/>
                 </div>
 

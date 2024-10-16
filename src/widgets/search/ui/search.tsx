@@ -13,8 +13,8 @@ export const Search = observer(({}:PropsType) => {
 
     return (
         <div className={"search"}>
-            <SelectCityBigDropdown/>
-            <ApartmentDateFilter/>
+            {/*<SelectCityBigDropdown/>*/}
+            {/*<ApartmentDateFilter/>*/}
             <SelectGuestsCountInputNumber/>
             <SearchButton/>
         </div>

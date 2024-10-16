@@ -8,14 +8,19 @@ import {userStore} from "../../../../entities/user";
 import {observer} from "mobx-react";
 import {useEffect} from "react";
 import {signOutService} from "../../../../shared/api/sign-out-service";
-import {useCookies} from "react-cookie";
 import {Link} from "react-router-dom";
+import useLocalStorageState from "use-local-storage-state";
+import {ConfirmModalOptions} from "../../../../shared/api/types/confirm-modal-options";
+import {confirmModalStore} from "../../../../shared/ui/confirm-modal/confirm-modal-store";
 
 export const UserMenu = observer(() => {
     const {t} = useTypedTranslation();
-    const [cookies, setCookie, removeCookie] = useCookies(["ACCESS-TOKEN", "REFRESH-TOKEN"], {
-        doNotParse: true,
-    });
+    const [accessToken, setAccessToken, {removeItem: removeAccessToken}] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
+    const [refreshToken, setRefreshToken, {removeItem: removeRefreshToken}] = useLocalStorageState<string>("REFRESH-TOKEN", {defaultValue: ""});
+
+    const confirmModalOptions: ConfirmModalOptions = {
+        description: t("Definitely Sign Out?")
+    }
 
     useEffect(() => {
 
@@ -23,27 +28,34 @@ export const UserMenu = observer(() => {
 
     return (
         <div className="user-menu">
-            <SvgIcon className="burger-icon" icon={BurgerIcon}/>
-            <SvgIcon className="user-profile-icon" icon={UserProfileIcon}/>
+            <SvgIcon className="burger-icon"
+                     icon={BurgerIcon}
+            />
+            <SvgIcon className="user-profile-icon"
+                     icon={UserProfileIcon}
+            />
 
             <ul className="user-menu-options">
 
                 {userStore.user && <>
-                    <li className="options-item" onClick={() => {
-                        signOutService.signOut(cookies["REFRESH-TOKEN"]).then((res) => {
-                            userStore.setUser(null)
-                        }).catch(err => console.log(err))
-
-                        removeCookie("REFRESH-TOKEN")
-                        removeCookie("ACCESS-TOKEN")
-                    }}>
+                    <li className="options-item"
+                        onClick={() => {
+                            confirmModalStore.askForConfirm(confirmModalOptions)
+                                .then(() => signOutService.signOut(refreshToken))
+                                .then((res) => userStore.setUser(null)).catch(err => console.log(err))
+                            removeAccessToken()
+                            removeRefreshToken()
+                        }}
+                    >
                     <span className="options-item__title">
                         Выйти
                     </span>
                     </li>
                 </>}
 
-                {!userStore.user && <li className="options-item" onClick={() => authModalStore.setIsOpened(true)}>
+                {!userStore.user && <li className="options-item"
+                                        onClick={() => authModalStore.setIsOpened(true)}
+                >
                     <span className="options-item__title">{t("Sign In")}</span>
                 </li>
                 }

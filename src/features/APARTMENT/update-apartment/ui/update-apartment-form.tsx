@@ -4,12 +4,12 @@ import React, {useEffect, useRef, useState} from "react";
 import {Field} from "../../../../shared/ui/field/ui";
 import {useTypedTranslation} from "../../../../app/i18n/use-typed-translation";
 import {apartmentService} from "../../../../shared/api/apartment-service";
-import {useCookies} from "react-cookie";
 import {UUID} from "../../../../shared/api/types/uuid";
 import {Apartment} from "../../../../shared/api/types/apartment";
 import {currencyStore} from "../../../select-currency";
 import { useNavigate} from "react-router-dom";
 import {updateApartment} from "../api/update-apartment";
+import useLocalStorageState from "use-local-storage-state";
 
 const validate = (values: FormikValues) => {
     const errors: any = {}
@@ -32,7 +32,8 @@ type PropsType = {
 export function UpdateApartmentForm({apartmentId}: PropsType) {
     const {t} = useTypedTranslation();
     const navigate = useNavigate()
-    const [cookies] = useCookies(["ACCESS-TOKEN"])
+    const [accessToken] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
+
     const [updatedApartment, setUpdateApartment] = useState<Apartment | null>(null);
 
     useEffect(() => {
@@ -64,7 +65,7 @@ export function UpdateApartmentForm({apartmentId}: PropsType) {
             address: updatedApartment.address,
             bedsQuantity: updatedApartment.bedsQuantity,
         }} validate={validate} onSubmit={(values, {setSubmitting}) =>
-            updateApartment(values, cookies["ACCESS-TOKEN"], apartmentId, (id: UUID) => navigate("/apartment-details/" + id))
+            updateApartment(values, accessToken, apartmentId, (id: UUID) => navigate("/apartment-details/" + id))
         }>
             {({setFieldValue}) => (
                 <Form className="update-apartment-form" id="update-apartment-form">

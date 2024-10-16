@@ -25,6 +25,11 @@ import {Link} from "react-router-dom";
 import {DeleteApartment} from "./delete-apartment-button";
 import NoImage from "../../../assets/images/no-image.jpg"
 import {AddApartmentToFavorites} from "../../../features/APARTMENT/add-apartment-to-favorites";
+import BinIcon from "../../../assets/images/bin.svg";
+import {Button} from "../../../shared/ui/button";
+import {updateApartment} from "../../../features/APARTMENT/update-apartment/api/update-apartment";
+import {apartmentService} from "../../../shared/api/apartment-service";
+import useLocalStorageState from "use-local-storage-state";
 
 type PropsType = {
     apartmentId: UUID
@@ -36,6 +41,7 @@ export const ApartmentDetails = observer(({
     const {t} = useTypedTranslation()
     const {t: tr} = useTranslation()
     const [isCollapsibleExpanded, setIsCollapsibleExpanded] = useState<boolean>(false)
+    const [accessToken] = useLocalStorageState("ACCESS-TOKEN");
 
     const testItems = ["Кирпичный дом", "Лифт", "Этаж: 2", "Этажей: 6"].map(li =>
         <TitleWithIcon className={"tags-list__item amenities-list__item"} withLi icon={MarkIcon}>
@@ -82,6 +88,7 @@ export const ApartmentDetails = observer(({
             </div>
             <AddApartmentToFavorites apartmentId={id}/>
             {userStore.user?.isSuperuser && <DeleteApartment apartmentId={apartmentId}/>}
+
         </div>
         <div className="apartment-details-mid">
             <div className="apartment-details-wrapper">

@@ -1,15 +1,20 @@
-import {makeAutoObservable} from "mobx";
+import {action, makeAutoObservable, makeObservable, observable, runInAction} from "mobx";
 import {overlayStore} from "../../app/overlay";
 import React from "react";
 
 export class ModalStore {
     private _setIsOpened = (isOpened: boolean) => {
-        this.isOpened = isOpened
+        runInAction(() => this.isOpened = isOpened)
+
         overlayStore.setIsOverlayOpened(isOpened)
     }
 
     constructor() {
-        makeAutoObservable(this);
+        makeObservable(this, {
+            isOpened: observable,
+            setIsOpened: action,
+        })
+
         document.addEventListener("click", () => this._setIsOpened(false))
     }
 

@@ -5,8 +5,12 @@ class FilterByDateStore {
         makeAutoObservable(this);
     }
 
-    public dates: string[] = ["", ""]
-    public setDates = (dates: string[]) => this.dates = dates;
+    public dates: (string | null)[] = [null, null]
+    public setDates = (dates: (string | null)[]) => this.dates = dates;
+
+    public removeFilter = () => {
+        this.setDates([null, null])
+    }
 }
 
 export const filterByDateStore = new FilterByDateStore()

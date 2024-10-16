@@ -2,7 +2,6 @@ import './styles.scss';
 import {observer} from "mobx-react";
 import {CheckBox} from "../../../shared/ui/check-box/ui";
 import {useEffect} from "react";
-import {tagsService} from "../../../shared/api/tags-service";
 import {tagsFilterStore} from "../model/tags-filter-store";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 

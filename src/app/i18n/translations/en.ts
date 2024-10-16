@@ -4,7 +4,7 @@ export const englishTranslation: Translation = {
     "Website Logo": "Website Logo",
     "Featured": "Featured",
     "Sign In": "Sign In",
-    "Daily rent from owners all over Belarus": "Daily rent from owners all over Belarus",
+    "Daily rent from owners all over Belarus": "Daily rent from owners all over Belarus", //Belarus for english-speakers
     "You can rent apartment": "On the XXX website you can rent an apartment for a day for work and leisure, rent a house and estate for a country holiday, find with us the most advantageous offers for daily rent of apartments and estates without intermediaries",
     "Gomel": "Gomel",
     "Brest": "Brest",
@@ -93,6 +93,12 @@ export const englishTranslation: Translation = {
     "Update Apartment Data": "Update apartment data",
     "Orders": "Orders",
     "Long Term Rental": "Long term rental",
-
+    "Cancel": "Cancel",
+    "Confirm": "Confirm",
+    "Approve Order": "Approve Order?",
+    "Approve": "Approve",
+    "Definitely reject The Order": "Definitely reject the order?",
+    "Reject": "Reject",
+    "Definitely Sign Out?": "Definitely sign out?"
 };
 

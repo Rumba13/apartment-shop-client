@@ -9,23 +9,23 @@ import {setPhotosAbsolutePath} from "../lib/set-photos-absolute-path";
 
 class SearchStore {
     private readonly _searchTimeout = 200;
-    public isSearchOnRequestCooldown: boolean = false;
-    public searchCooldownTimer: any = 0; //TODO
+    private readonly minimalSearchPendingTime = 200;
+    private searchCooldownTimer: ReturnType<typeof setTimeout> | null = null;
+
     public isLoading: boolean = false;
     public setIsLoading = (isLoading: boolean) => this.isLoading = isLoading
 
+    public isSearchOnRequestCooldown: boolean = false;
     public setSearchOnCooldown = () => {
-        clearTimeout(this.searchCooldownTimer);
+        this.searchCooldownTimer && clearTimeout(this.searchCooldownTimer);
         this.isSearchOnRequestCooldown = true;
         this.searchCooldownTimer = setTimeout(() => this.isSearchOnRequestCooldown = false, this._searchTimeout)
     }
-
-    public async search(searchTags: Tag[], priceRange: Range, areaRange: Range, sortBy: SortBy, resultCurrency: Currency, dates: string[]): Promise<Apartment[] | null> {
+//TODO refactor to searchDto
+    public async search(searchTags: Tag[], priceRange: Range, areaRange: Range, sortBy: SortBy, resultCurrency: Currency,maxGuestsCount:number, dates: (string | null)[]): Promise<Apartment[] | null> {
         this.setIsLoading(true);
 
-        console.log("range", searchTags)
-
-        const paginationResult: Pagination<Apartment> = (await serverConnection.get("/apartments", {
+        const searchPromise = (serverConnection.get("/apartments", {
             params: {
                 pageSize: 20,
                 page: 1,
@@ -37,16 +37,22 @@ class SearchStore {
                 resultCurrency: resultCurrency,
                 fromDate: dates[0] || undefined,
                 toDate: dates[1] || undefined,
-                amenities: searchTags.length === 0 ? undefined : searchTags.join(", ")
+                amenities: searchTags.length === 0 ? undefined : searchTags.join(", "),
+                // maxGuestsQuantity: maxGuestsCount,
+                // minGuestsQuantity: 0
             }
-        })).data
+        }))
 
-        for (let i = 0; i < paginationResult.content.length; i++) {
-            setPhotosAbsolutePath(paginationResult.content[i].photos);
+        const minimalSearchPendingTimePromise = new Promise<void>(resolve => setTimeout(resolve, this.minimalSearchPendingTime))
+
+        const pagination: Pagination<Apartment> = (await Promise.all([minimalSearchPendingTimePromise, searchPromise]))[1].data
+
+        for (let i = 0; i < pagination.content.length; i++) {
+            setPhotosAbsolutePath(pagination.content[i].photos);
         }
 
         this.setIsLoading(false);
-        return paginationResult.content;
+        return pagination.content;
     }
 }
 

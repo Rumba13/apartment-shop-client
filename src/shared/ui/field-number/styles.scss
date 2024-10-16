@@ -6,7 +6,7 @@
       width: 100%;
     }
 
-    & .field-input-increase, .field-input-decrease {
+    & .field__increase-button, .field__decrease-button {
       position: absolute;
       right: 0;
       z-index: 2;
@@ -18,8 +18,12 @@
       box-sizing: border-box;
       width: 36px;
 
+      &.disabled {
+        background-color: var(--white-gray);
+        cursor: not-allowed;
+      }
 
-      &:hover {
+      &:not(.disabled):hover {
         background-color: var(--white-gray-active);
       }
 
@@ -28,9 +32,9 @@
         width: 12px;
         color: var(--slate-gray);
       }
-
     }
-    & .field-input-decrease {
+
+    & .field__decrease-button {
       bottom: 0;
       border-bottom-right-radius: 8px;
       border-top: 0;
@@ -39,10 +43,9 @@
         transform: rotate(180deg);
       }
     }
-    & .field-input-increase {
+
+    & .field__increase-button {
       border-top-right-radius: 8px;
     }
-
   }
-
 }

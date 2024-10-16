@@ -9,6 +9,8 @@ import {currencyStore} from "../../../features/select-currency";
 import {filtersBoundsService} from "../../../shared/api/filters-bounds-service";
 import {observer} from "mobx-react";
 import {AreaFilter, areaFilterStore} from "../../../features/FILTER/filter-by-area";
+import {ApartmentDateFilter, filterByDateStore} from "../../../features/FILTER/filter-by-date";
+import {FilterByGuestsCount, guestsCountStore} from "../../../features/FILTER/filter-by-guests";
 
 export const Aside = observer(() => {
     const {t} = useTypedTranslation();
@@ -25,13 +27,17 @@ export const Aside = observer(() => {
     return (
         <aside className="aside">
             <span className="aside__title">{t("Filters")}</span>
+            <ApartmentDateFilter/>
             <PriceFilter/>
             <AreaFilter/>
             <TagsList/>
+            <FilterByGuestsCount/>
             <RemoveFiltersButton onClick={() => {
                 priceFilterStore.removeFilter();
                 areaFilterStore.removeFilter();
                 tagsFilterStore.removeFilter();
+                guestsCountStore.removeFilter()
+                filterByDateStore.removeFilter()
             }}/>
         </aside>
     )

@@ -10,7 +10,7 @@
   column-gap: 5px;
 
   & .select-city-big-dropdown,
-  & .apartment-type-radio-buttons,
+  & .apartment-date-filter,
   & .select-guests-count-input-number,
   & .search-button {
     border-radius: inherit;
@@ -27,7 +27,7 @@
   & .search-button {
       max-width: fit-content;
   }
-  & .apartment-type-radio-buttons, {
+  & .apartment-date-filter, {
     flex-grow: 1;
     max-width: fit-content;
   }

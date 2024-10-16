@@ -3,17 +3,19 @@ import {serverConnection} from "./server-connection";
 import {Pagination} from "./types/pagination";
 import {Order} from "./types/order";
 import {UUID} from "./types/uuid";
+import {UpdateApartmentPriceDto} from "./types/update-apartment-price.dto";
+import {Price} from "./types/price";
 
 class OrderService {
     constructor() {
     }
 
     public async createOrder(createOrderDto: CreateOrderDto) {
-        return (await serverConnection.post("/orders", createOrderDto, {})).data;
+        return (await serverConnection.post("/bookings", createOrderDto, {})).data;
     }
 
     public async getAllOrders(): Promise<Pagination<Order>> {
-        return (await serverConnection.get("/orders", {
+        return (await serverConnection.get("/bookings", {
             params: {
                 page: 1,
                 pageSize: 10
@@ -22,15 +24,15 @@ class OrderService {
     }
 
     public async approveOrder(orderId: UUID) {
-        return (await serverConnection.patch(`/orders/${orderId}/approve`)).data
+        return (await serverConnection.patch(`/bookings/${orderId}/approve`)).data
     }
 
     public async rejectOrder(orderId: UUID) {
-        return (await serverConnection.patch(`/orders/${orderId}/reject`)).data
+        return (await serverConnection.patch(`/bookings/${orderId}/reject`)).data
     }
 
-    public async calculateOrderPrice(apartmentId: UUID, guestsCount: number, fromDate: string, toDate: string) {
-        return (await serverConnection.get("/orders/total-price", {
+    public async calculateOrderPrice({toDate, fromDate, guestsCount, apartmentId}: UpdateApartmentPriceDto):Promise<Price> {
+        return (await serverConnection.get("/bookings/count-total-price", {
             params: {
                 apartmentId,
                 guestsQuantity: guestsCount,

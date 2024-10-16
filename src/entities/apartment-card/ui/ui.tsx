@@ -50,6 +50,5 @@ export function ApartmentCard({
             <LinkWithIcon className="apartment-details__on-map-link" icon={GeoIcon} href={"/"}>На карте </LinkWithIcon>
             <span className="apartment-details__description">{description}</span>
         </div>
-        <ShowContactsButton/>
     </div>
 }

@@ -4,8 +4,8 @@ import {Field} from "../../../shared/ui/field/ui";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {signUpService} from "../../../shared/api/sign-up-service";
 import {SignUpDto} from "../../../shared/api/types/sign-up.dto";
-import {useCookies} from "react-cookie";
 import {userStore} from "../../../entities/user";
+import useLocalStorageState from "use-local-storage-state";
 
 type ValuesType = SignUpDto
 
@@ -15,16 +15,14 @@ type PropsType = {
 
 export function SignUpForm({onSignUp}: PropsType) {
     const {t} = useTypedTranslation()
-    const [cookies, setCookie, removeCookie] = useCookies(["ACCESS-TOKEN", "REFRESH-TOKEN"], {
-        doNotParse: true,
-    });
+    const [accessToken, setAccessToken] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
 
     return (
         <Formik<ValuesType> initialValues={{username: "", email: "", password: ""}}
                             onSubmit={(signUpDto, formikHelpers) => {
                                 signUpService.signUp(signUpDto).then(response => {
-                                    setCookie("ACCESS-TOKEN", response.access_token,);
-                                    setCookie("REFRESH-TOKEN", response.refresh_token);
+                                    setAccessToken(response.access_token,);
+                                    setAccessToken(response.refresh_token);
                                     userStore.auth(response.access_token);
                                     onSignUp?.();
                                 }).catch((error) => {

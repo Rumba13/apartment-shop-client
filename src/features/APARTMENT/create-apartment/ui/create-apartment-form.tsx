@@ -3,22 +3,22 @@ import {Form, Formik, FormikValues} from "formik";
 import React from "react";
 import {Field} from "../../../../shared/ui/field/ui";
 import {useTypedTranslation} from "../../../../app/i18n/use-typed-translation";
-import {useCookies} from "react-cookie";
 import {UUID} from "../../../../shared/api/types/uuid";
 import {useNavigate} from "react-router-dom";
 import {createApartment} from "../api/create-apartment";
 import {validate} from "../lib/validate-form";
+import useLocalStorageState from "use-local-storage-state";
 
 export function CreateApartmentForm() {
     const {t} = useTypedTranslation();
     const navigate = useNavigate();
-    const [cookies] = useCookies(["ACCESS-TOKEN"])
+    const [accessToken] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
 
     return <div className="create-apartment-form-wrapper">
         <span className="create-apartment-form-wrapper__title">{t("Create Apartment")}</span>
 
         <Formik<FormikValues> initialValues={{title: ""}} validate={validate}
-                              onSubmit={(values, {setSubmitting}) => createApartment(values, cookies["ACCESS-TOKEN"], (id: UUID) => navigate("/apartment-details/" + id, {}))}>
+                              onSubmit={(values, {setSubmitting}) => createApartment(values, accessToken, (id: UUID) => navigate("/apartment-details/" + id, {}))}>
             {({}) => (
                 <Form className="create-apartment-form" id="create-apartment-form">
                     <Field placeholder={"Название квартиры"} name="title" label={t("Title")}/>

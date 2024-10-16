@@ -1,0 +1,54 @@
+.input-number {
+  position: relative;
+
+  & .input-number__input {
+    width: 100%;
+    border: 1px solid var(--white-gray);
+    border-radius: 8px;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-family: "CeraPro", Arial, sans-serif;
+  }
+
+  & .input-number__increase-button, .input-number__decrease-button {
+    position: absolute;
+    right: 0;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--white-gray);
+    height: 50%;
+    box-sizing: border-box;
+    width: 36px;
+
+    &.disabled {
+      background-color: var(--white-gray);
+      cursor: not-allowed;
+    }
+
+    &:not(.disabled):hover {
+      background-color: var(--white-gray-active);
+    }
+
+    & .svg-icon {
+      height: 12px;
+      width: 12px;
+      color: var(--slate-gray);
+    }
+  }
+
+  & .input-number__decrease-button  {
+    bottom: 0;
+    border-bottom-right-radius: 8px;
+    border-top: 0;
+
+    & .svg-icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  & .input-number__increase-button {
+    border-top-right-radius: 8px;
+  }
+}

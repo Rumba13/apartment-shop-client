@@ -12,6 +12,7 @@ import LoadingGif from "../../../assets/images/loading.gif"
 import {currencyStore} from "../../../features/select-currency";
 import {filterByDateStore} from "../../../features/FILTER/filter-by-date";
 import {areaFilterStore} from "../../../features/FILTER/filter-by-area";
+import {guestsCountStore} from "../../../features/FILTER/filter-by-guests";
 
 type PropsType = {}
 
@@ -37,6 +38,7 @@ export const ApartmentList = observer(({}: PropsType) => {
                 min: areaFilterStore.minArea,
                 max: areaFilterStore.maxArea
             }, sortByStore.selectedSortBy, currencyStore.currency,
+            guestsCountStore.maxGuestsCount,
             filterByDateStore.dates
         ).then(apartments => apartments && apartmentListStore.setApartments(apartments)
         )
@@ -48,7 +50,8 @@ export const ApartmentList = observer(({}: PropsType) => {
         sortByStore.selectedSortBy,
         currencyStore.currency,
         priceFilterStore.isOnCooldown,
-        filterByDateStore.dates
+        filterByDateStore.dates,
+        guestsCountStore.maxGuestsCount
     ]);
 
     if (!apartmentListStore.apartments) {
@@ -57,9 +60,13 @@ export const ApartmentList = observer(({}: PropsType) => {
 
     return <div className="apartment-list">
         {searchStore.isLoading &&
-            <div className="apartment-list-loading"><img className="loading__loading" src={LoadingGif} alt=""/></div>}
+            <div className="apartment-list-loading"><img className="loading__loading"
+                                                         src={LoadingGif}
+                                                         alt=""
+            /></div>}
         {(apartmentListStore.apartments.length === 0) ? t("Nothing Found") : apartmentListStore.apartments.map(apartment =>
             <ApartmentCard
-                apartment={apartment}/>)}
+                apartment={apartment}
+            />)}
     </div>
 });

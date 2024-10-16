@@ -6,7 +6,7 @@ class CurrencyStore {
         makeAutoObservable(this);
     }
 
-    public currency: Currency = "USD";
+    public currency: Currency = "BYN";
 
     public setCurrency(currency: Currency){
         this.currency = currency;

@@ -5,8 +5,8 @@
   & .header-top {
     display: grid;
     grid-template-areas:
-    "logo select-city . . select-currency  open-wish-list user-menu";
-    grid-template-columns:  auto auto auto 1fr min-content auto ;
+    "logo select-city . . select-currency  open-wish-list open-sign-in-modal open-sign-up-modal";
+    grid-template-columns:  auto auto 1fr min-content min-content auto auto;
     grid-template-rows: 100%;
     align-items: center;
     margin: 0 auto;
@@ -19,21 +19,45 @@
 
     & > .select-city-dropdown-wrapper {
       grid-area: select-city;
-      margin-left: 20px;
     }
 
     & > .select-currency-dropdown-wrapper {
       grid-area: select-currency;
-      margin-left: auto;
     }
 
     & > .open-favorites-button {
       grid-area: open-wish-list;
-      margin: 0 50px;
+      margin-right: 35px;
+      margin-left: 15px;
     }
+    & > .open-sign-in-modal {
+      grid-area: open-sign-in-modal;
+      cursor: pointer;
+      font-family: CeraPro, system-ui;
+      font-size: 16px;
+      color: var(--azure);
+      border-radius: 6px;
+      margin-right: 16px;
 
-    & > .user-menu {
-      grid-area: user-menu;
+      &:hover {
+        color: var(--deep-azure-active);
+      }
+
+    }
+    & > .open-sign-up-modal {
+      grid-area: open-sign-up-modal;
+      cursor: pointer;
+      font-family: CeraPro, system-ui;
+      font-size: 16px;
+      color: var(--azure);
+      border: 1px solid currentColor;
+      border-radius: 6px;
+      padding: 6px 16px;
+
+      &:hover {
+        color: var(--deep-azure-active);
+      }
+
     }
   }
 
@@ -62,7 +86,7 @@
 
       & .header-bottom__sub-title {
         font-size: 20px;
-        max-width: 68%;
+        max-width: 88%;
       }
     }
   }
