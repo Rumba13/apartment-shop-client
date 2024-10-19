@@ -13,9 +13,18 @@ class SelectTagsStore {
 
     private _setTags = (tags: Tag[]) => this.tags = tags;
     private _setSelectedTags = (tags: { [key in string]: boolean }) => this.selectedTags = tags;
+    public isLoading: boolean = false;
+    public setIsLoading = (isLoading: boolean) => this.isLoading = isLoading;
 
     public async loadTags() {
-        this._setTags(await tagsService.loadTags())
+        this.setIsLoading(true);
+        try {
+            this._setTags(await tagsService.loadTags())
+        } catch (err) {
+            console.log(err)
+        } finally {
+            this.setIsLoading(false);
+        }
     }
 
     public setTags = (tags: Tag[]) => {

@@ -11,6 +11,7 @@ import {Link} from "react-router-dom";
 import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map";
 import {observer} from "mobx-react";
 import {Slider} from "../../../shared/ui/slider";
+import {SwiperSlide} from "swiper/react";
 
 
 
@@ -42,9 +43,9 @@ export const ApartmentCard = observer(({
     return <div className="apartment-card">
         <div className="apartment-card-slider"
         >
-            <Slider items={photos.map(image => <Link to={"apartment-details/" + id}>
+            <Slider items={photos.map(image => <SwiperSlide> <Link to={"apartment-details/" + id}>
                 <img src={image} alt=""></img>
-            </Link>)}/>
+            </Link></SwiperSlide>)}/>
         </div>
 
         <div className="apartment-details">

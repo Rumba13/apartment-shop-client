@@ -31,7 +31,7 @@ export const Select = observer(({
         <div className={clsx("select-wrapper", wrapperClassName, !noArrow && "arrow")}>
             <select className={clsx("select", className)} value={value}
                     onChange={(e) => onValueChanged?.(e.target.value)}>
-                {options.map(option => <option className="select-option" value={option.value}>{option.label}</option>)}
+                {options.map(option => <option className="select-option" key={option.label} value={option.value}>{option.label}</option>)}
             </select>
         </div>
     )

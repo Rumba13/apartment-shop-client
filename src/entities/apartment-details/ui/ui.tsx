@@ -27,6 +27,7 @@ import NoImage from "../../../assets/images/no-image.jpg"
 import {AddApartmentToFavorites} from "../../../features/APARTMENT/add-apartment-to-favorites";
 import useLocalStorageState from "use-local-storage-state";
 import {Slider} from "../../../shared/ui/slider";
+import {SwiperSlide} from "swiper/react";
 
 type PropsType = {
     apartmentId: UUID
@@ -43,6 +44,7 @@ export const ApartmentDetails = observer(({
     const testItems = ["Кирпичный дом", "Лифт", "Этаж: 2", "Этажей: 6"].map(li =>
         <TitleWithIcon className={"tags-list__item amenities-list__item"}
                        withLi
+                       key={li}
                        icon={MarkIcon}
         >
             {li}
@@ -74,7 +76,6 @@ export const ApartmentDetails = observer(({
         address
     } = apartmentDetailsStore.apartment;
 
-    console.log(photos.join(" "))
 
     return <div className="apartment-details">
         <OrderModal apartmentMaxGuests={guestsQuantity}
@@ -100,10 +101,12 @@ export const ApartmentDetails = observer(({
         <div className="apartment-details-mid">
             <div className="apartment-details-wrapper">
                 <div className="apartment-images">
-                    <Slider loop items={photos.map(image =>
-                        <img src={image}
-                             alt=""
-                        ></img>)}
+                    <Slider loop
+                            items={photos.map(image =>
+                                <SwiperSlide key={image}>
+                                    <img src={image}
+                                         alt="" ></img>
+                                </SwiperSlide>)}
                     />
                 </div>
                 <div className="apartment-tabs">
@@ -145,6 +148,7 @@ export const ApartmentDetails = observer(({
                         {["Кирпичный дом", "Лифт", "Этаж: 2", "Этажей: 6"].map(li =>
                             <TitleWithIcon className={"house-description__item"}
                                            withLi
+                                           key={li}
                                            icon={MarkIcon}
                             >
                                 {li}
@@ -160,6 +164,8 @@ export const ApartmentDetails = observer(({
                             {amenities.map(li =>
                                 <TitleWithIcon className={"tags-list__item amenities-list__item"}
                                                withLi
+                                               key={li}
+
                                                icon={MarkIcon}
                                 >
                                     {li}

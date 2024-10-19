@@ -39,8 +39,7 @@ export const ApartmentList = observer(({}: PropsType) => {
             }, sortByStore.selectedSortBy, currencyStore.currency,
             guestsCountStore.maxGuestsCount,
             filterByDateStore.dates
-        ).then(apartments => apartments && apartmentListStore.setApartments(apartments)
-        )
+        ).then(apartments => apartments && apartmentListStore.setApartments(apartments))
     }, [tagsFilterStore.selectedTags,
         areaFilterStore.minArea,
         areaFilterStore.maxArea,
@@ -67,12 +66,13 @@ export const ApartmentList = observer(({}: PropsType) => {
 
     return <div className="apartment-list">
         {searchStore.isLoading &&
-            <div className="apartment-list-loading"><img className="loading__loading"
-                                                         src={LoadingGif}
-                                                         alt=""
-            /></div>}
+            <div className="apartment-list-loading">
+                <img className="loading__loading"
+                     src={LoadingGif}
+                     alt=""/>
+            </div>}
 
         {(apartmentListStore.apartments.length === 0) ? t("Nothing Found") : apartmentListStore.apartments.map(apartment =>
-            <ApartmentCard apartment={apartment}/>)}
+            <ApartmentCard apartment={apartment} key={apartment.id}/>)}
     </div>
 });

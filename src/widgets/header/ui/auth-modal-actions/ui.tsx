@@ -23,7 +23,6 @@ export function AuthModalActions() {
     }
 
     useEffect(() => {
-        console.log(userStore.user);
     }, [userStore.user, userStore.user?.email]);
 
     const confirmModalOptions: ConfirmModalOptions = {

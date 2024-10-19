@@ -25,7 +25,7 @@ export function Slider({items, loop = false}: PropsType) {
             <div className="swiper-button-prev"></div>
             <div className="swiper-button-next"></div>
             {/*TODO key*/}
-            {items.map(item => <SwiperSlide key={String(item)}>{item}</SwiperSlide>)}
+            {items}
         </Swiper>
     )
 }

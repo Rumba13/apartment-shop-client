@@ -19,7 +19,7 @@ export const AuthModal = observer(() => {
 
         <div className="auth-modal-tabs">
             {[t("Sign In"), t("Sign Up")]
-                .map((tabTitle, index) => <button
+                .map((tabTitle, index) => <button key={tabTitle}
                     className={clsx("auth-modal-tab", index === authModalStore.activeTab && "active")}
                     onClick={() => authModalStore.setActiveTab(index)}>{tabTitle}</button>)
             }
