@@ -6,10 +6,10 @@ import {Form, Formik} from "formik";
 import {snackBarStore} from "../../../shared/ui/snack-bar/snack-bar-store";
 import {Button} from "../../../shared/ui/button";
 import BinIcon from "../../../assets/images/bin.svg"
-import {confirmModalStore} from "../../../shared/ui/confirm-modal/confirm-modal-store";
 import {ConfirmModalOptions} from "../../../shared/api/types/confirm-modal-options";
-import {useState} from "react";
+import React, {useState} from "react";
 import {InputNumber} from "../../../shared/ui/input-number";
+import {Swiper, SwiperSlide} from "swiper/react";
 
 type ValuesType = {
     guestsCount: number
@@ -51,5 +51,14 @@ export function WishListPage() {
                 title={"Some feat"}
         />
     <InputNumber value={a} min={0} max={10} onChange={(v) => setA(v)}/>
+
+        <Swiper className="swiper-slider" style={{maxWidth:200, borderColor:"black", borderStyle:"solid", borderWidth:1}}
+                direction="horizontal"
+                slidesPerView={1}
+        >
+            {[1,2,3,4,5].map(img => <SwiperSlide>
+                {img}
+            </SwiperSlide>)}
+        </Swiper>
     </div>
 }

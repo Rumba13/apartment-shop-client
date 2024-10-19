@@ -12,14 +12,63 @@
   }
 
   & .apartment-card-slider {
-    display: block;
+    position: relative;
+    display: flex;
     border-radius: inherit;
+    min-width: 100%;
+    //border-top-right-radius: inherit;
+    //border-top-left-radius: inherit;
+
+    & .slider-link {
+      display: block;
+      width: 100%;
+    }
+
+    & .swiper {
+      width: 100%;
+      overflow: hidden;
+
+      & .swiper-slide {
+        width: 100% !important;
+        //aspect-ratio:1/ 1 / 0.74;
+      }
+      & .swiper-wrapper {
+        width: 100%;
+      }
+
+    }
+
+    & .swiper-pagination {
+      position: absolute;
+      bottom: 5px;
+
+      & .swiper-pagination-bullet {
+        background-color: white;
+      }
+    }
+    & .swiper-button-prev,& .swiper-button-next {
+      color: white;
+
+      &:after {
+        font-size: 26px;
+        color: white;
+      }
+
+      &.swiper-button-disabled {
+        pointer-events: all;
+      }
+    }
+    & .swiper-button-next {
+      right: 0;
+    }
+    & .swiper-button-prev {
+      left: 0;
+    }
 
     & img {
       width: 100%;
-      aspect-ratio: 1 / 0.74;
-      border-top-right-radius: inherit;
-      border-top-left-radius: inherit;
+      height: 200px;
+      object-fit: cover;
     }
   }
 

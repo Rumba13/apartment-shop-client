@@ -1,5 +1,5 @@
 import "./styles.scss";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {apartmentListStore} from "../model/model";
 import {observer} from "mobx-react";
 import {ApartmentCard} from "../../../entities/apartment-card";
@@ -17,7 +17,6 @@ import {guestsCountStore} from "../../../features/FILTER/filter-by-guests";
 type PropsType = {}
 
 export const ApartmentList = observer(({}: PropsType) => {
-
     const {t} = useTypedTranslation();
 
     useEffect(() => {
@@ -64,9 +63,8 @@ export const ApartmentList = observer(({}: PropsType) => {
                                                          src={LoadingGif}
                                                          alt=""
             /></div>}
+
         {(apartmentListStore.apartments.length === 0) ? t("Nothing Found") : apartmentListStore.apartments.map(apartment =>
-            <ApartmentCard
-                apartment={apartment}
-            />)}
+            <ApartmentCard apartment={apartment}/>)}
     </div>
 });
