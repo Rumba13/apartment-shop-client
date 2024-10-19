@@ -4,8 +4,7 @@ import {ReactNode} from "react";
 import 'swiper/css';
 import 'swiper/css/navigation'
 import 'swiper/css/pagination';
-import {Swiper, SwiperSlide} from "swiper/react";
-
+import {Swiper} from "swiper/react";
 
 type PropsType = {
     items: ReactNode[];
@@ -17,7 +16,7 @@ export function Slider({items, loop = false}: PropsType) {
         <Swiper
             modules={[Navigation, Pagination]}
             slidesPerView={1}
-            loop
+            loop={loop}
             navigation={{prevEl: ".swiper-button-prev", nextEl: ".swiper-button-next"}}
             pagination={{type: "bullets", clickable: true, el: ".swiper-pagination"}}
         >

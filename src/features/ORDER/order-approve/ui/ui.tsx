@@ -5,6 +5,7 @@ import {Order} from "../../../../shared/api/types/order";
 import {confirmModalStore} from "../../../../shared/ui/confirm-modal/confirm-modal-store";
 import {ConfirmModalOptions} from "../../../../shared/api/types/confirm-modal-options";
 import {useTypedTranslation} from "../../../../app/i18n/use-typed-translation";
+import {AdminButton} from "../../../../shared/ui/admin-button";
 
 type PropsType = {
     order: Order
@@ -29,10 +30,6 @@ export function ApproveOrderButton({order}: PropsType) {
     }
 
     return (
-        <button className="order-approve"
-                onClick={() => confirmModalStore.askForConfirm(modalOptions).then(() => approveOrder(order.id))}
-        >
-            Approve
-        </button>
+        <AdminButton className="order-approve" title={t("Approve")}  onClick={() => confirmModalStore.askForConfirm(modalOptions).then(() => approveOrder(order.id)).catch(err => {})}/>
     )
 }

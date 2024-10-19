@@ -5,6 +5,7 @@ import {Order} from "../../../../shared/api/types/order";
 import {ConfirmModalOptions} from "../../../../shared/api/types/confirm-modal-options";
 import {useTypedTranslation} from "../../../../app/i18n/use-typed-translation";
 import {confirmModalStore} from "../../../../shared/ui/confirm-modal/confirm-modal-store";
+import {AdminButton} from "../../../../shared/ui/admin-button";
 
 type PropsType = {
     order: Order
@@ -29,12 +30,8 @@ export function RejectOrderButton({order}: PropsType) {
     }
 
     return (
-        <button className="order-reject"
-            // onClick={() => confirmModalStore.askForConfirm(modalOptions).then(res => res ? rejectOrder(order.id) : void 0)}
-                onClick={() => confirmModalStore.askForConfirm(modalOptions).then(() => rejectOrder(order.id))}
-
-        >
-            Reject
-        </button>
+        <AdminButton className="order-reject"
+                     onClick={() => confirmModalStore.askForConfirm(modalOptions).then(() => rejectOrder(order.id)).catch(err => {})}
+                     title={t("Reject")}/>
     )
 }
