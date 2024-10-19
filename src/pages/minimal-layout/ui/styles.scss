@@ -8,5 +8,9 @@
     max-width: $content-width;
     margin: 0 auto;
     height: 100%;
+
+    & .content {
+      width: 100%;
+    }
   }
 }

@@ -2,26 +2,23 @@ import "./styles.scss";
 import {ErrorMessage, Field as FormikField, FieldHookConfig, useField} from "formik";
 import React, {useEffect, useState} from "react";
 import clsx from "clsx";
-import {SvgIcon} from "../svg-icon";
-import Arrow from "../../../assets/images/arrow.svg";
-import {parseNumber} from "../../lib/parse-number";
 import {InputNumber} from "../input-number";
 
 type PropsType = {
     label: string,
     className?: string,
-    onChange?: (e: number) => void,
     max: number,
     min: number
-} & FieldHookConfig<any>
+    onValueChange?: (e: number) => void,
+}& FieldHookConfig<any>
 
-export function FieldNumber({label, className, onChange, max, min, ...props}: PropsType) {
+export function FieldNumber({label, className, onValueChange, max, min, ...props}: PropsType) {
     const [field, meta, {setValue: setGlobalValue}] = useField(props);
 
     const setValue = (value: number) => {
         const limitedValue = Math.max(Math.min(value, max), min)
         setGlobalValue(limitedValue);
-        onChange?.(value);
+        onValueChange?.(value);
     }
 
     return (

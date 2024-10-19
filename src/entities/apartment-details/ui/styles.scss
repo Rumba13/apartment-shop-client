@@ -45,15 +45,24 @@
     & .apartment-images {
       display: flex;
       flex-direction: column;
-      //border: 1px solid red;
+      flex: 1;
+      height: 300px;
+      border-radius: 15px;
 
-      & .main-image {
-        width: 100%;
-        margin-bottom: 10px;
-        border-radius: 15px;
-        aspect-ratio: 1 / 0.528;
-        object-position: center;
+      & .swiper{
+        border-radius: inherit;
+
+        & .swiper-wrapper {
+    //TODO remove that shit
+        margin-left: 1px;
+        }
       }
+
+      & img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+      }
+
 
       & .other-images {
         display: grid;
@@ -104,6 +113,9 @@
 
 
     & .apartment-details-wrapper {
+      display: flex;
+      flex-direction: column;
+
       & .apartment-tabs {
         display: flex;
         width: 100%;

@@ -39,62 +39,96 @@ export const OrderApartmentForm = observer(({
                                                 updateApartmentPrice
                                             }: PropsType) => {
     const {t} = useTypedTranslation();
+    const todayDate = dayjs().format("YYYY-MM-DD");
+
+    useEffect(() => {
+        updateApartmentPrice({
+            apartmentId,
+            fromDate: todayDate,
+            toDate: todayDate,
+            guestsCount: 0
+        })
+    }, []);
 
     useEffect(() => {
     }, [userStore.user, userStore.user?.username]);
 
     return (
-        <Formik<ValuesType> enableReinitialize initialValues={{
-            username: userStore.user?.username || "",
-            email: userStore.user?.email || "",
-            phone: "",
-            bookDateRange: ["", ""],
-            guestsCount: 0,
-            comment: ""
-        }} onSubmit={(values, formikHelpers) => {
-            createOrder(values, apartmentId).then(() => {
-                snackBarStore.showSnackBar("Ваша заявка отправлена на рассмотрение", {timeout: 5000})
-                onCreateOrder()
-                formikHelpers.resetForm();
-            })
-        }}>
+        <Formik<ValuesType> enableReinitialize
+                            initialValues={{
+                                username: userStore.user?.username || "",
+                                email: userStore.user?.email || "",
+                                phone: "",
+                                bookDateRange: ["", ""],
+                                guestsCount: 0,
+                                comment: ""
+                            }}
+                            onSubmit={(values, formikHelpers) => {
+                                createOrder(values, apartmentId).then(() => {
+                                    snackBarStore.showSnackBar("Ваша заявка отправлена на рассмотрение", {timeout: 5000})
+                                    onCreateOrder()
+                                    formikHelpers.resetForm();
+                                })
+                            }}
+        >
             {({setFieldValue, resetForm, values}) => <Form className="order-form">
-                <Field className="order-form-name" placeholder={t("Enter Your Name")} name="username"
-                       label={t("Name") + " *"}/>
-                <Field className="order-form-phone" placeholder="+375" type="tel" name="phone"
-                       label={t("Phone") + " *"}/>
-                <Field className="order-form-email" placeholder="djonson@gmail.com" type="email"
-                       name="email" label={t("Email")}/>
-                <FieldNumber className="order-form-people-count" min={0} max={apartmentMaxGuests}
-                             onChange={(event: any) => {
-                                 const todayDate = dayjs().format("YYYY-MM-DD");
+                <Field className="order-form-name"
+                       placeholder={t("Enter Your Name")}
+                       name="username"
+                       label={t("Name") + " *"}
+                />
+                <Field className="order-form-phone"
+                       placeholder="+375"
+                       type="tel"
+                       name="phone"
+                       label={t("Phone") + " *"}
+                />
+                <Field className="order-form-email"
+                       placeholder="djonson@gmail.com"
+                       type="email"
+                       name="email"
+                       label={t("Email")}
+                />
+                <FieldNumber className="order-form-people-count"
+                             min={0}
+                             max={apartmentMaxGuests}
+                             onValueChange={(value: number) => {
                                  updateApartmentPrice({
                                      apartmentId,
                                      fromDate: values.bookDateRange[0] || todayDate,
                                      toDate: values.bookDateRange[1] || todayDate,
-                                     guestsCount: event.target.value
+                                     guestsCount: value
                                  })
                              }}
-                             label={t("Number Of People")} name="guestsCount"/>
+                             label={t("Number Of People")}
+                             name="guestsCount"
+                />
                 <div className="book-date field">
                     <h2 className="book-date__title field__label">{t("Check-in Date")}</h2>
-                    <RangePicker locale={ruRu} className="date-picker field__field" onChange={(a, dates) => {
-                        setFieldValue("bookDateRange", dates);
-                        updateApartmentPrice({
-                            apartmentId,
-                            fromDate: dates[0],
-                            toDate: dates[1],
-                            guestsCount: values.guestsCount
-                        })
-                    }}/>
+                    <RangePicker locale={ruRu}
+                                 className="date-picker field__field"
+                                 onChange={(a, dates) => {
+                                     setFieldValue("bookDateRange", dates);
+                                     updateApartmentPrice({
+                                         apartmentId,
+                                         fromDate: dates[0],
+                                         toDate: dates[1],
+                                         guestsCount: values.guestsCount
+                                     })
+                                 }}
+                    />
                 </div>
 
-                <Field className={"order-form-information"} as={"textarea"} name="comment"
+                <Field className={"order-form-information"}
+                       as={"textarea"}
+                       name="comment"
                        placeholder={t("Additional Information")}
-                       label={t("Additional Information")}/>
+                       label={t("Additional Information")}
+                />
 
                 <button className="order-form__submit-button submit-button"
-                        type="submit">{t("Send Request")}</button>
+                        type="submit"
+                >{t("Send Request")}</button>
             </Form>}
 
         </Formik>

@@ -1,0 +1,12 @@
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  width: 100%;
+  min-height: 700px;
+
+  & .ant-skeleton {
+    margin-bottom: 25px;
+    height: 150px;
+  }
+}

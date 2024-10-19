@@ -2,7 +2,7 @@ import "./styles.scss";
 import {useEffect, useState} from "react";
 import {apartmentListStore} from "../model/model";
 import {observer} from "mobx-react";
-import {ApartmentCard} from "../../../entities/apartment-card";
+import {ApartmentCard, ApartmentCardSkeleton} from "../../../entities/apartment-card";
 import {tagsFilterStore} from "../../../features/select-tags/model/tags-filter-store";
 import {searchStore} from "../../../shared/api/search-store";
 import {priceFilterStore} from "../../../features/FILTER/filter-by-price";
@@ -53,8 +53,16 @@ export const ApartmentList = observer(({}: PropsType) => {
         guestsCountStore.maxGuestsCount
     ]);
 
-    if (!apartmentListStore.apartments) {
-        return <div>Loading...</div>
+    if (!apartmentListStore.apartments) { //initial loading
+        return <div className="apartment-list">
+            <ApartmentCardSkeleton/>
+            <ApartmentCardSkeleton/>
+            <ApartmentCardSkeleton/>
+            <ApartmentCardSkeleton/>
+            <ApartmentCardSkeleton/>
+            <ApartmentCardSkeleton/>
+            <ApartmentCardSkeleton/>
+        </div>
     }
 
     return <div className="apartment-list">

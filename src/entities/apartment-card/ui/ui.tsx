@@ -9,16 +9,10 @@ import {LinkWithIcon} from "../../../shared/ui/link-with-icon";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
 import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map";
-import NoImage from "../../../assets/images/no-image.jpg";
-
-import {Swiper, SwiperSlide} from 'swiper/react';
-import {Navigation, Pagination} from 'swiper/modules';
-
-import 'swiper/css';
-import 'swiper/css/navigation'
-import 'swiper/css/pagination';
-
 import {observer} from "mobx-react";
+import {Slider} from "../../../shared/ui/slider";
+
+
 
 type PropsType = {
     apartment: Apartment;
@@ -48,25 +42,9 @@ export const ApartmentCard = observer(({
     return <div className="apartment-card">
         <div className="apartment-card-slider"
         >
-            <Swiper
-                modules={[Navigation, Pagination]}
-                slidesPerView={1}
-                navigation={{prevEl: ".swiper-button-prev", nextEl: ".swiper-button-next"}}
-                pagination={{type:"bullets", clickable:true, el:".swiper-pagination"}}
-            >
-                <div className="swiper-pagination"></div>
-                <div className="swiper-button-prev"></div>
-                <div className="swiper-button-next"></div>
-                {photos.map(img => <SwiperSlide key={String(img)}>
-                    <Link className="slider-link"
-                          to={"/apartment-details/" + id}
-                    >
-                        <img src={img || NoImage}
-                             alt={""}
-                        />
-                    </Link>
-                </SwiperSlide>)}
-            </Swiper>
+            <Slider items={photos.map(image => <Link to={"apartment-details/" + id}>
+                <img src={image} alt=""></img>
+            </Link>)}/>
         </div>
 
         <div className="apartment-details">
