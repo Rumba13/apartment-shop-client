@@ -98,7 +98,8 @@ export const russianTranslation = {
     "Definitely reject The Order": "Точно отклонить заказ?",
     "Reject": "Отклонить",
     "Definitely Sign Out?": "Точно выйти?",
-    "Sign Out": "Выйти"
+    "Sign Out": "Выйти",
+    "Definitely Delete Apartment": "Точно удалить квартиру?",
 };
 
 export type Translation = typeof russianTranslation;

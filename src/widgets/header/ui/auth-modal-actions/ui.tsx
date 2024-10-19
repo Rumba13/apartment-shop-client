@@ -8,6 +8,7 @@ import {signOutService} from "../../../../shared/api/sign-out-service";
 import {ConfirmModalOptions} from "../../../../shared/api/types/confirm-modal-options";
 import {useEffect} from "react";
 import {Link} from "react-router-dom";
+import {Skeleton} from "antd";
 
 export function AuthModalActions() {
     const {t} = useTypedTranslation();
@@ -29,20 +30,27 @@ export function AuthModalActions() {
         description: t("Definitely Sign Out?")
     }
 
+    if (userStore.isLoading) {
+        return (
+            <div className="auth-modal-actions">
+                <Skeleton.Input active/>
+                <Skeleton.Avatar active style={{marginLeft:"5px"}}/>
+            </div>
+        )
+    }
+
     return (
         <div className="auth-modal-actions">
             {userStore.user && <>
-
-
                 <button className="sign-out-button"
                         onClick={signOut}
                 >{t("Sign Out")}</button>
 
-                <Link className="auth-modal-link" to={"orders"}>
-                 <span className="options-item__title">{t("Orders")}</span>
+                <Link className="auth-modal-link"
+                      to={"/orders"}>
+                    <span className="options-item__title">{t("Orders")}</span>
                 </Link>
             </>}
-
 
             {!userStore.user && <>
                 <div className="open-sign-in-modal"

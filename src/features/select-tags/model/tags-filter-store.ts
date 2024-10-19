@@ -18,8 +18,11 @@ class SelectTagsStore {
 
     public async loadTags() {
         this.setIsLoading(true);
+
         try {
-            this._setTags(await tagsService.loadTags())
+            let tags = await tagsService.loadTags();
+            tags = tags.filter(tag => tag != "")
+            this._setTags(tags)
         } catch (err) {
             console.log(err)
         } finally {

@@ -1,20 +1,23 @@
 import './styles.scss';
 import {Currency} from "../../../shared/api/types/currency";
-import {Select} from "../../../shared/ui/select";
 import {currencyStore} from "../model/currency-store";
 import {observer} from "mobx-react";
+import {Select} from "antd";
 
 type SelectOption = {
     value: Currency,
     label: string
 }
 
-export const SelectCurrencyDropdown = observer(() => {
-    const selectOptions: SelectOption[] = (["BYN", "USD", "EUR"] as Currency[]).map((currency): SelectOption => ({
-        label: currency,
-        value: currency
-    }))
+const options: SelectOption[] = (["BYN", "USD", "EUR"] as Currency[]).map((currency): SelectOption => ({
+    label: currency,
+    value: currency
+}))
 
-    return <Select wrapperClassName={"select-currency-dropdown-wrapper"} className={"select-currency-dropdown"} options={selectOptions} value={currencyStore.currency}
-                   onValueChanged={(value) => currencyStore.setCurrency(value as Currency)}/>
+export const SelectCurrencyDropdown = observer(() => {
+    return <Select className="select-currency-dropdown-wrapper"
+                   defaultValue={options[0].value}
+                   onChange={currency => currencyStore.setCurrency(currency)}
+                   options={options}/>
+
 });

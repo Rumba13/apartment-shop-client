@@ -2,6 +2,10 @@
 @import "./normalize";
 @import "./fonts";
 
+html {
+  scroll-behavior: smooth;
+}
+
 .submit-button {
   background-color: var(--deep-azure);
   font-family: "CeraPro", Arial, sans-serif;

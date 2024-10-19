@@ -8,7 +8,7 @@ import BedIcon from "../../../assets/images/bed.svg";
 import GuestsIcon from "../../../assets/images/people.svg";
 import ApartmentAreaIcon from "../../../assets/images/apartment-area.svg";
 import MarkIcon from "../../../assets/images/check.svg";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {TitleWithIcon} from "../../../shared/ui/title-with-icon";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map";
@@ -21,13 +21,16 @@ import {UUID} from "../../../shared/api/types/uuid";
 import {apartmentDetailsStore} from "../model/apartment-details-store";
 import {userStore} from "../../user";
 import {currencyStore} from "../../../features/select-currency";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {DeleteApartment} from "./delete-apartment-button";
 import NoImage from "../../../assets/images/no-image.jpg"
 import {AddApartmentToFavorites} from "../../../features/APARTMENT/add-apartment-to-favorites";
 import useLocalStorageState from "use-local-storage-state";
 import {Slider} from "../../../shared/ui/slider";
 import {SwiperSlide} from "swiper/react";
+import {Button} from "../../../shared/ui/button";
+import UpdateIcon from "../../../assets/images/refresh.svg";
+import clsx from "clsx";
 
 type PropsType = {
     apartmentId: UUID
@@ -37,9 +40,20 @@ export const ApartmentDetails = observer(({
                                               apartmentId
                                           }: PropsType) => {
     const {t} = useTypedTranslation()
+    const navigate = useNavigate()
     const {t: tr} = useTranslation()
     const [isCollapsibleExpanded, setIsCollapsibleExpanded] = useState<boolean>(false)
     const [accessToken] = useLocalStorageState("ACCESS-TOKEN");
+
+    const [currentTab, setCurrentTab] = useState(0);
+
+    const mapRef = useRef<HTMLDivElement>(null)
+    const descriptionRef = useRef<HTMLDivElement>(null)
+    const tagsRef = useRef<HTMLDivElement>(null)
+    const rulesRef = useRef<HTMLDivElement>(null)
+    const nearToApartmentRef = useRef<HTMLDivElement>(null)
+    const reviewsRef = useRef<HTMLDivElement>(null)
+
 
     const testItems = ["Кирпичный дом", "Лифт", "Этаж: 2", "Этажей: 6"].map(li =>
         <TitleWithIcon className={"tags-list__item amenities-list__item"}
@@ -77,6 +91,7 @@ export const ApartmentDetails = observer(({
     } = apartmentDetailsStore.apartment;
 
 
+    // @ts-ignore
     return <div className="apartment-details">
         <OrderModal apartmentMaxGuests={guestsQuantity}
                     apartmentId={apartmentId}
@@ -87,15 +102,16 @@ export const ApartmentDetails = observer(({
         <div className="apartment-details-top">
             <div className="max-width-wrapper">
                 <h2 className="top__title">{title}</h2>
-                {userStore.user?.isSuperuser
-                    ? <Link className="top__sub-title"
-                            to={`/update-apartment/${apartmentId}`}
-                    >ID: {id}</Link>
-                    : <h3 className="top__sub-title">ID: {id}</h3>
-                }
+                <h3 className="top__sub-title">ID: {id}</h3>
             </div>
-            <AddApartmentToFavorites apartmentId={id}/>
-            {userStore.user?.isSuperuser && <DeleteApartment apartmentId={apartmentId}/>}
+            {/*<AddApartmentToFavorites apartmentId={id}/>*/}
+            {userStore.user?.isSuperuser && <>
+                <DeleteApartment apartmentId={apartmentId}/>
+                <Button icon={UpdateIcon}
+                        onClick={() => navigate(`/update-apartment/${apartmentId}`)}
+                        title={"Обновить"}/>
+            </>}
+
 
         </div>
         <div className="apartment-details-mid">
@@ -105,17 +121,41 @@ export const ApartmentDetails = observer(({
                             items={photos.map(image =>
                                 <SwiperSlide key={image}>
                                     <img src={image}
-                                         alt="" ></img>
+                                         alt=""></img>
                                 </SwiperSlide>)}
                     />
                 </div>
                 <div className="apartment-tabs">
-                    <span className="apartment-tabs__tab active">{t("On Map")}</span>
-                    <span className="apartment-tabs__tab">{t("Description")}</span>
-                    <span className="apartment-tabs__tab">{t("Amenities")}</span>
-                    <span className="apartment-tabs__tab">{t("Rules Of Residence")}</span>
-                    <span className="apartment-tabs__tab">{t("Near The House")}</span>
-                    <span className="apartment-tabs__tab">{t("Reviews")}</span>
+
+                    {[
+                        {
+                            title: t("On Map"),
+                            onClick: () => mapRef.current?.scrollIntoView()
+                        },
+                        {
+                            title: t("Description"),
+                            onClick: () => descriptionRef.current?.scrollIntoView()
+                        }, {
+                            title: t("Amenities"),
+                            onClick: () => tagsRef.current?.scrollIntoView()
+                        }, {
+                            title: t("Rules Of Residence"),
+                            onClick: () => rulesRef.current?.scrollIntoView()
+                        }, {
+                            title: t("Near The House"),
+                            onClick: () => nearToApartmentRef.current?.scrollIntoView()
+                        },
+                        {
+                            title: t("Reviews"),
+                            onClick: () => reviewsRef.current?.scrollIntoView()
+                        },
+                    ]
+                        .map((tab, index) =>
+                            <span className={clsx("apartment-tabs__tab", currentTab === index && "active")}
+                                  onClick={() => {
+                                      tab.onClick();
+                                      setCurrentTab(index)
+                                  }}>{tab.title}</span>)}
                 </div>
                 <div className="apartment-properties">
                     {/*TODO refactor*/}
@@ -136,7 +176,8 @@ export const ApartmentDetails = observer(({
                                        subTitle={t("Area")}
                     />
                 </div>
-                <div className="apartment-description">
+                <div className="apartment-description"
+                     ref={descriptionRef}>
                     <h2 className="apartment-description__title">{t("Description")}</h2>
                     <span className="apartment-description__description"
                           dangerouslySetInnerHTML={{__html: description}}
@@ -155,7 +196,8 @@ export const ApartmentDetails = observer(({
                             </TitleWithIcon>)}
                     </ul>
                 </div>
-                <div className="section amenities">
+                <div className="section amenities"
+                     ref={tagsRef}>
                     <h2 className="amenities__title">{t("Amenities")}</h2>
 
                     <div className="amenities-list-wrapper">
@@ -205,7 +247,8 @@ export const ApartmentDetails = observer(({
 
 
                 </div>
-                <div className="section rules-of-residence">
+                <div className="section rules-of-residence"
+                     ref={rulesRef}>
                     <h3 className="title">{t("Rules Of Residence")}</h3>
                     <ul className="tags-list">
                         {testItems}
@@ -217,7 +260,8 @@ export const ApartmentDetails = observer(({
                         {testItems}
                     </ul>
                 </div>
-                <div className="section near-the-house">
+                <div className="section near-the-house"
+                     ref={nearToApartmentRef}>
                     <h3 className="title">{t("Near The House")}</h3>
                     <ul className="near-the-house-list">
                         <li>Центральный детский парк культуры и отдыха им. Максима Горького - 1.15 км</li>

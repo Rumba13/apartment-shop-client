@@ -3,24 +3,28 @@ import {Logo} from "../../../entities/logo";
 import {SelectCurrencyDropdown} from "../../../features/select-currency";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {AuthModal} from "../../auth-modal";
-import {FavoritesCount} from "../../../features/APARTMENT/add-apartment-to-favorites";
-import {CONSTANTS} from "../../../shared/lib/constants";
 import {AuthModalActions} from "./auth-modal-actions/ui";
+import {observer} from "mobx-react";
+import {useEffect} from "react";
+import {userStore} from "../../../entities/user";
 
 type PropsType = {
     noSearch?: boolean;
 }
 
-export function Header({noSearch = false}: PropsType) {
+export const Header = observer(({noSearch = false}: PropsType) => {
     const {t} = useTypedTranslation();
 
+    useEffect(() => {
+
+    }, [userStore.user]);
 
     return <header className="header">
         <AuthModal/>
         <div className="header-top">
             <Logo/>
             <SelectCurrencyDropdown/>
-            {!(CONSTANTS.SERVER_URL === CONSTANTS.SERVER_URL_PROD) && <FavoritesCount/>}
+            {/*{!(CONSTANTS.SERVER_URL === CONSTANTS.SERVER_URL_PROD) && <FavoritesCount/>}*/}
             <AuthModalActions/>
         </div>
 
@@ -33,4 +37,4 @@ export function Header({noSearch = false}: PropsType) {
             </div>
         }
     </header>
-}
+});

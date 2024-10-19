@@ -13,6 +13,7 @@ import {snackBarStore} from "../../../../shared/ui/snack-bar/snack-bar-store";
 import {createOrder} from "../api/create-order";
 import {UpdateApartmentPriceDto} from "../../../../shared/api/types/update-apartment-price.dto";
 import dayjs from "dayjs";
+import {currencyStore} from "../../../select-currency";
 
 const {RangePicker} = DatePicker;
 
@@ -46,12 +47,13 @@ export const OrderApartmentForm = observer(({
             apartmentId,
             fromDate: todayDate,
             toDate: todayDate,
-            guestsCount: 0
+            guestsCount: 0,
+            resultCurrency:currencyStore.currency
         })
     }, []);
 
     useEffect(() => {
-    }, [userStore.user, userStore.user?.username]);
+    }, [userStore.user, userStore.user?.username,currencyStore.currency]);
 
     return (
         <Formik<ValuesType> enableReinitialize
@@ -97,7 +99,8 @@ export const OrderApartmentForm = observer(({
                                      apartmentId,
                                      fromDate: values.bookDateRange[0] || todayDate,
                                      toDate: values.bookDateRange[1] || todayDate,
-                                     guestsCount: value
+                                     guestsCount: value,
+                                     resultCurrency:currencyStore.currency
                                  })
                              }}
                              label={t("Number Of People")}
@@ -113,7 +116,8 @@ export const OrderApartmentForm = observer(({
                                          apartmentId,
                                          fromDate: dates[0],
                                          toDate: dates[1],
-                                         guestsCount: values.guestsCount
+                                         guestsCount: values.guestsCount,
+                                         resultCurrency:currencyStore.currency
                                      })
                                  }}
                     />

@@ -31,14 +31,14 @@ class OrderService {
         return (await serverConnection.patch(`/bookings/${orderId}/reject`)).data
     }
 
-    public async calculateOrderPrice({toDate, fromDate, guestsCount, apartmentId}: UpdateApartmentPriceDto):Promise<Price> {
+    public async calculateOrderPrice({toDate, fromDate, guestsCount, apartmentId,resultCurrency}: UpdateApartmentPriceDto):Promise<Price> {
         return (await serverConnection.get("/bookings/count-total-price", {
             params: {
                 apartmentId,
                 guestsQuantity: guestsCount,
                 fromDate,
                 toDate,
-                resultCurrency: "USD" //TODO add result-currency
+                resultCurrency: resultCurrency
             }
         })).data
 

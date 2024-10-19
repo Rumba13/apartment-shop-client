@@ -7,6 +7,8 @@ import {UUID} from "../../../../shared/api/types/uuid";
 import {useNavigate} from "react-router-dom";
 import {snackBarStore} from "../../../../shared/ui/snack-bar/snack-bar-store";
 import useLocalStorageState from "use-local-storage-state";
+import {ConfirmModalOptions} from "../../../../shared/api/types/confirm-modal-options";
+import {confirmModalStore} from "../../../../shared/ui/confirm-modal/confirm-modal-store";
 
 type PropsType = {
     apartmentId: string;
@@ -14,7 +16,7 @@ type PropsType = {
 
 //TODO move to features
 
-async function deleteApartment(apartmentId: UUID, accessToken: string, navigateToHome:Function) {
+async function deleteApartment(apartmentId: UUID, accessToken: string, navigateToHome: Function) {
     try {
         await apartmentService.deleteApartment(apartmentId, accessToken)
         navigateToHome()
@@ -29,8 +31,17 @@ export function DeleteApartment({apartmentId}: PropsType) {
     const navigate = useNavigate()
     const [accessToken] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
 
+    const confirmOptions: ConfirmModalOptions = {
+        description: t("Definitely Delete Apartment"),
+        confirmButtonText: t("Delete"),
+    }
 
-    return <Button className="delete-apartment-button" icon={BinIcon} onClick={() => {
-        deleteApartment(apartmentId, accessToken, () => navigate("/"))
-    }} title={t("Delete")}/>
+    return <Button className="delete-apartment-button"
+                   icon={BinIcon}
+                   onClick={() => confirmModalStore.askForConfirm(confirmOptions)
+                       .then(() =>
+                           deleteApartment(apartmentId, accessToken, () => navigate("/"))
+                       ).catch(err => err)
+                   }
+                   title={t("Delete")}/>
 }

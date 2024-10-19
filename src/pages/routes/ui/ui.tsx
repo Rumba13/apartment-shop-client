@@ -11,13 +11,11 @@ import React from "react";
 
 export function Routes() {
 
-
-
     return (
         <BrowserRouter>
             <ReactRoutes>
                 <Route path="/" element={<HomePage/>}/>
-                <Route path="/wish-list" element={<WishListPage/>}/>
+                {/*<Route path="/wish-list" element={<WishListPage/>}/>*/}
                 <Route path="/create-apartment" element={<CreateApartmentPage/>}/>
                 <Route path="/apartment-details/:apartmentId" element={<ApartmentDetailsPage/>}/>
                 <Route path="/update-apartment/:apartmentId" element={<UpdateApartmentPage/>}/>

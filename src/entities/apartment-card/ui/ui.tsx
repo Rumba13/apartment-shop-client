@@ -13,8 +13,6 @@ import {observer} from "mobx-react";
 import {Slider} from "../../../shared/ui/slider";
 import {SwiperSlide} from "swiper/react";
 
-
-
 type PropsType = {
     apartment: Apartment;
 }

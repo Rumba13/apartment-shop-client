@@ -23,7 +23,6 @@ export const InputNumber = ({min, value, onChange, max, name, id}: PropsType) =>
         onChange?.(limitedValue);
     }
 
-
     useEffect(() => {
         setLocalValue(value + "")
     }, [value]);

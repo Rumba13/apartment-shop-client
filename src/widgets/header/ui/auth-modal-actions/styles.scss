@@ -1,6 +1,7 @@
 .auth-modal-actions {
   display: flex;
   align-items: center;
+  margin-left: 10px;
 
   & .open-sign-in-modal,.auth-modal-link, .sign-out-button  {
     cursor: pointer;

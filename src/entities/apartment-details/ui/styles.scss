@@ -10,6 +10,7 @@
 
     & .max-width-wrapper {
       max-width: 882px;
+      margin-right: auto;
     }
 
     & .top__title {
@@ -287,8 +288,6 @@
     }
 
     & .order-menu {
-      position: sticky;
-      top: 30px;
       display: inline-block;
       border: 1px solid var(--gains-boro);
       padding: 20px 30px;
