@@ -1,0 +1,62 @@
+import "./styles.scss"
+import {authModalStore} from "../../../auth-modal/model/auth-modal-store";
+import {useTypedTranslation} from "../../../../app/i18n/use-typed-translation";
+import useLocalStorageState from "use-local-storage-state";
+import {userStore} from "../../../../entities/user";
+import {confirmModalStore} from "../../../../shared/ui/confirm-modal/confirm-modal-store";
+import {signOutService} from "../../../../shared/api/sign-out-service";
+import {ConfirmModalOptions} from "../../../../shared/api/types/confirm-modal-options";
+import {useEffect} from "react";
+import {Link} from "react-router-dom";
+
+export function AuthModalActions() {
+    const {t} = useTypedTranslation();
+    const [accessToken, setAccessToken, {removeItem: removeAccessToken}] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
+    const [refreshToken, setRefreshToken, {removeItem: removeRefreshToken}] = useLocalStorageState<string>("REFRESH-TOKEN", {defaultValue: ""});
+
+    const signOut = () => {
+        confirmModalStore.askForConfirm(confirmModalOptions)
+            .then(() => signOutService.signOut(refreshToken))
+            .then((res) => userStore.setUser(null)).catch(err => console.log(err))
+        removeAccessToken()
+        removeRefreshToken()
+    }
+
+    useEffect(() => {
+        console.log(userStore.user);
+    }, [userStore.user, userStore.user?.email]);
+
+    const confirmModalOptions: ConfirmModalOptions = {
+        description: t("Definitely Sign Out?")
+    }
+
+    return (
+        <div className="auth-modal-actions">
+            {userStore.user && <>
+
+
+                <button className="sign-out-button"
+                        onClick={signOut}
+                >{t("Sign Out")}</button>
+
+                <Link className="auth-modal-link" to={"orders"}>
+                 <span className="options-item__title">{t("Orders")}</span>
+                </Link>
+            </>}
+
+
+            {!userStore.user && <>
+                <div className="open-sign-in-modal"
+                     onClick={() => authModalStore.open(0)}
+                >
+                    <span className="options-item__title">{t("Sign In")}</span>
+                </div>
+                <div className="open-sign-up-modal"
+                     onClick={() => authModalStore.open(1)}
+                >
+                    <span className="options-item__title">{t("Sign Up")}</span>
+                </div>
+            </>}
+        </div>
+    )
+}

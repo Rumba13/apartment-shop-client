@@ -5,7 +5,7 @@ import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {AuthModal} from "../../auth-modal";
 import {FavoritesCount} from "../../../features/APARTMENT/add-apartment-to-favorites";
 import {CONSTANTS} from "../../../shared/lib/constants";
-import {authModalStore} from "../../auth-modal/model/auth-modal-store";
+import {AuthModalActions} from "./auth-modal-actions/ui";
 
 type PropsType = {
     noSearch?: boolean;
@@ -14,28 +14,14 @@ type PropsType = {
 export function Header({noSearch = false}: PropsType) {
     const {t} = useTypedTranslation();
 
+
     return <header className="header">
         <AuthModal/>
-
         <div className="header-top">
             <Logo/>
             <SelectCurrencyDropdown/>
-            {!(CONSTANTS.SERVER_URL === CONSTANTS.SERVER_URL_PROD) && (
-                <FavoritesCount/>
-            )}
-
-            {/*<UserMenu/>*/}
-
-            <div className="open-sign-in-modal"
-                 onClick={() => authModalStore.setIsOpened(true)}
-            >
-                <span className="options-item__title">{t("Sign In")}</span>
-            </div>
-            <div className="open-sign-up-modal"
-                 onClick={() => authModalStore.setIsOpened(true)}
-            >
-                <span className="options-item__title">{t("Sign Up")}</span>
-            </div>
+            {!(CONSTANTS.SERVER_URL === CONSTANTS.SERVER_URL_PROD) && <FavoritesCount/>}
+            <AuthModalActions/>
         </div>
 
         {!noSearch &&
@@ -46,7 +32,5 @@ export function Header({noSearch = false}: PropsType) {
                 </div>
             </div>
         }
-
-
     </header>
 }

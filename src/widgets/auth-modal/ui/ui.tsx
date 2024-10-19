@@ -5,14 +5,12 @@ import clsx from "clsx";
 import {SvgButton} from "../../../shared/ui/svg-button";
 import CrossIcon from "../../../assets/images/cross.svg";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
-import {useState} from "react";
 import {SignUpForm} from "../../../features/sign-up";
 import {SignInForm} from "../../../features/sign-in";
 import {snackBarStore} from "../../../shared/ui/snack-bar/snack-bar-store";
 
 export const AuthModal = observer(() => {
     const {t} = useTypedTranslation()
-    const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
 
     return <div className={clsx("auth-modal", authModalStore.isOpened && "opened")}
                 onClick={authModalStore.stopPropagationInModal}>
@@ -22,18 +20,18 @@ export const AuthModal = observer(() => {
         <div className="auth-modal-tabs">
             {[t("Sign In"), t("Sign Up")]
                 .map((tabTitle, index) => <button
-                    className={clsx("auth-modal-tab", index === activeTabIndex && "active")}
-                    onClick={() => setActiveTabIndex(index)}>{tabTitle}</button>)
+                    className={clsx("auth-modal-tab", index === authModalStore.activeTab && "active")}
+                    onClick={() => authModalStore.setActiveTab(index)}>{tabTitle}</button>)
             }
         </div>
         <div className="content">
-            {activeTabIndex === 0 && (
+            {authModalStore.activeTab === 0 && (
                 <SignInForm onSignIn={() => {
                     authModalStore.setIsOpened(false)
                     snackBarStore.showSnackBar("Авторизация прошла успешно")
                 }}/>
             )}
-            {activeTabIndex === 1 && (
+            {authModalStore.activeTab === 1 && (
                 <SignUpForm onSignUp={() => {
                     authModalStore.setIsOpened(false)
                     snackBarStore.showSnackBar("Авторизация прошла успешно")

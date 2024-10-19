@@ -99,6 +99,7 @@ export const englishTranslation: Translation = {
     "Approve": "Approve",
     "Definitely reject The Order": "Definitely reject the order?",
     "Reject": "Reject",
-    "Definitely Sign Out?": "Definitely sign out?"
+    "Definitely Sign Out?": "Definitely sign out?",
+    "Sign Out": "Sign out"
 };
 
