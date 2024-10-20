@@ -28,10 +28,10 @@ export const Aside = observer(() => {
         <aside className="aside">
             <span className="aside__title">{t("Filters")}</span>
             <ApartmentDateFilter/>
+            <FilterByGuestsCount/>
             <PriceFilter/>
             <AreaFilter/>
             <TagsList/>
-            <FilterByGuestsCount/>
             <RemoveFiltersButton onClick={() => {
                 priceFilterStore.removeFilter();
                 areaFilterStore.removeFilter();

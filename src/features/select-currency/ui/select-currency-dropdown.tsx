@@ -9,7 +9,7 @@ type SelectOption = {
     label: string
 }
 
-const options: SelectOption[] = (["BYN", "USD", "EUR"] as Currency[]).map((currency): SelectOption => ({
+const options: SelectOption[] = (["BYN", "USD", "RUB"] as Currency[]).map((currency): SelectOption => ({
     label: currency,
     value: currency
 }))

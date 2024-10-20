@@ -30,14 +30,14 @@ export function AuthModalActions() {
         description: t("Definitely Sign Out?")
     }
 
-    if (userStore.isLoading) {
-        return (
-            <div className="auth-modal-actions">
-                <Skeleton.Input active/>
-                <Skeleton.Avatar active style={{marginLeft:"5px"}}/>
-            </div>
-        )
-    }
+    // if (userStore.isLoading) {
+    //     return (
+    //         <div className="auth-modal-actions">
+    //             <Skeleton.Input active/>
+    //             <Skeleton.Avatar active style={{marginLeft:"5px"}}/>
+    //         </div>
+    //     )
+    // }
 
     return (
         <div className="auth-modal-actions">

@@ -16,15 +16,18 @@ type PropsType = {
 
 export function SignInForm({onSignIn}: PropsType) {
     const {t} = useTypedTranslation()
-    const [accessToken, setAccessToken] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
-    const [refreshToken, setRefreshToken] = useLocalStorageState<string>("REFRESH-TOKEN", {defaultValue: ""});
+    const [accessToken,setAccessToken, {removeItem:removeAccessToken}] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
+    const [refreshToken,setRefreshToken, {removeItem:removeRefreshToken}] = useLocalStorageState<string>("REFRESH-TOKEN", {defaultValue: ""});
 
     return (
         <Formik<ValuesType> initialValues={{username: "sad", password: "sadad"}} onSubmit={(values, formikHelpers) => {
             signInService.signIn(values).then((response) => {
                 setAccessToken(response.access_token);
                 setRefreshToken(response.refresh_token);
-                userStore.auth(response.access_token);
+                userStore.auth(response.access_token, () => {
+                    removeRefreshToken()
+                    removeAccessToken()
+                });
                 onSignIn?.();
             }).catch((err) => {
                 console.log(err)

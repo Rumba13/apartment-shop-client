@@ -24,7 +24,6 @@ export const Header = observer(({noSearch = false}: PropsType) => {
         <div className="header-top">
             <Logo/>
             <SelectCurrencyDropdown/>
-            {/*{!(CONSTANTS.SERVER_URL === CONSTANTS.SERVER_URL_PROD) && <FavoritesCount/>}*/}
             <AuthModalActions/>
         </div>
 

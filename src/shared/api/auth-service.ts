@@ -7,7 +7,8 @@ class AuthService {
 
     public async auth(accessToken: string):Promise<User> {
         return (await serverConnection.get("users/me", {
-            headers: {"Authorization": "Bearer " + accessToken},
+
+            headers: accessToken ? {"Authorization": "Bearer " + accessToken}: undefined,
         })).data
     }
 }

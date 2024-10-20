@@ -13,12 +13,25 @@ import {ConfirmModal} from "../shared/ui/confirm-modal/ui";
 
 export const App = observer(() => {
     const {i18n} = useTypedTranslation();
-    const [accessToken] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
+    const [accessToken,s1, {removeItem:removeAccessToken}] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
+    const [refreshToken,s2, {removeItem:removeRefreshToken}] = useLocalStorageState<string>("REFRESH-TOKEN", {defaultValue: ""});
 
     useEffect(() => {
         i18n.changeLanguage("ru");
         dayjs.locale("ru")
-        userStore.auth(accessToken)
+        userStore.auth(accessToken, () => {
+            removeRefreshToken();
+            removeAccessToken();
+
+        }).then(() => {
+            if(userStore.isError)
+            {
+                userStore.auth(accessToken, () => {
+                    removeRefreshToken();
+                    removeAccessToken();
+                })
+            }
+        })
     }, []);
 
 

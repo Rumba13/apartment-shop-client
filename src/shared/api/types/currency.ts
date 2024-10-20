@@ -1,1 +1,1 @@
-export type Currency = "BYN" | "USD" | "EUR";
+export type Currency = "BYN" | "USD" | "RUB";

@@ -15,15 +15,18 @@ type PropsType = {
 
 export function SignUpForm({onSignUp}: PropsType) {
     const {t} = useTypedTranslation()
-    const [accessToken, setAccessToken] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
-
+    const [accessToken,setAccessToken, {removeItem:removeAccessToken}] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
+    const [refreshToken,setRefreshToken, {removeItem:removeRefreshToken}] = useLocalStorageState<string>("REFRESH-TOKEN", {defaultValue: ""});
     return (
         <Formik<ValuesType> initialValues={{username: "", email: "", password: ""}}
                             onSubmit={(signUpDto, formikHelpers) => {
                                 signUpService.signUp(signUpDto).then(response => {
                                     setAccessToken(response.access_token,);
-                                    setAccessToken(response.refresh_token);
-                                    userStore.auth(response.access_token);
+                                    setRefreshToken(response.refresh_token);
+                                    userStore.auth(response.access_token, () => {
+                                        removeAccessToken()
+                                        removeRefreshToken()
+                                    });
                                     onSignUp?.();
                                 }).catch((error) => {
                                     if (error.response.data.detail === "Username already exists") {
