@@ -1,4 +1,9 @@
 .select-currency-dropdown-wrapper {
   height: 40px;
   width: 70px;
+  text-overflow: clip;
+
+  & .ant-select-selection-item, & .ant-select-item-option-content {
+    text-overflow: clip;
+  }
 }

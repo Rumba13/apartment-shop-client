@@ -27,7 +27,8 @@ export function AuthModalActions() {
     }, [userStore.user, userStore.user?.email]);
 
     const confirmModalOptions: ConfirmModalOptions = {
-        description: t("Definitely Sign Out?")
+        description: t("Definitely Sign Out?"),
+        confirmButtonText: t("Yes"),
     }
 
     // if (userStore.isLoading) {

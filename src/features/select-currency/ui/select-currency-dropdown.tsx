@@ -19,5 +19,4 @@ export const SelectCurrencyDropdown = observer(() => {
                    defaultValue={options[0].value}
                    onChange={currency => currencyStore.setCurrency(currency)}
                    options={options}/>
-
 });

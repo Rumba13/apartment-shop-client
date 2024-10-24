@@ -24,13 +24,13 @@ import {currencyStore} from "../../../features/select-currency";
 import {Link, useNavigate} from "react-router-dom";
 import {DeleteApartment} from "./delete-apartment-button";
 import NoImage from "../../../assets/images/no-image.jpg"
-import {AddApartmentToFavorites} from "../../../features/APARTMENT/add-apartment-to-favorites";
 import useLocalStorageState from "use-local-storage-state";
 import {Slider} from "../../../shared/ui/slider";
 import {SwiperSlide} from "swiper/react";
 import {Button} from "../../../shared/ui/button";
 import UpdateIcon from "../../../assets/images/refresh.svg";
 import clsx from "clsx";
+import ImageNotFound from "../../../assets/images/no-image.jpg";
 
 type PropsType = {
     apartmentId: UUID
@@ -85,13 +85,11 @@ export const ApartmentDetails = observer(({
         bedsQuantity,
         roomsQuantity,
         area,
-        amenities,
+        amenityGroups,
         landlordId,
         address
     } = apartmentDetailsStore.apartment;
 
-
-    // @ts-ignore
     return <div className="apartment-details">
         <OrderModal apartmentMaxGuests={guestsQuantity}
                     apartmentId={apartmentId}
@@ -102,7 +100,6 @@ export const ApartmentDetails = observer(({
         <div className="apartment-details-top">
             <div className="max-width-wrapper">
                 <h2 className="top__title">{title}</h2>
-                <h3 className="top__sub-title">ID: {id}</h3>
             </div>
             {/*<AddApartmentToFavorites apartmentId={id}/>*/}
             {userStore.user?.isSuperuser && <>
@@ -118,7 +115,7 @@ export const ApartmentDetails = observer(({
             <div className="apartment-details-wrapper">
                 <div className="apartment-images">
                     <Slider loop
-                            items={photos.map(image =>
+                            items={(!photos[0] ? [ImageNotFound]: photos).map(image =>
                                 <SwiperSlide key={image}>
                                     <img src={image}
                                          alt=""></img>
@@ -200,52 +197,25 @@ export const ApartmentDetails = observer(({
                      ref={tagsRef}>
                     <h2 className="amenities__title">{t("Amenities")}</h2>
 
-                    <div className="amenities-list-wrapper">
-                        <h3 className="amenities-list__title">{t("In The Kitchen")}</h3>
-                        <ul className="amenities-list">
-                            {amenities.map(li =>
-                                <TitleWithIcon className={"tags-list__item amenities-list__item"}
-                                               withLi
-                                               key={li}
 
-                                               icon={MarkIcon}
-                                >
-                                    {li}
-                                </TitleWithIcon>)}
-                        </ul>
-                    </div>
-                    <div className="amenities-list-wrapper">
-                        <h3 className="amenities-list__title">{t("In The Bathroom")}</h3>
-                        <ul className="amenities-list">
-                            {testItems}
-                        </ul>
-                    </div>
-                    <div className="amenities-list-wrapper">
-                        <h3 className="amenities-list__title">{t("Entertainment And Multimedia")}</h3>
-                        <ul className="amenities-list">
-                            {testItems}
-                        </ul>
-                    </div>
-                    <div className="amenities-list-wrapper">
-                        <h3 className="amenities-list__title">{t("Security")}</h3>
-                        <ul className="amenities-list">
-                            {testItems}
-                        </ul>
-                    </div>
-                    <div className="amenities-list-wrapper">
-                        <h3 className="amenities-list__title">{t("Laundry And Linen")}</h3>
-                        <ul className="amenities-list">
-                            {testItems}
-                        </ul>
-                    </div>
-                    <div className="amenities-list-wrapper">
-                        <h3 className="amenities-list__title">{t("Amenities Outside")}</h3>
-                        <ul className="amenities-list">
-                            {testItems}
-                        </ul>
-                    </div>
+                    {amenityGroups.map(amenityGroup =>
+                        <div className="amenities-list-wrapper"
+                             key={amenityGroup.title}>
+                            <h3 className="amenities-list__title">{amenityGroup.title}</h3>
+                            <ul className="amenities-list">
 
+                                {amenityGroup.amenities.map(li =>
+                                    <TitleWithIcon className={"tags-list__item amenities-list__item"}
+                                                   withLi
+                                                   key={li}
 
+                                                   icon={MarkIcon}
+                                    >
+                                        {li}
+                                    </TitleWithIcon>)}
+                            </ul>
+                        </div>
+                    )}
                 </div>
                 <div className="section rules-of-residence"
                      ref={rulesRef}>
@@ -303,9 +273,9 @@ export const ApartmentDetails = observer(({
                             > {price.amount}{currencyToPostfixMap[price.currency]}. </span>
                          / {t("Day")}
                         </span>
-                        <TitleWithIcon className="rating"
-                                       icon={RatingIcon}
-                        >5.0(1)</TitleWithIcon>
+                        {/*<TitleWithIcon className="rating"*/}
+                        {/*               icon={RatingIcon}*/}
+                        {/*>5.0(1)</TitleWithIcon>*/}
                     </div>
                 </div>
                 <div className="price-chips">

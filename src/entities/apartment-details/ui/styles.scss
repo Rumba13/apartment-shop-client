@@ -21,16 +21,6 @@
       font-weight: 600;
     }
 
-    & .top__sub-title {
-      white-space: nowrap;
-      display: inline;
-      margin-left: 5px;
-      font-size: 14px;
-      font-family: "CeraPro", Arial, sans-serif;
-      font-weight: 700;
-      color: var(--white-gray);
-    }
-
     & .add-to-wish-list-button {
       margin-left: auto;
       margin-right: 5px;
@@ -50,20 +40,12 @@
       height: 300px;
       border-radius: 15px;
 
-      & .swiper{
+      & .swiper {
         border-radius: inherit;
 
         & .swiper-wrapper {
-    //TODO remove that shit
-        margin-left: 1px;
         }
       }
-
-      & img {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-      }
-
 
       & .other-images {
         display: grid;
@@ -270,19 +252,21 @@
 
       & .near-the-house {
         & .show-more {
-          color:var(--azure);
-          font-family: "CeraPro", Arial,sans-serif;
+          color: var(--azure);
+          font-family: "CeraPro", Arial, sans-serif;
+
           &:hover {
             font-size: 16px;
             text-decoration: underline;
           }
         }
+
         & .near-the-house-list {
-        & li {
-          font-size: 16px;
-          font-family: "CeraPro", Arial,sans-serif;
-          color:var(--dark-blue);
-        }
+          & li {
+            font-size: 16px;
+            font-family: "CeraPro", Arial, sans-serif;
+            color: var(--dark-blue);
+          }
         }
       }
     }

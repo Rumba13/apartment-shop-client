@@ -6,7 +6,7 @@ export type Order = {
     apartmentId: UUID,
     fromDate: string,
     toDate: string,
-    guestsQuantity: number,
+    guestsQuantity: number, //rename to guestsCount
     phoneNumber: string,
     username: string,
     comment: string,

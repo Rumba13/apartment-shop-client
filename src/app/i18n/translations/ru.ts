@@ -100,6 +100,10 @@ export const russianTranslation = {
     "Definitely Sign Out?": "Точно выйти?",
     "Sign Out": "Выйти",
     "Definitely Delete Apartment": "Точно удалить квартиру?",
+    "Yes": "Да",
+    "Order Approved": "Заказ подтверждён",
+    "Order Pending": "Заказ ожидает подтверждения",
+    "Order Rejected": "Заказ отклонён",
 };
 
 export type Translation = typeof russianTranslation;

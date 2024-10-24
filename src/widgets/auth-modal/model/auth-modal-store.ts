@@ -1,4 +1,4 @@
-import {ModalStore} from "../../../shared/lib/modal-store";
+import {ModalStore} from "../../../shared/ui/modal-store";
 import {action, makeObservable, observable, override} from "mobx";
 
 

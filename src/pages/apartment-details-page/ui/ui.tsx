@@ -18,7 +18,6 @@ export function ApartmentDetailsPage() {
     }
 
     return <MinimalLayout className={"apartment-details-page"}>
-
         <ApartmentDetails apartmentId={apartmentId}/>
     </MinimalLayout>
 }

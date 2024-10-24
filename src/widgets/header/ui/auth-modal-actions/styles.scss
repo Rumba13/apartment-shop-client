@@ -3,23 +3,11 @@
   align-items: center;
   margin-left: 10px;
 
-  //
-  //& .open-sign-in-modal,.auth-modal-link, .sign-out-button  {
-  //  cursor: pointer;
-  //  font-family: CeraPro, system-ui;
-  //  font-size: 16px;
-  //  color: var(--azure);
-  //  border-radius: 6px;
-  //  margin-right: 16px;
-  //  margin-left: 10px;
-  //
-  //  &:hover {
-  //    color: var(--deep-azure-active);
-  //  }
-  //}
-
   & .sign-out-button {
     margin-right: 10px;
+  }
+  & .open-sign-up-modal {
+    margin-left: 10px;
   }
 
   & .open-sign-up-modal,.open-sign-in-modal,.auth-modal-link, .sign-out-button{

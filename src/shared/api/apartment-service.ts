@@ -3,16 +3,19 @@ import {UUID} from "./types/uuid";
 import {serverConnection} from "./server-connection";
 import {Currency} from "./types/currency";
 import {CreateApartmentDto} from "./types/create-apartment.dto";
+import {mapApartmentAmenities} from "../lib/map-apartment-amenities";
 
 class ApartmentService {
     constructor() {
     }
 
     public async getApartmentById(apartmentId: UUID, resultCurrency: Currency): Promise<Apartment | null> {
-        return (await serverConnection.get("apartments/" + apartmentId, {params: {resultCurrency}})).data as Apartment;
+        const apartment = (await serverConnection.get("apartments/" + apartmentId, {params: {resultCurrency}})).data;
+        apartment.amenityGroups = mapApartmentAmenities(apartment.amenityGroups);
+        return apartment as Apartment;
     }
 
-    public async createApartment(apartmentDto: CreateApartmentDto, accessUserJWT: string):Promise<Apartment> {
+    public async createApartment(apartmentDto: CreateApartmentDto, accessUserJWT: string): Promise<Apartment> {
         return (await serverConnection.post("apartments", apartmentDto, {
             headers: {
                 Authorization: "Bearer " + accessUserJWT
@@ -40,7 +43,7 @@ class ApartmentService {
         return (await serverConnection.put(`apartments/${apartmentId}/photos`, photos, {
             headers: {
                 Authorization: "Bearer " + accessUserJWT,
-                "Content-Type":"multipart/form-data"
+                "Content-Type": "multipart/form-data"
             }
         })).data
     }

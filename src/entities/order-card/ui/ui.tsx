@@ -12,6 +12,7 @@ import {ApproveOrderButton} from "../../../features/ORDER/order-approve";
 import {RejectOrderButton} from "../../../features/ORDER/order-reject";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import dayjs from "dayjs";
+import {orderStatusToOrderStatusTitle} from "./order-status-to-order-status-title";
 
 type PropsType = {
     order: Order
@@ -52,7 +53,7 @@ export const OrderCard = observer(({order}: PropsType) => {
             </div>
 
             <div className="order-status">
-               <span className="order-status__status"> {order.status}</span>
+               <span className="order-status__status"> {orderStatusToOrderStatusTitle[order.status]}</span>
                 {order.status === "PENDING" && <>
                     <ApproveOrderButton order={order}/>
                     <RejectOrderButton order={order}/>

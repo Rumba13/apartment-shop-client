@@ -12,6 +12,7 @@ import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map"
 import {observer} from "mobx-react";
 import {Slider} from "../../../shared/ui/slider";
 import {SwiperSlide} from "swiper/react";
+import ImageNotFound from "../../../assets/images/no-image.jpg"
 
 type PropsType = {
     apartment: Apartment;
@@ -28,7 +29,7 @@ export const ApartmentCard = observer(({
                                                landlordId,
                                                address,
                                                description,
-                                               amenities,
+                                               amenityGroups,
                                                area,
                                                id
                                            }
@@ -39,15 +40,15 @@ export const ApartmentCard = observer(({
     }, [photos]);
 
     return <div className="apartment-card">
-        <div className="apartment-card-slider"
-        >
-            <Slider items={photos.map(image => <SwiperSlide> <Link to={"apartment-details/" + id}>
+        <div className="apartment-card-slider">
+            <Slider items={(!photos[0] ? [ImageNotFound]: photos).map(image => <SwiperSlide> <Link to={"apartment-details/" + id}>
                 <img src={image} alt=""></img>
             </Link></SwiperSlide>)}/>
         </div>
 
         <div className="apartment-details">
             <span className="apartment-card__price">{price.amount} {currencyToPostfixMap[price.currency]}</span>
+
             <TitleWithIcon className="apartment-details__rooms-quantity"
                            icon={CardsIcon}
             >{t("Rooms", {count: roomsQuantity})}</TitleWithIcon>
@@ -61,7 +62,7 @@ export const ApartmentCard = observer(({
                           icon={GeoIcon}
                           href={"/"}
             >На карте </LinkWithIcon>
-            <span className="apartment-details__description">{description}</span>
+            <Link className="apartment-details__description" to={"apartment-details/" + id}>{description}</Link>
         </div>
     </div>
 });

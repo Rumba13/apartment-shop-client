@@ -102,5 +102,15 @@ export const englishTranslation: Translation = {
     "Definitely Sign Out?": "Definitely sign out?",
     "Sign Out": "Sign out",
     "Definitely Delete Apartment": "Definitely delete apartment?",
+    "Yes": "Yes",
+    "Order Approved": "Order approved",
+    "Order Pending": "Order is pending",
+    "Order Rejected": "Order rejected",
 };
 
+/*
+
+guest count
+guest's count
+
+ */

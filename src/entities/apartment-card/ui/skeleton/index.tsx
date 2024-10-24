@@ -5,7 +5,7 @@ export function ApartmentCardSkeleton() {
     return (
         <div className="apartment-card-skeleton">
             <Skeleton.Input className="image" active/>
-            <Skeleton className="description" active/>
+            <Skeleton className="description" active />
         </div>
     )
 }

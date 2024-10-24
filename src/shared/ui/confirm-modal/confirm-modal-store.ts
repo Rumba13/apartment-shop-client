@@ -1,4 +1,4 @@
-import {ModalStore} from "../../lib/modal-store";
+import {ModalStore} from "../modal-store";
 import {makeObservable, override, reaction, runInAction} from "mobx";
 import {ConfirmModalOptions} from "../../api/types/confirm-modal-options";
 

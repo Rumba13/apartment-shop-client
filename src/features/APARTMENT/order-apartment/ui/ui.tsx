@@ -85,12 +85,6 @@ export const OrderApartmentForm = observer(({
                        name="phone"
                        label={t("Phone") + " *"}
                 />
-                <Field className="order-form-email"
-                       placeholder="djonson@gmail.com"
-                       type="email"
-                       name="email"
-                       label={t("Email")}
-                />
                 <FieldNumber className="order-form-people-count"
                              min={0}
                              max={apartmentMaxGuests}

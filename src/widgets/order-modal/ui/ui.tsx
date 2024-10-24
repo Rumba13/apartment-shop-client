@@ -13,6 +13,7 @@ import {OrderApartmentForm} from "../../../features/APARTMENT/order-apartment";
 import {UUID} from "../../../shared/api/types/uuid";
 import {orderService} from "../../../shared/api/order-service";
 import {UpdateApartmentPriceDto} from "../../../shared/api/types/update-apartment-price.dto";
+import {createPortal} from "react-dom";
 
 type PropsType = {
     apartmentImage: any,
@@ -35,7 +36,7 @@ export const OrderModal = observer(({
     useEffect(() => {
     }, [currencyStore.currency]);
 
-    return (
+    return createPortal(
         <div className={clsx("order-modal", orderModalStore.isOpened && "opened")}
              aria-hidden={!orderModalStore.isOpened}
              onClick={orderModalStore.stopPropagationInModal}>
@@ -43,7 +44,8 @@ export const OrderModal = observer(({
                 <h2 className="header__title">
                     {t("Book Apartment")}
                 </h2>
-                <SvgButton className={"order-modal-close"} icon={CrossIcon}
+                <SvgButton className={"order-modal-close"}
+                           icon={CrossIcon}
                            onClick={() => orderModalStore.setIsOpened(false)}/>
             </header>
             <div className="order-modal-content">
@@ -54,14 +56,17 @@ export const OrderModal = observer(({
                                         }).catch(err => {
                                         })
                                     }}
-                                    apartmentMaxGuests={apartmentMaxGuests} apartmentId={apartmentId}/>
+                                    apartmentMaxGuests={apartmentMaxGuests}
+                                    apartmentId={apartmentId}/>
                 <div className="apartment-details">
-                    <img className="apartment-details__image" src={apartmentImage} alt=""/>
+                    <img className="apartment-details__image"
+                         src={apartmentImage}
+                         alt=""/>
                     <span className="apartment-details__address">{apartmentAddress}</span>
                     <span
                         className="apartment-details__price">{orderPrice}{currencyToPostfixMap[currencyStore.currency]}.</span>
                 </div>
             </div>
-        </div>
+        </div>, document.getElementById("root") as HTMLElement
     )
 });

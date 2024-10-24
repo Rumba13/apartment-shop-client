@@ -61,7 +61,7 @@ export function UpdateApartmentForm({apartmentId}: PropsType) {
             guestsQuantity: updatedApartment.guestsQuantity,
             price: updatedApartment.price.amount,
             area: updatedApartment.area,
-            amenities: updatedApartment.amenities.join(", "),
+            amenities: undefined,
             address: updatedApartment.address,
             bedsQuantity: updatedApartment.bedsQuantity,
         }} validate={validate} onSubmit={(values, {setSubmitting}) =>

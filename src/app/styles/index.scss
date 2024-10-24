@@ -4,6 +4,21 @@
 
 html {
   scroll-behavior: smooth;
+
+
+}
+
+body {
+  overflow-y: scroll;
+
+  &.animating-scroll {
+    position: fixed;
+  }
+
+  &.hide-scroll {
+    padding-right: 17px;
+    overflow-y: hidden;
+  }
 }
 
 .submit-button {
