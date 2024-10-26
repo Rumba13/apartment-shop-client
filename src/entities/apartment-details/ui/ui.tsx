@@ -260,9 +260,9 @@ export const ApartmentDetails = observer(({
                               icon={GeoIcon}
                               href={"/"}
                 >На карте </LinkWithIcon>
-                <TitleWithIcon className="order-menu__metro-station"
-                               icon={MetroIcon}
-                >Октябрьская</TitleWithIcon>
+                {/*<TitleWithIcon className="order-menu__metro-station"*/}
+                {/*               icon={MetroIcon}*/}
+                {/*>Октябрьская</TitleWithIcon>*/}
 
                 <div className="order-menu-prices">
                     <div className="price-option">

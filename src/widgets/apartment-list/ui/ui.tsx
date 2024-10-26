@@ -1,6 +1,6 @@
 import "./styles.scss";
 import {useEffect, useState} from "react";
-import {apartmentListStore} from "../model/model";
+import {apartmentListStore} from "../model/apartment-list-store";
 import {observer} from "mobx-react";
 import {ApartmentCard, ApartmentCardSkeleton} from "../../../entities/apartment-card";
 import {tagsFilterStore} from "../../../features/select-tags/model/tags-filter-store";
@@ -13,6 +13,8 @@ import {currencyStore} from "../../../features/select-currency";
 import {filterByDateStore} from "../../../features/FILTER/filter-by-date";
 import {areaFilterStore} from "../../../features/FILTER/filter-by-area";
 import {guestsCountStore} from "../../../features/FILTER/filter-by-guests";
+import {Pagination} from "antd"
+import {guestStore} from "../../../features/select-guests-count";
 
 type PropsType = {}
 
@@ -20,7 +22,7 @@ export const ApartmentList = observer(({}: PropsType) => {
     const {t} = useTypedTranslation();
 
     useEffect(() => {
-        if (searchStore.isSearchOnRequestCooldown) {
+        if (searchStore.isSearchOnCooldown) {
             searchStore.setSearchOnCooldown()
             return;
         }
@@ -29,17 +31,29 @@ export const ApartmentList = observer(({}: PropsType) => {
         }
         searchStore.setSearchOnCooldown()
 
-        searchStore.search(tagsFilterStore.getSelectedTagsNames(), {
-                min: priceFilterStore.minPrice,
-                max: priceFilterStore.maxPrice
-            },
-            {
-                min: areaFilterStore.minArea,
-                max: areaFilterStore.maxArea
-            }, sortByStore.selectedSortBy, currencyStore.currency,
-            guestsCountStore.maxGuestsCount,
-            filterByDateStore.dates
-        ).then(apartments => apartments && apartmentListStore.setApartments(apartments))
+        const tags = tagsFilterStore.getSelectedTagsNames()
+
+        searchStore.search({
+            minPrice: priceFilterStore.minPrice,
+            maxPrice: priceFilterStore.maxPrice,
+            minArea: areaFilterStore.minArea,
+            maxArea: areaFilterStore.maxArea,
+            resultCurrency: currencyStore.currency,
+            page: apartmentListStore.currentPage,
+            pageSize: apartmentListStore.pageSize,
+            sortBy: sortByStore.selectedSortBy,
+            minGuestsQuantity: 0,
+            maxGuestsQuantity: guestsCountStore.maxGuestsCount,
+            fromDate: filterByDateStore.dates[0] || undefined,
+            toDate: filterByDateStore.dates[1] || undefined,
+            amenities: tags.length === 0 ? undefined : tags.join(", ")
+        }).then(pagination => {
+            console.log(pagination)
+            apartmentListStore.setApartments(pagination.content)
+            apartmentListStore.setCurrentPage(pagination.pageNumber);
+            apartmentListStore.setTotalPages(pagination.totalPages);
+        })
+
     }, [tagsFilterStore.selectedTags,
         areaFilterStore.minArea,
         areaFilterStore.maxArea,
@@ -49,7 +63,8 @@ export const ApartmentList = observer(({}: PropsType) => {
         currencyStore.currency,
         priceFilterStore.isOnCooldown,
         filterByDateStore.dates,
-        guestsCountStore.maxGuestsCount
+        guestsCountStore.maxGuestsCount,
+        apartmentListStore.currentPage
     ]);
 
     if (!apartmentListStore.apartments) { //initial loading
@@ -73,6 +88,7 @@ export const ApartmentList = observer(({}: PropsType) => {
             </div>}
 
         {(apartmentListStore.apartments.length === 0) ? t("Nothing Found") : apartmentListStore.apartments.map(apartment =>
-            <ApartmentCard apartment={apartment} key={apartment.id}/>)}
+            <ApartmentCard apartment={apartment}
+                           key={apartment.id}/>)}
     </div>
 });

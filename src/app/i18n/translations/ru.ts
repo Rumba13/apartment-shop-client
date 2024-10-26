@@ -104,6 +104,8 @@ export const russianTranslation = {
     "Order Approved": "Заказ подтверждён",
     "Order Pending": "Заказ ожидает подтверждения",
     "Order Rejected": "Заказ отклонён",
+    "Tariffs": "Тарифы",
+    "Some error has occurred": "Произошла какая-то ошибка"
 };
 
 export type Translation = typeof russianTranslation;

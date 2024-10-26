@@ -1,0 +1,13 @@
+.tariff-in-day {
+  border: 1px solid var(--white-gray);
+  height: 80px;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 8px;
+  width: 100px;
+
+  & .tariff-in-day__title, & .tariff-in-day__sub-title {
+    font-family: var(--default-font), sans-serif;
+    text-align: center;
+  }
+}

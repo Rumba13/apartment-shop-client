@@ -41,9 +41,11 @@ export const ApartmentCard = observer(({
 
     return <div className="apartment-card">
         <div className="apartment-card-slider">
-            <Slider items={(!photos[0] ? [ImageNotFound]: photos).map(image => <SwiperSlide> <Link to={"apartment-details/" + id}>
-                <img src={image} alt=""></img>
-            </Link></SwiperSlide>)}/>
+            <Slider items={(!photos[0] ? [ImageNotFound] : photos).map(image => <SwiperSlide>
+                <Link to={"apartment-details/" + id}>
+                    <img src={image}
+                         alt=""></img>
+                </Link></SwiperSlide>)}/>
         </div>
 
         <div className="apartment-details">
@@ -62,7 +64,8 @@ export const ApartmentCard = observer(({
                           icon={GeoIcon}
                           href={"/"}
             >На карте </LinkWithIcon>
-            <Link className="apartment-details__description" to={"apartment-details/" + id}>{description}</Link>
+            <Link className="apartment-details__description"
+                  to={"apartment-details/" + id}>{description}</Link>
         </div>
     </div>
 });

@@ -6,42 +6,28 @@ import {serverConnection} from "./server-connection";
 import {Pagination} from "./types/pagination";
 import {Currency} from "./types/currency";
 import {setPhotosAbsolutePath} from "../lib/set-photos-absolute-path";
+import {SearchDto} from "./types/search.dto";
 
 class SearchStore {
-    private readonly _searchTimeout = 200;
+    private readonly _searchCooldownTime = 200;
     private readonly minimalSearchPendingTime = 200;
     private searchCooldownTimer: ReturnType<typeof setTimeout> | null = null;
 
     public isLoading: boolean = false;
     public setIsLoading = (isLoading: boolean) => this.isLoading = isLoading
 
-    public isSearchOnRequestCooldown: boolean = false;
+    public isSearchOnCooldown: boolean = false;
     public setSearchOnCooldown = () => {
         this.searchCooldownTimer && clearTimeout(this.searchCooldownTimer);
-        this.isSearchOnRequestCooldown = true;
-        this.searchCooldownTimer = setTimeout(() => this.isSearchOnRequestCooldown = false, this._searchTimeout)
+        this.isSearchOnCooldown = true;
+        this.searchCooldownTimer = setTimeout(() => this.isSearchOnCooldown = false, this._searchCooldownTime)
     }
+
 //TODO refactor to searchDto
-    public async search(searchTags: Tag[], priceRange: Range, areaRange: Range, sortBy: SortBy, resultCurrency: Currency,maxGuestsCount:number, dates: (string | null)[]): Promise<Apartment[] | null> {
+    public async search(searchDto: SearchDto): Promise<Pagination<Apartment>> {
         this.setIsLoading(true);
 
-        const searchPromise = (serverConnection.get("/apartments", {
-            params: {
-                pageSize: 20,
-                page: 1,
-                minPrice: priceRange.min,
-                maxPrice: priceRange.max,
-                minArea: areaRange.min,
-                maxArea: areaRange.max,
-                sortBy,
-                resultCurrency: resultCurrency,
-                fromDate: dates[0] || undefined,
-                toDate: dates[1] || undefined,
-                amenities: searchTags.length === 0 ? undefined : searchTags.join(", "),
-                // maxGuestsQuantity: maxGuestsCount,
-                // minGuestsQuantity: 0
-            }
-        }))
+        const searchPromise = (serverConnection.get("/apartments", {params: searchDto}))
 
         const minimalSearchPendingTimePromise = new Promise<void>(resolve => setTimeout(resolve, this.minimalSearchPendingTime))
 
@@ -52,7 +38,7 @@ class SearchStore {
         }
 
         this.setIsLoading(false);
-        return pagination.content;
+        return pagination;
     }
 }
 

@@ -1,5 +1,4 @@
 .home-page .content {
-  width: 100%;
 
   & .temp-div {
     display: flex;
@@ -9,5 +8,9 @@
     & .open-create-apartment-page-button {
       margin-left: auto;
     }
+  }
+  & .pagination {
+    padding-bottom: 30px;
+    padding-top: 30px;
   }
 }

@@ -8,7 +8,6 @@ import {signOutService} from "../../../../shared/api/sign-out-service";
 import {ConfirmModalOptions} from "../../../../shared/api/types/confirm-modal-options";
 import {useEffect} from "react";
 import {Link} from "react-router-dom";
-import {Skeleton} from "antd";
 
 export function AuthModalActions() {
     const {t} = useTypedTranslation();
@@ -43,23 +42,29 @@ export function AuthModalActions() {
     return (
         <div className="auth-modal-actions">
             {userStore.user && <>
-                <button className="sign-out-button"
+                <button className="sign-out-button auth-button"
                         onClick={signOut}
                 >{t("Sign Out")}</button>
+            </>}
 
-                <Link className="auth-modal-link"
+            {userStore.user?.isSuperuser && <>
+                <Link className="auth-modal-link auth-button"
                       to={"/orders"}>
                     <span className="options-item__title">{t("Orders")}</span>
+                </Link>
+                <Link className="auth-modal-link auth-button"
+                      to={"/tariffs"}>
+                    <span className="options-item__title">{t("Tariffs")}</span>
                 </Link>
             </>}
 
             {!userStore.user && <>
-                <div className="open-sign-in-modal"
+                <div className="open-sign-in-modal auth-button"
                      onClick={() => authModalStore.open(0)}
                 >
                     <span className="options-item__title">{t("Sign In")}</span>
                 </div>
-                <div className="open-sign-up-modal"
+                <div className="open-sign-up-modal auth-button"
                      onClick={() => authModalStore.open(1)}
                 >
                     <span className="options-item__title">{t("Sign Up")}</span>

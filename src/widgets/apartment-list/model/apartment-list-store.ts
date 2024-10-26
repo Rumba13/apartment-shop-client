@@ -9,7 +9,12 @@ class ApartmentListStore {
 
     public apartments: Apartment[] | null = null;
 
-
+    public currentPage:number = 1;
+    public setCurrentPage = (property:number)  => this.currentPage = property
+    public pageSize:number = 10;
+    public setPageSize = (pageSize:number)  => this.pageSize = pageSize
+    public totalPages:number = 1;
+    public setTotalPages = (totalPages:number)  => this.totalPages = totalPages
 
     public setApartments = (apartments:Apartment[]) => {
         this.apartments = apartments;

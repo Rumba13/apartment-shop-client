@@ -22,10 +22,8 @@ class UserStore {
             const user = await authService.auth(accessToken)
             this.setUser(user);
         } catch (err) {
-            console.log("err", err)
             this.setIsError(true);
             this.setUser(null);
-
             removeTokens();
         }
 

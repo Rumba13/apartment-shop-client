@@ -6,6 +6,8 @@ import {OpenCreateApartmentPageButton} from "./open-create-apartment-page-button
 import {userStore} from "../../../entities/user";
 import {useEffect} from "react";
 import {observer} from "mobx-react";
+import {Pagination} from "antd";
+import {apartmentListStore} from "../../../widgets/apartment-list/model/apartment-list-store";
 
 export const HomePage = observer(() => {
     useEffect(() => {
@@ -17,5 +19,12 @@ export const HomePage = observer(() => {
             <SortBy/>
         </div>
         <ApartmentList/>
+
+        <Pagination className="pagination"
+                    align="center"
+                    pageSize={apartmentListStore.pageSize}
+                    current={apartmentListStore.currentPage}
+                    total={apartmentListStore.totalPages *apartmentListStore.pageSize}
+                    onChange={(currentPage) => apartmentListStore.setCurrentPage(currentPage)}/>
     </StandartLayout>
 });

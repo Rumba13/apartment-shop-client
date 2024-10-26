@@ -106,6 +106,8 @@ export const englishTranslation: Translation = {
     "Order Approved": "Order approved",
     "Order Pending": "Order is pending",
     "Order Rejected": "Order rejected",
+    "Tariffs": "Tariffs",
+    "Some error has occurred": "Some error has occurred"
 };
 
 /*

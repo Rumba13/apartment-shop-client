@@ -2,12 +2,6 @@
 
 .standart-layout {
   height: 100%;
-  //grid-template-areas:
-  //        "header header"
-  //        "aside content";
-  //
-  //grid-template-columns: 265px 1fr;
-  //grid-template-rows: auto 100%;
 
   & .standart-layout-wrapper {
     display: flex;
@@ -24,6 +18,6 @@
   }
   & .content {
     grid-area: content;
-    width: 100%;
+    flex-grow: 1;
   }
 }
