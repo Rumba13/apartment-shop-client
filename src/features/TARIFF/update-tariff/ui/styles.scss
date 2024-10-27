@@ -1,0 +1,23 @@
+.update-tariff-form {
+  padding: 10px;
+
+  & .select-currency-dropdown-wrapper {
+    height: 48px;
+    margin-top: 8px;
+    border-radius: 8px;
+  }
+
+  & .submit-button {
+    width: 100%;
+    height: min-content;
+  }
+
+  & .wrapper {
+    display: flex;
+    align-items: center;
+
+    & .field {
+      flex: 1;
+    }
+  }
+}

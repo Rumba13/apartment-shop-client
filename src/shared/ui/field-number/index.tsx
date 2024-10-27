@@ -7,12 +7,12 @@ import {InputNumber} from "../input-number";
 type PropsType = {
     label: string,
     className?: string,
-    max: number,
+    max?: number,
     min: number
     onValueChange?: (e: number) => void,
 }& FieldHookConfig<any>
 
-export function FieldNumber({label, className, onValueChange, max, min, ...props}: PropsType) {
+export function FieldNumber({label, className, onValueChange, max = Infinity, min, ...props}: PropsType) {
     const [field, meta, {setValue: setGlobalValue}] = useField(props);
 
     const setValue = (value: number) => {

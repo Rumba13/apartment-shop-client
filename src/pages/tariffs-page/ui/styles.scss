@@ -1,12 +1,21 @@
 .tariffs-page .content {
-  display: flex;
-
-  & .tariff-list, & .tariff-details {
-    border: 1px solid red;
-    height: 100%;
-    flex-grow: 1;
+  & .tariff-actions {
+    display: flex;
   }
-  & .tariff-list {
-    max-width: 200px;
+
+  & .wrapper {
+    display: flex;
+    margin-top: 5px;
+
+
+    & .tariff-list, & .tariff-details {
+      border: 1px solid var(--white-gray);
+      border-radius: 4px;
+      flex-grow: 1;
+    }
+
+    & .tariff-list {
+      max-width: 200px;
+    }
   }
 }

@@ -105,7 +105,23 @@ export const russianTranslation = {
     "Order Pending": "Заказ ожидает подтверждения",
     "Order Rejected": "Заказ отклонён",
     "Tariffs": "Тарифы",
-    "Some error has occurred": "Произошла какая-то ошибка"
+    "Some error has occurred": "Произошла какая-то ошибка",
+    "Choose tariff": "Выберите тариф",
+    "Monday":"Понедельник",
+    "Tuesday":"Вторник",
+    "Wednesday":"Среда",
+    "Thursday":"Четверг",
+    "Friday":"Пятница",
+    "Saturday":"Суббота",
+    "Sunday":"Воскресенье",
+    "Definitely delete tariff?":"Точно удалить тариф?",
+    "Price in monday": "Цена в понедельник",
+    "Price in tuesday": "Цена в вторник",
+    "Price in wednesday": "Цена в среду",
+    "Price in thursday": "Цена в четверг",
+    "Price in friday": "Цена в пятницу",
+    "Price in saturday": "Цена в субботу",
+    "Price in sunday": "Цена в воскресенье",
 };
 
 export type Translation = typeof russianTranslation;

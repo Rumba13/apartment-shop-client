@@ -16,7 +16,9 @@ const options: SelectOption[] = (["BYN", "USD", "RUB"] as Currency[]).map((curre
 
 export const SelectCurrencyDropdown = observer(() => {
     return <Select className="select-currency-dropdown-wrapper"
-                   defaultValue={options[0].value}
+                   value={currencyStore.currency}
                    onChange={currency => currencyStore.setCurrency(currency)}
-                   options={options}/>
+                   options={options}
+                   dropdownStyle={{zIndex: 200000}}
+    />
 });

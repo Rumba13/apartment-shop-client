@@ -1,5 +1,6 @@
 .tariff-card {
-  border: 1px solid var(--white-gray);
+  position: relative;
+  border: 2px solid var(--white-gray);
   border-radius: 4px;
   margin: 3px;
   padding: 18px 12px;
@@ -9,8 +10,19 @@
     border-color: var(--azure);
   }
 
+  &.selected {
+    border-color: var(--azure);
+  }
+
   & .tariff-card__title {
     text-align: center;
     font-family: var(--default-font), sans-serif;
+    padding-right: 10px;
+  }
+
+  & .delete-tariff-button {
+    position: absolute;
+    top: 6px;
+    right: 2px;
   }
 }

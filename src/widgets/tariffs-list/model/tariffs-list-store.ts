@@ -2,6 +2,7 @@ import {makeObservable, override} from "mobx";
 import {LoadingStore} from "../../../shared/model/loading-store";
 import {Tariff} from "../../../shared/api/types/tariff";
 import {tariffService} from "../../../shared/api/tariff-service";
+import {TariffShort} from "../../../shared/api/types/tariff-short";
 
 class TariffsListStore extends LoadingStore {
     constructor() {
@@ -14,15 +15,16 @@ class TariffsListStore extends LoadingStore {
         })
     }
 
-    public tariffs: Tariff[] | null = null;
-    public setTariffs = (tariffs: Tariff[]) => this.tariffs = tariffs
+    public tariffs: TariffShort[] | null = null;
+    public setTariffs = (tariffs: TariffShort[]) => this.tariffs = tariffs
 
     public async loadTariffs() {
         this.setIsLoading(true);
+        this.setIsError(false)
 
         try {
-            const pagination = await tariffService.loadTariffs({page: 1, page_size: 10})
-            this.setTariffs(pagination.content)
+            const tariffs = await tariffService.loadTariffs()
+            this.setTariffs(tariffs)
         } catch (err) {
             this.setIsError(true);
             console.error(err);

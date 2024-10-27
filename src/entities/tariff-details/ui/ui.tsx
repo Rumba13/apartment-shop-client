@@ -6,7 +6,6 @@ import {AppLoader} from "../../app-loader";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {UUID} from "../../../shared/api/types/uuid";
 import {TariffInDay} from "./tariff-in-day";
-import {currencyStore} from "../../../features/select-currency";
 import {mapDayIndexToDayOfWeek} from "../../../shared/lib/map-day-index-to-day-of-week";
 
 type PropsType = {
@@ -20,9 +19,10 @@ export const TariffDetails = observer(({id}: PropsType) => {
         id && tariffDetailsStore.loadTariffDetails(id);
     }, [id]);
 
-    console.log(id)
+    useEffect(() => {
+    }, [tariffDetailsStore.tariffDetails]);
 
-
+    if (!id) return <div className="tariff-details">{t("Choose tariff")}</div>
     if (tariffDetailsStore.isLoading) return <div className="tariff-details"><AppLoader/></div>
     if (tariffDetailsStore.tariffDetails === null) return <div className="tariff-details">{t("Nothing Found")}</div>
     if (tariffDetailsStore.isError) return <div className="tariff-details">{t("Some error has occurred")}</div>
@@ -48,7 +48,7 @@ export const TariffDetails = observer(({id}: PropsType) => {
     ]
 
     return <div className="tariff-details">
-        {tariffsOnWeek.map((tariff, dayIndex) => <TariffInDay title={mapDayIndexToDayOfWeek[dayIndex]}
+        {tariffsOnWeek.map((tariff, dayIndex) => <TariffInDay title={t(mapDayIndexToDayOfWeek[dayIndex])}
                                                   price={{
                                                       amount: tariff,
                                                       //@ts-ignore //TODO fix typescript types warning

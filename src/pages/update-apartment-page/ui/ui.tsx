@@ -17,8 +17,6 @@ export const UpdateApartmentPage = observer(() => {
         return <></>
     }
 
-
-
     return <StandartLayout className="update-apartment-page" noAside>
         <UpdateApartmentForm apartmentId={apartmentId}/>
     </StandartLayout>

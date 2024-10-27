@@ -107,7 +107,23 @@ export const englishTranslation: Translation = {
     "Order Pending": "Order is pending",
     "Order Rejected": "Order rejected",
     "Tariffs": "Tariffs",
-    "Some error has occurred": "Some error has occurred"
+    "Some error has occurred": "Some error has occurred",
+    "Choose tariff": "Choose tariff",
+    "Monday":"Monday",
+    "Tuesday":"Tuesday",
+    "Wednesday":"Wednesday",
+    "Thursday":"Thursday",
+    "Friday":"Friday",
+    "Saturday":"Saturday",
+    "Sunday":"Sunday",
+    "Definitely delete tariff?":"Definitely delete tariff?",
+    "Price in monday": "Price in monday",
+    "Price in tuesday": "Price in tuesday",
+    "Price in wednesday": "Price in wednesday",
+    "Price in thursday": "Price in thursday",
+    "Price in friday": "Price in friday",
+    "Price in saturday": "Price in saturday",
+    "Price in sunday": "Price in sunday",
 };
 
 /*

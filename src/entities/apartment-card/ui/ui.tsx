@@ -65,7 +65,7 @@ export const ApartmentCard = observer(({
                           href={"/"}
             >На карте </LinkWithIcon>
             <Link className="apartment-details__description"
-                  to={"apartment-details/" + id}>{description}</Link>
+                  to={"apartment-details/" + id}>{title}</Link>
         </div>
     </div>
 });

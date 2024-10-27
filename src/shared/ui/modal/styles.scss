@@ -1,0 +1,30 @@
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50vh;
+  z-index: 20222;
+  width: 430px;
+  border-radius: 10px;
+  opacity: 0;
+  visibility: hidden;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  transition: opacity 300ms, visibility 300ms;
+
+
+  &.opened {
+    opacity: 1;
+    visibility: visible;
+  }
+  & .tariff-modal-close {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
+  & .tariff-modal__title {
+    margin-top: 7px;
+    text-align: center;
+    font-size: 18px;
+    font-family: var(--default-font), sans-serif;
+  }
+}
