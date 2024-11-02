@@ -34,3 +34,9 @@ body {
     background-color: var(--light-azure-active);
   }
 }
+
+ .ant-picker-range.date-picker {
+  &:focus {
+    background-color: red !important;
+  }
+}

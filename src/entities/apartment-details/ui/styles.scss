@@ -112,12 +112,14 @@
           font-size: 16px;
           color: var(--dark-blue);
           cursor: pointer;
+          transition: color 130ms;
 
-          &.active {
+          &.active, &:hover {
             margin-bottom: -1px;
             border-bottom: 2px solid var(--azure);
             color: var(--azure);
           }
+
 
           &:not(:last-child) {
             margin-right: 30px;
@@ -153,7 +155,8 @@
 
         & .apartment-description__description {
           color: var(--azure-dragon);
-          font-family: 'Cera Pro', sans-serif;
+          line-height: 24px;
+          font-family: var(--default-font), sans-serif;
           font-size: 16px;
         }
       }
@@ -283,7 +286,7 @@
       & .order-menu__title {
         font-family: "CeraPro", Arial, sans-serif;
         font-weight: 600;
-        font-size: 18px;
+        font-size: 20px;
         line-height: 26px;
         color: var(--dark-blue);
         margin-bottom: 10px;

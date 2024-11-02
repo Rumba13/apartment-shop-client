@@ -6,7 +6,7 @@ export function mapApartmentAmenities(amenityGroupFromBackend: AmenityGroupsFrom
     for (const amenityGroupTitle in amenityGroupFromBackend) {
         const amenities = amenityGroupFromBackend[amenityGroupTitle];
         amenityGroup.push({
-            title: amenityGroupTitle,
+            name: amenityGroupTitle,
             amenities
         })
     }

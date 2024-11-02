@@ -3,7 +3,7 @@ import {UUID} from "./types/uuid";
 import {serverConnection} from "./server-connection";
 import {Currency} from "./types/currency";
 import {CreateApartmentDto} from "./types/create-apartment.dto";
-import {mapApartmentAmenities} from "../lib/map-apartment-amenities";
+import {BookDate} from "./types/book-date";
 
 class ApartmentService {
     constructor() {
@@ -11,7 +11,6 @@ class ApartmentService {
 
     public async getApartmentById(apartmentId: UUID, resultCurrency: Currency): Promise<Apartment | null> {
         const apartment = (await serverConnection.get("apartments/" + apartmentId, {params: {resultCurrency}})).data;
-        apartment.amenityGroups = mapApartmentAmenities(apartment.amenityGroups);
         return apartment as Apartment;
     }
 
@@ -46,6 +45,10 @@ class ApartmentService {
                 "Content-Type": "multipart/form-data"
             }
         })).data
+    }
+
+    public async getApartmentBookedDates(apartmentId: UUID, resultCurrency: Currency): Promise<BookDate[]> {
+        return (await serverConnection.get(`apartments/${apartmentId}/booked-calendar-dates`, {params: {resultCurrency}})).data
     }
 }
 

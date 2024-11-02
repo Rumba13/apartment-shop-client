@@ -11,7 +11,7 @@ export async function createOrder(values: ValuesType, apartmentId: UUID,) {
             toDate: values.bookDateRange[0],
             username: values.username,
             phoneNumber: values.phone,
-            guestsQuantity: values.guestsCount
+            guestsQuantity: 0
         })
     } catch (err) {
         console.log(err)

@@ -45,7 +45,7 @@ export const russianTranslation = {
     "Save": "Сохранить",
     "Share": "Поделится",
     "Day": "сутки",
-    "Leave Request": "Сделать заявку",
+    "Leave Request": "Оставить заявку",
     "Book Apartment": "Забронировать квартиру",
     "Enter Your Name": "Введите ваше имя",
     "Name": "Имя",
@@ -122,6 +122,20 @@ export const russianTranslation = {
     "Price in friday": "Цена в пятницу",
     "Price in saturday": "Цена в субботу",
     "Price in sunday": "Цена в воскресенье",
+    "Sleep places": "Спальных мест",
+    "Order is successfully submitted" : "Заказ успешно отправлен",
+    "Username should be at least 4 characters long":"Имя пользователя должно быть длиннее 4 символов",
+    "Adults": "Взрослые",
+    "Teens": "Подростки",
+    "Childrens": "Дети",
+    "Babies": "Младенцы",
+    "Pets":"Питомцы",
+    "18 years": "От 18 лет",
+    "13-17 years": "13-17 лет",
+    "2-12 years": "2-12 лет",
+    "Younger than 2 years": "Младше 2 лет",
+    "Total": "Итого",
+    "Guest Quantity": "Количество гостей"
 };
 
 export type Translation = typeof russianTranslation;

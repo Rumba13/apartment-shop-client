@@ -57,13 +57,13 @@ export function UpdateApartmentForm({apartmentId}: PropsType) {
         <Formik<FormikValues> initialValues={{
             title: updatedApartment.title,
             description: updatedApartment.description,
-            roomsQuantity: updatedApartment.roomsQuantity,
-            guestsQuantity: updatedApartment.guestsQuantity,
+            roomsQuantity: updatedApartment.roomQuantity,
+            guestsQuantity: updatedApartment.guestQuantity,
             price: updatedApartment.price.amount,
             area: updatedApartment.area,
             amenities: undefined,
             address: updatedApartment.address,
-            bedsQuantity: updatedApartment.bedsQuantity,
+            bedsQuantity: updatedApartment.bedQuantity,
         }} validate={validate} onSubmit={(values, {setSubmitting}) =>
             updateApartment(values, accessToken, apartmentId, (id: UUID) => navigate("/apartment-details/" + id))
         }>

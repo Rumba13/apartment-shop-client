@@ -1,6 +1,36 @@
 .input-number {
   position: relative;
 
+  & .input-number__input:focus {
+    & ~ .input-number__increase-button {
+      border-top-color: var(--azure);
+      border-right-color: var(--azure);
+    }
+
+    & ~ .input-number__decrease-button {
+      border-bottom-color: var(--azure);
+      border-right-color: var(--azure);
+    }
+
+    border-color: var(--azure);
+  }
+
+  &:hover {
+    & .input-number__increase-button {
+      border-top-color: var(--azure);
+      border-right-color: var(--azure);
+    }
+
+    & .input-number__decrease-button {
+      border-bottom-color: var(--azure);
+      border-right-color: var(--azure);
+    }
+
+    & .input-number__input, {
+      border-color: var(--azure);
+    }
+  }
+
   & .input-number__input {
     width: 100%;
     border: 1px solid var(--white-gray);
@@ -8,6 +38,7 @@
     padding: 14px 20px;
     font-size: 14px;
     font-family: "CeraPro", Arial, sans-serif;
+    transition: border-color 110ms;
   }
 
   & .input-number__increase-button, .input-number__decrease-button {
@@ -21,6 +52,7 @@
     height: 50%;
     box-sizing: border-box;
     width: 36px;
+    transition: border-color 110ms;
 
     &.disabled {
       background-color: #e0e0e0;
@@ -38,7 +70,7 @@
     }
   }
 
-  & .input-number__decrease-button  {
+  & .input-number__decrease-button {
     bottom: 0;
     border-bottom-right-radius: 8px;
     border-top: 0;

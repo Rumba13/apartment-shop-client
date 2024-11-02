@@ -7,20 +7,21 @@ import {MouseEventHandler, ReactNode} from "react";
 
 type PropsType = {
     title: string,
-    isOpened:boolean,
-    stopPropagation:MouseEventHandler,
-    onCrossClick:MouseEventHandler,
-    children:ReactNode,
+    isOpened: boolean,
+    stopPropagation: MouseEventHandler,
+    onCrossClick: MouseEventHandler,
+    children: ReactNode,
+    className?: string
 }
 
-export function Modal({title,isOpened,stopPropagation,onCrossClick,children}: PropsType) {
-    return createPortal(<div className={clsx("modal", isOpened && "opened")}
+export function Modal({title, isOpened, stopPropagation, onCrossClick, children, className}: PropsType) {
+    return createPortal(<div className={clsx("modal", className, isOpened && "opened")}
                              onClick={stopPropagation}>
-        <SvgButton className="tariff-modal-close"
+        <SvgButton className="modal-close"
                    icon={CrossIcon}
                    onClick={onCrossClick}/>
 
-        <h2 className="tariff-modal__title">{title}</h2>
+        <h2 className="modal__title">{title}</h2>
 
         {children}
     </div>, document.getElementById("root") as HTMLElement)

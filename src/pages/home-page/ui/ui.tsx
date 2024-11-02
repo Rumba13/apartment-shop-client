@@ -25,6 +25,12 @@ export const HomePage = observer(() => {
                     pageSize={apartmentListStore.pageSize}
                     current={apartmentListStore.currentPage}
                     total={apartmentListStore.totalPages *apartmentListStore.pageSize}
-                    onChange={(currentPage) => apartmentListStore.setCurrentPage(currentPage)}/>
+                    onChange={(currentPage) => {
+                        apartmentListStore.setCurrentPage(currentPage)
+                        window.scrollTo({
+                            top:0,
+                            left: 0
+                        })
+                    }}/>
     </StandartLayout>
 });

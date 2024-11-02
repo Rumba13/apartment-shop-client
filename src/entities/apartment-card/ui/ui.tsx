@@ -21,9 +21,9 @@ type PropsType = {
 export const ApartmentCard = observer(({
                                            apartment: {
                                                title,
-                                               guestsQuantity,
-                                               bedsQuantity,
-                                               roomsQuantity,
+                                               guestQuantity,
+                                               bedQuantity,
+                                               roomQuantity,
                                                photos,
                                                price,
                                                landlordId,
@@ -37,6 +37,7 @@ export const ApartmentCard = observer(({
     const {t} = useTranslation();
 
     useEffect(() => {
+
     }, [photos]);
 
     return <div className="apartment-card">
@@ -53,10 +54,10 @@ export const ApartmentCard = observer(({
 
             <TitleWithIcon className="apartment-details__rooms-quantity"
                            icon={CardsIcon}
-            >{t("Rooms", {count: roomsQuantity})}</TitleWithIcon>
+            >{t("Rooms", {count: roomQuantity})}</TitleWithIcon>
             <TitleWithIcon className="apartment-details__max-quests-quantity"
                            icon={UsersIcon}
-            >{t("guest", {count: guestsQuantity})} </TitleWithIcon>
+            >{t("guest", {count: guestQuantity})} </TitleWithIcon>
             <a className="apartment-details__address"
                href={"./"}
             >{address}</a>

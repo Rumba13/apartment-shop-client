@@ -3,19 +3,20 @@ import {overlayStore} from "../../app/overlay";
 import React from "react";
 
 export class ModalStore {
+
     private _setIsOpened = (isOpened: boolean) => {
         runInAction(() => this.isOpened = isOpened)
 
         overlayStore.setIsOverlayOpened(isOpened)
     }
 
-    constructor() {
+    constructor(parentModal?:HTMLElement) {
         makeObservable(this, {
             isOpened: observable,
             setIsOpened: action,
-        })
+        });
 
-        document.addEventListener("click", () => this._setIsOpened(false))
+        (document).addEventListener("click", () => this._setIsOpened(false))
     }
 
     public isOpened: boolean = false;
@@ -24,6 +25,7 @@ export class ModalStore {
     }
 
     public stopPropagationInModal = (event: React.MouseEvent) => {
+
         this.isOpened && event.stopPropagation();
     }
 }

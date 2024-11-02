@@ -9,10 +9,11 @@ export type Apartment = {
     description: string,
     price: Price, //TODO map
     address: string,
-    roomsQuantity: number,
-    bedsQuantity: number,
-    guestsQuantity: number,
+    roomQuantity: number,
+    bedQuantity: number,
+    guestQuantity: number,
     photos: string[],
     amenityGroups: AmenityGroups,
-    area: number
+    area: number,
+    sleepPlaces:string
 }

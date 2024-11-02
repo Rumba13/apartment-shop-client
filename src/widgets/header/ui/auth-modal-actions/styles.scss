@@ -7,6 +7,11 @@
     margin-right: 10px;
   }
 
+  & .auth-modal-actions__user-name {
+    font-size: 14px;
+    font-family: var(--default-font), sans-serif;
+  }
+
   .auth-button {
     display: block;
     cursor: pointer;

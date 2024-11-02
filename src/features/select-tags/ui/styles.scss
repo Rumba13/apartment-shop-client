@@ -1,14 +1,4 @@
 .tags {
   display: flex;
   flex-direction: column;
-
-  & .ant-skeleton{
-    height: 20px;
-    margin-bottom: 8px;
-
-    & .ant-skeleton-input {
-      height: 100%;
-      width: 100%;
-    }
-  }
 }

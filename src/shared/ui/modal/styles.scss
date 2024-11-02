@@ -11,17 +11,16 @@
   transform: translate(-50%, -50%);
   transition: opacity 300ms, visibility 300ms;
 
-
   &.opened {
     opacity: 1;
     visibility: visible;
   }
-  & .tariff-modal-close {
+  & .modal-close {
     position: absolute;
     right: 5px;
     top: 5px;
   }
-  & .tariff-modal__title {
+  & .modal__title {
     margin-top: 7px;
     text-align: center;
     font-size: 18px;

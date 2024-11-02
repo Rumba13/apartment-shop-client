@@ -1,4 +1,10 @@
 .field {
+  &:hover .field__field, .field__field:focus {
+    border-color: var(--azure);
+  }
+  & .field__field {
+    transition: border-color 110ms;
+  }
   & .field-input-wrapper {
     position: relative;
 

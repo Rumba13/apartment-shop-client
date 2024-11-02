@@ -14,6 +14,8 @@ import {UUID} from "../../../shared/api/types/uuid";
 import {orderService} from "../../../shared/api/order-service";
 import {UpdateApartmentPriceDto} from "../../../shared/api/types/update-apartment-price.dto";
 import {createPortal} from "react-dom";
+import {getOrderPriceStore} from "../../../features/ORDER/get-order-price/model/get-order-price-store";
+import {formatPrice} from "../../../shared/lib/format-price";
 
 type PropsType = {
     apartmentImage: any,
@@ -31,7 +33,6 @@ export const OrderModal = observer(({
                                         apartmentMaxGuests
                                     }: PropsType) => {
     const {t} = useTypedTranslation();
-    const [orderPrice, setOrderPrice] = useState<number>(apartmentPrice.amount);
 
     useEffect(() => {
     }, [currencyStore.currency]);
@@ -50,12 +51,7 @@ export const OrderModal = observer(({
             </header>
             <div className="order-modal-content">
                 <OrderApartmentForm onCreateOrder={() => orderModalStore.setIsOpened(false)}
-                                    updateApartmentPrice={(dto: UpdateApartmentPriceDto) => {
-                                        orderService.calculateOrderPrice(dto).then((res) => {
-                                            setOrderPrice(res.amount)
-                                        }).catch(err => {
-                                        })
-                                    }}
+                                    updateApartmentPrice={() => getOrderPriceStore.getOrderPrice(apartmentId, currencyStore.currency)}
                                     apartmentMaxGuests={apartmentMaxGuests}
                                     apartmentId={apartmentId}/>
                 <div className="apartment-details">
@@ -64,7 +60,7 @@ export const OrderModal = observer(({
                          alt=""/>
                     <span className="apartment-details__address">{apartmentAddress}</span>
                     <span
-                        className="apartment-details__price">{orderPrice}{currencyToPostfixMap[currencyStore.currency]}.</span>
+                        className="apartment-details__price">{getOrderPriceStore.orderPrice && formatPrice(getOrderPriceStore.orderPrice)}.</span>
                 </div>
             </div>
         </div>, document.getElementById("root") as HTMLElement

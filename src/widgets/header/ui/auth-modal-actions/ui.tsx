@@ -8,6 +8,8 @@ import {signOutService} from "../../../../shared/api/sign-out-service";
 import {ConfirmModalOptions} from "../../../../shared/api/types/confirm-modal-options";
 import {useEffect} from "react";
 import {Link} from "react-router-dom";
+import {SvgIcon} from "../../../../shared/ui/svg-icon";
+import UserIcon from "../../../../assets/images/user-icon.svg"
 
 export function AuthModalActions() {
     const {t} = useTypedTranslation();
@@ -41,6 +43,7 @@ export function AuthModalActions() {
 
     return (
         <div className="auth-modal-actions">
+
             {userStore.user && <>
                 <button className="sign-out-button auth-button"
                         onClick={signOut}
@@ -69,6 +72,12 @@ export function AuthModalActions() {
                 >
                     <span className="options-item__title">{t("Sign Up")}</span>
                 </div>
+            </>}
+
+            {userStore.user && <>
+                <span className="auth-modal-actions__user-name">{userStore.user?.username}</span>
+                <SvgIcon icon={UserIcon}
+                         asImage/>
             </>}
         </div>
     )

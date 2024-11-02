@@ -5,6 +5,7 @@ import {useEffect} from "react";
 import {tagsFilterStore} from "../model/tags-filter-store";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {Skeleton} from "antd";
+import {TagSkeleton} from "./tag-skeleton";
 
 export const TagsList = observer(() => {
     const {t} = useTypedTranslation()
@@ -17,11 +18,14 @@ export const TagsList = observer(() => {
         return <div className="tags">
             <span className="filters__title tags__title">{t("Amenities")}</span>
 
-            <Skeleton.Input active style={{width: "70%"}}/>
-            <Skeleton.Input active style={{width: "90%"}}/>
-            <Skeleton.Input active style={{width: "60%"}}/>
-            <Skeleton.Input active style={{width: "75%"}}/>
-            <Skeleton.Input active style={{width: "85%"}}/>
+            <TagSkeleton textSkeletonWidth="80%"/>
+            <TagSkeleton textSkeletonWidth="95%"/>
+            <TagSkeleton textSkeletonWidth="10%"/>
+            <TagSkeleton textSkeletonWidth="87%"/>
+            <TagSkeleton textSkeletonWidth="80%"/>
+            <TagSkeleton textSkeletonWidth="95%"/>
+            <TagSkeleton textSkeletonWidth="10%"/>
+            <TagSkeleton textSkeletonWidth="87%"/>
         </div>
     }
 

@@ -4,8 +4,8 @@
   padding-right: 20px;
   grid-template-areas:
     "name name name name name name"
-    "phone phone phone email email email"
-    "people people date date date date"
+    "phone phone phone people people people"
+    "date date date date date date"
     "information information information information information information"
     "button button button . . .";
 
@@ -18,10 +18,6 @@
 
   .order-form-phone {
     grid-area: phone;
-  }
-
-  .order-form-email {
-    grid-area: email;
   }
 
   .book-date {
@@ -38,6 +34,25 @@
 
   .order-form-people-count {
     grid-area: people;
+    height: 100%;
+
+    & .title {
+      font-family: var(--default-font), sans-serif;
+      font-size: 14px;
+    }
+
+    & .button-cool {
+      display: flex;
+      max-width: fit-content;
+      border: 1px solid var(--white-gray);
+      border-radius: 8px;
+      padding: 13px 15px;
+      padding-bottom: 14px;
+      font-family: var(--default-font), sans-serif;
+      font-size: 15px;
+      color: var(--azure);
+      font-weight: 700;
+    }
   }
 
   .order-form-check-in-date {

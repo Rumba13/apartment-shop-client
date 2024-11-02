@@ -1,0 +1,54 @@
+.field-count {
+  display: flex;
+  width: fit-content;
+
+  & .field {
+    display: none;
+  }
+
+  & .field-count__value {
+    font-family: var(--default-font), sans-serif;
+    font-size: 14px;
+  }
+
+  & .field-count-decrease,
+  & .field-count-increase {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border: 1px solid var(--strong-weak-gray);
+    border-radius: 8px;
+    font-size: 20px;
+    font-family: var(--default-font), sans-serif;
+    color: var(--sheet-metal);
+
+    width: 40px;
+    height: 40px;
+    transition-property: border, background-color, color;
+    transition-duration: 140ms;
+    cursor: pointer;
+    user-select: none;
+
+    &:hover:not(&.disable) {
+      background-color: var(--white-gray-active);
+    }
+
+    &.disable {
+      color: var(--gains-boro);
+      cursor: not-allowed;
+    }
+  }
+
+
+  & .field-count-decrease {
+    font-size: 25px;
+  }
+
+  & .field-count__value {
+    text-align: center;
+    align-self: center;
+    min-width: 40px;
+    padding: 5px;
+  }
+}

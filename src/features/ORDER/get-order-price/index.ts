@@ -1,0 +1,1 @@
+export {getOrderPriceStore} from "./model/get-order-price-store"

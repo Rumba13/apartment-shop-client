@@ -24,7 +24,6 @@ import {currencyStore} from "../../../features/select-currency";
 import {Link, useNavigate} from "react-router-dom";
 import {DeleteApartment} from "./delete-apartment-button";
 import NoImage from "../../../assets/images/no-image.jpg"
-import useLocalStorageState from "use-local-storage-state";
 import {Slider} from "../../../shared/ui/slider";
 import {SwiperSlide} from "swiper/react";
 import {Button} from "../../../shared/ui/button";
@@ -43,7 +42,6 @@ export const ApartmentDetails = observer(({
     const navigate = useNavigate()
     const {t: tr} = useTranslation()
     const [isCollapsibleExpanded, setIsCollapsibleExpanded] = useState<boolean>(false)
-    const [accessToken] = useLocalStorageState("ACCESS-TOKEN");
 
     const [currentTab, setCurrentTab] = useState(0);
 
@@ -52,8 +50,6 @@ export const ApartmentDetails = observer(({
     const tagsRef = useRef<HTMLDivElement>(null)
     const rulesRef = useRef<HTMLDivElement>(null)
     const nearToApartmentRef = useRef<HTMLDivElement>(null)
-    const reviewsRef = useRef<HTMLDivElement>(null)
-
 
     const testItems = ["Кирпичный дом", "Лифт", "Этаж: 2", "Этажей: 6"].map(li =>
         <TitleWithIcon className={"tags-list__item amenities-list__item"}
@@ -81,17 +77,18 @@ export const ApartmentDetails = observer(({
         description,
         photos,
         title,
-        guestsQuantity,
-        bedsQuantity,
-        roomsQuantity,
+        guestQuantity,
+        bedQuantity,
+        roomQuantity,
         area,
         amenityGroups,
         landlordId,
-        address
+        address,
+        sleepPlaces
     } = apartmentDetailsStore.apartment;
 
     return <div className="apartment-details">
-        <OrderModal apartmentMaxGuests={guestsQuantity}
+        <OrderModal apartmentMaxGuests={guestQuantity}
                     apartmentId={apartmentId}
                     apartmentAddress={address}
                     apartmentImage={photos[0] || NoImage}
@@ -99,9 +96,7 @@ export const ApartmentDetails = observer(({
         />
         <div className="apartment-details-top">
             <div className="max-width-wrapper">
-                <h2 className="top__title">{title}</h2>
             </div>
-            {/*<AddApartmentToFavorites apartmentId={id}/>*/}
             {userStore.user?.isSuperuser && <>
                 <DeleteApartment apartmentId={apartmentId}/>
                 <Button icon={UpdateIcon}
@@ -115,7 +110,7 @@ export const ApartmentDetails = observer(({
             <div className="apartment-details-wrapper">
                 <div className="apartment-images">
                     <Slider loop
-                            items={(!photos[0] ? [ImageNotFound]: photos).map(image =>
+                            items={(!photos[0] ? [ImageNotFound] : photos).map(image =>
                                 <SwiperSlide key={image}>
                                     <img src={image}
                                          alt=""></img>
@@ -125,10 +120,7 @@ export const ApartmentDetails = observer(({
                 <div className="apartment-tabs">
 
                     {[
-                        {
-                            title: t("On Map"),
-                            onClick: () => mapRef.current?.scrollIntoView()
-                        },
+
                         {
                             title: t("Description"),
                             onClick: () => descriptionRef.current?.scrollIntoView()
@@ -143,8 +135,8 @@ export const ApartmentDetails = observer(({
                             onClick: () => nearToApartmentRef.current?.scrollIntoView()
                         },
                         {
-                            title: t("Reviews"),
-                            onClick: () => reviewsRef.current?.scrollIntoView()
+                            title: t("On Map"),
+                            onClick: () => mapRef.current?.scrollIntoView()
                         },
                     ]
                         .map((tab, index) =>
@@ -157,16 +149,16 @@ export const ApartmentDetails = observer(({
                 <div className="apartment-properties">
                     {/*TODO refactor*/}
                     <IconWithTwoTitles icon={RoomsIcon}
-                                       title={roomsQuantity}
-                                       subTitle={tr("Room", {count: roomsQuantity})}
+                                       title={roomQuantity}
+                                       subTitle={tr("Room", {count: roomQuantity})}
                     />
                     <IconWithTwoTitles icon={BedIcon}
-                                       title={bedsQuantity}
-                                       subTitle={tr("Bed", {count: bedsQuantity})}
+                                       title={sleepPlaces}
+                                       subTitle={t("Sleep places")}
                     />
                     <IconWithTwoTitles icon={GuestsIcon}
-                                       title={guestsQuantity}
-                                       subTitle={tr("Guest", {count: guestsQuantity})}
+                                       title={guestQuantity}
+                                       subTitle={tr("Guest", {count: guestQuantity})}
                     />
                     <IconWithTwoTitles icon={ApartmentAreaIcon}
                                        title={area + " м²"}
@@ -200,8 +192,8 @@ export const ApartmentDetails = observer(({
 
                     {amenityGroups.map(amenityGroup =>
                         <div className="amenities-list-wrapper"
-                             key={amenityGroup.title}>
-                            <h3 className="amenities-list__title">{amenityGroup.title}</h3>
+                             key={amenityGroup.name}>
+                            <h3 className="amenities-list__title">{amenityGroup.name}</h3>
                             <ul className="amenities-list">
 
                                 {amenityGroup.amenities.map(li =>
@@ -220,12 +212,6 @@ export const ApartmentDetails = observer(({
                 <div className="section rules-of-residence"
                      ref={rulesRef}>
                     <h3 className="title">{t("Rules Of Residence")}</h3>
-                    <ul className="tags-list">
-                        {testItems}
-                    </ul>
-                </div>
-                <div className="section methods-of-payments">
-                    <h3 className="title">{t("Methods Of Payments")}</h3>
                     <ul className="tags-list">
                         {testItems}
                     </ul>
@@ -254,15 +240,19 @@ export const ApartmentDetails = observer(({
                 </div>
             </div>
             <div className="order-menu">
-                <h2 className="order-menu__title">{description}</h2>
+
+                <h2 className="order-menu__title"
+                    title={apartmentId}
+                    onClick={() => document.execCommand("copy")}
+                    onCopy={(event) => {
+                        event.preventDefault();
+                        event.clipboardData && event.clipboardData.setData("text/plain", apartmentId);
+                    }}>{title}</h2>
                 <span className="order-menu__address">Независимости пр-т., 19, Минск</span>
                 <LinkWithIcon className="order-menu__on-map-link"
                               icon={GeoIcon}
                               href={"/"}
                 >На карте </LinkWithIcon>
-                {/*<TitleWithIcon className="order-menu__metro-station"*/}
-                {/*               icon={MetroIcon}*/}
-                {/*>Октябрьская</TitleWithIcon>*/}
 
                 <div className="order-menu-prices">
                     <div className="price-option">
@@ -273,9 +263,6 @@ export const ApartmentDetails = observer(({
                             > {price.amount}{currencyToPostfixMap[price.currency]}. </span>
                          / {t("Day")}
                         </span>
-                        {/*<TitleWithIcon className="rating"*/}
-                        {/*               icon={RatingIcon}*/}
-                        {/*>5.0(1)</TitleWithIcon>*/}
                     </div>
                 </div>
                 <div className="price-chips">

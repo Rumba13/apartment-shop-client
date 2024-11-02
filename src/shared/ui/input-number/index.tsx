@@ -39,6 +39,7 @@ export const InputNumber = ({min, value, onChange, max, name, id}: PropsType) =>
                    }}
             />
             <button
+                tabIndex={-1}
                 className={clsx("input-number__increase-button", max === value && "disabled")}
                 type="button"
                 onClick={(event: React.ChangeEvent<any>) => setValue(value + 1, event)}
@@ -46,6 +47,7 @@ export const InputNumber = ({min, value, onChange, max, name, id}: PropsType) =>
                 <SvgIcon icon={Arrow}/>
             </button>
             <button
+                tabIndex={-1}
                 className={clsx("input-number__decrease-button", min === value && "disabled")}
                 type="button"
                 onClick={(event: React.ChangeEvent<any>) => setValue(value - 1, event)}
