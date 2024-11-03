@@ -124,7 +124,6 @@ export const russianTranslation = {
     "Price in sunday": "Цена в воскресенье",
     "Sleep places": "Спальных мест",
     "Order is successfully submitted" : "Заказ успешно отправлен",
-    "Username should be at least 4 characters long":"Имя пользователя должно быть длиннее 4 символов",
     "Adults": "Взрослые",
     "Teens": "Подростки",
     "Childrens": "Дети",
@@ -135,7 +134,9 @@ export const russianTranslation = {
     "2-12 years": "2-12 лет",
     "Younger than 2 years": "Младше 2 лет",
     "Total": "Итого",
-    "Guest Quantity": "Количество гостей"
+    "Guest Quantity": "Количество гостей",
+    "Required Field": "Обязательное поле",
+    "Invalid phone": "Неправильный телефон"
 };
 
 export type Translation = typeof russianTranslation;

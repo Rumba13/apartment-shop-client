@@ -6,23 +6,24 @@ import {TagsList} from "../../../features/select-tags";
 import {RemoveFiltersButton} from "./remove-filters/remove-filters-button";
 import {tagsFilterStore} from "../../../features/select-tags/model/tags-filter-store";
 import {currencyStore} from "../../../features/select-currency";
-import {filtersBoundsService} from "../../../shared/api/filters-bounds-service";
 import {observer} from "mobx-react";
 import {AreaFilter, areaFilterStore} from "../../../features/FILTER/filter-by-area";
 import {ApartmentDateFilter, filterByDateStore} from "../../../features/FILTER/filter-by-date";
 import {FilterByGuestsCount, guestsCountStore} from "../../../features/FILTER/filter-by-guests";
+import {filterBoundsStore} from "../../../features/FILTER/filter-bounds";
 
 export const Aside = observer(() => {
     const {t} = useTypedTranslation();
 
     useEffect(() => {
-        filtersBoundsService.loadFiltersBound(currencyStore.currency).then((filtersBounds) => {
-            priceFilterStore.setPriceBounds(filtersBounds.minPrice, filtersBounds.maxPrice);
-            areaFilterStore.setAreaBounds(filtersBounds.minArea, filtersBounds.maxArea);
-            priceFilterStore.removeFilter();
-            areaFilterStore.removeFilter();
-        })
-    }, [currencyStore.currency]);
+        filterBoundsStore.loadFilterBounds(currencyStore.currency)
+            .then((filtersBounds) => {
+                priceFilterStore.setPriceBounds(filtersBounds.minPrice, filtersBounds.maxPrice);
+                areaFilterStore.setAreaBounds(filtersBounds.minArea, filtersBounds.maxArea);
+                priceFilterStore.removeFilter();
+                areaFilterStore.removeFilter();
+            })
+        }, [currencyStore.currency]);
 
     return (
         <aside className="aside">

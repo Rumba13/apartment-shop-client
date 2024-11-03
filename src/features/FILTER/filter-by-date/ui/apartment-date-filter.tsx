@@ -15,7 +15,7 @@ export const ApartmentDateFilter = observer(() => {
             <span className="filters__title">Дата</span>
             <RangePicker className="apartment-date-filter"
                          locale={ruRu}
-                         value={[dateFrom !== null ? dayjs(dateFrom) : null, dateFrom !== null ? dayjs(dateTo) : null]}
+                         value={[!dateFrom? null: dayjs(dateFrom), !dateTo? null: dayjs(dateTo)]}
                          onChange={(_a, dates) => filterByDateStore.setDates(dates)}
             />
         </div>

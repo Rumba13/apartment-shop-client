@@ -43,6 +43,10 @@
       & .swiper {
         border-radius: inherit;
 
+
+        & .swiper-slide {
+          cursor: pointer;
+        }
         & .swiper-wrapper {
         }
       }
@@ -280,7 +284,7 @@
       padding: 20px 30px;
       margin-left: 25px;
       box-shadow: 0 20px 40px rgba(44, 57, 78, 0.08);
-      border-radius: 10px;
+      border-radius: 15px;
       height: min-content;
 
       & .order-menu__title {

@@ -126,7 +126,6 @@ export const englishTranslation: Translation = {
     "Price in sunday": "Price in sunday",
     "Sleep places": "Sleep places",
     "Order is successfully submitted": "Order is successfully submitted",
-    "Username should be at least 4 characters long": "Username should be at least 4 characters long",
     "Adults": "Adults",
     "Teens": "Teens",
     "Childrens": "Childrens",
@@ -137,7 +136,9 @@ export const englishTranslation: Translation = {
     "2-12 years": "2-12 years",
     "Younger than 2 years": "Younger than 2 years",
     "Total": "Total",
-    "Guest Quantity": "Guest quantity"
+    "Guest Quantity": "Guest quantity",
+    "Required Field": "Required Field",
+    "Invalid phone": "Неверный телефон"
 };
 
 /*

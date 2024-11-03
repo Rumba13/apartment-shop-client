@@ -2,15 +2,21 @@
   position: absolute;
   top: 50vh;
   right: 50%;
-  transform: translateX(50%)  translateY(-50%);
+  transform: translateX(50%) translateY(-50%);
   z-index: 100;
   background-color: white;
-  padding: 18px;
+  padding: 5px 30px 5px 30px;
   border-radius: 8px;
+
+  & .close {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+  }
 
   & .confirm-modal__title {
     text-align: center;
-    margin-bottom: 14px;
+    margin-bottom: 5px;
     font-family: CeraPro, system-ui;
     font-size: 22px;
     font-weight: 400;
@@ -30,6 +36,7 @@
   & .confirm-modal__confirm {
     background-color: var(--deep-azure);
     margin-bottom: 8px;
+
     &:hover {
       background-color: var(--deep-azure-active);
     }

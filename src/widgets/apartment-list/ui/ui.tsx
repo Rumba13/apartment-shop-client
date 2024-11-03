@@ -8,13 +8,12 @@ import {searchStore} from "../../../shared/api/search-store";
 import {priceFilterStore} from "../../../features/FILTER/filter-by-price";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {sortByStore} from "../../../features/sort-by/model/sort-by-store";
-import LoadingGif from "../../../assets/images/loading.gif"
 import {currencyStore} from "../../../features/select-currency";
 import {filterByDateStore} from "../../../features/FILTER/filter-by-date";
 import {areaFilterStore} from "../../../features/FILTER/filter-by-area";
 import {guestsCountStore} from "../../../features/FILTER/filter-by-guests";
-import {Pagination} from "antd"
-import {guestStore} from "../../../features/select-guests-count";
+import {filterBoundsStore} from "../../../features/FILTER/filter-bounds";
+import clsx from "clsx";
 
 type PropsType = {}
 
@@ -22,6 +21,10 @@ export const ApartmentList = observer(({}: PropsType) => {
     const {t} = useTypedTranslation();
 
     useEffect(() => {
+        if (filterBoundsStore.isLoading) {
+            return;
+        }
+
         if (searchStore.isSearchOnCooldown) {
             searchStore.setSearchOnCooldown()
             return;
@@ -33,7 +36,7 @@ export const ApartmentList = observer(({}: PropsType) => {
 
         const tags = tagsFilterStore.getSelectedTagsNames()
 
-        searchStore.search({
+        apartmentListStore.loadApartments({
             minPrice: priceFilterStore.minPrice,
             maxPrice: priceFilterStore.maxPrice,
             minArea: areaFilterStore.minArea,
@@ -47,13 +50,7 @@ export const ApartmentList = observer(({}: PropsType) => {
             fromDate: filterByDateStore.dates[0] || undefined,
             toDate: filterByDateStore.dates[1] || undefined,
             amenities: tags.length === 0 ? undefined : tags.join(", ")
-        }).then(pagination => {
-            console.log(pagination)
-            apartmentListStore.setApartments(pagination.content)
-            apartmentListStore.setCurrentPage(pagination.pageNumber);
-            apartmentListStore.setTotalPages(pagination.totalPages);
         })
-
     }, [tagsFilterStore.selectedTags,
         areaFilterStore.minArea,
         areaFilterStore.maxArea,
@@ -67,7 +64,7 @@ export const ApartmentList = observer(({}: PropsType) => {
         apartmentListStore.currentPage
     ]);
 
-    if (!apartmentListStore.apartments) { //initial loading
+    if (apartmentListStore.apartments === null) { //initial loading
         return <div className="apartment-list">
             <ApartmentCardSkeleton/>
             <ApartmentCardSkeleton/>
@@ -79,13 +76,10 @@ export const ApartmentList = observer(({}: PropsType) => {
         </div>
     }
 
+
     return <div className="apartment-list">
-        {searchStore.isLoading &&
-            <div className="apartment-list-loading">
-                <img className="loading__loading"
-                     src={LoadingGif}
-                     alt=""/>
-            </div>}
+        <div className={clsx("apartment-list-loading", apartmentListStore.isLoading && "opened")}>
+        </div>
 
         {(apartmentListStore.apartments.length === 0) ? t("Nothing Found") : apartmentListStore.apartments.map(apartment =>
             <ApartmentCard apartment={apartment}

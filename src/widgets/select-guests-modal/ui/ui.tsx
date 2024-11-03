@@ -7,10 +7,11 @@ import {GuestsCountByCategory} from "../../../shared/api/types/guests-count-by-c
 
 type PropsType = {
     onGuestChange?: (guestCountByCategory: GuestsCountByCategory) => void,
-    values: GuestsCountByCategory
+    values: GuestsCountByCategory,
+    maxGuestsCount:number
 }
 
-export const SelectGuestModal = observer(({values, onGuestChange}: PropsType) => {
+export const SelectGuestModal = observer(({values, onGuestChange,maxGuestsCount}: PropsType) => {
 
     return <Modal title={""}
                   className={"select-guest-modal"}
@@ -18,7 +19,7 @@ export const SelectGuestModal = observer(({values, onGuestChange}: PropsType) =>
                   stopPropagation={selectGuestModalStore.stopPropagationInModal}
                   onCrossClick={() => selectGuestModalStore.setIsOpened(false)}>
         <SelectGuestsForm values={values}
-                          maxGuestCount={5}
+                          maxGuestCount={maxGuestsCount}
                           onChange={onGuestChange}
                           onNextButtonClick={() => selectGuestModalStore.setIsOpened(false)}/>
     </Modal>

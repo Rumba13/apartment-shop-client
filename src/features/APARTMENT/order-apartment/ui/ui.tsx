@@ -9,7 +9,6 @@ import {DatePicker} from "antd";
 import ruRu from "antd/es/date-picker/locale/ru_RU"
 import {UUID} from "../../../../shared/api/types/uuid";
 import {createOrder} from "../api/create-order";
-import {UpdateApartmentPriceDto} from "../../../../shared/api/types/update-apartment-price.dto";
 import dayjs, {Dayjs} from "dayjs";
 import {currencyStore} from "../../../select-currency";
 import {OrderIsSubmittedModal} from "./order-is-submitted-modal";
@@ -20,7 +19,10 @@ import {RangePickerProps} from "antd/es/date-picker";
 import {BookDate} from "../../../../shared/api/types/book-date";
 import {t, use} from "i18next"
 import {SelectGuestModal, selectGuestModalStore} from "../../../../widgets/select-guests-modal";
-import {getOrderPriceStore} from "../../../ORDER/get-order-price/model/get-order-price-store";
+import {getOrderPriceStore} from "../../../ORDER/get-order-price";
+import {snackBarStore} from "../../../../shared/ui/snack-bar/snack-bar-store";
+import CrossIcon from "../../../../assets/images/cross.svg"
+import {useNavigate} from "react-router-dom";
 
 const {RangePicker} = DatePicker;
 
@@ -40,15 +42,14 @@ type PropsType = {
     apartmentId: UUID,
     apartmentMaxGuests: number,
     onCreateOrder?: Function,
-    updateApartmentPrice: () => void,
+    updateApartmentPrice?: () => void,
 }
 const phoneRegExp = /^\+?((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 const orderSchema = object().shape({
-    username: string().min(2, t("Username should be at least 2 characters long")).required("required"),
-    phone: string().matches(phoneRegExp, "Invalid phone").required("Required"),
-    guestsCount: number().required(),
-    comment: string().max(200, "Comment should be less tha 200 characters long"),
+    username: string().required(t("Required Field")),
+    phone: string().matches(phoneRegExp, t("Invalid phone")).required(t("Required Field")),
+    comment: string(),
     bookDateRange: array().required(),
     adultCount: number().required(),
     teenCount: number().required(),
@@ -75,11 +76,11 @@ const initialValues: ValuesType = {
 export const OrderApartmentForm = observer(({
                                                 apartmentId,
                                                 apartmentMaxGuests,
-                                                onCreateOrder,
-                                                updateApartmentPrice
+                                                onCreateOrder
                                             }: PropsType) => {
     const {t} = useTypedTranslation();
     const [bookedDates, setBookedDates] = useState<BookDate[] | null>(null)
+    const navigate = useNavigate()
 
     const updateOrderPrice = (values: ValuesType) => {
         getOrderPriceStore.setGuestCountByCategory({
@@ -107,7 +108,6 @@ export const OrderApartmentForm = observer(({
 
 
     const disabledDate: RangePickerProps['disabledDate'] = (current, info) => {
-
         if (current < dayjs().endOf("day")) return true;
 
         if (bookedDates === null) return false
@@ -140,17 +140,20 @@ export const OrderApartmentForm = observer(({
     return <>
         <OrderIsSubmittedModal/>
         <Formik<ValuesType>
-            validateOnBlur={true}
             validationSchema={orderSchema}
-            validate={console.log}
+            validate={(values) => ({})}
             initialValues={initialValues}
             onSubmit={(values, formikHelpers) => {
-                console.log("values", values)
                 createOrder(values, apartmentId).then(() => {
                     orderIsSubmittedModalStore.setIsOpened(true)
                     onCreateOrder?.()
                     formikHelpers.resetForm();
-                })
+                    navigate("/apartment-details/" + apartmentId, {relative: "route"})
+                }).catch(err => snackBarStore.showSnackBar(t("Some error has occurred"), {
+                    icon: CrossIcon,
+                    style: {color: "red"},
+                    timeout: 4500
+                }))
             }}
         >
             {({setFieldValue, values}) => {
@@ -176,9 +179,8 @@ export const OrderApartmentForm = observer(({
                                 className="button-cool"
                                 onClick={() => selectGuestModalStore.setIsOpened(true)}>Изменить
                         </button>
-
                     </div>
-                    <SelectGuestModal values={values}/>
+                    <SelectGuestModal maxGuestsCount={apartmentMaxGuests} values={values}/>
                     <div className="book-date field">
                         <h2 className="book-date__title field__label">{t("Check-in Date")}</h2>
                         <RangePicker locale={ruRu}

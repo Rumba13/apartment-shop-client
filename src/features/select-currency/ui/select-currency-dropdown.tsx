@@ -14,10 +14,17 @@ const options: SelectOption[] = (["BYN", "USD", "RUB"] as Currency[]).map((curre
     value: currency
 }))
 
-export const SelectCurrencyDropdown = observer(() => {
+type PropsType = {
+    onChange?: (value: Currency) => void,
+}
+
+export const SelectCurrencyDropdown = observer(({onChange}:PropsType) => {
     return <Select className="select-currency-dropdown-wrapper"
                    value={currencyStore.currency}
-                   onChange={currency => currencyStore.setCurrency(currency)}
+                   onChange={currency => {
+                       currencyStore.setCurrency(currency)
+                       onChange?.(currency)
+                   }}
                    options={options}
                    dropdownStyle={{zIndex: 200000}}
     />

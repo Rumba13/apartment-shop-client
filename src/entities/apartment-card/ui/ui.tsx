@@ -13,6 +13,9 @@ import {observer} from "mobx-react";
 import {Slider} from "../../../shared/ui/slider";
 import {SwiperSlide} from "swiper/react";
 import ImageNotFound from "../../../assets/images/no-image.jpg"
+import {ShowContactsButton} from "./show-contacts";
+import {formatPrice} from "../../../shared/lib/format-price";
+import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 
 type PropsType = {
     apartment: Apartment;
@@ -50,7 +53,7 @@ export const ApartmentCard = observer(({
         </div>
 
         <div className="apartment-details">
-            <span className="apartment-card__price">{price.amount} {currencyToPostfixMap[price.currency]}</span>
+            <span className="apartment-card__price">{t("From")} {formatPrice(price)}</span>
 
             <TitleWithIcon className="apartment-details__rooms-quantity"
                            icon={CardsIcon}
@@ -67,6 +70,8 @@ export const ApartmentCard = observer(({
             >На карте </LinkWithIcon>
             <Link className="apartment-details__description"
                   to={"apartment-details/" + id}>{title}</Link>
+
         </div>
+        <ShowContactsButton/>
     </div>
 });

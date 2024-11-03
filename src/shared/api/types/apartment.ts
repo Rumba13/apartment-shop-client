@@ -15,5 +15,14 @@ export type Apartment = {
     photos: string[],
     amenityGroups: AmenityGroups,
     area: number,
-    sleepPlaces:string
+    sleepPlaces: string
+    adultPrice: number,
+    teenPrice: number,
+    kidPrice: number,
+    babyPrice: number,
+    petPrice: number,
+    isTeenAllowed: boolean,
+    isKidAllowed: boolean,
+    isBabyAllowed: boolean,
+    isPetAllowed: boolean,
 }

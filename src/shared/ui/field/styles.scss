@@ -11,8 +11,13 @@
   & .field__label {
     margin-bottom: 4px;
     font-size: 14px;
-    font-family: "CeraPro", Arial,sans-serif;
+    font-family: "CeraPro", Arial, sans-serif;
     color: var(--dark-blue);
+    position: relative;
+  }
+
+  & .wrapper {
+    position: relative;
   }
 
   & .field__field {
@@ -20,13 +25,24 @@
     border-radius: 8px;
     padding: 14px 20px;
     font-size: 14px;
-    font-family: "CeraPro", Arial,sans-serif;
+    font-family: "CeraPro", Arial, sans-serif;
     transition: border-color 110ms;
+    width: 100%;
+
+    &:focus + .field__error {
+      display: none;
+    }
   }
+
   & textarea.field__field {
     resize: vertical;
     max-height: 200px;
   }
 
-  & .field__error {}
+  & .field__error {
+    position: absolute;
+    color: var(--coral-red);
+    font-family: var(--default-font), sans-serif;
+    font-size: 12px;
+  }
 }

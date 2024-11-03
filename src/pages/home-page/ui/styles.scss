@@ -1,8 +1,11 @@
 .home-page .content {
 
-  & .temp-div {
+
+
+  & .home-page-top {
     display: flex;
     justify-content: end;
+    align-items: stretch;
     width: 100%;
 
     & .open-create-apartment-page-button {

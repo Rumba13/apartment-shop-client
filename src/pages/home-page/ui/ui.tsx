@@ -4,7 +4,7 @@ import {ApartmentList} from "../../../widgets/apartment-list";
 import {SortBy} from "../../../features/sort-by";
 import {OpenCreateApartmentPageButton} from "./open-create-apartment-page-button";
 import {userStore} from "../../../entities/user";
-import {useEffect} from "react";
+import {useEffect, useRef} from "react";
 import {observer} from "mobx-react";
 import {Pagination} from "antd";
 import {apartmentListStore} from "../../../widgets/apartment-list/model/apartment-list-store";
@@ -13,8 +13,10 @@ export const HomePage = observer(() => {
     useEffect(() => {
     }, [userStore.user]);
 
-    return <StandartLayout className="home-page">
-        <div className="temp-div">
+    const scrollToRef = useRef<HTMLDivElement>(null);
+
+    return <StandartLayout className="home-page" withTitle>
+        <div className="home-page-top" ref={scrollToRef}>
             {userStore.user?.isSuperuser && <OpenCreateApartmentPageButton/>}
             <SortBy/>
         </div>
@@ -24,13 +26,13 @@ export const HomePage = observer(() => {
                     align="center"
                     pageSize={apartmentListStore.pageSize}
                     current={apartmentListStore.currentPage}
-                    total={apartmentListStore.totalPages *apartmentListStore.pageSize}
+                    total={apartmentListStore.totalPages * apartmentListStore.pageSize}
                     onChange={(currentPage) => {
+                        console.log(scrollToRef.current)
                         apartmentListStore.setCurrentPage(currentPage)
-                        window.scrollTo({
-                            top:0,
-                            left: 0
-                        })
+                        //@ts-ignore
+                        scrollToRef.current?.scrollIntoView({behavior: "instant",block:"nearest"})
+
                     }}/>
     </StandartLayout>
 });

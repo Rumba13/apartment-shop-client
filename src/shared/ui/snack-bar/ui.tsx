@@ -12,7 +12,7 @@ export const SnackBar = observer(({}: PropsType) => {
 
     return <div className={clsx("snack-bar", snackBarStore.isAnimatingOpening ? "opening" : "closing")}
                 onAnimationEnd={(e) => snackBarStore.setIsOpened(e.nativeEvent.animationName === "opening")}>
-        <SvgIcon className="snack-bar__icon" icon={MarkIcon}/>
+        <SvgIcon className="snack-bar__icon" icon={snackBarStore.icon} style={snackBarStore.style}/>
         <span className="snack-bar__title">{snackBarStore.title}</span>
     </div>
 });

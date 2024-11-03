@@ -10,7 +10,7 @@ import React from "react";
 import {TariffsPage} from "../../tariffs-page";
 import {CONSTANTS, SERVER_TYPE} from "../../../shared/lib/constants";
 import {DevPage} from "../../dev-page";
-import {OrderPage} from "../../order-page/ui/ui";
+import {OrderPage} from "../../order-page";
 
 export function Routes() {
 
@@ -18,7 +18,6 @@ export function Routes() {
         <BrowserRouter>
             <ReactRoutes>
                 <Route path="/" element={<HomePage/>}/>
-                {/*<Route path="/wish-list" element={<WishListPage/>}/>*/}
                 <Route path="/create-apartment" element={<CreateApartmentPage/>}/>
                 <Route path="/apartment-details/:apartmentId" element={<ApartmentDetailsPage/>}/>
                 <Route path="/update-apartment/:apartmentId" element={<UpdateApartmentPage/>}/>

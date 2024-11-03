@@ -20,6 +20,7 @@ class ApartmentDetailsStore {
 
     public async loadApartmentDetails(apartmentId: UUID, resultCurrency:Currency) {
         this.setIsLoading(true);
+        this.setIsError(false);
 
         try {
             const apartment = await apartmentService.getApartmentById(apartmentId, resultCurrency);

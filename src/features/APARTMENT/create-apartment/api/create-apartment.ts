@@ -3,8 +3,9 @@ import {UUID} from "../../../../shared/api/types/uuid";
 import {Apartment} from "../../../../shared/api/types/apartment";
 import {apartmentService} from "../../../../shared/api/apartment-service";
 import {snackBarStore} from "../../../../shared/ui/snack-bar/snack-bar-store";
+import {ValuesType} from "../ui/create-apartment-form";
 
-export async function createApartment(values: FormikValues, accessToken: string, navigateToCreatedApartment: (id: UUID) => void) {
+export async function createApartment(values: ValuesType, accessToken: string, navigateToCreatedApartment: (id: UUID) => void) {
     try {
         const newApartment: Apartment = await apartmentService.createApartment({
             title: values.title,
@@ -16,9 +17,9 @@ export async function createApartment(values: FormikValues, accessToken: string,
                 amount: values.price
             },
             description: values.description,
-            bedsQuantity: values.bedsQuantity,
-            guestsQuantity: values.guestsQuantity,
-            roomsQuantity: values.roomsQuantity,
+            bedsQuantity: values.bedCount,
+            guestsQuantity: 0,
+            roomsQuantity: values.roomCount,
             draft: false
         }, accessToken)
         snackBarStore.showSnackBar("Квартира успешно создана");

@@ -42,7 +42,6 @@ export const UpdateTariffForm = observer(({tariff}: PropsType) => {
         navigate("/tariffs/" + tariff.id, {replace: true})
 
         tariffsListStore.loadTariffs()
-        console.log("newTariff",newTariff)
 
         tariffDetailsStore.loadTariffDetails(tariff.id)
     }

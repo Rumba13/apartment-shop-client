@@ -5,8 +5,15 @@ FROM node:alpine as builder
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
+# install dependencies
+COPY package.json /usr/src/app/
+RUN npm install
+
 # copy app into working directory
 COPY . /usr/src/app
+
+# build production version of app
+RUN npm run build
 
 FROM nginx
 EXPOSE 3000

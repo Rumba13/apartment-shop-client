@@ -1,8 +1,6 @@
 import './styles.scss';
 import {LinkWithIcon} from "../../../shared/ui/link-with-icon";
 import GeoIcon from "../../../assets/images/geo-location-colorfull.svg";
-import MetroIcon from "../../../assets/images/metro.svg";
-import RatingIcon from "../../../assets/images/star.svg";
 import RoomsIcon from "../../../assets/images/sleeping-man.svg";
 import BedIcon from "../../../assets/images/bed.svg";
 import GuestsIcon from "../../../assets/images/people.svg";
@@ -21,7 +19,7 @@ import {UUID} from "../../../shared/api/types/uuid";
 import {apartmentDetailsStore} from "../model/apartment-details-store";
 import {userStore} from "../../user";
 import {currencyStore} from "../../../features/select-currency";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {DeleteApartment} from "./delete-apartment-button";
 import NoImage from "../../../assets/images/no-image.jpg"
 import {Slider} from "../../../shared/ui/slider";
@@ -44,22 +42,11 @@ export const ApartmentDetails = observer(({
     const [isCollapsibleExpanded, setIsCollapsibleExpanded] = useState<boolean>(false)
 
     const [currentTab, setCurrentTab] = useState(0);
-
     const mapRef = useRef<HTMLDivElement>(null)
     const descriptionRef = useRef<HTMLDivElement>(null)
     const tagsRef = useRef<HTMLDivElement>(null)
     const rulesRef = useRef<HTMLDivElement>(null)
     const nearToApartmentRef = useRef<HTMLDivElement>(null)
-
-    const testItems = ["Кирпичный дом", "Лифт", "Этаж: 2", "Этажей: 6"].map(li =>
-        <TitleWithIcon className={"tags-list__item amenities-list__item"}
-                       withLi
-                       key={li}
-                       icon={MarkIcon}
-        >
-            {li}
-        </TitleWithIcon>);
-
 
     useEffect(() => {
         apartmentDetailsStore.loadApartmentDetails(apartmentId, currencyStore.currency);
@@ -213,7 +200,6 @@ export const ApartmentDetails = observer(({
                      ref={rulesRef}>
                     <h3 className="title">{t("Rules Of Residence")}</h3>
                     <ul className="tags-list">
-                        {testItems}
                     </ul>
                 </div>
                 <div className="section near-the-house"
@@ -237,6 +223,11 @@ export const ApartmentDetails = observer(({
                         <button className="show-more"
                                 onClick={() => setIsCollapsibleExpanded(true)}
                         >{t("Show More")}</button>}
+                </div>
+                <div className="section map"
+                     ref={mapRef}>
+                    <h3 className="title">{t("On Map")}</h3>
+                    {/*<Map/>*/}
                 </div>
             </div>
             <div className="order-menu">
@@ -271,7 +262,7 @@ export const ApartmentDetails = observer(({
                         <span className="price-chip__price">{price.amount}{currencyToPostfixMap[price.currency]}.</span>
                     </div>
                 </div>
-                <OpenOrderModalButton/>
+                <OpenOrderModalButton apartmentId={apartmentId}/>
             </div>
         </div>
     </div>

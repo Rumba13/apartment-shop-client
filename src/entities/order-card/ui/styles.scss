@@ -17,20 +17,20 @@
   "image title"
   "image price";
 
-    & .order-photo {
+    & .order-photo-wrapper {
       grid-area: image;
-      max-height: 100%;
+    }
+
+    & .order-photo {
       height: 100%;
       width: 100%;
-      object-fit: cover;
       border-radius: 8px;
-      overflow: hidden;
     }
 
     & .order__title {
       font-family: "CeraPro", Arial, sans-serif;
       grid-area: title;
-
+      height: min-content;
     }
 
     & .order__price {

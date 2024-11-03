@@ -6,10 +6,13 @@ class CurrencyStore {
         makeAutoObservable(this);
     }
 
+    public currencies: Currency[] = ["USD", "BYN", "RUB"]
+
     public currency: Currency = "BYN";
 
-    public setCurrency(currency: Currency){
+    public setCurrency(currency: Currency) {
         this.currency = currency;
     }
 }
+
 export const currencyStore = new CurrencyStore();
