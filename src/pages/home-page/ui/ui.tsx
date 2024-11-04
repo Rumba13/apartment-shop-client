@@ -15,24 +15,30 @@ export const HomePage = observer(() => {
 
     const scrollToRef = useRef<HTMLDivElement>(null);
 
-    return <StandartLayout className="home-page" withTitle>
-        <div className="home-page-top" ref={scrollToRef}>
+    return <StandartLayout className="home-page"
+                           withTitle>
+        <div className="home-page-top"
+             ref={scrollToRef}>
             {userStore.user?.isSuperuser && <OpenCreateApartmentPageButton/>}
             <SortBy/>
         </div>
         <ApartmentList/>
 
-        <Pagination className="pagination"
-                    align="center"
-                    pageSize={apartmentListStore.pageSize}
-                    current={apartmentListStore.currentPage}
-                    total={apartmentListStore.totalPages * apartmentListStore.pageSize}
-                    onChange={(currentPage) => {
-                        console.log(scrollToRef.current)
-                        apartmentListStore.setCurrentPage(currentPage)
-                        //@ts-ignore
-                        scrollToRef.current?.scrollIntoView({behavior: "instant",block:"nearest"})
+        {apartmentListStore.totalPages > 1 && <Pagination className="pagination"
+                                                          align="center"
+                                                          pageSize={apartmentListStore.pageSize}
+                                                          current={apartmentListStore.currentPage}
+                                                          total={apartmentListStore.totalPages * apartmentListStore.pageSize}
+                                                          onChange={(currentPage) => {
+                                                              console.log(scrollToRef.current)
+                                                              apartmentListStore.setCurrentPage(currentPage)
+                                                              scrollToRef.current?.scrollIntoView({
+                                                              //@ts-ignore
+                                                                  behavior: "instant",
+                                                                  block: "nearest"
+                                                              })
+                                                          }}/>}
 
-                    }}/>
+
     </StandartLayout>
 });

@@ -1,7 +1,7 @@
 .modal {
-  position: absolute;
-  left: 50%;
-  top: 50vh;
+  position: fixed;
+  left: 50vw;
+  top: 50%;
   z-index: 20222;
   width: 430px;
   border-radius: 10px;
@@ -15,11 +15,13 @@
     opacity: 1;
     visibility: visible;
   }
+
   & .modal-close {
     position: absolute;
     right: 5px;
     top: 5px;
   }
+
   & .modal__title {
     margin-top: 7px;
     text-align: center;

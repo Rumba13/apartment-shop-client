@@ -5,6 +5,7 @@ import {Aside} from "../../../widgets/aside";
 import React from "react";
 import {observer} from "mobx-react";
 import {apartmentListStore} from "../../../widgets/apartment-list/model/apartment-list-store";
+import {Breadcrumbs} from "../../../shared/ui/bread-crumbs";
 
 type PropsType = {
     className?: string,
@@ -14,7 +15,6 @@ type PropsType = {
 }
 
 export const StandartLayout = observer(({className, children, noAside = false, withTitle = false}: PropsType) => {
-
     const paginationDetails = `${(apartmentListStore.currentPage * apartmentListStore.pageSize) - apartmentListStore.pageSize + 1}-${apartmentListStore.currentPage * apartmentListStore.pageSize} из ${apartmentListStore.totalPages * apartmentListStore.pageSize}`
 
     return (

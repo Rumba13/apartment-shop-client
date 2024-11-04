@@ -1,15 +1,23 @@
-import {Currency} from "./currency";
 import {Price} from "./price";
+import {AmenityGroup} from "./amenity-groups-from-backend";
+import {UUID} from "./uuid";
 
 export type CreateApartmentDto = {
     title: string,
     description: string,
-    roomsQuantity: number,
-    bedsQuantity: number,
-    guestsQuantity: number,
+    roomQuantity: number,
+    bedQuantity: number,
+    guestQuantity: number,
+    adultPrice: number,
+    teenPrice: number,
+    kidPrice: number,
+    babyPrice: number,
+    petPrice: number,
     price: Price,
     address: string,
     area: number,
-    amenities: string[],
-    draft:boolean
+    amenityGroups: AmenityGroup[],
+    draft: boolean,
+    tariff: UUID,
+    sleepPlaces: string
 }

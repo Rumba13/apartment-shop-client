@@ -31,7 +31,7 @@ class ApartmentListStore extends LoadingStore {
     public apartments: Apartment[] | null = null;
     public currentPage: number = 1;
     public setCurrentPage = (property: number) => this.currentPage = property
-    public readonly pageSize: number = 10;
+    public readonly pageSize: number = 20;
     public totalPages: number = 1;
     public setTotalPages = (totalPages: number) => this.totalPages = totalPages
 

@@ -37,6 +37,7 @@
   & textarea.field__field {
     resize: vertical;
     max-height: 200px;
+    min-height: 48px;
   }
 
   & .field__error {

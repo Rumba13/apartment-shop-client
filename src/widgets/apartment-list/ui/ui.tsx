@@ -32,6 +32,7 @@ export const ApartmentList = observer(({}: PropsType) => {
         if (priceFilterStore.isOnCooldown) {
             return;
         }
+
         searchStore.setSearchOnCooldown()
 
         const tags = tagsFilterStore.getSelectedTagsNames()

@@ -1,0 +1,8 @@
+.select-guest-modal {
+  z-index: 99999999;
+  max-width: 410px;
+
+  & .modal-title {
+    display: none;
+  }
+  }

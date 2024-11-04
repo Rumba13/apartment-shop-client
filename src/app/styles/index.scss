@@ -12,7 +12,8 @@ body {
   overflow-y: scroll;
 
   &.animating-scroll {
-    position: fixed;
+    padding-right: 17px;
+    overflow-y: hidden;
   }
 
   &.hide-scroll {

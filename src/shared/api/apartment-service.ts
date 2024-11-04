@@ -1,9 +1,11 @@
-import {Apartment} from "./types/apartment";
-import {UUID} from "./types/uuid";
 import {serverConnection} from "./server-connection";
+import {UUID} from "./types/uuid";
 import {Currency} from "./types/currency";
+import {Apartment} from "./types/apartment";
 import {CreateApartmentDto} from "./types/create-apartment.dto";
 import {BookDate} from "./types/book-date";
+
+
 
 class ApartmentService {
     constructor() {

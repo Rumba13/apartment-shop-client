@@ -16,11 +16,11 @@ class OverlayStore {
     public onAnimationEnd = () => {
         this.setIsAnimating(true)
         document.body.classList.toggle('hide-scroll', this.isOverlayOpened);
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "smooth"
-        })
+        // window.scrollTo({
+        //     top: 0,
+        //     left: 0,
+        //     behavior: "smooth"
+        // })
     }
 
     public setIsOverlayOpened(isOverlayOpened: boolean) {

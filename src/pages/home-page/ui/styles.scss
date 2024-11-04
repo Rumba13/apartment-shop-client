@@ -1,15 +1,18 @@
 .home-page .content {
 
-
-
   & .home-page-top {
     display: flex;
     justify-content: end;
     align-items: stretch;
     width: 100%;
+    margin-top: 5px;
 
     & .open-create-apartment-page-button {
       margin-left: auto;
+    }
+    & .sort-by {
+      margin-top: 5px;
+      margin-left: 5px;
     }
   }
   & .pagination {

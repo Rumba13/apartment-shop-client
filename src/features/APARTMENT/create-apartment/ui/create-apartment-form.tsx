@@ -3,13 +3,18 @@ import {Form, Formik, FormikValues} from "formik";
 import React from "react";
 import {Field} from "../../../../shared/ui/field/ui";
 import {useTypedTranslation} from "../../../../app/i18n/use-typed-translation";
-import {UUID} from "../../../../shared/api/types/uuid";
 import {useNavigate} from "react-router-dom";
 import {createApartment} from "../api/create-apartment";
 import useLocalStorageState from "use-local-storage-state";
 import {SelectGuestModal, selectGuestModalStore} from "../../../../widgets/select-guests-modal";
-import {GuestsCountByCategory} from "../../../../shared/api/types/guests-count-by-category";
 import {ButtonCool} from "../../../../shared/ui/button-cool";
+import {FieldNumber} from "../../../../shared/ui/field-number";
+import {PriceField} from "../../../price-field";
+import {TariffField} from "../../../tariff-field";
+import {AmenitiesGroupField} from "../../../amenities-group-field";
+import {UUID} from "../../../../shared/api/types/uuid";
+import {GuestsCountByCategory} from "../../../../shared/api/types/guests-count-by-category";
+
 
 export type ValuesType = {
     title: string,
@@ -18,22 +23,28 @@ export type ValuesType = {
     bedCount: number
     price: number
     address: string
-    area: number
+    area: number,
+    tariff: UUID | null,
+    amenityGroups: { [key: string]: string[] },
+    sleepPlaces:string
 } & GuestsCountByCategory
 
 const initialValues: ValuesType = {
     address: "",
     description: "",
-    bedCount: 0,
+    bedCount: 1,
     title: "",
-    roomCount: 0,
+    roomCount: 1,
     price: 0,
     petCount: 0,
-    adultCount: 0,
+    adultCount: 1,
     kidCount: 0,
     teenCount: 0,
     babyCount: 0,
-    area: 0
+    area: 1,
+    tariff: null,
+    amenityGroups: {},
+    sleepPlaces:""
 }
 
 export function CreateApartmentForm() {
@@ -44,9 +55,8 @@ export function CreateApartmentForm() {
     return <div className="create-apartment-form-wrapper">
         <span className="create-apartment-form-wrapper__title">{t("Create Apartment")}</span>
 
-
         <Formik<ValuesType> initialValues={initialValues}
-                            onSubmit={(values, {setSubmitting}) => createApartment(values, accessToken, (id: UUID) => navigate("/apartment-details/" + id, {}))}>
+                            onSubmit={(values) => createApartment(values, accessToken, (id: UUID) => navigate("/apartment-details/" + id, {}))}>
             {({values}) => (
                 <Form className="create-apartment-form"
                       id="create-apartment-form">
@@ -58,22 +68,35 @@ export function CreateApartmentForm() {
                     <Field name="description"
                            as="textarea"
                            label={t("Apartment Description")}/>
-                    <Field name="roomCount"
-                           type="number"
-                           label={t("Rooms Quantity")}/>
-                    <Field name="bedCount"
-                           type="number"
-                           label={t("Beds Quantity")}/>
-                    <ButtonCool onClick={() => selectGuestModalStore.setIsOpened(true)}>Изменить</ButtonCool>
-                    <Field name="price"
-                           type="number"
-                           label={t("Price")}/>
+                    <FieldNumber name="roomCount"
+                                 min={1}
+                                 type="number"
+                                 label={t("Rooms Quantity")}/>
+                    {/*<FieldNumber name="bedCount"*/}
+                    {/*             min={1}*/}
+                    {/*             type="number"*/}
+                    {/*             label={t("Beds Quantity")}/>*/}
+                    <div className="field">
+                        <h2 className="field__label">{t("Number Of People")}</h2>
+                        <ButtonCool onClick={() => selectGuestModalStore.setIsOpened(true)}>Изменить</ButtonCool>
+                    </div>
+                    <Field name="sleepPlaces"
+                           placeholder={"2+2+1"}
+                           label={t("Sleep places")}/>
+                    <PriceField name="price"
+                                min={1}
+                                type="number"
+                                label={t("Price")}/>
+
+                    <TariffField name="tariff"
+                                 label={t("Tariffs")}/>
                     <Field name="address"
                            label={t("Address")}/>
-                    <Field name="area"
-                           label={t("Area")}/>
-                    <Field name="amenities"
-                           label={t("Amenities")}/>
+                    <FieldNumber name="area"
+                                 min={1}
+                                 label={t("Area")}/>
+                    <AmenitiesGroupField name="amenityGroups"/>
+
                     <Field name="photos"
                            type="file"
                            accept={"image/*"}

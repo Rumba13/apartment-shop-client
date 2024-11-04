@@ -5,8 +5,9 @@ import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {AuthModal} from "../../auth-modal";
 import {AuthModalActions} from "./auth-modal-actions/ui";
 import {observer} from "mobx-react";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {userStore} from "../../../entities/user";
+import {Breadcrumbs} from "../../../shared/ui/bread-crumbs";
 
 type PropsType = {
     noSearch?: boolean;
@@ -18,6 +19,10 @@ export const Header = observer(({noSearch = false}: PropsType) => {
     useEffect(() => {
 
     }, [userStore.user]);
+
+    // const breadcrumbs = window.location.pathname.split("/").filter(Boolean)
+    // breadcrumbs.unshift("Главная")
+    // console.log(breadcrumbs);
 
     return <header className="header">
         <AuthModal/>
@@ -35,5 +40,6 @@ export const Header = observer(({noSearch = false}: PropsType) => {
                 </div>
             </div>
         }
+        {/*<Breadcrumbs items={breadcrumbs}/>*/}
     </header>
 });

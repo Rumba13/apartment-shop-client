@@ -20,8 +20,7 @@ export function TariffField({className, label, ...props}: PropsType) {
     useEffect(() => {
         tariffService.loadTariffs().then((tariffs) => {
             setTariffs(tariffs);
-            console.log(tariffs)
-            setValue(tariffs[0].id)
+            setValue(tariffs[0].title)
         })
     }, []);
 
@@ -32,12 +31,13 @@ export function TariffField({className, label, ...props}: PropsType) {
         >{label}</label>
         <Select
             showSearch
+            dropdownAlign={{ overflow: { adjustX: false, adjustY: false } }}
             allowClear
             onClear={() => setValue("")}
             filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
             value={field.value}
-            onChange={tariffId => setValue(tariffId)}
-            options={(tariffs || []).map(tariff => ({label: tariff.title, value: tariff.id}))}
+            onChange={(tariffId,) => setValue(tariffId)}
+            options={(tariffs || []).map(tariff => ({label: tariff.title, value: tariff.title}))}
             dropdownStyle={{zIndex: 200000}}/>
         <ErrorMessage
             className="field__error"

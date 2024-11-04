@@ -29,7 +29,7 @@
 
   & .apartment-details-mid {
     display: grid;
-    grid-template-columns: 882fr 353fr;
+    grid-template-columns: 700fr 353fr;
     grid-template-rows: auto;
     padding-top: 20px;
 
@@ -37,16 +37,20 @@
       display: flex;
       flex-direction: column;
       flex: 1;
-      height: 300px;
       border-radius: 15px;
 
       & .swiper {
         border-radius: inherit;
-
+        aspect-ratio: 580 / 387;
 
         & .swiper-slide {
           cursor: pointer;
+
+          & img {
+            object-fit: contain;
+          }
         }
+
         & .swiper-wrapper {
         }
       }

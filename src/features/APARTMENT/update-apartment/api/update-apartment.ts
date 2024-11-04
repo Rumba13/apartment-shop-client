@@ -9,16 +9,23 @@ export async function updateApartment(values: FormikValues, accessToken: string,
         await apartmentService.updateApartment(apartmentId, {
             title: values.title,
             area: values.area,
-            amenities: values.amenities.split(", "),
+            tariff:"",
+            amenityGroups: [],
             address: values.address,
             price: {
                 currency: currencyStore.currency,
                 amount: values.price
             },
             description: values.description,
-            bedsQuantity: values.bedsQuantity,
-            guestsQuantity: values.guestsQuantity,
-            roomsQuantity: values.roomsQuantity,
+            bedQuantity: values.bedsQuantity,
+            guestQuantity: values.guestsQuantity,
+            roomQuantity: values.roomsQuantity,
+            adultPrice: 0,
+            teenPrice: 0,
+            kidPrice: 0,
+            babyPrice: 0,
+            petPrice: 0,
+            sleepPlaces: "",
             draft: false
         }, accessToken)
 
