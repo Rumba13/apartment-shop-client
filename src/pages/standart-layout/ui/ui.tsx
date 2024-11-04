@@ -5,7 +5,6 @@ import {Aside} from "../../../widgets/aside";
 import React from "react";
 import {observer} from "mobx-react";
 import {apartmentListStore} from "../../../widgets/apartment-list/model/apartment-list-store";
-import {Breadcrumbs} from "../../../shared/ui/bread-crumbs";
 
 type PropsType = {
     className?: string,

@@ -63,12 +63,12 @@ export function AuthModalActions() {
 
             {!userStore.user && <>
                 <div className="open-sign-in-modal auth-button"
-                     onClick={() => authModalStore.open(0)}
+                     onClick={() => authModalStore.openWithTab(0)}
                 >
                     <span className="options-item__title">{t("Sign In")}</span>
                 </div>
                 <div className="open-sign-up-modal auth-button"
-                     onClick={() => authModalStore.open(1)}
+                     onClick={() => authModalStore.openWithTab(1)}
                 >
                     <span className="options-item__title">{t("Sign Up")}</span>
                 </div>

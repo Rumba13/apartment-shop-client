@@ -16,10 +16,10 @@ export const FilterByGuestsCount = observer(() => {
     return (
         <div className="filter-by-guests-count">
             <span className="filters__title">{t("Guests")}</span>
-            <InputNumber value={guestsCountStore.maxGuestsCount}
+            <InputNumber value={guestsCountStore.minGuestsCount}
                          min={0}
-                         max={20}
-                         onChange={(count) => guestsCountStore.setMaxGuestsCount(count)}
+                         max={Infinity}
+                         onChange={(count) => guestsCountStore.setMinGuestsCount(count)}
             />
         </div>
     )

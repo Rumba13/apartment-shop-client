@@ -9,16 +9,18 @@ class AuthModalStore extends ModalStore {
             isOpened: override,
             setIsOpened: override,
             activeTab: observable,
-            setActiveTab: action
+            setActiveTab: action,
+            open: override,
+            close: override
         })
     }
 
     public activeTab: number = 0;
     public setActiveTab = (activeTab: number) => this.activeTab = activeTab;
 
-    public open = (activeTab: number) => {
+    public openWithTab = (activeTab: number) => {
         this.setActiveTab(activeTab);
-        this.setIsOpened(true);
+        this.open()
     }
 }
 

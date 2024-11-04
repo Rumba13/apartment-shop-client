@@ -8,15 +8,34 @@ import {useEffect, useRef} from "react";
 import {observer} from "mobx-react";
 import {Pagination} from "antd";
 import {apartmentListStore} from "../../../widgets/apartment-list/model/apartment-list-store";
+import {SelectDatesModal, selectDatesModalStore} from "../../../widgets/welcome-modal";
+import {selectGuestModalStore, SelectGuestsFormModal, SelectGuestsModal} from "../../../widgets/select-guests-modal";
+import {Formik} from "formik";
+import {guestsCountStore} from "../../../features/FILTER/filter-by-guests";
 
 export const HomePage = observer(() => {
     useEffect(() => {
     }, [userStore.user]);
 
+    useEffect(() => {
+        selectDatesModalStore.open()
+    }, []);
+
     const scrollToRef = useRef<HTMLDivElement>(null);
 
     return <StandartLayout className="home-page"
                            withTitle>
+
+
+        <SelectDatesModal onNextButtonClick={() => {
+            selectDatesModalStore.close()
+            selectGuestModalStore.open()
+        }}/>
+        <SelectGuestsModal onNextButtonClick={(guests) => {
+            guestsCountStore.setMinGuestsCount(guests.adultCount + guests.babyCount + guests.teenCount + guests.kidCount)
+        }}/>
+
+
         <div className="home-page-top"
              ref={scrollToRef}>
             {userStore.user?.isSuperuser && <OpenCreateApartmentPageButton/>}
@@ -33,7 +52,7 @@ export const HomePage = observer(() => {
                                                               console.log(scrollToRef.current)
                                                               apartmentListStore.setCurrentPage(currentPage)
                                                               scrollToRef.current?.scrollIntoView({
-                                                              //@ts-ignore
+                                                                  //@ts-ignore
                                                                   behavior: "instant",
                                                                   block: "nearest"
                                                               })

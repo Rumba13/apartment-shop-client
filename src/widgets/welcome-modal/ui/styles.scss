@@ -1,0 +1,20 @@
+.welcome-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  max-width: fit-content;
+
+  & .date-filter {
+    max-width: fit-content;
+    margin-bottom: 5px;
+  }
+
+  & .modal__title {
+    margin-bottom: 10px;
+  }
+
+  & .next-button {
+    padding: 10px 20px;
+  }
+}

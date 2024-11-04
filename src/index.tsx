@@ -3,14 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './app/styles/index.scss';
 import reportWebVitals from './app/reportWebVitals';
 import {App} from "./app/App";
-import {Outlet, ScrollRestoration} from "react-router-dom";
+import ruRu from "antd/lib/locale/ru_RU";
+import {ConfigProvider} from "antd";
+
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
     <React.StrictMode>
-        <App/>
+        <ConfigProvider locale={ruRu}>
+                <App/>
+        </ConfigProvider>
     </React.StrictMode>
 );
 

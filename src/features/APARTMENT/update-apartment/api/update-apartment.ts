@@ -12,12 +12,7 @@ export async function updateApartment(values: FormikValues, accessToken: string,
             tariff:"",
             amenityGroups: [],
             address: values.address,
-            price: {
-                currency: currencyStore.currency,
-                amount: values.price
-            },
             description: values.description,
-            bedQuantity: values.bedsQuantity,
             guestQuantity: values.guestsQuantity,
             roomQuantity: values.roomsQuantity,
             adultPrice: 0,

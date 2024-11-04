@@ -138,7 +138,8 @@ export const englishTranslation: Translation = {
     "Total": "Total",
     "Guest Quantity": "Guest quantity",
     "Required Field": "Required Field",
-    "Invalid phone": "Неверный телефон"
+    "Invalid phone": "Неверный телефон",
+    "Please Select Dates": "Please select dates",
 };
 
 /*

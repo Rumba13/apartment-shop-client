@@ -11,13 +11,12 @@ type PropsType = {
     maxGuestsCount:number
 }
 
-export const SelectGuestModal = observer(({values, onGuestChange,maxGuestsCount}: PropsType) => {
+export const SelectGuestsFormModal = observer(({values, onGuestChange,maxGuestsCount}: PropsType) => {
 
     return <Modal title={""}
                   className={"select-guest-modal"}
-                  isOpened={selectGuestModalStore.isOpened}
-                  stopPropagation={selectGuestModalStore.stopPropagationInModal}
-                  onCrossClick={() => selectGuestModalStore.setIsOpened(false)}>
+                  modalStore={selectGuestModalStore}
+    >
         <SelectGuestsForm values={values}
                           maxGuestCount={maxGuestsCount}
                           onChange={onGuestChange}

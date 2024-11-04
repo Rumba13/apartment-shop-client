@@ -20,12 +20,7 @@ export async function createApartment(values: ValuesType, accessToken: string, n
             amenityGroups: newAmenityGroups,
             tariff: values.tariff || "",
             address: values.address,
-            price: {
-                currency: "USD",
-                amount: values.price
-            },
             description: values.description,
-            bedQuantity: values.bedCount,
             guestQuantity: 0,
             roomQuantity: values.roomCount,
             adultPrice: 0,

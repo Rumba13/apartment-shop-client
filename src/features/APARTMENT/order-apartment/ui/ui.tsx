@@ -18,7 +18,7 @@ import {apartmentService} from "../../../../shared/api/apartment-service";
 import {RangePickerProps} from "antd/es/date-picker";
 import {BookDate} from "../../../../shared/api/types/book-date";
 import {t, use} from "i18next"
-import {SelectGuestModal, selectGuestModalStore} from "../../../../widgets/select-guests-modal";
+import {SelectGuestsFormModal, selectGuestModalStore} from "../../../../widgets/select-guests-modal";
 import {getOrderPriceStore} from "../../../ORDER/get-order-price";
 import {snackBarStore} from "../../../../shared/ui/snack-bar/snack-bar-store";
 import CrossIcon from "../../../../assets/images/cross.svg"
@@ -180,7 +180,7 @@ export const OrderApartmentForm = observer(({
                                 onClick={() => selectGuestModalStore.setIsOpened(true)}>Изменить
                         </button>
                     </div>
-                    <SelectGuestModal maxGuestsCount={apartmentMaxGuests} values={values}/>
+                    <SelectGuestsFormModal maxGuestsCount={apartmentMaxGuests} values={values}/>
                     <div className="book-date field">
                         <h2 className="book-date__title field__label">{t("Check-in Date")}</h2>
                         <RangePicker locale={ruRu}

@@ -5,16 +5,17 @@
   border-top-left-radius: inherit;
   overflow: hidden;
 
-  & img {
-    width: 100%;
-    height: 100%;
-  }
-
   & .swiper-slide {
-    width: 100% !important;
+    width: 100.05% !important;
+
+    & img {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   & .swiper-wrapper {
+    display: flex;
     width: 100%;
   }
 
@@ -22,11 +23,10 @@
     color: white;
 
     &:after {
-      text-shadow: 0 0 4px rgb(0,0,0,0.7);
+      text-shadow: 0 0 4px rgb(0, 0, 0, 0.7);
       font-size: 18px;
       color: white;
     }
-
 
     &.swiper-button-disabled {
       pointer-events: all;

@@ -7,7 +7,7 @@ import {PriceField} from "../../../features/price-field";
 import {AmenitiesField} from "../../../features/amenities-field";
 import {FieldNumber} from "../../../shared/ui/field-number";
 import {AmenitiesGroupField} from "../../../features/amenities-group-field";
-
+import {RangePickerDropdown} from "../../../shared/ui/range-picker";
 
 export function DevPage() {
     return (
@@ -38,8 +38,11 @@ export function DevPage() {
                             type="submit">Submit
                     </button>
 
-                </Form>}</Formik>
-
+                    <RangePickerDropdown renderInId={"a"}/>
+                </Form>}
+            </Formik>
+            <div id="a">
+            </div>
         </MinimalLayout>
     )
 }

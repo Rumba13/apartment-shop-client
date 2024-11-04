@@ -15,9 +15,8 @@ export const SelectGuestPricesModal = observer(({values, onGuestChange,maxGuests
 
     return <Modal title={""}
                   className={"select-guest-modal"}
-                  isOpened={selectGuestPricesModalStore.isOpened}
-                  stopPropagation={selectGuestPricesModalStore.stopPropagationInModal}
-                  onCrossClick={() => selectGuestPricesModalStore.setIsOpened(false)}>
+                  modalStore={selectGuestPricesModalStore}
+    >
         <SelectGuestsForm values={values}
                           maxGuestCount={maxGuestsCount}
                           onChange={onGuestChange}

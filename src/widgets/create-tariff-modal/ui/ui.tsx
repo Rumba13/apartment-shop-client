@@ -8,9 +8,8 @@ import {CreateTariffForm} from "../../../features/TARIFF/create-tariff";
 
 export const CreateTariffModal = observer(() => {
     return <Modal title="Создать тариф"
-                  isOpened={tariffModalStore.isOpened}
-                  stopPropagation={tariffModalStore.stopPropagationInModal}
-                  onCrossClick={() => tariffModalStore.setIsOpened(false)}>
+                  modalStore={tariffModalStore}
+    >
        <CreateTariffForm/>
     </Modal>
 })

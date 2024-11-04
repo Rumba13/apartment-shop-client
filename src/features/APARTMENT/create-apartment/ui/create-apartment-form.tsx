@@ -6,7 +6,7 @@ import {useTypedTranslation} from "../../../../app/i18n/use-typed-translation";
 import {useNavigate} from "react-router-dom";
 import {createApartment} from "../api/create-apartment";
 import useLocalStorageState from "use-local-storage-state";
-import {SelectGuestModal, selectGuestModalStore} from "../../../../widgets/select-guests-modal";
+import {SelectGuestsFormModal, selectGuestModalStore} from "../../../../widgets/select-guests-modal";
 import {ButtonCool} from "../../../../shared/ui/button-cool";
 import {FieldNumber} from "../../../../shared/ui/field-number";
 import {PriceField} from "../../../price-field";
@@ -20,8 +20,6 @@ export type ValuesType = {
     title: string,
     description: string
     roomCount: number
-    bedCount: number
-    price: number
     address: string
     area: number,
     tariff: UUID | null,
@@ -32,10 +30,8 @@ export type ValuesType = {
 const initialValues: ValuesType = {
     address: "",
     description: "",
-    bedCount: 1,
     title: "",
     roomCount: 1,
-    price: 0,
     petCount: 0,
     adultCount: 1,
     kidCount: 0,
@@ -60,8 +56,8 @@ export function CreateApartmentForm() {
             {({values}) => (
                 <Form className="create-apartment-form"
                       id="create-apartment-form">
-                    <SelectGuestModal values={values}
-                                      maxGuestsCount={Infinity}/>
+                    <SelectGuestsFormModal values={values}
+                                           maxGuestsCount={Infinity}/>
                     <Field name="title"
                            placeholder={"Название квартиры"}
                            label={t("Title")}/>
@@ -72,10 +68,6 @@ export function CreateApartmentForm() {
                                  min={1}
                                  type="number"
                                  label={t("Rooms Quantity")}/>
-                    {/*<FieldNumber name="bedCount"*/}
-                    {/*             min={1}*/}
-                    {/*             type="number"*/}
-                    {/*             label={t("Beds Quantity")}/>*/}
                     <div className="field">
                         <h2 className="field__label">{t("Number Of People")}</h2>
                         <ButtonCool onClick={() => selectGuestModalStore.setIsOpened(true)}>Изменить</ButtonCool>
@@ -83,10 +75,6 @@ export function CreateApartmentForm() {
                     <Field name="sleepPlaces"
                            placeholder={"2+2+1"}
                            label={t("Sleep places")}/>
-                    <PriceField name="price"
-                                min={1}
-                                type="number"
-                                label={t("Price")}/>
 
                     <TariffField name="tariff"
                                  label={t("Tariffs")}/>

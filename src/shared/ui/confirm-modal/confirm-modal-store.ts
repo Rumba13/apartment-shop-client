@@ -14,25 +14,27 @@ class ConfirmModalStore extends ModalStore {
     }
 
     private _currentModalPromise: Promise<void> | null = null;
-    private _resolveModalPromise: () => void = () => {}
-    private _rejectModalPromise: () => void = () => {}
+    private _resolveModalPromise: () => void = () => {
+    }
+    private _rejectModalPromise: () => void = () => {
+    }
 
     public confirm = () => {
         this._resolveModalPromise()
-        this.setIsOpened(false);
+        this.close()
     };
     public cancel = () => {
         this._rejectModalPromise()
-        this.setIsOpened(false);
+        this.close()
     };
     public modalOptions: ConfirmModalOptions = {description: ""}
 
     public askForConfirm(modalOptions: ConfirmModalOptions): Promise<void> {
-        this.setIsOpened(true);
+        this.open()
         runInAction(() => this.modalOptions = modalOptions)
 
         this._currentModalPromise = new Promise<void>((innerResolve, innerReject) => {
-            this._resolveModalPromise = () => innerResolve()
+            this._resolveModalPromise = innerResolve
             this._rejectModalPromise = innerReject;
         });
 

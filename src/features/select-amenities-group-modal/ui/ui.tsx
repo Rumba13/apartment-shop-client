@@ -11,9 +11,8 @@ type PropsType = {
 export const SelectAmenitiesGroupModal = observer(({name}: PropsType) => {
     return <Modal title={"Select Amenities Group Modal"}
                   className="select-amenities-group-modal"
-                  isOpened={selectAmenitiesGroupModalStore.isOpened}
-                  stopPropagation={selectAmenitiesGroupModalStore.stopPropagationInModal}
-                  onCrossClick={() => selectAmenitiesGroupModalStore.setIsOpened(false)}>
+        modalStore={selectAmenitiesGroupModalStore}
+    >
 
         <SelectAmenitiesGroupForm name={name}/>
     </Modal>

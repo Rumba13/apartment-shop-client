@@ -136,7 +136,8 @@ export const russianTranslation = {
     "Total": "Итого",
     "Guest Quantity": "Количество гостей",
     "Required Field": "Обязательное поле",
-    "Invalid phone": "Неправильный телефон"
+    "Invalid phone": "Неправильный телефон",
+    "Please Select Dates": "Выберите даты",
 };
 
 export type Translation = typeof russianTranslation;

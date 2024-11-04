@@ -46,7 +46,7 @@ export const ApartmentList = observer(({}: PropsType) => {
             page: apartmentListStore.currentPage,
             pageSize: apartmentListStore.pageSize,
             sortBy: sortByStore.selectedSortBy,
-            minGuestsQuantity: 0,
+            minGuestsQuantity: guestsCountStore.minGuestsCount,
             maxGuestsQuantity: guestsCountStore.maxGuestsCount,
             fromDate: filterByDateStore.dates[0] || undefined,
             toDate: filterByDateStore.dates[1] || undefined,
@@ -62,7 +62,8 @@ export const ApartmentList = observer(({}: PropsType) => {
         priceFilterStore.isOnCooldown,
         filterByDateStore.dates,
         guestsCountStore.maxGuestsCount,
-        apartmentListStore.currentPage
+        apartmentListStore.currentPage,
+        guestsCountStore.minGuestsCount,
     ]);
 
     if (apartmentListStore.apartments === null) { //initial loading

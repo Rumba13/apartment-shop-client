@@ -15,9 +15,7 @@ export const UpdateTariffModal = observer(({tariffId}: PropsType) => {
     const {t} = useTypedTranslation()
 
     return <Modal title="Обновить тариф"
-                  isOpened={updateTariffModalStore.isOpened}
-                  stopPropagation={updateTariffModalStore.stopPropagationInModal}
-                  onCrossClick={() => updateTariffModalStore.setIsOpened(false)}
+                  modalStore={updateTariffModalStore}
                   >
         {tariffDetailsStore.tariffDetails !== null && <UpdateTariffForm tariff={tariffDetailsStore.tariffDetails}/>}
     </Modal>

@@ -12,10 +12,8 @@ export const OrderIsSubmittedModal = observer(({}: PropsType) => {
 
     return <Modal className="order-is-submitted-modal"
                   title={t("Order is successfully submitted")}
-                  isOpened={orderIsSubmittedModalStore.isOpened}
-                  stopPropagation={orderIsSubmittedModalStore.stopPropagationInModal}
-                  onCrossClick={() => orderIsSubmittedModalStore.setIsOpened(false)}>
-
+                  modalStore={orderIsSubmittedModalStore}
+>
 
         <div className="content">
             Ваша заявка на аренду квартиры успешно отправлена и передана на рассмотрение.
