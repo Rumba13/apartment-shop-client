@@ -1,8 +1,44 @@
 .apartment-calendar {
-  & .apartment-calendar-cell {
-    height: 100%;
-    width: 100%;
+  display: flex;
+  height: 100%;
+
+  & .apartment-details {
     display: flex;
-    flex-direction: column
+    min-width: 250px;
+    margin-right: 10px;
   }
+
+  & div.apartment-calendar-cell {
+
+    padding-top: 6px;
+    //height: 150px;
+    //border-bottom: 3px solid var(--taupe-gray);
+    //padding-left: 2px;
+
+    &:before {
+    }
+
+    &.highlight {
+      color: unset !important;
+
+      & .cell__price {
+        color: unset;
+      }
+    }
+
+    &.inactive {
+      background-color: var(--weak-gray);
+      border-color: rgba(0, 0, 0, 0);
+    }
+
+    & .content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    & .cell__price {
+      color: var(--taupe-gray)
+    }
+  }
+
 }

@@ -1,48 +1,55 @@
 import "./styles.scss";
 import {UUID} from "../../../shared/api/types/uuid";
 import {apartmentCalendarStore} from "../model/apartment-calendar-store";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {observer} from "mobx-react";
 import {currencyStore} from "../../../features/select-currency";
 import {AppLoader} from "../../app-loader";
 import {Calendar} from "antd";
 import {formatPrice} from "../../../shared/lib/format-price";
-import clsx from "clsx";
-import {useTranslation} from "react-i18next";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
+import dayjs from "dayjs";
+import clsx from "clsx";
+import {Apartment} from "../../../shared/api/types/apartment";
+import {apartmentService} from "../../../shared/api/apartment-service";
+import {CONSTANTS} from "../../../shared/lib/constants";
+import {ApartmentCard} from "../../apartment-card";
+import {Link} from "react-router-dom";
+import {CalendarCell} from "./calendar-cell";
 
 type PropsType = {
     apartmentId: UUID
 }
 
-
 export const ApartmentCalendar = observer(({apartmentId}: PropsType) => {
-
+    const [selectedDate, setSelectedDate] = useState<dayjs.Dayjs>(dayjs())
+    const [apartment, setApartment] = useState<Apartment | null>(null)
     const {t} = useTypedTranslation();
 
     useEffect(() => {
         apartmentCalendarStore.loadCalendar(apartmentId, currencyStore.currency);
-    }, [apartmentId,currencyStore.currency]);
+        apartmentService.getApartmentById(apartmentId, currencyStore.currency).then(setApartment)
+    }, [apartmentId, currencyStore.currency]);
 
-    console.log(apartmentCalendarStore.dates)
-
-    if (apartmentCalendarStore.isLoading) {
+    if (apartmentCalendarStore.isLoading || !apartment) {
         return <div
             className="apartment-calendar"><AppLoader/></div>
     }
     return <div className="apartment-calendar">
-        <Calendar cellRender={(date, info) => {
-            const currentDateInfo = apartmentCalendarStore.dates
-                .find((d) => d.date === date.format("YYYY-MM-DD"))
+        <div className="apartment-details">
+            <Link to={"/apartment-details/" + apartmentId}>
+                {apartment.title}
+            </Link>
 
-            if(!currentDateInfo) return <></>
+            <img src={CONSTANTS.IMAGE_SERVER_URL + apartment.photos[0]}
+                 alt=""/>
+        </div>
 
-            return <div className={clsx("apartment-calendar-cell")}>
-                <span className="cell__price">{formatPrice({amount:currentDateInfo.price, currency:currencyStore.currency})}</span>
-
-
-                {currentDateInfo.isBooked && t("Booked")}
-            </div>
-        }}/>
+        <Calendar value={selectedDate}
+                  onChange={setSelectedDate}
+                  fullCellRender={(date, info) => <CalendarCell date={date}
+                                                                info={info}
+                                                                selectedDate={selectedDate}/>}
+        />
     </div>
 })
