@@ -22,8 +22,6 @@ export const HomePage = observer(() => {
 
     return <StandartLayout className="home-page"
                            withTitle>
-
-
         <SelectDatesModal onNextButtonClick={() => {
             selectDatesModalStore.close()
             selectGuestModalStore.open()
@@ -31,7 +29,6 @@ export const HomePage = observer(() => {
         <SelectGuestsModal onNextButtonClick={(guests) => {
             guestsCountStore.setMinGuestsCount(guests.adultCount + guests.babyCount + guests.teenCount + guests.kidCount)
         }}/>
-
 
         <div className="home-page-top"
              ref={scrollToRef}>
@@ -46,7 +43,6 @@ export const HomePage = observer(() => {
                                                           current={apartmentListStore.currentPage}
                                                           total={apartmentListStore.totalPages * apartmentListStore.pageSize}
                                                           onChange={(currentPage) => {
-                                                              console.log(scrollToRef.current)
                                                               apartmentListStore.setCurrentPage(currentPage)
                                                               scrollToRef.current?.scrollIntoView({
                                                                   //@ts-ignore
@@ -54,7 +50,5 @@ export const HomePage = observer(() => {
                                                                   block: "nearest"
                                                               })
                                                           }}/>}
-
-
     </StandartLayout>
 });

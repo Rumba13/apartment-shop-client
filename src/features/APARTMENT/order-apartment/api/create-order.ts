@@ -7,7 +7,7 @@ export async function createOrder(values: ValuesType, apartmentId: UUID,) {
         apartmentId: apartmentId,
         comment: values.comment,
         fromDate: values.bookDateRange[0],
-        toDate: values.bookDateRange[0],
+        toDate: values.bookDateRange[1],
         username: values.username,
         phoneNumber: values.phone,
         adultQuantity: values.adultCount,

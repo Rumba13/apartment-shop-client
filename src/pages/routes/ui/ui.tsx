@@ -11,6 +11,7 @@ import {TariffsPage} from "../../tariffs-page";
 import {CONSTANTS, SERVER_TYPE} from "../../../shared/lib/constants";
 import {DevPage} from "../../dev-page";
 import {OrderPage} from "../../order-page";
+import {CalendarPage} from "../../calendar-page";
 
 export function Routes() {
 
@@ -25,9 +26,10 @@ export function Routes() {
                 <Route path="/tariffs/:tariffId?" element={<TariffsPage/>}/>
                 {CONSTANTS.SERVER_TYPE === SERVER_TYPE.DEVELOPMENT &&  <Route path="/dev" element={<DevPage/>}/>}
                 <Route path="/order/:apartmentId" element={<OrderPage/>}/>
+                <Route path="/calendar/:apartmentId" element={<CalendarPage/>}/>
+                <Route path="/calendar" element={<CalendarPage/>}/>
 
                 <Route path="/404" element={<div>404</div>}/>
-
             </ReactRoutes>
         </BrowserRouter>
     )

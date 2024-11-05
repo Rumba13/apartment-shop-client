@@ -138,6 +138,9 @@ export const russianTranslation = {
     "Required Field": "Обязательное поле",
     "Invalid phone": "Неправильный телефон",
     "Please Select Dates": "Выберите даты",
+    "Calendar": "Календарь",
+    "Booked": "Забронировано",
+
 };
 
 export type Translation = typeof russianTranslation;

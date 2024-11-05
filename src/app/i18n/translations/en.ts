@@ -140,6 +140,9 @@ export const englishTranslation: Translation = {
     "Required Field": "Required Field",
     "Invalid phone": "Неверный телефон",
     "Please Select Dates": "Please select dates",
+    "Calendar": "Calendar",
+    "Booked": "Booked",
+
 };
 
 /*

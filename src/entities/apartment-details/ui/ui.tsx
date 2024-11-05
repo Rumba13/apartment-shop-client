@@ -87,6 +87,9 @@ export const ApartmentDetails = observer(({
             {userStore.user?.isSuperuser && <>
                 <DeleteApartment apartmentId={apartmentId}/>
                 <Button icon={UpdateIcon}
+                        onClick={() => navigate(`/calendar/${apartmentId}`)}
+                        title={t("Calendar")}/>
+                <Button icon={UpdateIcon}
                         onClick={() => navigate(`/update-apartment/${apartmentId}`)}
                         title={"Обновить"}/>
             </>}
