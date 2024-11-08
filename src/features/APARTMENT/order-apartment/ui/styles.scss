@@ -12,6 +12,7 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr auto auto;
 
+
   .order-form-name {
     grid-area: name;
   }
@@ -28,6 +29,8 @@
 
     & .date-picker {
       height: 48px;
+
+
     }
 
   }
@@ -94,4 +97,10 @@
       background-color: var(--light-azure-active);
     }
   }
+}
+
+.date-picker__message {
+  font-size: 14px;
+  font-family: var(--default-font), sans-serif;
+  color: var(--azure);
 }

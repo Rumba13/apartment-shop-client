@@ -31,6 +31,7 @@ export function SelectGuestsModal({onNextButtonClick}: PropsType) {
                 }}>
             {({values}) => <Form>
                 <SelectGuestsForm values={values}
+                                  noPrice
                                   maxGuestCount={Infinity}
                                   onNextButtonClick={() => {
                                       selectGuestModalStore.setIsOpened(false)

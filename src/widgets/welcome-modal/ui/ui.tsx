@@ -5,8 +5,9 @@ import {selectDatesModalStore} from "../model/select-dates-modal-store";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import dayjs from "dayjs";
 import {filterByDateStore} from "../../../features/FILTER/filter-by-date";
-import {DatePicker} from "antd";
+import {Calendar, DatePicker} from "antd";
 import {ButtonCool} from "../../../shared/ui/button-cool";
+import {CalendarCell} from "../../../entities/calendar/ui/calendar-cell";
 
 const {RangePicker} = DatePicker
 
@@ -14,7 +15,7 @@ type PropsType = {
     onNextButtonClick: () => void,
 }
 
-export const SelectDatesModal = observer(({onNextButtonClick}:PropsType) => {
+export const SelectDatesModal = observer(({onNextButtonClick}: PropsType) => {
     const {t} = useTypedTranslation()
     const [dateFrom, dateTo] = filterByDateStore.dates
 
@@ -22,10 +23,18 @@ export const SelectDatesModal = observer(({onNextButtonClick}:PropsType) => {
                   title={t("Please Select Dates")}
                   modalStore={selectDatesModalStore}
     >
-        <RangePicker className="date-filter" dropdownClassName={"select-dates-modal-date-picker"}
+        <RangePicker className="date-filter"
+                     dropdownClassName="select-dates"
+                     open
+                     hidden
                      value={[!dateFrom ? null : dayjs(dateFrom), !dateTo ? null : dayjs(dateTo)]}
-                     onChange={(_a, dates) => filterByDateStore.setDates(dates)}
+                     getPopupContainer={(trigger) => trigger}
+                     onChange={(_a, dates) => {
+                         filterByDateStore.setDates(dates)
+                         onNextButtonClick?.()
+                     }}
         />
-        <ButtonCool className="next-button" onClick={onNextButtonClick}>{t("Confirm")}</ButtonCool>
+        <ButtonCool className="next-button"
+                    onClick={onNextButtonClick}>{t("Confirm")}</ButtonCool>
     </Modal>
 })

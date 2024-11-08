@@ -8,12 +8,9 @@ import RangeImage from "../../../../assets/images/mocked/price-range.png"
 import {Slider} from "../../../../shared/ui/range/ui";
 import {RangeInput} from "../../../../shared/ui/range-input/ui";
 import {currencyToPostfixMap} from "../../../../shared/lib/currency-to-postfix-map";
-import {searchStore} from "../../../../shared/api/search-store";
 
 export const PriceFilter = observer(() => {
     const {t} = useTypedTranslation();
-
-    //TODO add values validation
 
     useEffect(() => {
 
@@ -26,8 +23,6 @@ export const PriceFilter = observer(() => {
     }
 
     const getLabel = (value: number) => `${value || 0} ${currencyToPostfixMap[currencyStore.currency]}`
-
-    //const validateValue = (value:number) => Math.min(filterByPriceStore.maxPriceBound, Math.max(filterByPriceStore.minPriceBound, value));
 
     return (
         <div className="filter-by-price">
@@ -42,10 +37,10 @@ export const PriceFilter = observer(() => {
                         max={priceFilterStore.maxPriceBound}
                         values={[priceFilterStore.minPrice, priceFilterStore.maxPrice]}/>
 
-            <div className="slider-wrapper">
-                <img className={"slider-wrapper__image"} src={RangeImage} alt=''/>
+            <div className="range-wrapper">
+                <img className="range-wrapper__image" src={RangeImage} alt=''/>
 
-                <Slider className={"price-range-slider"} getLabel={getLabel}
+                <Slider className="price-range-slider" getLabel={getLabel}
                         onChange={(value) => {
                             setSliderValue(value)
                             priceFilterStore.setOnCooldown()

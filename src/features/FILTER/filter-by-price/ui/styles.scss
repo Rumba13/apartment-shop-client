@@ -1,11 +1,11 @@
 .filter-by-price {
 
-  .slider-wrapper {
+  & .range-wrapper {
     position: relative;
     width: 80%;
     margin: 45px auto 0;
 
-    .slider-wrapper__image {
+    & .range-wrapper__image {
       position: absolute;
       bottom: 55%;
       right: 50%;

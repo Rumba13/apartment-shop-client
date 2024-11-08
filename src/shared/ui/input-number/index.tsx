@@ -11,10 +11,11 @@ type PropsType = {
     min: number,
     max: number,
     name?: string
-    id?: string
+    id?: string,
+    className?: string,
 }
 //TODO Сущность слишком умна и опасна. Нужно пристально следить за ней
-export const InputNumber = ({min, value, onChange, max, name, id}: PropsType) => {
+export const InputNumber = ({min, value, onChange, max, name, id,className}: PropsType) => {
     const [localValue, setLocalValue] = useState<string>(min + "")
 
     const setValue = (value: number, event: React.ChangeEvent<any>) => {
@@ -27,7 +28,7 @@ export const InputNumber = ({min, value, onChange, max, name, id}: PropsType) =>
         setLocalValue(value + "")
     }, [value]);
     return (
-        <div className="input-number">
+        <div className={clsx("input-number",className)}>
             <input type="text"
                    className="input-number__input"
                    name={name}

@@ -1,6 +1,7 @@
 import {UUID} from "./uuid";
 import {Price} from "./price";
 import {AmenityGroups} from "./amenity-groups-from-backend";
+import {DescriptionListItem} from "./description-list-item";
 
 export type Apartment = {
     id: UUID;
@@ -25,4 +26,5 @@ export type Apartment = {
     isKidAllowed: boolean,
     isBabyAllowed: boolean,
     isPetAllowed: boolean,
+    rules: DescriptionListItem[]
 }

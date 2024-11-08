@@ -16,6 +16,7 @@ import ImageNotFound from "../../../assets/images/no-image.jpg"
 import {ShowContactsButton} from "./show-contacts";
 import {formatPrice} from "../../../shared/lib/format-price";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
+import {mapModalStore} from "../../../widgets/map-modal/model/map-modal-store";
 
 type PropsType = {
     apartment: Apartment;
@@ -44,13 +45,12 @@ export const ApartmentCard = observer(({
     }, [photos]);
 
     return <div className="apartment-card">
-        <div className="apartment-card-slider">
-            <Slider items={(!photos[0] ? [ImageNotFound] : photos).map(image => <SwiperSlide>
-                <Link to={"apartment-details/" + id}>
-                    <img src={image}
-                         alt=""></img>
-                </Link></SwiperSlide>)}/>
-        </div>
+        <Slider withThumbs={false}
+                items={(!photos[0] ? [ImageNotFound] : photos).map(image => <SwiperSlide>
+                    <Link to={"apartment-details/" + id}>
+                        <img src={image}
+                             alt=""></img>
+                    </Link></SwiperSlide>)}/>
 
         <div className="apartment-details">
             <span className="apartment-card__price">{t("From")} {formatPrice(price)}</span>
@@ -64,10 +64,10 @@ export const ApartmentCard = observer(({
             <a className="apartment-details__address"
                href={"./"}
             >{address}</a>
-            <LinkWithIcon className="apartment-details__on-map-link"
-                          icon={GeoIcon}
-                          href={"/"}
-            >На карте </LinkWithIcon>
+            <TitleWithIcon className="apartment-details__on-map-link"
+                           icon={GeoIcon}
+                           onClick={() => mapModalStore.showModal(address)}
+            >На карте </TitleWithIcon>
             <Link className="apartment-details__description"
                   to={"apartment-details/" + id}>{title}</Link>
 

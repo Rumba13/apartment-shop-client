@@ -142,6 +142,7 @@ export const englishTranslation: Translation = {
     "Please Select Dates": "Please select dates",
     "Calendar": "Calendar",
     "Booked": "Booked",
+    "Minimum Booking Period: 2 Nights":"Minimum booking period: 2 nights"
 
 };
 

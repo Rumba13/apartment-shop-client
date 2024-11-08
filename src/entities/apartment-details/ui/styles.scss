@@ -45,6 +45,12 @@
 
         & .swiper-slide {
           cursor: pointer;
+          border-radius: 16px;
+          overflow: hidden;
+        }
+
+        &.slider {
+          margin-left: 20px;
 
           & img {
             object-fit: contain;
@@ -303,6 +309,9 @@
       & .order-menu__on-map-link {
         display: inline;
         white-space: nowrap;
+        color: var(--azure);
+        text-decoration: underline;
+        cursor: pointer;
 
         & .svg-icon {
           width: 16px;

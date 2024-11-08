@@ -117,6 +117,11 @@ export const OrderApartmentForm = observer(({
         }
 
         if (!info.from) return false;
+
+        if(current.subtract(1, "day").isSame(info.from)) return true;
+        if(current.add(1, "day").isSame(info.from)) return true;
+
+
         let nearestPointFromLeft: Dayjs | null = null
         let nearestPointFromRight: Dayjs | null = null
 
@@ -186,6 +191,7 @@ export const OrderApartmentForm = observer(({
                         <RangePicker locale={ruRu}
                                      preserveInvalidOnBlur
                                      disabledDate={disabledDate}
+                                     renderExtraFooter={() => <span className="date-picker__message">{t("Minimum Booking Period: 2 Nights")}</span>}
                                      className="date-picker field__field"
                                      onChange={(a, dates) => {
                                          setFieldValue("bookDateRange", dates);

@@ -8,5 +8,6 @@ export const {
     YMap,
     YMapDefaultSchemeLayer,
     YMapDefaultFeaturesLayer,
-    YMapMarker
+    YMapMarker,
+    YMAP
 } = reactify.module(ymaps3);

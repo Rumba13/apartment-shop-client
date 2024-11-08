@@ -1,6 +1,38 @@
 .apartment-calendar {
   display: flex;
   height: 100%;
+  max-width: 90%;
+
+
+  & .ant-picker-calendar {
+    &:last-child {
+    }
+  }
+
+  & tbody {
+    border-left: 1px solid var(--weak-white) !important;
+    border-right: 1px solid var(--weak-white) !important;
+
+
+    & tr {
+      border-bottom: 1px solid var(--weak-white) !important;
+
+      &:first-child {
+        border-top: 1px solid var(--weak-white) !important;
+      }
+
+      & td {
+        aspect-ratio: 1;
+
+        border-right: 1px solid var(--weak-white) !important;
+      }
+
+    }
+
+  }
+  & th {
+    text-align: left;
+  }
 
   & .apartment-details {
     display: flex;
@@ -9,13 +41,27 @@
   }
 
   & div.apartment-calendar-cell {
+    padding: 4px !important;
+    margin: 0 !important;
+    border: 0 !important;
 
-    padding-top: 6px;
-    //height: 150px;
-    //border-bottom: 3px solid var(--taupe-gray);
-    //padding-left: 2px;
+    & .date-value {
+      text-align: left;
+      max-width: fit-content;
+      margin-left: 3px;
+      color: var(--taupe-gray);
+    }
 
     &:before {
+    }
+
+    & .cell__price {
+      margin-left: auto;
+      margin-top: auto;
+      margin-bottom: 2px;
+      margin-right: 5px;
+      font-family: var(--default-font), sans-serif;
+      font-size: 14px;
     }
 
     &.highlight {
@@ -27,8 +73,11 @@
     }
 
     &.inactive {
-      background-color: var(--weak-gray);
-      border-color: rgba(0, 0, 0, 0);
+      background: repeating-linear-gradient(
+                      -45deg,
+                      var(--weak-white) 0 5%,
+                      transparent 5% 10%,
+      ) !important;
     }
 
     & .content {

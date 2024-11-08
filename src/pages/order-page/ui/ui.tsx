@@ -33,6 +33,5 @@ export const OrderPage = observer(() => {
         <OrderApartmentForm apartmentId={apartmentId} apartmentMaxGuests={currentApartment?.guestQuantity || 1}
         />
         {(getOrderPriceStore.isLoading && getOrderPriceStore.orderPrice.amount === 0) || <>Order price: {formatPrice(getOrderPriceStore.orderPrice)}</>}
-
     </MinimalLayout>
 })

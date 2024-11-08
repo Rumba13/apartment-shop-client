@@ -6,14 +6,12 @@ import {observer} from "mobx-react";
 import {currencyStore} from "../../../features/select-currency";
 import {AppLoader} from "../../app-loader";
 import {Calendar} from "antd";
-import {formatPrice} from "../../../shared/lib/format-price";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import dayjs from "dayjs";
 import clsx from "clsx";
 import {Apartment} from "../../../shared/api/types/apartment";
 import {apartmentService} from "../../../shared/api/apartment-service";
 import {CONSTANTS} from "../../../shared/lib/constants";
-import {ApartmentCard} from "../../apartment-card";
 import {Link} from "react-router-dom";
 import {CalendarCell} from "./calendar-cell";
 

@@ -14,6 +14,7 @@ import {areaFilterStore} from "../../../features/FILTER/filter-by-area";
 import {guestsCountStore} from "../../../features/FILTER/filter-by-guests";
 import {filterBoundsStore} from "../../../features/FILTER/filter-bounds";
 import clsx from "clsx";
+import {MapModal} from "../../map-modal";
 
 type PropsType = {}
 
@@ -82,6 +83,7 @@ export const ApartmentList = observer(({}: PropsType) => {
     return <div className="apartment-list">
         <div className={clsx("apartment-list-loading", apartmentListStore.isLoading && "opened")}>
         </div>
+        <MapModal/>
 
         {(apartmentListStore.apartments.length === 0) ? t("Nothing Found") : apartmentListStore.apartments.map(apartment =>
             <ApartmentCard apartment={apartment}

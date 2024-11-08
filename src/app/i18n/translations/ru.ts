@@ -140,6 +140,8 @@ export const russianTranslation = {
     "Please Select Dates": "Выберите даты",
     "Calendar": "Календарь",
     "Booked": "Забронировано",
+    "Minimum Booking Period: 2 Nights":"Минимальный промежуток бронирования: 2 ночи",
+
 
 };
 

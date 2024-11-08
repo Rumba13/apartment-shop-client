@@ -11,12 +11,14 @@ import {apartmentListStore} from "../../../widgets/apartment-list/model/apartmen
 import {SelectDatesModal, selectDatesModalStore} from "../../../widgets/welcome-modal";
 import {selectGuestModalStore, SelectGuestsModal} from "../../../widgets/select-guests-modal";
 import {guestsCountStore} from "../../../features/FILTER/filter-by-guests";
-//For exact 1 execution
-selectDatesModalStore.open()
 
 export const HomePage = observer(() => {
     useEffect(() => {
     }, [userStore.user]);
+
+    useEffect(() => {
+        selectDatesModalStore.open()
+    }, []);
 
     const scrollToRef = useRef<HTMLDivElement>(null);
 

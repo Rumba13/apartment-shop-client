@@ -23,7 +23,7 @@ export const Aside = observer(() => {
                 priceFilterStore.removeFilter();
                 areaFilterStore.removeFilter();
             })
-        }, [currencyStore.currency]);
+    }, [currencyStore.currency]);
 
     return (
         <aside className="aside">
@@ -39,6 +39,7 @@ export const Aside = observer(() => {
                 tagsFilterStore.removeFilter();
                 guestsCountStore.removeFilter()
                 filterByDateStore.removeFilter()
+                window.scrollTo({top: 0, left: 0})
             }}/>
         </aside>
     )

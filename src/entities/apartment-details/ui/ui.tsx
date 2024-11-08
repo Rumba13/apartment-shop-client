@@ -1,5 +1,4 @@
 import './styles.scss';
-import {LinkWithIcon} from "../../../shared/ui/link-with-icon";
 import GeoIcon from "../../../assets/images/geo-location-colorfull.svg";
 import RoomsIcon from "../../../assets/images/sleeping-man.svg";
 import BedIcon from "../../../assets/images/bed.svg";
@@ -28,6 +27,8 @@ import {Button} from "../../../shared/ui/button";
 import UpdateIcon from "../../../assets/images/refresh.svg";
 import clsx from "clsx";
 import ImageNotFound from "../../../assets/images/no-image.jpg";
+import {Map} from "../../../shared/ui/map";
+import {CONSTANTS} from "../../../shared/lib/constants";
 
 type PropsType = {
     apartmentId: UUID
@@ -71,7 +72,8 @@ export const ApartmentDetails = observer(({
         amenityGroups,
         landlordId,
         address,
-        sleepPlaces
+        sleepPlaces,
+        rules
     } = apartmentDetailsStore.apartment;
 
     return <div className="apartment-details">
@@ -203,6 +205,9 @@ export const ApartmentDetails = observer(({
                      ref={rulesRef}>
                     <h3 className="title">{t("Rules Of Residence")}</h3>
                     <ul className="tags-list">
+                        {rules.map(rule => <div>
+                            {rule.content}
+                        </div>)}
                     </ul>
                 </div>
                 <div className="section near-the-house"
@@ -230,7 +235,7 @@ export const ApartmentDetails = observer(({
                 <div className="section map"
                      ref={mapRef}>
                     <h3 className="title">{t("On Map")}</h3>
-                    {/*<Map/>*/}
+                    <Map address={address}/>
                 </div>
             </div>
             <div className="order-menu">
@@ -242,11 +247,11 @@ export const ApartmentDetails = observer(({
                         event.preventDefault();
                         event.clipboardData && event.clipboardData.setData("text/plain", apartmentId);
                     }}>{title}</h2>
-                <span className="order-menu__address">Независимости пр-т., 19, Минск</span>
-                <LinkWithIcon className="order-menu__on-map-link"
-                              icon={GeoIcon}
-                              href={"/"}
-                >На карте </LinkWithIcon>
+                <span className="order-menu__address">{address}</span>
+                <TitleWithIcon className="order-menu__on-map-link"
+                               icon={GeoIcon}
+                               onClick={() => mapRef.current?.scrollIntoView()}
+                >На карте </TitleWithIcon>
 
                 <div className="order-menu-prices">
                     <div className="price-option">
