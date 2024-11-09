@@ -20,7 +20,6 @@ export const Modal = observer(({title, children, modalStore, className}: PropsTy
         <SvgButton className="modal-close"
                    icon={CrossIcon}
                    onClick={modalStore.close}/>
-
         <h2 className="modal__title">{title}</h2>
 
         {children}

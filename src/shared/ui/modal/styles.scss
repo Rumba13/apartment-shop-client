@@ -20,6 +20,11 @@
     position: absolute;
     right: 5px;
     top: 5px;
+    transition: background-color 70ms;
+
+    &:hover {
+      background-color: var(--gains-boro);
+    }
   }
 
   & .modal__title {

@@ -14,6 +14,8 @@ import {apartmentService} from "../../../shared/api/apartment-service";
 import {CONSTANTS} from "../../../shared/lib/constants";
 import {Link} from "react-router-dom";
 import {CalendarCell} from "./calendar-cell";
+import {Tariff} from "../../../shared/api/types/tariff";
+import {tariffService} from "../../../shared/api/tariff-service";
 
 type PropsType = {
     apartmentId: UUID
@@ -22,14 +24,25 @@ type PropsType = {
 export const ApartmentCalendar = observer(({apartmentId}: PropsType) => {
     const [selectedDate, setSelectedDate] = useState<dayjs.Dayjs>(dayjs())
     const [apartment, setApartment] = useState<Apartment | null>(null)
+    const [apartmentTariff, setApartmentTariff] = useState<Tariff | null>(null)
+
     const {t} = useTypedTranslation();
 
     useEffect(() => {
         apartmentCalendarStore.loadCalendar(apartmentId, currencyStore.currency);
-        apartmentService.getApartmentById(apartmentId, currencyStore.currency).then(setApartment)
+        apartmentService.getApartmentById(apartmentId, currencyStore.currency).then((apartment) => {
+            setApartment(apartment)
+
+            if(!apartment)  {
+                throw new Error("No apartment when loading calendar")
+            }
+
+            return tariffService.loadTariff(apartment.tariffId)
+        })
+            .then(setApartmentTariff)
     }, [apartmentId, currencyStore.currency]);
 
-    if (apartmentCalendarStore.isLoading || !apartment) {
+    if (apartmentCalendarStore.isLoading || !apartment || !apartmentTariff) {
         return <div
             className="apartment-calendar"><AppLoader/></div>
     }
@@ -45,9 +58,12 @@ export const ApartmentCalendar = observer(({apartmentId}: PropsType) => {
 
         <Calendar value={selectedDate}
                   onChange={setSelectedDate}
-                  fullCellRender={(date, info) => <CalendarCell date={date}
-                                                                info={info}
-                                                                selectedDate={selectedDate}/>}
+                  fullCellRender={(date, info) => <CalendarCell
+                      apartmentId={apartmentId}
+                      tariff={apartmentTariff}
+                      date={date}
+                      info={info}
+                      selectedDate={selectedDate}/>}
         />
     </div>
 })

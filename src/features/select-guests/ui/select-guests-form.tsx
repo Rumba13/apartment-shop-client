@@ -13,10 +13,11 @@ type PropsType = {
     values: GuestsCountByCategory,
     onNextButtonClick: MouseEventHandler,
     onChange?: (values: GuestsCountByCategory) => void,
-    noPrice?: boolean
+    noPrice?: boolean,
+    noPets?:boolean
 }
 
-export const SelectGuestsForm = observer(({maxGuestCount, values, onNextButtonClick, noPrice = false}: PropsType) => {
+export const SelectGuestsForm = observer(({maxGuestCount, values, onNextButtonClick, noPrice = false, noPets = false}: PropsType) => {
     const {t} = useTypedTranslation()
 
     const spareGuestCount = maxGuestCount - values.kidCount - values.adultCount - values.petCount - values.babyCount - values.teenCount;
@@ -42,9 +43,9 @@ export const SelectGuestsForm = observer(({maxGuestCount, values, onNextButtonCl
                                    title={t("Babies")}
                                    subTitle={t("Younger than 2 years")}
                                    max={values.babyCount + spareGuestCount}/>
-            <SelectGuestsFormField name="petCount"
-                                   title={t("Pets")}
-                                   max={values.petCount + spareGuestCount}/>
+            {!noPets && <SelectGuestsFormField name="petCount"
+                                    title={t("Pets")}
+                                    max={values.petCount + spareGuestCount}/>}
 
             {!noPrice && <div className="total-price">
                 <span className="total-price__title">{t("Total")}</span>

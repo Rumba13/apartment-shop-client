@@ -1,5 +1,5 @@
 import './styles.scss';
-import {Outlet, redirect, ScrollRestoration, useLocation, useParams} from "react-router-dom";
+import {redirect, useLocation, useParams} from "react-router-dom";
 import {MinimalLayout} from "../../minimal-layout";
 import {ApartmentDetails} from "../../../entities/apartment-details";
 import React, {useEffect} from "react";

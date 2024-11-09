@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import {filterByDateStore} from "../../../features/FILTER/filter-by-date";
 import {Calendar, DatePicker} from "antd";
 import {ButtonCool} from "../../../shared/ui/button-cool";
-import {CalendarCell} from "../../../entities/calendar/ui/calendar-cell";
+import {rangeDatePickerDisableDateBeforeToday} from "../../../shared/lib/range-date-picker-disable-date-before-today";
 
 const {RangePicker} = DatePicker
 
@@ -25,6 +25,7 @@ export const SelectDatesModal = observer(({onNextButtonClick}: PropsType) => {
     >
         <RangePicker className="date-filter"
                      dropdownClassName="select-dates"
+                     disabledDate={rangeDatePickerDisableDateBeforeToday}
                      open
                      hidden
                      value={[!dateFrom ? null : dayjs(dateFrom), !dateTo ? null : dayjs(dateTo)]}

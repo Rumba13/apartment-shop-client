@@ -1,5 +1,6 @@
 import {UUID} from "./uuid";
 import {OrderStatus} from "./order-status";
+import {Price} from "./price";
 
 export type Order = {
     id: UUID,
@@ -10,5 +11,6 @@ export type Order = {
     phoneNumber: string,
     username: string,
     comment: string,
+    totalPrice: Price,
     status: OrderStatus
 }

@@ -3,6 +3,17 @@
   flex-direction: column;
   padding-top: 20px;
 
+  & .tag {
+    & .tag__title {
+      margin-left: 8px;
+    }
+
+    & .tag__icon {
+
+    }
+
+  }
+
   & .apartment-details-top {
     display: flex;
     align-items: end;
@@ -134,12 +145,10 @@
             color: var(--azure);
           }
 
-
           &:not(:last-child) {
             margin-right: 30px;
           }
         }
-
       }
 
       & .apartment-properties {
@@ -168,10 +177,46 @@
         }
 
         & .apartment-description__description {
+          --scroll-height: 0px;
+          display: block;
+          position: relative;
           color: var(--azure-dragon);
           line-height: 24px;
           font-family: var(--default-font), sans-serif;
           font-size: 16px;
+          max-height: var(--scroll-height);
+          transition: max-height 300ms;
+          overflow: hidden;
+
+          &:not(.expanded) {
+            max-height: 100px;
+
+            &:after {
+              content: "";
+              display: block;
+              height: 50%;
+              width: 100%;
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              background: linear-gradient(0deg, white, rgba(255, 255, 255, 0));
+            }
+          }
+        }
+
+        & .apartment-description__button {
+          display: flex;
+          align-items: center;
+          color: var(--azure);
+          font-family: var(--default-font), sans-serif;
+          font-size: 16px;
+          margin-top: 5px;
+
+          & .svg-icon {
+            height: 14px;
+            width: 14px;
+            margin-left: 8px;
+          }
         }
       }
 
@@ -245,7 +290,21 @@
         }
 
         & .tags-list {
-          grid-template-columns: repeat(2, auto);
+          grid-template-columns: repeat(1, auto);
+
+          & .title-with-icon {
+            color: var(--dark-sheet-metal);
+            font-size: 16px;
+
+            & .title-with-icon__title {
+              margin-left: 8px;
+            }
+
+            &:not(:last-child) {
+              margin-bottom: 15px;
+            }
+          }
+
 
           & .tags-list__item {
             margin: 0 0 22px;

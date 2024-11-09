@@ -1,20 +1,6 @@
 .auth-modal {
-  position: absolute;
-  left: 50%;
-  top: 50vh;
-  z-index: 20222;
-  width: 430px;
+  max-width: 430px;
   border-radius: 10px;
-  opacity: 0;
-  visibility: hidden;
-  background-color: white;
-  transform: translate(-50%, -50%);
-  transition: opacity 300ms, visibility 300ms;
-
-  &.opened {
-    opacity: 1;
-    visibility: visible;
-  }
 
   & .auth-modal-tabs {
     display: grid;
@@ -33,7 +19,6 @@
         border-bottom: 3px solid var(--azure);
         margin-bottom: -3px;
       }
-
     }
   }
 
@@ -41,7 +26,6 @@
     width: 100%;
     padding: 20px 40px 35px;
   }
-
 
   & .auth-modal-close {
     position: absolute;

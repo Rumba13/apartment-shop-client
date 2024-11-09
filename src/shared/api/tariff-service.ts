@@ -10,8 +10,8 @@ class TariffService {
     constructor() {
     }
 
-    public async loadTariffs(): Promise<TariffShort[]> {
-        return (await serverConnection.get("/tariffs/minimal",)).data
+    public async loadTariffs(): Promise<Pagination<TariffShort>> {
+        return (await serverConnection.get("/tariffs", {params: {pageSize:20}})).data
     }
 
     public async loadTariff(tariffId: UUID): Promise<Tariff> {

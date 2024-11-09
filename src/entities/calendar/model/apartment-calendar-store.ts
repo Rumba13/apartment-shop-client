@@ -1,4 +1,4 @@
-import {action, makeObservable, override} from "mobx";
+import {action, makeObservable, observable, override} from "mobx";
 import {LoadingStore} from "../../../shared/model/loading-store";
 import {UUID} from "../../../shared/api/types/uuid";
 import {calendarService} from "../../../shared/api/calendar-service";
@@ -13,6 +13,8 @@ class ApartmentCalendarStore extends LoadingStore {
             setIsError: override,
             isLoading: override,
             setIsLoading: override,
+            dates:observable,
+            setDates:action
         })
     }
 

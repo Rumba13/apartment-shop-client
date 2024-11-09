@@ -5,17 +5,14 @@ import UsersIcon from "../../../assets/images/users.svg"
 import GeoIcon from "../../../assets/images/geo-location-colorfull.svg"
 import CardsIcon from "../../../assets/images/cards.svg"
 import React, {useEffect} from "react";
-import {LinkWithIcon} from "../../../shared/ui/link-with-icon";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
-import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map";
 import {observer} from "mobx-react";
 import {Slider} from "../../../shared/ui/slider";
 import {SwiperSlide} from "swiper/react";
 import ImageNotFound from "../../../assets/images/no-image.jpg"
 import {ShowContactsButton} from "./show-contacts";
 import {formatPrice} from "../../../shared/lib/format-price";
-import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {mapModalStore} from "../../../widgets/map-modal/model/map-modal-store";
 
 type PropsType = {
@@ -68,8 +65,7 @@ export const ApartmentCard = observer(({
                            icon={GeoIcon}
                            onClick={() => mapModalStore.showModal(address)}
             >На карте </TitleWithIcon>
-            <Link className="apartment-details__description"
-                  to={"apartment-details/" + id}>{title}</Link>
+            <span className="apartment-details__description">{title}</span>
 
         </div>
         <ShowContactsButton/>

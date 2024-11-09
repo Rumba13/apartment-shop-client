@@ -3,11 +3,10 @@ import {Logo} from "../../../entities/logo";
 import {SelectCurrencyDropdown} from "../../../features/select-currency";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {AuthModal} from "../../auth-modal";
-import {AuthModalActions} from "./auth-modal-actions/ui";
 import {observer} from "mobx-react";
 import React, {useEffect} from "react";
 import {userStore} from "../../../entities/user";
-import {Breadcrumbs} from "../../../shared/ui/bread-crumbs";
+import {UserMenu} from "./user-menu/ui";
 
 type PropsType = {
     noSearch?: boolean;
@@ -25,11 +24,11 @@ export const Header = observer(({noSearch = false}: PropsType) => {
     // console.log(breadcrumbs);
 
     return <header className="header">
-        <AuthModal/>
         <div className="header-top">
             <Logo/>
             <SelectCurrencyDropdown/>
-            <AuthModalActions/>
+            <UserMenu/>
+            <AuthModal/>
         </div>
 
         {!noSearch &&
@@ -40,6 +39,7 @@ export const Header = observer(({noSearch = false}: PropsType) => {
                 </div>
             </div>
         }
+
         {/*<Breadcrumbs items={breadcrumbs}/>*/}
     </header>
 });

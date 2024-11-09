@@ -53,7 +53,7 @@ export const OrderCard = observer(({order}: PropsType) => {
                       to={`/apartment-details/${apartmentFromOrder.id}`}>
                     {t("Long Term Rental")}
                 </Link>
-                <span className="order__price">{formatPrice(apartmentFromOrder.price)}</span>
+                <span className="order__price">{formatPrice(order.totalPrice)}</span>
             </div>
             <div className="book-period">
                 {formatDate(order.fromDate)} - {formatDate(order.toDate)}

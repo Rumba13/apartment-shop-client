@@ -5,7 +5,7 @@
   & .header-top {
     display: grid;
     grid-template-areas:
-    "logo select-city . . select-currency  open-wish-list auth-modal-actions auth-modal-actions";
+    "logo select-city . . select-currency  open-wish-list user-menu user-menu";
     grid-template-columns:  auto auto 1fr min-content min-content auto auto;
     grid-template-rows: 100%;
     align-items: center;
@@ -31,8 +31,8 @@
       margin-left: 15px;
     }
 
-    & > .auth-modal-actions {
-      grid-area: auth-modal-actions;
+    & > .user-menu {
+      grid-area: user-menu;
     }
   }
 

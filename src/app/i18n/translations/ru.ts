@@ -141,7 +141,13 @@ export const russianTranslation = {
     "Calendar": "Календарь",
     "Booked": "Забронировано",
     "Minimum Booking Period: 2 Nights":"Минимальный промежуток бронирования: 2 ночи",
-
+    "Check in": "Заезд",
+    "Check out": "Выезд",
+    "Order_one": "заказ",
+    "Order_few": "заказа",
+    "Order_many": "заказов",
+    "Expand Description": "Развернуть описание",
+    "Collapse Description": "Свернуть описание",
 
 };
 

@@ -17,19 +17,21 @@
     height: 20px;
     border: 2px solid var(--white-gray);
     border-radius: 6px;
+    cursor: pointer;
 
     &.active {
-      background: url("../../../assets/images/ok.png") var(--deep-azure) no-repeat center center  ;
-      border-color:  var(--deep-azure);
+      background: url("../../../assets/images/ok.png") var(--deep-azure) no-repeat center center;
+      border-color: var(--deep-azure);
     }
   }
 
 
   & .check-box__title {
-    font-family: "CeraPro", sans-serif;
+    position: relative;
+    padding-left: 10px;
     font-size: 14px;
     line-height: 20px;
-    padding-left: 10px;
-    position: relative;
+    font-family: "CeraPro", sans-serif;
+    cursor: pointer;
   }
 }

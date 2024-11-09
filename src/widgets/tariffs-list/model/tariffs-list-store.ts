@@ -24,7 +24,7 @@ class TariffsListStore extends LoadingStore {
 
         try {
             const tariffs = await tariffService.loadTariffs()
-            this.setTariffs(tariffs)
+            this.setTariffs(tariffs.content)
         } catch (err) {
             this.setIsError(true);
             console.error(err);

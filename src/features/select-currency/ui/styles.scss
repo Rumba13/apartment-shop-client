@@ -1,7 +1,22 @@
 .select-currency-dropdown-wrapper {
-  height: 34px;
+  height: 40px;
   width: 70px;
   text-overflow: clip;
+  font-size: 15px;
+  font-family: var(--default-font), sans-serif;
+
+  & * {
+    border: none !important;
+    outline: none !important;
+  }
+
+  & .ant-select-selector {
+    border-radius: 8px;
+    font-size: inherit;
+    border: none !important;
+    outline: none !important;
+
+  }
 
   & .ant-select-selection-item, & .ant-select-item-option-content {
     text-overflow: clip;

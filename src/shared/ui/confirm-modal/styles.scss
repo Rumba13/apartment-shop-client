@@ -1,18 +1,9 @@
 .confirm-modal {
-  position: absolute;
-  top: 50vh;
-  right: 50%;
-  transform: translateX(50%) translateY(-50%);
   z-index: 100;
   background-color: white;
   padding: 5px 30px 5px 30px;
   border-radius: 8px;
-
-  & .close {
-    position: absolute;
-    right: 3px;
-    top: 3px;
-  }
+  max-width: 300px;
 
   & .confirm-modal__title {
     text-align: center;

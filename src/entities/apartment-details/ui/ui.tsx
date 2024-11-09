@@ -11,7 +11,6 @@ import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map";
 import {OpenOrderModalButton} from "./open-order-modal/ui";
 import {observer} from "mobx-react";
-import {OrderModal} from "../../../widgets/order-modal";
 import {IconWithTwoTitles} from "../../../shared/ui/icon-with-two-titles";
 import {useTranslation} from "react-i18next";
 import {UUID} from "../../../shared/api/types/uuid";
@@ -20,7 +19,6 @@ import {userStore} from "../../user";
 import {currencyStore} from "../../../features/select-currency";
 import {useNavigate} from "react-router-dom";
 import {DeleteApartment} from "./delete-apartment-button";
-import NoImage from "../../../assets/images/no-image.jpg"
 import {Slider} from "../../../shared/ui/slider";
 import {SwiperSlide} from "swiper/react";
 import {Button} from "../../../shared/ui/button";
@@ -28,7 +26,10 @@ import UpdateIcon from "../../../assets/images/refresh.svg";
 import clsx from "clsx";
 import ImageNotFound from "../../../assets/images/no-image.jpg";
 import {Map} from "../../../shared/ui/map";
+import {ApartmentDetailsSkeleton} from "./skeleton";
 import {CONSTANTS} from "../../../shared/lib/constants";
+import {SvgIcon} from "../../../shared/ui/svg-icon";
+import ArrowIcon from "../../../assets/images/arrow.svg"
 
 type PropsType = {
     apartmentId: UUID
@@ -41,23 +42,34 @@ export const ApartmentDetails = observer(({
     const navigate = useNavigate()
     const {t: tr} = useTranslation()
     const [isCollapsibleExpanded, setIsCollapsibleExpanded] = useState<boolean>(false)
-
+    const [isDescriptionExpanded, setIsDescriptionExpanded] = useState<boolean>(false)
     const [currentTab, setCurrentTab] = useState(0);
     const mapRef = useRef<HTMLDivElement>(null)
     const descriptionRef = useRef<HTMLDivElement>(null)
     const tagsRef = useRef<HTMLDivElement>(null)
     const rulesRef = useRef<HTMLDivElement>(null)
     const nearToApartmentRef = useRef<HTMLDivElement>(null)
+    const descriptionContentRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         apartmentDetailsStore.loadApartmentDetails(apartmentId, currencyStore.currency);
     }, [currencyStore.currency]);
 
+    useEffect(() => {
+        console.log(descriptionContentRef.current?.scrollHeight)
+    }, [descriptionContentRef?.current]);
+
+    const expandDescription = () => {
+        if (!descriptionContentRef.current) return;
+        descriptionContentRef.current.style.setProperty("--scroll-height", descriptionContentRef.current.scrollHeight + "px");
+        setIsDescriptionExpanded(true);
+    }
+
     if (apartmentDetailsStore.isError) {
-        return <div>Error...</div>
+        return <div>Error!</div>
     }
     if (apartmentDetailsStore.isLoading || !apartmentDetailsStore.apartment) {
-        return <div>Loading...</div>
+        return <div className="apartment-details"><ApartmentDetailsSkeleton/></div>
     }
     const {
         price,
@@ -73,16 +85,11 @@ export const ApartmentDetails = observer(({
         landlordId,
         address,
         sleepPlaces,
-        rules
+        rules,
+        mainInfoItems
     } = apartmentDetailsStore.apartment;
 
     return <div className="apartment-details">
-        <OrderModal apartmentMaxGuests={guestQuantity}
-                    apartmentId={apartmentId}
-                    apartmentAddress={address}
-                    apartmentImage={photos[0] || NoImage}
-                    apartmentPrice={price}
-        />
         <div className="apartment-details-top">
             <div className="max-width-wrapper">
             </div>
@@ -95,8 +102,6 @@ export const ApartmentDetails = observer(({
                         onClick={() => navigate(`/update-apartment/${apartmentId}`)}
                         title={"Обновить"}/>
             </>}
-
-
         </div>
         <div className="apartment-details-mid">
             <div className="apartment-details-wrapper">
@@ -112,23 +117,25 @@ export const ApartmentDetails = observer(({
                 <div className="apartment-tabs">
 
                     {[
-
-                        {
-                            title: t("Description"),
-                            onClick: () => descriptionRef.current?.scrollIntoView()
-                        }, {
-                            title: t("Amenities"),
-                            onClick: () => tagsRef.current?.scrollIntoView()
-                        }, {
-                            title: t("Rules Of Residence"),
-                            onClick: () => rulesRef.current?.scrollIntoView()
-                        }, {
-                            title: t("Near The House"),
-                            onClick: () => nearToApartmentRef.current?.scrollIntoView()
-                        },
                         {
                             title: t("On Map"),
                             onClick: () => mapRef.current?.scrollIntoView()
+                        },
+                        {
+                            title: t("Description"),
+                            onClick: () => descriptionRef.current?.scrollIntoView()
+                        },
+                        {
+                            title: t("Rules Of Residence"),
+                            onClick: () => rulesRef.current?.scrollIntoView()
+                        },
+                        {
+                            title: t("Amenities"),
+                            onClick: () => tagsRef.current?.scrollIntoView()
+                        },
+                        {
+                            title: t("Near The House"),
+                            onClick: () => nearToApartmentRef.current?.scrollIntoView()
                         },
                     ]
                         .map((tab, index) =>
@@ -157,58 +164,50 @@ export const ApartmentDetails = observer(({
                                        subTitle={t("Area")}
                     />
                 </div>
+                <div className="section map"
+                     ref={mapRef}>
+                    <h3 className="title">{t("On Map")}</h3>
+                    <Map address={address}/>
+                </div>
                 <div className="apartment-description"
                      ref={descriptionRef}>
                     <h2 className="apartment-description__title">{t("Description")}</h2>
-                    <span className="apartment-description__description"
-                          dangerouslySetInnerHTML={{__html: description}}
-                    ></span>
+                    <span className={clsx("apartment-description__description", isDescriptionExpanded && "expanded")}
+                          ref={descriptionContentRef}
+                    >{description + description + description + description + description + description + description + description + description}</span>
+
+                    <button className="apartment-description__button"
+                            onClick={(event) => isDescriptionExpanded ? setIsDescriptionExpanded(false) : expandDescription()}>
+                        {t(isDescriptionExpanded ? "Collapse Description" : "Expand Description")}
+                        <SvgIcon icon={ArrowIcon}
+                                 style={{transform: isDescriptionExpanded ? "" : "rotate(180deg)"}}/>
+                    </button>
                 </div>
-                <div className="house-description">
-                    <h2 className="house-description__title">{t("House Description")}</h2>
-                    <ul className="house-description-list">
-                        {["Кирпичный дом", "Лифт", "Этаж: 2", "Этажей: 6"].map(li =>
-                            <TitleWithIcon className={"house-description__item"}
-                                           withLi
-                                           key={li}
-                                           icon={MarkIcon}
-                            >
-                                {li}
-                            </TitleWithIcon>)}
+
+                <div className="section rules-of-residence"
+                     ref={rulesRef}>
+                    <h3 className="title">{t("Rules Of Residence")}</h3>
+                    <ul className="tags-list">
+                        {rules.map(rule =>
+                            <TitleWithIcon icon={CONSTANTS.IMAGE_SERVER_URL + rule.iconFilename}>{rule.content}</TitleWithIcon>)}
                     </ul>
                 </div>
                 <div className="section amenities"
                      ref={tagsRef}>
                     <h2 className="amenities__title">{t("Amenities")}</h2>
-
-
                     {amenityGroups.map(amenityGroup =>
                         <div className="amenities-list-wrapper"
                              key={amenityGroup.name}>
                             <h3 className="amenities-list__title">{amenityGroup.name}</h3>
                             <ul className="amenities-list">
-
                                 {amenityGroup.amenities.map(li =>
                                     <TitleWithIcon className={"tags-list__item amenities-list__item"}
                                                    withLi
                                                    key={li}
-
-                                                   icon={MarkIcon}
-                                    >
-                                        {li}
-                                    </TitleWithIcon>)}
+                                                   icon={MarkIcon}>{li}</TitleWithIcon>)}
                             </ul>
                         </div>
                     )}
-                </div>
-                <div className="section rules-of-residence"
-                     ref={rulesRef}>
-                    <h3 className="title">{t("Rules Of Residence")}</h3>
-                    <ul className="tags-list">
-                        {rules.map(rule => <div>
-                            {rule.content}
-                        </div>)}
-                    </ul>
                 </div>
                 <div className="section near-the-house"
                      ref={nearToApartmentRef}>
@@ -232,11 +231,7 @@ export const ApartmentDetails = observer(({
                                 onClick={() => setIsCollapsibleExpanded(true)}
                         >{t("Show More")}</button>}
                 </div>
-                <div className="section map"
-                     ref={mapRef}>
-                    <h3 className="title">{t("On Map")}</h3>
-                    <Map address={address}/>
-                </div>
+
             </div>
             <div className="order-menu">
 

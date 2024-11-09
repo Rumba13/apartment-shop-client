@@ -142,8 +142,14 @@ export const englishTranslation: Translation = {
     "Please Select Dates": "Please select dates",
     "Calendar": "Calendar",
     "Booked": "Booked",
-    "Minimum Booking Period: 2 Nights":"Minimum booking period: 2 nights"
-
+    "Minimum Booking Period: 2 Nights":"Minimum booking period: 2 nights",
+    "Check in": "Check in",
+    "Check out": "Check out",
+    "Order_one": "order",
+    "Order_many": "orders",
+    "Order_few": "orders",
+    "Expand Description": "Expand Description",
+    "Collapse Description": "Collapse Description",
 };
 
 /*

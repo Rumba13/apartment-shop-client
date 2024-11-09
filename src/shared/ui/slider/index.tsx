@@ -30,6 +30,7 @@ export function Slider({items, loop = false, withThumbs = true}: PropsType) {
                 thumbs={{swiper: thumbsSwiper}}
                 modules={[Navigation, Pagination, Thumbs, FreeMode]}
                 slidesPerView={1}
+                spaceBetween={20}
                 loop={loop}
                 navigation={{prevEl: ".swiper-button-prev", nextEl: ".swiper-button-next"}}
                 pagination={{type: "bullets", clickable: true, el: ".swiper-pagination"}}

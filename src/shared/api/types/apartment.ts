@@ -26,5 +26,8 @@ export type Apartment = {
     isKidAllowed: boolean,
     isBabyAllowed: boolean,
     isPetAllowed: boolean,
-    rules: DescriptionListItem[]
+    tariff: string,
+    tariffId: UUID,
+    rules: DescriptionListItem[],
+    mainInfoItems: DescriptionListItem[],
 }

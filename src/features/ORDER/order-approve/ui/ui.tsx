@@ -6,6 +6,7 @@ import {confirmModalStore} from "../../../../shared/ui/confirm-modal/confirm-mod
 import {ConfirmModalOptions} from "../../../../shared/api/types/confirm-modal-options";
 import {useTypedTranslation} from "../../../../app/i18n/use-typed-translation";
 import {AdminButton} from "../../../../shared/ui/admin-button";
+import {ordersListStore} from "../../../../widgets/orders-list/model/orders-list-store";
 
 type PropsType = {
     order: Order
@@ -18,7 +19,7 @@ export function ApproveOrderButton({order}: PropsType) {
     async function approveOrder(orderId: UUID) {
         try {
             await orderService.approveOrder(orderId);
-            order.status = "APPROVED"; //! Multiple truths
+            ordersListStore.dangerouslyReplaceOrder(orderId,{...order, status: "APPROVED"} ) //! Multiple truths
         } catch (err) {
             console.log(err)
         }

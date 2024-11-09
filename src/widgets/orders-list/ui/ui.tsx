@@ -5,7 +5,6 @@ import {observer} from "mobx-react";
 import {OrderCard} from "../../../entities/order-card";
 import {OrderSkeleton} from "./order-skeleton";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
-import {AppLoader} from "../../../entities/app-loader";
 
 type PropsType = {}
 

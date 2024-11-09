@@ -1,6 +1,7 @@
 import {makeAutoObservable} from "mobx";
 import {Order} from "../../../shared/api/types/order";
 import {orderService} from "../../../shared/api/order-service";
+import {UUID} from "../../../shared/api/types/uuid";
 
 class OrdersListStore {
     constructor() {
@@ -26,6 +27,22 @@ class OrdersListStore {
         } finally {
             this.setIsLoading(false);
         }
+    }
+
+    public dangerouslyReplaceOrder(orderId: UUID, order: Order) {
+        const newOrders = [];
+
+        for (let i = 0; i < this.orders.length; i++) {
+            const currentOrder = this.orders[i];
+
+            if (currentOrder.id === orderId) {
+                newOrders[i] = order;
+            } else {
+                newOrders[i] = currentOrder;
+            }
+        }
+
+        this.setOrders(newOrders);
     }
 }
 

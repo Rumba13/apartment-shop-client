@@ -40,54 +40,5 @@
     margin-right: 10px;
   }
 
-  & div.apartment-calendar-cell {
-    padding: 4px !important;
-    margin: 0 !important;
-    border: 0 !important;
-
-    & .date-value {
-      text-align: left;
-      max-width: fit-content;
-      margin-left: 3px;
-      color: var(--taupe-gray);
-    }
-
-    &:before {
-    }
-
-    & .cell__price {
-      margin-left: auto;
-      margin-top: auto;
-      margin-bottom: 2px;
-      margin-right: 5px;
-      font-family: var(--default-font), sans-serif;
-      font-size: 14px;
-    }
-
-    &.highlight {
-      color: unset !important;
-
-      & .cell__price {
-        color: unset;
-      }
-    }
-
-    &.inactive {
-      background: repeating-linear-gradient(
-                      -45deg,
-                      var(--weak-white) 0 5%,
-                      transparent 5% 10%,
-      ) !important;
-    }
-
-    & .content {
-      display: flex;
-      flex-direction: column;
-    }
-
-    & .cell__price {
-      color: var(--taupe-gray)
-    }
-  }
 
 }

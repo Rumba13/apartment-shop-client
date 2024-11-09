@@ -19,8 +19,8 @@ export function TariffField({className, label, ...props}: PropsType) {
 
     useEffect(() => {
         tariffService.loadTariffs().then((tariffs) => {
-            setTariffs(tariffs);
-            setValue(tariffs[0].title)
+            setTariffs(tariffs.content);
+            setValue(tariffs.content[0].title)
         })
     }, []);
 
