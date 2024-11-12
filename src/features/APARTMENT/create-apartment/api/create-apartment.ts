@@ -14,6 +14,7 @@ export async function createApartment(values: ValuesType, accessToken: string, n
             newAmenityGroups.push({name: groupName, amenities: values.amenityGroups[groupName]})
         }
 
+
         const newApartment: Apartment = await apartmentService.createApartment({
             title: values.title,
             area: values.area,
@@ -29,8 +30,19 @@ export async function createApartment(values: ValuesType, accessToken: string, n
             babyPrice: 0,
             petPrice: 0,
             draft: false,
-            sleepPlaces: values.sleepPlaces
+            sleepPlaces: values.sleepPlaces,
         }, accessToken)
+
+        if (values.photos) {
+            const formData = new FormData();
+
+            for (let i = 0; i < values.photos.length; i++) {
+                formData.append("photos", values.photos[i]);
+            }
+            await apartmentService.updateApartmentPhotos(newApartment.id, formData, accessToken)
+        }
+
+
         snackBarStore.showSnackBar("Квартира успешно создана");
         navigateToCreatedApartment(newApartment.id)
     } catch (err) {

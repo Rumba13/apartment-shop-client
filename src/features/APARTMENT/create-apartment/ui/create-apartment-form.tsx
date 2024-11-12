@@ -9,12 +9,10 @@ import useLocalStorageState from "use-local-storage-state";
 import {SelectGuestsFormModal, selectGuestModalStore} from "../../../../widgets/select-guests-modal";
 import {ButtonCool} from "../../../../shared/ui/button-cool";
 import {FieldNumber} from "../../../../shared/ui/field-number";
-import {PriceField} from "../../../price-field";
 import {TariffField} from "../../../tariff-field";
 import {AmenitiesGroupField} from "../../../amenities-group-field";
 import {UUID} from "../../../../shared/api/types/uuid";
 import {GuestsCountByCategory} from "../../../../shared/api/types/guests-count-by-category";
-
 
 export type ValuesType = {
     title: string,
@@ -24,7 +22,8 @@ export type ValuesType = {
     area: number,
     tariff: UUID | null,
     amenityGroups: { [key: string]: string[] },
-    sleepPlaces:string
+    sleepPlaces:string,
+    photos: any
 } & GuestsCountByCategory
 
 const initialValues: ValuesType = {
@@ -40,7 +39,8 @@ const initialValues: ValuesType = {
     area: 1,
     tariff: null,
     amenityGroups: {},
-    sleepPlaces:""
+    sleepPlaces:"",
+    photos:null
 }
 
 export function CreateApartmentForm() {
@@ -48,11 +48,16 @@ export function CreateApartmentForm() {
     const navigate = useNavigate();
     const [accessToken] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
 
+    const submit = (values:ValuesType) => {
+        console.log(values)
+        createApartment(values, accessToken, (id: UUID) => navigate("/apartment-details/" + id, {}))
+    }
+
     return <div className="create-apartment-form-wrapper">
         <span className="create-apartment-form-wrapper__title">{t("Create Apartment")}</span>
 
         <Formik<ValuesType> initialValues={initialValues}
-                            onSubmit={(values) => createApartment(values, accessToken, (id: UUID) => navigate("/apartment-details/" + id, {}))}>
+                            onSubmit={(values) => submit(values)}>
             {({values}) => (
                 <Form className="create-apartment-form"
                       id="create-apartment-form">
@@ -89,7 +94,8 @@ export function CreateApartmentForm() {
                            type="file"
                            accept={"image/*"}
                            label={t("Photos")}
-                           multiple/>
+                           multiple
+                    />
                     <button className="create-apartment-form__submit"
                             type="submit">{t("Add")}</button>
                 </Form>

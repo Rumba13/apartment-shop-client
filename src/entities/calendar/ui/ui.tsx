@@ -8,14 +8,9 @@ import {AppLoader} from "../../app-loader";
 import {Calendar} from "antd";
 import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
 import dayjs from "dayjs";
-import clsx from "clsx";
-import {Apartment} from "../../../shared/api/types/apartment";
-import {apartmentService} from "../../../shared/api/apartment-service";
 import {CONSTANTS} from "../../../shared/lib/constants";
 import {Link} from "react-router-dom";
 import {CalendarCell} from "./calendar-cell";
-import {Tariff} from "../../../shared/api/types/tariff";
-import {tariffService} from "../../../shared/api/tariff-service";
 
 type PropsType = {
     apartmentId: UUID
@@ -27,12 +22,16 @@ export const ApartmentCalendar = observer(({apartmentId}: PropsType) => {
     const {t} = useTypedTranslation();
 
     useEffect(() => {
-        apartmentCalendarStore.loadCalendar(apartmentId, currencyStore.currency);
+        apartmentCalendarStore.setApartment(null)
+    }, []);
+
+    useEffect(() => {
         apartmentCalendarStore.loadCurrentApartment(apartmentId, currencyStore.currency)
             .then(() => {
                 if (!apartmentCalendarStore.apartment) return;
                 apartmentCalendarStore.loadTariff(apartmentCalendarStore.apartment?.tariffId)
             })
+        apartmentCalendarStore.loadCalendar(apartmentId, currencyStore.currency);
 
     }, [apartmentId, currencyStore.currency]);
 

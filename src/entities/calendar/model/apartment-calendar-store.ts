@@ -17,20 +17,23 @@ class ApartmentCalendarStore extends LoadingStore {
             setIsError: override,
             isLoading: override,
             setIsLoading: override,
-            dates:observable,
-            setDates:action,
-            apartment:observable,
-            setApartment:action
+            dates: observable,
+            setDates: action,
+            apartment: observable,
+            setApartment: action,
+            setTariff: action,
+            tariff: observable
         })
     }
-    public apartment:Apartment | null = null
-    public setApartment = (value:Apartment) => this.apartment = value
-    public tariff:Tariff | null = null
-    public setTariff = (value:Tariff) => this.tariff = value
-    public dates:CalendarDate[] = []
-    public setDates = (value:CalendarDate[]) => this.dates = value
 
-    public async loadCalendar(apartmentId: UUID, resultCurrency:Currency) {
+    public apartment: Apartment | null = null
+    public setApartment = (value: Apartment | null) => this.apartment = value
+    public tariff: Tariff | null = null
+    public setTariff = (value: Tariff) => this.tariff = value
+    public dates: CalendarDate[] = []
+    public setDates = (value: CalendarDate[]) => this.dates = value
+
+    public async loadCalendar(apartmentId: UUID, resultCurrency: Currency) {
         this.setIsLoading(true);
 
         try {
@@ -43,6 +46,7 @@ class ApartmentCalendarStore extends LoadingStore {
             this.setIsLoading(false);
         }
     }
+
     public async loadTariff(tariffId: UUID) {
         this.setIsLoading(true);
 
@@ -56,12 +60,13 @@ class ApartmentCalendarStore extends LoadingStore {
             this.setIsLoading(false);
         }
     }
-    public async loadCurrentApartment(apartmentId: UUID, resultCurrency:Currency) {
+
+    public async loadCurrentApartment(apartmentId: UUID, resultCurrency: Currency) {
         this.setIsLoading(true);
 
         try {
-            const apartment    = await apartmentService.getApartmentById(apartmentId, resultCurrency);
-            if(!apartment) throw new Error("Apartment not found");
+            const apartment = await apartmentService.getApartmentById(apartmentId, resultCurrency);
+            if (!apartment) throw new Error("Apartment not found");
             this.setApartment(apartment);
             return apartment
         } catch (err) {

@@ -30,6 +30,7 @@ import {ApartmentDetailsSkeleton} from "./skeleton";
 import {CONSTANTS} from "../../../shared/lib/constants";
 import {SvgIcon} from "../../../shared/ui/svg-icon";
 import ArrowIcon from "../../../assets/images/arrow.svg"
+import CalendarIcon from "../../../assets/images/calendar.svg"
 
 type PropsType = {
     apartmentId: UUID
@@ -94,7 +95,7 @@ export const ApartmentDetails = observer(({
             </div>
             {userStore.user?.isSuperuser && <>
                 <DeleteApartment apartmentId={apartmentId}/>
-                <Button icon={UpdateIcon}
+                <Button icon={CalendarIcon}
                         onClick={() => navigate(`/calendar/${apartmentId}`)}
                         title={t("Calendar")}/>
                 <Button icon={UpdateIcon}
@@ -108,7 +109,7 @@ export const ApartmentDetails = observer(({
                     <Slider loop
                             items={(!photos[0] ? [ImageNotFound] : photos).map(image =>
                                 <SwiperSlide key={image}>
-                                    <img src={CONSTANTS.IMAGE_SERVER_URL + image}
+                                    <img src={image}
                                          alt=""></img>
                                 </SwiperSlide>)}
                     />
