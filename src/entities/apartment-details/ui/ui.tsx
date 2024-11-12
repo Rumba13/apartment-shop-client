@@ -108,7 +108,7 @@ export const ApartmentDetails = observer(({
                     <Slider loop
                             items={(!photos[0] ? [ImageNotFound] : photos).map(image =>
                                 <SwiperSlide key={image}>
-                                    <img src={image}
+                                    <img src={CONSTANTS.IMAGE_SERVER_URL + image}
                                          alt=""></img>
                                 </SwiperSlide>)}
                     />
