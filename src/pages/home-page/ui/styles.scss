@@ -6,17 +6,61 @@
     align-items: stretch;
     width: 100%;
     margin-top: 5px;
+    height: 36px;
 
     & .open-create-apartment-page-button {
       margin-left: auto;
+      border-radius: 50px;
+      padding: 0 15px;
+
+      &:hover {
+        border-color: var(--weak-gray);
+      }
     }
+
     & .sort-by {
-      margin-top: 5px;
+      padding: 0 !important;
       margin-left: 5px;
+      height: 100%;
+
+      & .ant-select-selector {
+        padding: 0 17px;
+
+        & .ant-select-selection-item {
+        }
+
+
+        &:hover {
+        }
+
+        border-radius: 20px !important;
+      }
+
+      & .ant-select-arrow {
+      }
     }
   }
+
   & .pagination {
     padding-bottom: 30px;
     padding-top: 30px;
+  }
+
+  & .home-page__pagination-details {
+    display: none;
+    align-self: center;
+    font-family: var(--default-font), sans-serif;
+    font-size: 14px;
+  }
+}
+
+@media(width <= 950px) {
+  .home-page .content {
+    & .home-page__title {
+    }
+
+    & .home-page__pagination-details {
+      display: block;
+    }
   }
 }

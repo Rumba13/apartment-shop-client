@@ -8,4 +8,9 @@
   font-size: 15px;
   color: var(--azure);
   font-weight: 700;
+  transition: background-color 30ms;
+
+  &:hover {
+    background-color: var(--white-gray-active);
+  }
 }

@@ -5,8 +5,8 @@ export enum SERVER_TYPE {
 
 export const CONSTANTS = {
     SERVER_URL_PROD: "http://api:8081/api/v1",
-    SERVER_URL_DEV: "http://5.35.85.50:8080/api/v1/",
-    IMAGE_SERVER_URL: "http://5.35.85.50:3000/",
+    SERVER_URL_DEV: "https://24kv.by/api/v1/",
+    IMAGE_SERVER_URL: "https://24kv.by/",
     SERVER_TYPE: SERVER_TYPE.DEVELOPMENT,
 
     get SERVER_URL() {
@@ -17,4 +17,7 @@ export const CONSTANTS = {
         }
     }
 }
+/*
 
+dabe90b3-d7ca-4bbf-aee4-a91d8a75a010/photo9.jpg
+ */

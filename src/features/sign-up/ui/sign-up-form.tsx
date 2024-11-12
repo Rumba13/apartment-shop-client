@@ -15,17 +15,17 @@ type PropsType = {
 
 export function SignUpForm({onSignUp}: PropsType) {
     const {t} = useTypedTranslation()
-    const [accessToken,setAccessToken, {removeItem:removeAccessToken}] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
-    const [refreshToken,setRefreshToken, {removeItem:removeRefreshToken}] = useLocalStorageState<string>("REFRESH-TOKEN", {defaultValue: ""});
+    const [accessToken, setAccessToken, {removeItem: removeAccessToken}] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
+    const [refreshToken, setRefreshToken, {removeItem: removeRefreshToken}] = useLocalStorageState<string>("REFRESH-TOKEN", {defaultValue: ""});
     return (
         <Formik<ValuesType> initialValues={{username: "", email: "", password: ""}}
                             onSubmit={(signUpDto, formikHelpers) => {
                                 signUpService.signUp(signUpDto).then(response => {
                                     setAccessToken(response.access_token,);
                                     setRefreshToken(response.refresh_token);
-                                    userStore.auth(response.access_token, () => {
-                                        removeAccessToken()
-                                        removeRefreshToken()
+                                    userStore.auth(response.access_token, response.refresh_token, (accessToken, refreshToken) => {
+                                        setAccessToken(accessToken)
+                                        setRefreshToken(refreshToken)
                                     });
                                     onSignUp?.();
                                 }).catch((error) => {
@@ -38,10 +38,18 @@ export function SignUpForm({onSignUp}: PropsType) {
                             }}>
             {({}) => <Form className="sign-in-form">
                 {/*TODO rename to sign-up*/}
-                <Field name="username" label={t("Name") + ":"} placeholder={t("Enter Your Name")}/>
-                <Field name="email" label={t("Email") + ":"} placeholder={"djonson@gmail.com"}/>
-                <Field name="password" label={t("Password") + ":"} type={"password"} placeholder="********"/>
-                <button className="submit-button" type="submit">{t("Sign Up")}</button>
+                <Field name="username"
+                       label={t("Name") + ":"}
+                       placeholder={t("Enter Your Name")}/>
+                <Field name="email"
+                       label={t("Email") + ":"}
+                       placeholder={"djonson@gmail.com"}/>
+                <Field name="password"
+                       label={t("Password") + ":"}
+                       type={"password"}
+                       placeholder="********"/>
+                <button className="submit-button"
+                        type="submit">{t("Sign Up")}</button>
             </Form>}
         </Formik>
     )

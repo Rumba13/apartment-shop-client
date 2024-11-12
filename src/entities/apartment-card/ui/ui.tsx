@@ -43,7 +43,7 @@ export const ApartmentCard = observer(({
 
     return <div className="apartment-card">
         <Slider withThumbs={false}
-                items={(!photos[0] ? [ImageNotFound] : photos).map(image => <SwiperSlide>
+                items={(!photos[0] ? [ImageNotFound] : photos).map(image => <SwiperSlide key={image}>
                     <Link to={"apartment-details/" + id}>
                         <img src={image}
                              alt=""></img>
@@ -68,6 +68,6 @@ export const ApartmentCard = observer(({
             <span className="apartment-details__description">{title}</span>
 
         </div>
-        <ShowContactsButton/>
+        <ShowContactsButton contact={{phone:"+375293218813", name:"Наталья"}}/>
     </div>
 });

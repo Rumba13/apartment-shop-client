@@ -1,7 +1,9 @@
 import {makeAutoObservable} from 'mobx';
+import {getScrollWidth} from "../../../shared/ui/get-scroll-width";
 
 class OverlayStore {
     public isOverlayOpened = false;
+    private scrollWidth: number = getScrollWidth();
 
     constructor() {
         makeAutoObservable(this);
@@ -12,15 +14,15 @@ class OverlayStore {
         this.isAnimating = isAnimating
         document.body.classList.toggle('animating-scroll', this.isOverlayOpened);
     }
+    public updateScrollWidth = () => {
+        this.scrollWidth = getScrollWidth()
+        document.body.style.setProperty('--scroll-width', this.scrollWidth + "px");
+    };
 
     public onAnimationEnd = () => {
         this.setIsAnimating(true)
+        this.updateScrollWidth()
         document.body.classList.toggle('hide-scroll', this.isOverlayOpened);
-        // window.scrollTo({
-        //     top: 0,
-        //     left: 0,
-        //     behavior: "smooth"
-        // })
     }
 
     public setIsOverlayOpened(isOverlayOpened: boolean) {

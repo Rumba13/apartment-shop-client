@@ -29,7 +29,7 @@ export function SelectGuestsModal({onNextButtonClick}: PropsType) {
         <Formik initialValues={initialValues}
                 onSubmit={() => {
                 }}>
-            {({values}) => <Form>
+            {({values}) =>
                 <SelectGuestsForm values={values}
                                   noPrice
                                   noPets
@@ -38,7 +38,7 @@ export function SelectGuestsModal({onNextButtonClick}: PropsType) {
                                       selectGuestModalStore.setIsOpened(false)
                                       onNextButtonClick?.(values)
                                   }}/>
-            </Form>}
+            }
         </Formik>
 
 

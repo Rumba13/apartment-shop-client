@@ -25,7 +25,6 @@ export function Slider({items, loop = false, withThumbs = true}: PropsType) {
             {items}
         </Swiper>}
 
-
         <Swiper className="slider"
                 thumbs={{swiper: thumbsSwiper}}
                 modules={[Navigation, Pagination, Thumbs, FreeMode]}

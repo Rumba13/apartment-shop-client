@@ -23,36 +23,30 @@ type PropsType = {
 
 export const ApartmentCalendar = observer(({apartmentId}: PropsType) => {
     const [selectedDate, setSelectedDate] = useState<dayjs.Dayjs>(dayjs())
-    const [apartment, setApartment] = useState<Apartment | null>(null)
-    const [apartmentTariff, setApartmentTariff] = useState<Tariff | null>(null)
 
     const {t} = useTypedTranslation();
 
     useEffect(() => {
         apartmentCalendarStore.loadCalendar(apartmentId, currencyStore.currency);
-        apartmentService.getApartmentById(apartmentId, currencyStore.currency).then((apartment) => {
-            setApartment(apartment)
+        apartmentCalendarStore.loadCurrentApartment(apartmentId, currencyStore.currency)
+            .then(() => {
+                if (!apartmentCalendarStore.apartment) return;
+                apartmentCalendarStore.loadTariff(apartmentCalendarStore.apartment?.tariffId)
+            })
 
-            if(!apartment)  {
-                throw new Error("No apartment when loading calendar")
-            }
-
-            return tariffService.loadTariff(apartment.tariffId)
-        })
-            .then(setApartmentTariff)
     }, [apartmentId, currencyStore.currency]);
 
-    if (apartmentCalendarStore.isLoading || !apartment || !apartmentTariff) {
+    if (apartmentCalendarStore.isLoading || !apartmentCalendarStore.apartment || !apartmentCalendarStore.tariff) {
         return <div
             className="apartment-calendar"><AppLoader/></div>
     }
     return <div className="apartment-calendar">
         <div className="apartment-details">
             <Link to={"/apartment-details/" + apartmentId}>
-                {apartment.title}
+                {apartmentCalendarStore.apartment.title}
             </Link>
 
-            <img src={CONSTANTS.IMAGE_SERVER_URL + apartment.photos[0]}
+            <img src={CONSTANTS.IMAGE_SERVER_URL + apartmentCalendarStore.apartment.photos[0]}
                  alt=""/>
         </div>
 
@@ -60,7 +54,8 @@ export const ApartmentCalendar = observer(({apartmentId}: PropsType) => {
                   onChange={setSelectedDate}
                   fullCellRender={(date, info) => <CalendarCell
                       apartmentId={apartmentId}
-                      tariff={apartmentTariff}
+                      //@ts-ignore
+                      tariff={apartmentCalendarStore.tariff}
                       date={date}
                       info={info}
                       selectedDate={selectedDate}/>}

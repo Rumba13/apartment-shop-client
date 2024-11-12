@@ -3,13 +3,15 @@
   border: 1px solid var(--gains-boro);
   align-items: center;
   padding: 5px;
+  border-radius: 8px;
 
   & .ant-picker-input {
 
     & input {
       font-family: var(--default-font), sans-serif;
       font-size: 15px;
-      text-align: center;
+      text-align: left;
+      margin-left: 8px;
     }
   }
 

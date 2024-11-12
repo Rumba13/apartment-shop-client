@@ -24,7 +24,8 @@ export const SelectDatesModal = observer(({onNextButtonClick}: PropsType) => {
                   modalStore={selectDatesModalStore}
     >
         <RangePicker className="date-filter"
-                     dropdownClassName="select-dates"
+                     popupClassName="select-dates"
+                     variant={"borderless"}
                      disabledDate={rangeDatePickerDisableDateBeforeToday}
                      open
                      hidden

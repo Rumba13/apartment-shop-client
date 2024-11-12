@@ -52,7 +52,6 @@ export const OrderModal = observer(({
             <div className="order-modal-content">
                 <OrderApartmentForm onCreateOrder={() => orderModalStore.setIsOpened(false)}
                                     updateApartmentPrice={() => getOrderPriceStore.getOrderPrice(apartmentId, currencyStore.currency)}
-                                    apartmentMaxGuests={apartmentMaxGuests}
                                     apartmentId={apartmentId}/>
                 <div className="apartment-details">
                     <img className="apartment-details__image"

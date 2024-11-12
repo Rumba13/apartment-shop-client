@@ -24,8 +24,6 @@ export const TariffsPage = observer(() => {
         return <></>
     }
 
-    console.log(tariffId)
-
     return (
         <MinimalLayout className="tariffs-page">
             <CreateTariffModal/>

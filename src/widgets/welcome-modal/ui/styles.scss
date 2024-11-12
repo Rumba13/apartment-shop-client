@@ -7,9 +7,13 @@ div.welcome-modal {
 
   & .date-filter {
     margin-bottom: 5px;
+
+    & .ant-picker-panel-container {
+      box-shadow: none !important;
+    }
   }
 
-   & .ant-picker-range-separator, & .ant-picker-suffix, & .ant-picker-active-bar {
+  & .ant-picker-range-separator, & .ant-picker-suffix, & .ant-picker-active-bar {
     display: none;
   }
 

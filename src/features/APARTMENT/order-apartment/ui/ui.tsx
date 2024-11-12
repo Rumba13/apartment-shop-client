@@ -23,6 +23,7 @@ import {getOrderPriceStore} from "../../../ORDER/get-order-price";
 import {snackBarStore} from "../../../../shared/ui/snack-bar/snack-bar-store";
 import CrossIcon from "../../../../assets/images/cross.svg"
 import {useNavigate} from "react-router-dom";
+import {orderApartmentStore} from "../model/order-apartment-store";
 
 const {RangePicker} = DatePicker;
 
@@ -40,7 +41,6 @@ export type ValuesType = {
 
 type PropsType = {
     apartmentId: UUID,
-    apartmentMaxGuests: number,
     onCreateOrder?: Function,
     updateApartmentPrice?: () => void,
 }
@@ -75,7 +75,6 @@ const initialValues: ValuesType = {
 
 export const OrderApartmentForm = observer(({
                                                 apartmentId,
-                                                apartmentMaxGuests,
                                                 onCreateOrder
                                             }: PropsType) => {
     const {t} = useTypedTranslation();
@@ -94,11 +93,14 @@ export const OrderApartmentForm = observer(({
         getOrderPriceStore.getOrderPrice(apartmentId, currencyStore.currency)
     }
 
+
+
     useEffect(() => {
         updateOrderPrice(initialValues)
     }, []);
 
     useEffect(() => {
+        orderApartmentStore.loadCurrentApartment(apartmentId, currencyStore.currency)
         getOrderPriceStore.getOrderPrice(apartmentId, currencyStore.currency)
     }, [currencyStore.currency]);
 
@@ -106,6 +108,7 @@ export const OrderApartmentForm = observer(({
         apartmentService.getApartmentBookedDates(apartmentId, currencyStore.currency).then(setBookedDates);
     }, [userStore.user, userStore.user?.username, currencyStore.currency]);
 
+    if(orderApartmentStore.currentApartment === null) return <></>
 
     const disabledDate: RangePickerProps['disabledDate'] = (current, info) => {
         if (current < dayjs().endOf("day")) return true;
@@ -185,7 +188,8 @@ export const OrderApartmentForm = observer(({
                                 onClick={() => selectGuestModalStore.setIsOpened(true)}>Изменить
                         </button>
                     </div>
-                    <SelectGuestsFormModal maxGuestsCount={apartmentMaxGuests} values={values}/>
+                    {/*@ts-ignore*/}
+                    <SelectGuestsFormModal maxGuestsCount={orderApartmentStore.currentApartment.guestQuantity} values={values}/>
                     <div className="book-date field">
                         <h2 className="book-date__title field__label">{t("Check-in Date")}</h2>
                         <RangePicker locale={ruRu}

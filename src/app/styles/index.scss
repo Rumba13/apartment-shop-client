@@ -4,17 +4,15 @@
 
 html {
   scroll-behavior: smooth;
-
-
 }
 
 body {
   overflow-y: scroll;
+  --scroll-width: 0px;
 
   &.animating-scroll,
   &.hide-scroll {
-    padding-right: 16px;
-    //padding-right: calc(100vw - 100%);
+    padding-right: var(--scroll-width);
     overflow-y: hidden;
   }
 }

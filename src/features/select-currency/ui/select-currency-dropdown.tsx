@@ -20,6 +20,7 @@ type PropsType = {
 
 export const SelectCurrencyDropdown = observer(({onChange}:PropsType) => {
     return <Select className="select-currency-dropdown-wrapper"
+                   variant="borderless"
                    value={currencyStore.currency}
                    onChange={currency => {
                        currencyStore.setCurrency(currency)

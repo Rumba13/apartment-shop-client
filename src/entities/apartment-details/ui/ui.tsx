@@ -56,7 +56,6 @@ export const ApartmentDetails = observer(({
     }, [currencyStore.currency]);
 
     useEffect(() => {
-        console.log(descriptionContentRef.current?.scrollHeight)
     }, [descriptionContentRef?.current]);
 
     const expandDescription = () => {
@@ -139,7 +138,7 @@ export const ApartmentDetails = observer(({
                         },
                     ]
                         .map((tab, index) =>
-                            <span className={clsx("apartment-tabs__tab", currentTab === index && "active")}
+                            <span className={clsx("apartment-tabs__tab", currentTab === index && "active")} key={tab.title}
                                   onClick={() => {
                                       tab.onClick();
                                       setCurrentTab(index)
@@ -174,7 +173,7 @@ export const ApartmentDetails = observer(({
                     <h2 className="apartment-description__title">{t("Description")}</h2>
                     <span className={clsx("apartment-description__description", isDescriptionExpanded && "expanded")}
                           ref={descriptionContentRef}
-                    >{description + description + description + description + description + description + description + description + description}</span>
+                    >{description}</span>
 
                     <button className="apartment-description__button"
                             onClick={(event) => isDescriptionExpanded ? setIsDescriptionExpanded(false) : expandDescription()}>
@@ -189,7 +188,7 @@ export const ApartmentDetails = observer(({
                     <h3 className="title">{t("Rules Of Residence")}</h3>
                     <ul className="tags-list">
                         {rules.map(rule =>
-                            <TitleWithIcon icon={CONSTANTS.IMAGE_SERVER_URL + rule.iconFilename}>{rule.content}</TitleWithIcon>)}
+                            <TitleWithIcon icon={CONSTANTS.IMAGE_SERVER_URL + rule.iconFilename} key={rule.content}>{rule.content}</TitleWithIcon>)}
                     </ul>
                 </div>
                 <div className="section amenities"

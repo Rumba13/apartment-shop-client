@@ -3,6 +3,7 @@ html,
 #root,
 .app {
     width: 100%;
+
     //height: 100%; weird field //!!! If some div with position fixed overlapping scroll, remove height:100% from html
     margin: 0;
     padding: 0;
@@ -12,8 +13,16 @@ html,
     position: relative;
 }
 
+
+body {
+    //min-width: min-content; //experimental
+    max-width: 100%;
+}
+
 html {
     -webkit-font-smoothing: antialiased;
+    min-width: min-content;
+    max-width: 100%;
 }
 
 * {

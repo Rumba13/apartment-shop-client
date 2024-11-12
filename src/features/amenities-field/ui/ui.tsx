@@ -20,7 +20,6 @@ export function AmenitiesField({className, label, ...props}: PropsType) {
     useEffect(() => {
         tagsService.loadTags().then((amenities) => {
             setAmenities(amenities);
-            console.log(amenities)
         })
     }, []);
 

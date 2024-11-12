@@ -13,12 +13,13 @@
     & .home-page__title {
       font-family: var(--default-font), sans-serif;
       font-weight: 600;
-      font-size: 22px;
-      margin-top: 20px;
+      font-size: 28px;
+      margin-top: 6px;
     }
 
     & .home-page__pagination-details {
-      margin-top: 15px;
+      margin-top: 13px;
+      margin-bottom: 7px;
       margin-left: auto;
       font-family: var(--default-font), sans-serif;
     }
@@ -40,5 +41,71 @@
   & .content {
     grid-area: content;
     flex-grow: 1;
+  }
+}
+
+@media(width <= 1260px) {
+  .standart-layout {
+    & .standart-layout-wrapper {
+      padding: 0 15px;
+    }
+
+    & .home-page__title {
+      margin-left: 10px;
+    }
+  }
+}
+
+@media(width <= 950px) {
+  .standart-layout {
+
+    & .aside {
+
+      & .aside__title {
+        font-size: 18px;
+      }
+    }
+
+    & .standart-layout-wrapper {
+      display: flex;
+    }
+
+    & .sub-header {
+      & .home-page__title {
+        font-size: 20px;
+      }
+      & .home-page__pagination-details {
+        display: none;
+      }
+    }
+  }
+}
+
+@media(width <= 690px) {
+  .standart-layout {
+
+    & .aside {
+      width: 100%;
+      min-width: 100%;
+
+      & .filter-by-price .range-wrapper__image {
+        display: none;
+      }
+
+      & .aside__title {
+        font-size: 18px;
+      }
+    }
+
+    & .standart-layout-wrapper {
+      flex-direction: column;
+    }
+
+    & .sub-header {
+      & .home-page__title {
+      }
+      & .home-page__pagination-details {
+      }
+    }
   }
 }

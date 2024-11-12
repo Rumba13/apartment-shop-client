@@ -4,21 +4,23 @@ import {ApartmentList} from "../../../widgets/apartment-list";
 import {SortBy} from "../../../features/sort-by";
 import {OpenCreateApartmentPageButton} from "./open-create-apartment-page-button";
 import {userStore} from "../../../entities/user";
-import {useEffect, useMemo, useRef, useState} from "react";
+import React, {useEffect, useRef} from "react";
 import {observer} from "mobx-react";
 import {Pagination} from "antd";
 import {apartmentListStore} from "../../../widgets/apartment-list/model/apartment-list-store";
 import {SelectDatesModal, selectDatesModalStore} from "../../../widgets/welcome-modal";
 import {selectGuestModalStore, SelectGuestsModal} from "../../../widgets/select-guests-modal";
 import {guestsCountStore} from "../../../features/FILTER/filter-by-guests";
+import {filterByDateStore} from "../../../features/FILTER/filter-by-date";
 
 export const HomePage = observer(() => {
-    useEffect(() => {
-    }, [userStore.user]);
+    const paginationDetails = `${(apartmentListStore.currentPage * apartmentListStore.pageSize) - apartmentListStore.pageSize + 1}-${apartmentListStore.currentPage * apartmentListStore.pageSize} из ${apartmentListStore.totalPages * apartmentListStore.pageSize}`
 
     useEffect(() => {
-        selectDatesModalStore.open()
-    }, []);
+        if (!filterByDateStore.isTouched) {
+            selectDatesModalStore.open()
+        }
+    }, [userStore.user]);
 
     const scrollToRef = useRef<HTMLDivElement>(null);
 
@@ -34,6 +36,7 @@ export const HomePage = observer(() => {
 
         <div className="home-page-top"
              ref={scrollToRef}>
+            <span className="home-page__pagination-details">{paginationDetails}</span>
             {userStore.user?.isSuperuser && <OpenCreateApartmentPageButton/>}
             <SortBy/>
         </div>

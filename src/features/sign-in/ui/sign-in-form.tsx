@@ -16,31 +16,38 @@ type PropsType = {
 
 export function SignInForm({onSignIn}: PropsType) {
     const {t} = useTypedTranslation()
-    const [accessToken,setAccessToken, {removeItem:removeAccessToken}] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
-    const [refreshToken,setRefreshToken, {removeItem:removeRefreshToken}] = useLocalStorageState<string>("REFRESH-TOKEN", {defaultValue: ""});
+    const [accessToken, setAccessToken, {removeItem: removeAccessToken}] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
+    const [refreshToken, setRefreshToken, {removeItem: removeRefreshToken}] = useLocalStorageState<string>("REFRESH-TOKEN", {defaultValue: ""});
 
     return (
-        <Formik<ValuesType> initialValues={{username: "sad", password: "sadad"}} onSubmit={(values, formikHelpers) => {
-            signInService.signIn(values).then((response) => {
-                setAccessToken(response.access_token);
-                setRefreshToken(response.refresh_token);
-                userStore.auth(response.access_token, () => {
-                    removeRefreshToken()
-                    removeAccessToken()
-                });
-                onSignIn?.();
-            }).catch((err) => {
-                console.log(err)
+        <Formik<ValuesType> initialValues={{username: "sad", password: "sadad"}}
+                            onSubmit={(values, formikHelpers) => {
+                                signInService.signIn(values).then((response) => {
+                                    setAccessToken(response.access_token);
+                                    setRefreshToken(response.refresh_token);
+                                    userStore.auth(response.access_token, response.refresh_token, (accessToken, refreshToken) => {
+                                        setAccessToken(accessToken);
+                                        setRefreshToken(refreshToken)
+                                    });
+                                    onSignIn?.();
+                                }).catch((err) => {
+                                    console.log(err)
 
-                if (err.response.data.detail === ERRORS.INCORRECT_USERNAME_OR_PASSWORD) {
-                    formikHelpers.setFieldError("password", t("Incorrect Password Or Username"))
-                }
-            })
-        }}>
+                                    if (err.response.data.detail === ERRORS.INCORRECT_USERNAME_OR_PASSWORD) {
+                                        formikHelpers.setFieldError("password", t("Incorrect Password Or Username"))
+                                    }
+                                })
+                            }}>
             {({}) => <Form className="sign-in-form">
-                <Field name="username" label={t("Name") + ":"} placeholder={t("Enter Your Name")}/>
-                <Field name="password" label={t("Password") + ":"} type={"password"} placeholder="********"/>
-                <button className="submit-button" type="submit">{t("Sign In")}</button>
+                <Field name="username"
+                       label={t("Name") + ":"}
+                       placeholder={t("Enter Your Name")}/>
+                <Field name="password"
+                       label={t("Password") + ":"}
+                       type={"password"}
+                       placeholder="********"/>
+                <button className="submit-button"
+                        type="submit">{t("Sign In")}</button>
             </Form>}
         </Formik>
     )

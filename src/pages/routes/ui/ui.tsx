@@ -28,7 +28,6 @@ export function Routes() {
                 <Route path="/order/:apartmentId" element={<OrderPage/>}/>
                 <Route path="/calendar/:apartmentId" element={<CalendarPage/>}/>
                 <Route path="/calendar" element={<CalendarPage/>}/>
-
                 <Route path="/404" element={<div>404</div>}/>
             </ReactRoutes>
         </BrowserRouter>

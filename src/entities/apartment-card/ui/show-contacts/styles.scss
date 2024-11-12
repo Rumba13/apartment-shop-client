@@ -2,12 +2,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  font-family: var(--default-font), sans-serif;
+  color: white;
   background-color: var(--white-blue);
+  cursor: pointer;
+  padding: 0 20px;
+  gap: 7px;
+
+  &.expanded {
+    background-color: var(--azure);
+  }
 
   & .show-contacts-button__title {
-    color: var(--azure);
     font-size: 16px;
-    font-family: "CeraPro", Arial, sans-serif;
+    color: var(--azure);
+  }
+
+  & .show-contacts__phone {
+    margin-left: auto;
+  }
+
+  & .show-contacts__name {
   }
 }

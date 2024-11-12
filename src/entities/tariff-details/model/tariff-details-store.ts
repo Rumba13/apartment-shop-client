@@ -1,5 +1,5 @@
 import {LoadingStore} from "../../../shared/model/loading-store";
-import {makeObservable, override} from "mobx";
+import {action, makeObservable, observable, override} from "mobx";
 import {Tariff} from "../../../shared/api/types/tariff";
 import {tariffService} from "../../../shared/api/tariff-service";
 import {UUID} from "../../../shared/api/types/uuid";
@@ -11,7 +11,9 @@ class TariffDetailsStore extends LoadingStore {
             isLoading: override,
             isError: override,
             setIsError: override,
-            setIsLoading: override
+            setIsLoading: override,
+            tariffDetails:observable,
+            setTariffDetails:action
         })
     }
 

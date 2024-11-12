@@ -4,7 +4,6 @@ import {observer} from "mobx-react";
 import {DatePicker} from "antd";
 import {filterByDateStore} from "../model/filter-by-date-store";
 import dayjs, {Dayjs} from "dayjs";
-import {RangePickerProps} from "antd/es/date-picker";
 import {
     rangeDatePickerDisableDateBeforeToday
 } from "../../../../shared/lib/range-date-picker-disable-date-before-today";

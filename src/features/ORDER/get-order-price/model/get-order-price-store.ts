@@ -33,8 +33,6 @@ class GetOrderPriceStore extends LoadingStore {
     public setGuestCountByCategory = (value: GuestsCountByCategory) => this.guestCountByCategory = value;
 
     public async getOrderPrice(apartmentId: UUID, resultCurrency: Currency) {
-        console.log(this.bookDateRange)
-
         this.setIsLoading(false);
         if (this.bookDateRange === null || this.guestCountByCategory === null) {
             this.setIsError(true);

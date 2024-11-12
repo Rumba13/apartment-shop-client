@@ -7,6 +7,8 @@ import {observer} from "mobx-react";
 import React, {useEffect} from "react";
 import {userStore} from "../../../entities/user";
 import {UserMenu} from "./user-menu/ui";
+import {Breadcrumbs} from "../../../shared/ui/bread-crumbs";
+import {HeaderBreadcrumbs} from "./header-breadcrumbs";
 
 type PropsType = {
     noSearch?: boolean;
@@ -19,9 +21,6 @@ export const Header = observer(({noSearch = false}: PropsType) => {
 
     }, [userStore.user]);
 
-    // const breadcrumbs = window.location.pathname.split("/").filter(Boolean)
-    // breadcrumbs.unshift("Главная")
-    // console.log(breadcrumbs);
 
     return <header className="header">
         <div className="header-top">
@@ -37,9 +36,10 @@ export const Header = observer(({noSearch = false}: PropsType) => {
                     <h1 className="header-bottom__title">{t("Daily rent from owners all over Belarus")}</h1>
                     <h2 className="header-bottom__sub-title">{t("You can rent apartment")}</h2>
                 </div>
+
             </div>
         }
+        <HeaderBreadcrumbs/>
 
-        {/*<Breadcrumbs items={breadcrumbs}/>*/}
     </header>
 });
