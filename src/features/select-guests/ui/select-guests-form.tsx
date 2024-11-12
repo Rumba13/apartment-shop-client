@@ -23,7 +23,7 @@ export const SelectGuestsForm = observer(({maxGuestCount, values, onNextButtonCl
     const spareGuestCount = maxGuestCount - values.kidCount - values.adultCount - values.petCount - values.babyCount - values.teenCount;
 
     return (
-        <Form className="select-guests-form">
+        <Form className="select-guests-form guest-modal">
             <h2 className="form-title">{t("Guest Quantity")}</h2>
 
             <SelectGuestsFormField name="adultCount"

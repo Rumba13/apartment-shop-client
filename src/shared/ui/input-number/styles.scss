@@ -15,7 +15,7 @@
     border-color: var(--azure);
   }
 
-  &:hover {
+  &:hover:not(.disable) {
     & .input-number__increase-button {
       border-top-color: var(--azure);
       border-right-color: var(--azure);
@@ -36,10 +36,18 @@
     border: 1px solid var(--white-gray);
     border-radius: 8px;
     padding: 14px 20px;
+    padding-right: 36px;
     font-size: 14px;
     font-family: "CeraPro", Arial, sans-serif;
     transition: border-color 110ms;
+
+    &.disable {
+      &:hover {
+        border-color: var(--white-gray);
+      }
+    }
   }
+
 
   & .input-number__increase-button, .input-number__decrease-button {
     position: absolute;

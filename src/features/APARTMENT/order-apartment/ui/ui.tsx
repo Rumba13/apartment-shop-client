@@ -24,6 +24,7 @@ import {snackBarStore} from "../../../../shared/ui/snack-bar/snack-bar-store";
 import CrossIcon from "../../../../assets/images/cross.svg"
 import {useNavigate} from "react-router-dom";
 import {orderApartmentStore} from "../model/order-apartment-store";
+import {formatGuestCountByCategoryToTitle} from "../../../../shared/lib/format-guest-count-by-category-to-title";
 
 const {RangePicker} = DatePicker;
 
@@ -92,8 +93,6 @@ export const OrderApartmentForm = observer(({
         getOrderPriceStore.setBookDateRange([values.bookDateRange[0], values.bookDateRange[1]])
         getOrderPriceStore.getOrderPrice(apartmentId, currencyStore.currency)
     }
-
-
 
     useEffect(() => {
         updateOrderPrice(initialValues)
@@ -185,7 +184,7 @@ export const OrderApartmentForm = observer(({
                         <h2 className="title">{t("Number Of People")}</h2>
                         <button type="button"
                                 className="button-cool"
-                                onClick={() => selectGuestModalStore.setIsOpened(true)}>Изменить
+                                onClick={() => selectGuestModalStore.setIsOpened(true)}>{formatGuestCountByCategoryToTitle(values)}
                         </button>
                     </div>
                     {/*@ts-ignore*/}

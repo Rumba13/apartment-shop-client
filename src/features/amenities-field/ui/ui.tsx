@@ -32,7 +32,7 @@ export function AmenitiesField({className, label, ...props}: PropsType) {
         <Select
             showSearch
             allowClear
-            mode="multiple"
+            mode="tags"
             onClear={() => setValue("")}
             filterOption={(input, option) => (option?.label ?? '    ').toLowerCase().includes(input.toLowerCase())}
             value={field.value}

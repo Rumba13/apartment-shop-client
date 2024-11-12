@@ -1,7 +1,11 @@
 import "./styles.scss";
 import {ErrorMessage, Field as FormikField, FieldHookConfig, useField} from "formik";
-import React from "react";
+import React, {useEffect} from "react";
 import clsx from "clsx";
+import CrossIcon from "../../../assets/images/cross.svg";
+import {SvgButton} from "../svg-button";
+import {values} from "mobx";
+import AddImageIcon from "../../../assets/images/add-image-icon.png";
 
 type PropsType = {
     label: string,
@@ -14,15 +18,37 @@ export function Field({label, className, onChange, ...props}: PropsType) {
 
     let fieldComponent;
 
-    if (props.type === "file") {
-        fieldComponent = <input className={clsx("field__field")} type={"file"} multiple name={props.name}
-                                id={props.id || props.name} onChange={(event) => {
-            const files = event.target.files
-            console.log(files)
-            setValue(files)
 
-            console.log(files)
-        }}/>
+    if (props.type === "file") {
+        fieldComponent = <>
+
+            <div className="field__field">
+
+                <input hidden type={"file"} multiple name={props.name} value={props.value}
+                       id={props.id || props.name} onChange={(event) => {
+
+                    if (!event.target.files) return setValue(null);
+
+                    setValue([...field.value, ...event.target.files])
+                }}/>
+                <div className="preview-images" style={{marginTop: field.value ? 8 : undefined}}>
+
+
+                    {Array.isArray(field.value) && Array.from(field.value).map((img: any, currentImageIndex) => <div
+                        className="preview-image" key={img}>
+                        <SvgButton className="cross"
+                                   icon={CrossIcon}
+                                   onClick={() => {
+                                       setValue(Array.from(field.value).filter((item, index) => index !== currentImageIndex))
+                                   }}/>
+                        <img alt="" src={URL.createObjectURL(img)}/>
+                    </div>)}
+                    <label className="preview-image add-image" htmlFor={props.id || props.name}>
+                        <img alt="" src={AddImageIcon}/>
+                    </label>
+                </div>
+            </div>
+        </>
     } else {
         fieldComponent = <FormikField {...props} {...field} on onChange={(event: React.ChangeEvent<any>) => {
             field.onChange(event);
@@ -35,7 +61,10 @@ export function Field({label, className, onChange, ...props}: PropsType) {
             <label className="field__label"
                    htmlFor={props.id || props.name}>{label}</label>
             <div className="wrapper">
+
                 {fieldComponent}
+                {meta.touched && <ErrorMessage name={props.name}
+                                               render={(msg: string) => <div className="field__error">{msg}</div>}/>}
             </div>
         </div>
     )

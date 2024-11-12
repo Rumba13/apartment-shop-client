@@ -16,7 +16,6 @@ export const App = observer(() => {
     const [accessToken, setAccessToken, {removeItem: removeAccessToken}] = useLocalStorageState<string>("ACCESS-TOKEN", {defaultValue: ""});
     const [refreshToken, setRefreshToken, {removeItem: removeRefreshToken}] = useLocalStorageState<string>("REFRESH-TOKEN", {defaultValue: ""});
 
-
     useEffect(() => {
         i18n.changeLanguage("ru");
         dayjs.locale("ru")

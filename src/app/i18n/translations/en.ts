@@ -142,7 +142,7 @@ export const englishTranslation: Translation = {
     "Please Select Dates": "Please select dates",
     "Calendar": "Calendar",
     "Booked": "Booked",
-    "Minimum Booking Period: 2 Nights":"Minimum booking period: 2 nights",
+    "Minimum Booking Period: 2 Nights": "Minimum booking period: 2 nights",
     "Check in": "Check in",
     "Check out": "Check out",
     "Order_one": "order",
@@ -150,6 +150,22 @@ export const englishTranslation: Translation = {
     "Order_few": "orders",
     "Expand Description": "Expand Description",
     "Collapse Description": "Collapse Description",
+    "Adult_zero": "adults",
+    "Adult_one": "adult",
+    "Adult_few": "adults",
+    "Adult_many": "adults",
+    "Kid_zero": "kids",
+    "Kid_one": "kid",
+    "Kid_few": "kids",
+    "Kid_many": "kids",
+    "Change Guests Pricing": "Change Prices",
+    "Adult Price": "Adult Price",
+    "Teen Price": "Teen Price",
+    "Kid Price": "Kid Price",
+    "Baby Price": "Baby Price",
+    "Pet Price": "Pet Price",
+    "Are Pets Allowed?": "Is pets allowed?",
+    "Select Amenities": "Select Amenities"
 };
 
 /*

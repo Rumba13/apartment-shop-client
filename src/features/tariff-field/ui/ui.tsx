@@ -1,6 +1,5 @@
 import './styles.scss';
 import {Select} from "antd";
-import {currencyStore} from "../../select-currency";
 import {ErrorMessage, FieldHookConfig, useField} from "formik";
 import clsx from "clsx";
 import React, {useEffect, useState} from "react";

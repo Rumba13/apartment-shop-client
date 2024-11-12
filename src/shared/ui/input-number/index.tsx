@@ -7,15 +7,16 @@ import Arrow from "../../../assets/images/arrow.svg";
 
 type PropsType = {
     value: number,
-    onChange?: (val:number) => void,
+    onChange?: (val: number) => void,
     min: number,
     max: number,
     name?: string
     id?: string,
     className?: string,
+    disabled?: boolean
 }
 //TODO Сущность слишком умна и опасна. Нужно пристально следить за ней
-export const InputNumber = ({min, value, onChange, max, name, id,className}: PropsType) => {
+export const InputNumber = ({min, value, onChange, max, name, id, className, disabled}: PropsType) => {
     const [localValue, setLocalValue] = useState<string>(min + "")
 
     const setValue = (value: number, event: React.ChangeEvent<any>) => {
@@ -28,9 +29,10 @@ export const InputNumber = ({min, value, onChange, max, name, id,className}: Pro
         setLocalValue(value + "")
     }, [value]);
     return (
-        <div className={clsx("input-number",className)}>
+        <div className={clsx("input-number", className,disabled && "disable")}>
             <input type="text"
-                   className="input-number__input"
+                   disabled={disabled}
+                   className={clsx("input-number__input", disabled && "disable")}
                    name={name}
                    id={id || name}
                    value={localValue}
@@ -40,16 +42,18 @@ export const InputNumber = ({min, value, onChange, max, name, id,className}: Pro
                    }}
             />
             <button
+                disabled={disabled}
                 tabIndex={-1}
-                className={clsx("input-number__increase-button", max === value && "disabled")}
+                className={clsx("input-number__increase-button", (max === value || disabled) && "disabled")}
                 type="button"
                 onClick={(event: React.ChangeEvent<any>) => setValue(value + 1, event)}
             >
                 <SvgIcon icon={Arrow}/>
             </button>
             <button
+                disabled={disabled}
                 tabIndex={-1}
-                className={clsx("input-number__decrease-button", min === value && "disabled")}
+                className={clsx("input-number__decrease-button", (min === value || disabled) && "disabled")}
                 type="button"
                 onClick={(event: React.ChangeEvent<any>) => setValue(value - 1, event)}
             >

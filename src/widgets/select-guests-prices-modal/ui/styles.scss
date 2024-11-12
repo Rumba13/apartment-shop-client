@@ -1,8 +1,14 @@
-.select-guest-modal {
-  z-index: 99999999;
+.select-guest-prices-modal {
+  z-index: 200;
   max-width: 410px;
+  padding: 20px;
+  border-radius: 8px;
+
+  & .select-currency-dropdown-wrapper {
+    margin-left: 10px;
+  }
 
   & .modal-title {
     display: none;
   }
-  }
+}

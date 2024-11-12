@@ -27,7 +27,7 @@ export function FieldNumber({label, className, onValueChange, max = Infinity, mi
                 className="field__label"
                 htmlFor={props.id || props.name}
             >{label}</label>
-            <InputNumber value={field.value} min={min} max={max} onChange={e => setValue(e)}/>
+            <InputNumber value={field.value} min={min} max={max} onChange={e => setValue(e)} disabled={props.disabled}/>
             <ErrorMessage
                 className="field__error"
                 name={props.name}

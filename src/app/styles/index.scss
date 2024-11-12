@@ -31,12 +31,51 @@ body {
   }
 }
 
- .ant-picker-range.date-picker {
+.ant-picker-range.date-picker {
   &:focus {
     background-color: red !important;
   }
 }
 
- .app {
-   margin-bottom: 40px;
- }
+.app {
+  margin-bottom: 40px;
+}
+
+.guest-modal {
+  & .form-title {
+    font-weight: 700;
+    font-size: 19px;
+    font-family: var(--default-font), sans-serif;
+    margin-bottom: 25px;
+  }
+
+  & .select-guests-form-field {
+    margin-bottom: 20px;
+  }
+
+  & .submit-button {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  & .total-price {
+    display: flex;
+    margin-bottom: 20px;
+    font-family: var(--default-font), sans-serif;
+    font-weight: 700;
+
+    & .total-price__title {
+      display: block;
+    }
+
+    & .spring {
+      flex: 1;
+      border-bottom: 1px dashed var(--taupe-gray);
+    }
+
+    & .total-price__price {
+      margin-left: auto;
+    }
+  }
+}
