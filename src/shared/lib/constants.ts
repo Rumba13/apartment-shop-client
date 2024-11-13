@@ -7,7 +7,7 @@ export const CONSTANTS = {
     SERVER_URL_PROD: "http://api:8081/api/v1",
     SERVER_URL_DEV: "https://24kv.by/api/v1/",
         IMAGE_SERVER_URL: "https://24kv.by/",
-    SERVER_TYPE: SERVER_TYPE.DEVELOPMENT,
+    SERVER_TYPE: SERVER_TYPE.PRODUCTION,
 
     get SERVER_URL() {
         switch (this.SERVER_TYPE)
