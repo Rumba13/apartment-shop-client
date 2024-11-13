@@ -35,6 +35,8 @@ export const UserMenu = observer(() => {
         description: t("Definitely Sign Out?"),
         confirmButtonText: t("Yes"),
     }
+    console.log(window.location.pathname)
+
     const askForSignOut = () => {
         confirmModalStore.askForConfirm(confirmModalOptions)
             .then(() => signOutService.signOut(refreshToken))
@@ -67,7 +69,7 @@ export const UserMenu = observer(() => {
     }
 
     if (!userStore.user) return <div className={clsx("user-menu")}
-                                     style={{border: 0, marginLeft: 0 }}>
+                                     style={{border: 0, marginLeft: 0}}>
         <ButtonCool className="user-menu__auth-button"
                     onClick={() => authModalStore.openWithTab(0)}>
             {t("Sign In")}
@@ -76,7 +78,7 @@ export const UserMenu = observer(() => {
 
 
     return (
-        <div className={clsx("user-menu")} style={{marginLeft:8}}>
+        <div className={clsx("user-menu")} style={{marginLeft: 8}}>
 
             <div className="user-menu-button"
                  onClick={userMenuPopupStore.open}>
@@ -98,15 +100,19 @@ export const UserMenu = observer(() => {
                 </div>
 
                 {userStore.user?.isSuperuser && <>
-                    <Link className="user-menu-option"
-                          to={"/orders"}>
+                    <Link className={clsx("user-menu-option", window.location.pathname === "/orders" && "active")}
+                          to={"/orders"}
+                          onClick={userMenuPopupStore.close}
+                    >
                         <SvgIcon icon={OrdersIcon}
                                  className="user-menu-option__icon"/>
                         <span className="user-menu-option__title">{t("Orders")}</span>
                         {pendingOrderCount !== 0 &&
-                            <span className="user-menu-option__sub-title">Подтвердите {pendingOrderCount} {tr("Order", {count: pendingOrderCount})}</span>}
+                            <span
+                                className="user-menu-option__sub-title">Подтвердите {pendingOrderCount} {tr("Order", {count: pendingOrderCount})}</span>}
                     </Link>
-                    <Link className="user-menu-option"
+                    <Link className={clsx("user-menu-option", window.location.pathname === "/tariffs" && "active")}
+                          onClick={userMenuPopupStore.close}
                           to={"/tariffs"}>
                         <SvgIcon icon={TariffIcon}
                                  className="user-menu-option__icon"/>

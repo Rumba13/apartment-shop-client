@@ -33,7 +33,8 @@ export type ValuesType = {
     photos: any
     guestCount: number,
     currency: Currency,
-    isPetAllowed: boolean
+    isPetAllowed: boolean,
+    _newAmenityGroup:string
 } & GuestPricesByCategory
 
 const initialValues: ValuesType = {
@@ -53,7 +54,8 @@ const initialValues: ValuesType = {
     petPrice: 10,
     teenPrice: 10,
     currency: "BYN",
-    isPetAllowed: true
+    isPetAllowed: true,
+    _newAmenityGroup:""
 }
 
 const schema = object().shape({
@@ -92,6 +94,7 @@ export function CreateApartmentForm() {
                            label={t("Title")}/>
                     <Field name="description"
                            as="textarea"
+                           style={{maxHeight: 500}}
                            label={t("Apartment Description")}/>
                     <FieldNumber name="roomCount"
                                  min={1}
@@ -119,7 +122,7 @@ export function CreateApartmentForm() {
                     <FieldNumber name="area"
                                  min={1}
                                  label={t("Area")}/>
-                    <AmenitiesGroupField name="amenityGroups"/>
+                    <AmenitiesGroupField name="amenityGroups" _newAmenityGroup={values._newAmenityGroup} />
 
                     <Field name="photos"
                            type="file"

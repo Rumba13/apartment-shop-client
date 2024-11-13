@@ -22,6 +22,6 @@ export const OrderPage = observer(() => {
 
     return <MinimalLayout className="order-page">
         <OrderApartmentForm apartmentId={apartmentId}/>
-        {(getOrderPriceStore.isLoading && getOrderPriceStore.orderPrice.amount === 0) || <>Order price: {formatPrice(getOrderPriceStore.orderPrice)}</>}
+        {/*{(getOrderPriceStore.isLoading && getOrderPriceStore.orderPrice.amount === 0) || <>Order price: {formatPrice(getOrderPriceStore.orderPrice)}</>}*/}
     </MinimalLayout>
 })

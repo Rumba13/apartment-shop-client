@@ -9,6 +9,7 @@ import {userStore} from "../../../entities/user";
 import {UserMenu} from "./user-menu/ui";
 import {Breadcrumbs} from "../../../shared/ui/bread-crumbs";
 import {HeaderBreadcrumbs} from "./header-breadcrumbs";
+import {FavoritesCount} from "../../../features/APARTMENT/add-apartment-to-favorites";
 
 type PropsType = {
     noSearch?: boolean;
@@ -25,6 +26,7 @@ export const Header = observer(({noSearch = false}: PropsType) => {
     return <header className="header">
         <div className="header-top">
             <Logo/>
+            <FavoritesCount/>
             <SelectCurrencyDropdown/>
             <UserMenu/>
             <AuthModal/>

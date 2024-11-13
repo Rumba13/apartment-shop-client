@@ -22,6 +22,7 @@ export class OrderApartmentStore extends LoadingStore {
     public setCurrentApartment = (currentApartment: Apartment | null) => this.currentApartment = currentApartment
 
     public async loadCurrentApartment(apartmentId: UUID, resultCurrency: Currency) {
+        this.setCurrentApartment(null)
         this.setIsLoading(true);
         this.setIsError(false);
 

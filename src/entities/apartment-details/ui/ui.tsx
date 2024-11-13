@@ -31,6 +31,8 @@ import {CONSTANTS} from "../../../shared/lib/constants";
 import {SvgIcon} from "../../../shared/ui/svg-icon";
 import ArrowIcon from "../../../assets/images/arrow.svg"
 import CalendarIcon from "../../../assets/images/calendar.svg"
+import {AddApartmentToFavorites} from "../../../features/APARTMENT/add-apartment-to-favorites";
+import {OrderIsSubmittedModal} from "../../../features/APARTMENT/order-apartment/ui/order-is-submitted-modal";
 
 type PropsType = {
     apartmentId: UUID
@@ -102,6 +104,7 @@ export const ApartmentDetails = observer(({
                         onClick={() => navigate(`/update-apartment/${apartmentId}`)}
                         title={"Обновить"}/>
             </>}
+            <AddApartmentToFavorites apartmentId={apartmentId}/>
         </div>
         <div className="apartment-details-mid">
             <div className="apartment-details-wrapper">
@@ -125,21 +128,22 @@ export const ApartmentDetails = observer(({
                             title: t("Description"),
                             onClick: () => descriptionRef.current?.scrollIntoView()
                         },
-                        {
-                            title: t("Rules Of Residence"),
-                            onClick: () => rulesRef.current?.scrollIntoView()
-                        },
+                        // {
+                        //     title: t("Rules Of Residence"),
+                        //     onClick: () => rulesRef.current?.scrollIntoView()
+                        // },
                         {
                             title: t("Amenities"),
                             onClick: () => tagsRef.current?.scrollIntoView()
                         },
-                        {
-                            title: t("Near The House"),
-                            onClick: () => nearToApartmentRef.current?.scrollIntoView()
-                        },
+                        // {
+                        //     title: t("Near The House"),
+                        //     onClick: () => nearToApartmentRef.current?.scrollIntoView()
+                        // },
                     ]
                         .map((tab, index) =>
-                            <span className={clsx("apartment-tabs__tab", currentTab === index && "active")} key={tab.title}
+                            <span className={clsx("apartment-tabs__tab", currentTab === index && "active")}
+                                  key={tab.title}
                                   onClick={() => {
                                       tab.onClick();
                                       setCurrentTab(index)
@@ -184,14 +188,15 @@ export const ApartmentDetails = observer(({
                     </button>
                 </div>
 
-                <div className="section rules-of-residence"
-                     ref={rulesRef}>
-                    <h3 className="title">{t("Rules Of Residence")}</h3>
-                    <ul className="tags-list">
-                        {rules.map(rule =>
-                            <TitleWithIcon icon={CONSTANTS.IMAGE_SERVER_URL + rule.iconFilename} key={rule.content}>{rule.content}</TitleWithIcon>)}
-                    </ul>
-                </div>
+                {/*<div className="section rules-of-residence"*/}
+                {/*     ref={rulesRef}>*/}
+                {/*    <h3 className="title">{t("Rules Of Residence")}</h3>*/}
+                {/*    <ul className="tags-list">*/}
+                {/*        {rules.map(rule =>*/}
+                {/*            <TitleWithIcon icon={CONSTANTS.IMAGE_SERVER_URL + rule.iconFilename}*/}
+                {/*                           key={rule.content}>{rule.content}</TitleWithIcon>)}*/}
+                {/*    </ul>*/}
+                {/*</div>*/}
                 <div className="section amenities"
                      ref={tagsRef}>
                     <h2 className="amenities__title">{t("Amenities")}</h2>
@@ -209,28 +214,28 @@ export const ApartmentDetails = observer(({
                         </div>
                     )}
                 </div>
-                <div className="section near-the-house"
-                     ref={nearToApartmentRef}>
-                    <h3 className="title">{t("Near The House")}</h3>
-                    <ul className="near-the-house-list">
-                        <li>Центральный детский парк культуры и отдыха им. Максима Горького - 1.15 км</li>
-                        <li>Петропавловский собор - 0.79 км</li>
-                        <li>Белорусский государственный цирк - 0.85 км</li>
-                        {isCollapsibleExpanded && <>
-                            <li>Верхний город - 0.44 км</li>
-                            <li>Ворота Минска - 0.96 км</li>
-                            <li>Государственный музей истории белорусской литературы - 0.96 км</li>
-                            <li>Дворец Республики - 0.43 км</li>
-                            <li>Дом Ваньковичей - 0.6 км</li>
-                            <li>Дом-музей I съезда РСДРП - 1.3 км</li>
-                            <li>Железнодорожный вокзал - 1.07 км</li>
-                        </>}
-                    </ul>
-                    {!isCollapsibleExpanded &&
-                        <button className="show-more"
-                                onClick={() => setIsCollapsibleExpanded(true)}
-                        >{t("Show More")}</button>}
-                </div>
+                {/*<div className="section near-the-house"*/}
+                {/*     ref={nearToApartmentRef}>*/}
+                {/*    <h3 className="title">{t("Near The House")}</h3>*/}
+                {/*    <ul className="near-the-house-list">*/}
+                {/*        <li>Центральный детский парк культуры и отдыха им. Максима Горького - 1.15 км</li>*/}
+                {/*        <li>Петропавловский собор - 0.79 км</li>*/}
+                {/*        <li>Белорусский государственный цирк - 0.85 км</li>*/}
+                {/*        {isCollapsibleExpanded && <>*/}
+                {/*            <li>Верхний город - 0.44 км</li>*/}
+                {/*            <li>Ворота Минска - 0.96 км</li>*/}
+                {/*            <li>Государственный музей истории белорусской литературы - 0.96 км</li>*/}
+                {/*            <li>Дворец Республики - 0.43 км</li>*/}
+                {/*            <li>Дом Ваньковичей - 0.6 км</li>*/}
+                {/*            <li>Дом-музей I съезда РСДРП - 1.3 км</li>*/}
+                {/*            <li>Железнодорожный вокзал - 1.07 км</li>*/}
+                {/*        </>}*/}
+                {/*    </ul>*/}
+                {/*    {!isCollapsibleExpanded &&*/}
+                {/*        <button className="show-more"*/}
+                {/*                onClick={() => setIsCollapsibleExpanded(true)}*/}
+                {/*        >{t("Show More")}</button>}*/}
+                {/*</div>*/}
 
             </div>
             <div className="order-menu">

@@ -14,6 +14,7 @@ import ImageNotFound from "../../../assets/images/no-image.jpg"
 import {ShowContactsButton} from "./show-contacts";
 import {formatPrice} from "../../../shared/lib/format-price";
 import {mapModalStore} from "../../../widgets/map-modal/model/map-modal-store";
+import {AddApartmentToFavorites} from "../../../features/APARTMENT/add-apartment-to-favorites";
 
 type PropsType = {
     apartment: Apartment;
@@ -23,31 +24,33 @@ export const ApartmentCard = observer(({
                                            apartment: {
                                                title,
                                                guestQuantity,
-                                               bedQuantity,
                                                roomQuantity,
                                                photos,
                                                price,
-                                               landlordId,
                                                address,
+                                               id,
+                                               landlordFirstName,
+                                               landlordPhoneNumber,
                                                description,
                                                amenityGroups,
                                                area,
-                                               id
+                                               bedQuantity,
+                                               landlordId,
                                            }
                                        }: PropsType) => {
     const {t} = useTranslation();
 
     useEffect(() => {
-
     }, [photos]);
 
     return <div className="apartment-card">
         <Slider withThumbs={false}
                 items={(!photos[0] ? [ImageNotFound] : photos).map(image => <SwiperSlide key={image}>
-                    <Link to={"apartment-details/" + id}>
+                    <Link to={"/apartment-details/" + id}>
                         <img src={image}
                              alt=""></img>
                     </Link></SwiperSlide>)}/>
+        <AddApartmentToFavorites apartmentId={id} variant="mini"/>
 
         <div className="apartment-details">
             <span className="apartment-card__price">{t("From")} {formatPrice(price)}</span>
@@ -68,6 +71,6 @@ export const ApartmentCard = observer(({
             <span className="apartment-details__description">{title}</span>
 
         </div>
-        <ShowContactsButton contact={{phone:"+375293218813", name:"Наталья"}}/>
+        <ShowContactsButton contact={{phone: landlordPhoneNumber, name: landlordFirstName}}/>
     </div>
 });

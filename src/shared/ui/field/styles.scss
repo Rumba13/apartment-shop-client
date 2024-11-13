@@ -42,7 +42,7 @@
   }
 
   & .field__label {
-    margin-bottom: 4px;
+    margin-bottom: 8px !important;
     font-size: 14px;
     font-family: "CeraPro", Arial, sans-serif;
     color: var(--dark-blue);
@@ -62,9 +62,9 @@
     transition: border-color 110ms;
     width: 100%;
 
-    &:focus + .field__error {
-      display: none;
-    }
+    //&:focus + .field__error {
+    //  display: none;
+    //}
   }
 
   & textarea.field__field {
@@ -75,6 +75,7 @@
 
   & .field__error {
     position: absolute;
+    bottom: -13px;
     color: var(--coral-red);
     font-family: var(--default-font), sans-serif;
     font-size: 12px;

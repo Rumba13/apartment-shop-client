@@ -20,7 +20,6 @@ export const HeaderBreadcrumbs = observer(() => {
         href: "/",
     })
 
-
     for (let i = 0; i < breadcrumbContents.length; i++) {
         const breadcrumb = breadcrumbContents[i];
 
@@ -71,6 +70,12 @@ export const HeaderBreadcrumbs = observer(() => {
 
             breadCrumbs.push({
                 item: `${apartmentCalendarStore.apartment.title} (${apartmentCalendarStore.tariff.title})`,
+                href: ""
+            })
+        }
+        else if (breadcrumb === "favorites") {
+            breadCrumbs.push({
+                item: "Избранное",
                 href: ""
             })
         }

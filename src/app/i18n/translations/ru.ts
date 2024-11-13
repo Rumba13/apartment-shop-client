@@ -43,6 +43,7 @@ export const russianTranslation = {
     "Photos": "Фотографии",
     "Add": "Добавить",
     "Save": "Сохранить",
+    "Saved": "Сохранено",
     "Share": "Поделится",
     "Day": "сутки",
     "Leave Request": "Оставить заявку",

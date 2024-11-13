@@ -1,4 +1,4 @@
 export type Contact = {
-    name: string,
-    phone: string
+    name: string | null,
+    phone: string| null
 }

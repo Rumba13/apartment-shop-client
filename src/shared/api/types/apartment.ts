@@ -30,4 +30,6 @@ export type Apartment = {
     tariffId: UUID,
     rules: DescriptionListItem[],
     mainInfoItems: DescriptionListItem[],
+    landlordPhoneNumber: string | null,
+    landlordFirstName: string | null,
 }

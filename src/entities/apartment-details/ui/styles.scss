@@ -1,7 +1,6 @@
 .apartment-details {
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
 
   & .tag {
     & .tag__title {
@@ -33,7 +32,6 @@
     }
 
     & .add-to-wish-list-button {
-      margin-left: auto;
       margin-right: 5px;
     }
   }

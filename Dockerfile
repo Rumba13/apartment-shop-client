@@ -15,7 +15,6 @@ COPY . /usr/src/app
 # build production version of app
 RUN npm run build
 
+# install nginx
 FROM nginx
-EXPOSE 3000
-COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /usr/src/app/build /usr/share/nginx/html

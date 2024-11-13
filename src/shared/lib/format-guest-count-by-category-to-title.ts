@@ -6,9 +6,7 @@ export function formatGuestCountByCategoryToTitle({adultCount, kidCount, babyCou
 
     let title = `${adultCount} ${t("Adult", {count: adultCount})}`;
 
-    if (totalChildrenCount > 0) {
-        title += `, ${totalChildrenCount} ${t("Kid", {count: totalChildrenCount})}`
-    }
+    title += `, ${totalChildrenCount} ${t("Kid", {count: totalChildrenCount})}`
 
     return title;
 }

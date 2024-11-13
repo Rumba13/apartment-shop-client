@@ -6,14 +6,16 @@ import CrossIcon from "../../../assets/images/cross.svg";
 import {SvgButton} from "../svg-button";
 import {values} from "mobx";
 import AddImageIcon from "../../../assets/images/add-image-icon.png";
+import {ButtonCool} from "../button-cool";
 
 type PropsType = {
     label: string,
     className?: string,
-    onChange?: Function
+    onChange?: Function,
+    button?:React.ReactNode
 } & FieldHookConfig<any>
 
-export function Field({label, className, onChange, ...props}: PropsType) {
+export function Field({label, className, onChange,button, ...props}: PropsType) {
     const [field, meta, {setValue}] = useField(props);
 
     let fieldComponent;
@@ -29,7 +31,14 @@ export function Field({label, className, onChange, ...props}: PropsType) {
 
                     if (!event.target.files) return setValue(null);
 
-                    setValue([...field.value, ...event.target.files])
+                    const files = Array.from(event.target.files)
+
+                    if (field.value === null) {
+                        setValue([...files])
+                    } else {
+                        setValue([...field.value, ...files])
+                    }
+
                 }}/>
                 <div className="preview-images" style={{marginTop: field.value ? 8 : undefined}}>
 
@@ -63,6 +72,7 @@ export function Field({label, className, onChange, ...props}: PropsType) {
             <div className="wrapper">
 
                 {fieldComponent}
+                {button}
                 {meta.touched && <ErrorMessage name={props.name}
                                                render={(msg: string) => <div className="field__error">{msg}</div>}/>}
             </div>

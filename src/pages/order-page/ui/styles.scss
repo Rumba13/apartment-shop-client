@@ -1,9 +1,22 @@
 .order-page {
   & .order-form {
-    max-width: 550px;
+    min-width: 550px;
   }
 
   & .content {
+    display: grid;
+    grid-template-columns: 20fr 8fr;
     margin-top: 10px;
+
+    & .order-form {
+
+    }
+
+    & .apartment-details {
+      & .apartment-details__image {
+        border-radius: 10px;
+        margin-bottom: 5px;
+      }
+    }
   }
 }

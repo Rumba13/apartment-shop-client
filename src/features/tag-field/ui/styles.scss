@@ -1,0 +1,17 @@
+.tag-field {
+  & .ant-select {
+    height: 48px;
+    width: fit-content;
+
+    & .ant-select-selection-item {
+      display: flex ;
+      align-items: center;
+    }
+
+    & .ant-select-selection-search {
+      display: flex ;
+      align-items: center;
+
+    }
+  }
+}

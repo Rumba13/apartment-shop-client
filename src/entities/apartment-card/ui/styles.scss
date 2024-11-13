@@ -1,10 +1,18 @@
 .apartment-card {
+  position: relative;
   display: grid;
   grid-template-rows: auto 1fr auto;
   border-radius: 15px;
   border: 1px solid #E6EAED;
   box-shadow: 0px 5px 20px rgba(44, 57, 78, 0.1);
   transition: box-shadow 200ms;
+
+  & .add-to-wish-list-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 2;
+  }
 
   //&:not(:hover) {
   //  & .swiper-button-prev,
@@ -25,6 +33,7 @@
     min-width: 100%;
 
     height: 225px;
+
     & img {
       width: 100%;
       object-fit: fill;
@@ -89,7 +98,7 @@
       font-size: 14px;
       font-family: "CeraPro", Arial, sans-serif;
       color: var(--azure);
-      max-width: fit-content;
+      word-break: break-all;
 
       &:hover {
         text-decoration: underline;
@@ -104,5 +113,4 @@
     border-bottom-right-radius: inherit;
     border-bottom-left-radius: inherit;
   }
-
 }

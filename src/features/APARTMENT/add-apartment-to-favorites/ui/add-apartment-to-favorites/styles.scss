@@ -1,0 +1,24 @@
+.add-to-wish-list-button {
+  &.active .svg-icon {
+    color: var(--coral-red);
+  }
+
+  &:hover {
+    //& div.svg-icon {
+    //}
+    //& span.button__title {
+    //}
+  }
+
+  &.mini {
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+
+    & .svg-icon {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+}

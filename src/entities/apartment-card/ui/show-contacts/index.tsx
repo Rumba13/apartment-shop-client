@@ -4,7 +4,6 @@ import clsx from "clsx";
 import {useTypedTranslation} from "../../../../app/i18n/use-typed-translation";
 import {observer} from "mobx-react";
 import {Contact} from "../../../../shared/api/types/contact";
-import {SvgIcon} from "../../../../shared/ui/svg-icon";
 import ViberIcon from "../../../../assets/images/viber.svg"
 import TelegramIcon from "../../../../assets/images/telegram.svg"
 import {ContactIcon} from "./contact-icon";
@@ -21,7 +20,7 @@ export const ShowContactsButton = observer(({contact}: Props) => {
                 onClick={() => setIsContactExpanded(true)}>
         {isContactExpanded
             ? <>
-                <span className="show-contacts__name">{contact.name}</span>
+                <span className="show-contacts__name">{contact.name || "No name"}</span>
                 <a className="show-contacts__phone"
                    href={"tel:" + contact.phone}>{contact.phone}</a>
                 <ContactIcon className="show-contacts__viber-link" icon={ViberIcon}

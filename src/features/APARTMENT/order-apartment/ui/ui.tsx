@@ -25,6 +25,8 @@ import CrossIcon from "../../../../assets/images/cross.svg"
 import {useNavigate} from "react-router-dom";
 import {orderApartmentStore} from "../model/order-apartment-store";
 import {formatGuestCountByCategoryToTitle} from "../../../../shared/lib/format-guest-count-by-category-to-title";
+import {formatPrice} from "../../../../shared/lib/format-price";
+import {CONSTANTS} from "../../../../shared/lib/constants";
 
 const {RangePicker} = DatePicker;
 
@@ -145,7 +147,7 @@ export const OrderApartmentForm = observer(({
     };
 
     return <>
-        <OrderIsSubmittedModal/>
+
         <Formik<ValuesType>
             validationSchema={orderSchema}
             validate={(values) => ({})}
@@ -180,21 +182,23 @@ export const OrderApartmentForm = observer(({
                            name="phone"
                            label={t("Phone") + " *"}
                     />
-                    <div className="order-form-people-count">
-                        <h2 className="title">{t("Number Of People")}</h2>
+                    <div className="field order-form-people-count">
+                        <h2 className="field__label title">{t("Number Of People")}</h2>
                         <button type="button"
                                 className="button-cool"
                                 onClick={() => selectGuestModalStore.setIsOpened(true)}>{formatGuestCountByCategoryToTitle(values)}
                         </button>
                     </div>
                     {/*@ts-ignore*/}
-                    <SelectGuestsFormModal maxGuestsCount={orderApartmentStore.currentApartment.guestQuantity} values={values}/>
+                    <SelectGuestsFormModal maxGuestsCount={orderApartmentStore.currentApartment.guestQuantity}
+                                           values={values}/>
                     <div className="book-date field">
                         <h2 className="book-date__title field__label">{t("Check-in Date")}</h2>
                         <RangePicker locale={ruRu}
                                      preserveInvalidOnBlur
                                      disabledDate={disabledDate}
-                                     renderExtraFooter={() => <span className="date-picker__message">{t("Minimum Booking Period: 2 Nights")}</span>}
+                                     renderExtraFooter={() => <span
+                                         className="date-picker__message">{t("Minimum Booking Period: 2 Nights")}</span>}
                                      className="date-picker field__field"
                                      onChange={(a, dates) => {
                                          setFieldValue("bookDateRange", dates);
@@ -218,5 +222,13 @@ export const OrderApartmentForm = observer(({
                 </Form>
             }}
         </Formik>
+        <div className="apartment-details">
+            <img className="apartment-details__image"
+                 src={CONSTANTS.IMAGE_SERVER_URL + orderApartmentStore.currentApartment.photos[0]}
+                 alt=""/>
+            <span className="apartment-details__address">{orderApartmentStore.currentApartment.address}</span>
+            <span
+                className="apartment-details__price">{getOrderPriceStore.orderPrice && formatPrice(getOrderPriceStore.orderPrice)}.</span>
+        </div>
     </>
 });
