@@ -1,29 +1,28 @@
 .aside {
-  width: 265px;
-  min-width: 265px;
-  min-height: 100%;
-  margin-top: 25px;
-  margin-right: 20px;
+   margin-top: 25px;
+   margin-right: 20px;
+   width: 265px;
+   min-width: 265px;
+   min-height: 100%;
 
-  & .aside__title {
-    display: block;
-    margin-bottom: 11px;
-    font-size: 16px;
-    font-weight: 700;
-    font-family: "CeraPro", Arial, sans-serif;
-    color: var(--azure-dragon);
-  }
-  & .apartment-date-filter {
-    height: 40px;
-  }
-
+   & .aside__title {
+      display: block;
+      margin-bottom: 11px;
+      color: var(--azure-dragon);
+      font-weight: 700;
+      font-size: 16px;
+      font-family: "CeraPro", Arial, sans-serif;
+   }
+   & .apartment-date-filter {
+      height: 40px;
+   }
 }
 
 .filters__title {
-  font-family: "CeraPro", sans-serif;
-  color: var(--dark-blue);
-  display: inline-block;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 14px;
+   display: inline-block;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   color: var(--dark-blue);
+   font-size: 14px;
+   font-family: "CeraPro", sans-serif;
 }

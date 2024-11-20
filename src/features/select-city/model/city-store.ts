@@ -1,15 +1,15 @@
-import {makeAutoObservable} from "mobx";
-import {City} from "../../../shared/api/types/city";
+import { makeAutoObservable } from "mobx";
+import { City } from "../../../shared/api/types/city";
 
 class CityStore {
-    constructor() {
-        makeAutoObservable(this);
-    }
+   constructor() {
+      makeAutoObservable(this);
+   }
 
-    public city: City = "Gomel";
+   public city: City = "Gomel";
 
-    public setCity(city: City){
-        this.city = city;
-    }
+   public setCity(city: City) {
+      this.city = city;
+   }
 }
-export const cityStore= new CityStore()
+export const cityStore = new CityStore();

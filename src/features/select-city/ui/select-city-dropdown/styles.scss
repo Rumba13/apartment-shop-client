@@ -1,23 +1,21 @@
-
-
 .select-city-dropdown-wrapper {
-  &::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 18px;
-    z-index: 5;
-    display: block;
-    width: 16px;
-    height: 20px;
-    background: url("../../../../assets/images/geo-location.png") 0 0 no-repeat;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
+   &::before {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 18px;
+      transform: translateY(-50%);
+      z-index: 5;
+      background: url("../../../../assets/images/geo-location.png") 0 0 no-repeat;
+      width: 16px;
+      height: 20px;
+      pointer-events: none;
+      content: "";
+   }
 
-  & select.select-city-dropdown {
-    border-radius: 15px;
-    height: 40px;
-    padding-left: 40px;
-  }
+   & select.select-city-dropdown {
+      border-radius: 15px;
+      padding-left: 40px;
+      height: 40px;
+   }
 }

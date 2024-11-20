@@ -1,19 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './app/styles/index.scss';
-import reportWebVitals from './app/reportWebVitals';
-import {App} from "./app/App";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./app/styles/index.scss";
+import reportWebVitals from "./app/reportWebVitals";
+import { App } from "./app/App";
 import ruRu from "antd/lib/locale/ru_RU";
-import {ConfigProvider} from "antd";
+import { ConfigProvider } from "antd";
 
-
-const root = ReactDOM.createRoot(
-    document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
-        <ConfigProvider locale={ruRu}>
-                <App/>
-        </ConfigProvider>
+   <ConfigProvider locale={ruRu}>
+      <App />
+   </ConfigProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,2 +1,2 @@
-export {ApartmentCard} from "./ui/ui"
-export {ApartmentCardSkeleton} from "./ui/skeleton"
+export { ApartmentCard } from "./ui/ui";
+export { ApartmentCardSkeleton } from "./ui/skeleton";

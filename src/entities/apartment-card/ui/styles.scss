@@ -1,116 +1,106 @@
 .apartment-card {
-  position: relative;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  border-radius: 15px;
-  border: 1px solid #E6EAED;
-  box-shadow: 0px 5px 20px rgba(44, 57, 78, 0.1);
-  transition: box-shadow 200ms;
+   display: grid;
+   position: relative;
+   grid-template-rows: auto 1fr auto;
+   transition: box-shadow 200ms;
+   box-shadow: 0px 5px 20px rgba(44, 57, 78, 0.1);
+   border: 1px solid #e6eaed;
+   border-radius: 15px;
 
-  & .add-to-wish-list-button {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    z-index: 2;
-  }
+   & .add-to-wish-list-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 2;
+   }
 
-  //&:not(:hover) {
-  //  & .swiper-button-prev,
-  //  & .swiper-pagination,
-  //  & .swiper-button-next {
-  //    display: none;
-  //  }
-  //}
+   &:hover {
+      box-shadow: 0 10px 30px rgba(44, 57, 78, 0.2);
+   }
 
-  &:hover {
-    box-shadow: 0px 10px 30px rgba(44, 57, 78, 0.2);
-  }
+   & .slider-wrapper {
+      display: flex;
+      position: relative;
+      border-radius: inherit;
+      min-width: 100%;
+      height: 225px;
 
-  & .slider-wrapper {
-    position: relative;
-    display: flex;
-    border-radius: inherit;
-    min-width: 100%;
+      & img {
+         width: 100%;
+         object-fit: cover;
+      }
+   }
 
-    height: 225px;
+   & .apartment-details {
+      display: grid;
 
-    & img {
-      width: 100%;
-      object-fit: fill;
-    }
-  }
+      grid-template-rows: auto auto 1fr;
+      grid-template-areas:
+         "price rooms guests"
+         "address address map-link"
+         "description description description";
+      padding: 8px 10px 10px 10px;
 
-  & .apartment-details {
-    display: grid;
-    grid-template-areas:
-  "price rooms guests"
-  "address address map-link"
-  "description description description";
-
-    grid-template-rows: auto auto 1fr;
-    padding: 8px 10px 10px 10px;
-
-    & .apartment-card__price {
-      grid-area: price;
-      color: var(--dark-blue);
-      font-size: 18px;
-      font-family: "CeraPro", Arial, sans-serif;
-      font-weight: 700;
-    }
-
-    & .apartment-details__rooms-quantity {
-      grid-area: rooms;
-    }
-
-    & .apartment-details__max-quests-quantity {
-      grid-area: guests;
-    }
-
-    & .apartment-details__on-map-link {
-      grid-area: map-link;
-      color: var(--azure);
-      cursor: pointer;
-
-      &:hover {
-        text-decoration: underline;
+      & .apartment-card__price {
+         grid-area: price;
+         color: var(--dark-blue);
+         font-weight: 700;
+         font-size: 18px;
+         font-family: "CeraPro", Arial, sans-serif;
       }
 
-      & .svg-icon {
-        width: 16px;
-        height: 16px
+      & .apartment-details__rooms-quantity {
+         grid-area: rooms;
       }
-    }
 
-    & .apartment-details__description {
-      grid-area: description;
-      color: var(--dark-blue);
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 20px;
-      font-family: "CeraPro", Arial, sans-serif;
-      margin-top: 5px;
-      max-width: fit-content;
-
-    }
-
-    & .apartment-details__address {
-      grid-area: address;
-      font-size: 14px;
-      font-family: "CeraPro", Arial, sans-serif;
-      color: var(--azure);
-      word-break: break-all;
-
-      &:hover {
-        text-decoration: underline;
+      & .apartment-details__max-quests-quantity {
+         grid-area: guests;
       }
-    }
-  }
 
-  & .show-contacts-button {
-    height: 40px;
-    display: flex;
-    align-content: stretch;
-    border-bottom-right-radius: inherit;
-    border-bottom-left-radius: inherit;
-  }
+      & .apartment-details__on-map-link {
+         grid-area: map-link;
+         cursor: pointer;
+         color: var(--azure);
+
+         &:hover {
+            text-decoration: underline;
+         }
+
+         & .svg-icon {
+            width: 16px;
+            height: 16px;
+         }
+      }
+
+      & .apartment-details__description {
+         grid-area: description;
+         margin-top: 5px;
+         max-width: fit-content;
+         color: var(--dark-blue);
+         font-weight: 600;
+         font-size: 14px;
+         line-height: 20px;
+         font-family: "CeraPro", Arial, sans-serif;
+      }
+
+      & .apartment-details__address {
+         grid-area: address;
+         color: var(--azure);
+         font-size: 14px;
+         font-family: "CeraPro", Arial, sans-serif;
+         word-break: break-all;
+
+         &:hover {
+            text-decoration: underline;
+         }
+      }
+   }
+
+   & .show-contacts-button {
+      display: flex;
+      align-content: stretch;
+      border-bottom-right-radius: inherit;
+      border-bottom-left-radius: inherit;
+      height: 40px;
+   }
 }

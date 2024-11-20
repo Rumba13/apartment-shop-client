@@ -1,43 +1,44 @@
 .confirm-modal {
-  z-index: 100;
-  background-color: white;
-  padding: 5px 30px 5px 30px;
-  border-radius: 8px;
-  max-width: 300px;
+   z-index: 100;
+   border-radius: 8px;
+   background-color: white;
+   padding: 5px 30px 5px 30px;
+   max-width: 300px;
 
-  & .confirm-modal__title {
-    text-align: center;
-    margin-bottom: 5px;
-    font-family: CeraPro, system-ui;
-    font-size: 22px;
-    font-weight: 400;
-  }
+   & .confirm-modal__title {
+      margin-bottom: 5px;
+      font-weight: 400;
+      font-size: 22px;
+      font-family: CeraPro, system-ui;
+      text-align: center;
+   }
 
-  & .confirm-modal__confirm, & .confirm-modal__cancel {
-    display: block;
-    width: 100%;
-    padding: 7px 14px;
-    color: white;
-    font-family: CeraPro, system-ui;
-    border-radius: 4px;
-    font-size: 18px;
-    transition: background-color 140ms;
-  }
+   & .confirm-modal__confirm,
+   & .confirm-modal__cancel {
+      display: block;
+      transition: background-color 140ms;
+      border-radius: 4px;
+      padding: 7px 14px;
+      width: 100%;
+      color: white;
+      font-size: 18px;
+      font-family: CeraPro, system-ui;
+   }
 
-  & .confirm-modal__confirm {
-    background-color: var(--deep-azure);
-    margin-bottom: 8px;
+   & .confirm-modal__confirm {
+      margin-bottom: 8px;
+      background-color: var(--deep-azure);
 
-    &:hover {
-      background-color: var(--deep-azure-active);
-    }
-  }
+      &:hover {
+         background-color: var(--deep-azure-active);
+      }
+   }
 
-  & .confirm-modal__cancel {
-    background-color: var(--light-taupe-gray);
+   & .confirm-modal__cancel {
+      background-color: var(--light-taupe-gray);
 
-    &:hover {
-      background-color: var(--light-taupe-gray-active);
-    }
-  }
+      &:hover {
+         background-color: var(--light-taupe-gray-active);
+      }
+   }
 }

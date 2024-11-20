@@ -1,35 +1,34 @@
 import "./styles.scss";
-import {Route, Routes as ReactRoutes} from 'react-router';
-import {BrowserRouter} from 'react-router-dom';
-import {HomePage} from "../../home-page";
-import {CreateApartmentPage} from "../../create-apartment-page";
-import {ApartmentDetailsPage} from "../../apartment-details-page";
-import {UpdateApartmentPage} from "../../update-apartment-page";
-import {OrdersPage} from "../../orders-page";
+import { Route, Routes as ReactRoutes } from "react-router";
+import { BrowserRouter } from "react-router-dom";
+import { HomePage } from "../../home-page";
+import { CreateApartmentPage } from "../../create-apartment-page";
+import { ApartmentDetailsPage } from "../../apartment-details-page";
+import { UpdateApartmentPage } from "../../update-apartment-page";
+import { OrdersPage } from "../../orders-page";
 import React from "react";
-import {TariffsPage} from "../../tariffs-page";
-import {OrderPage} from "../../order-page";
-import {CalendarPage} from "../../calendar-page";
-import {FavoriteListPage} from "../../favorite-list-page";
+import { TariffsPage } from "../../tariffs-page";
+import { OrderPage } from "../../order-page";
+import { CalendarPage } from "../../calendar-page";
+import { FavoriteListPage } from "../../favorite-list-page";
 
 export function Routes() {
-
-    return (
-        <BrowserRouter>
-            <ReactRoutes>
-                <Route path="/" element={<HomePage/>}/>
-                <Route path="/create-apartment" element={<CreateApartmentPage/>}/>
-                <Route path="/apartment-details/:apartmentId" element={<ApartmentDetailsPage/>}/>
-                <Route path="/update-apartment/:apartmentId" element={<UpdateApartmentPage/>}/>
-                <Route path="/orders" element={<OrdersPage/>}/>
-                <Route path="/tariffs/:tariffId?" element={<TariffsPage/>}/>
-                {/*{CONSTANTS.SERVER_TYPE === SERVER_TYPE.DEVELOPMENT &&  <Route path="/dev" element={<DevPage/>}/>}*/}
-                <Route path="/order/:apartmentId" element={<OrderPage/>}/>
-                <Route path="/calendar/:apartmentId" element={<CalendarPage/>}/>
-                <Route path="/calendar" element={<CalendarPage/>}/>
-                <Route path="/favorites" element={<FavoriteListPage/>}/>
-                <Route path="/404" element={<div>404</div>}/>
-            </ReactRoutes>
-        </BrowserRouter>
-    )
+   return (
+      <BrowserRouter>
+         <ReactRoutes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/create-apartment" element={<CreateApartmentPage />} />
+            <Route path="/apartment-details/:apartmentId" element={<ApartmentDetailsPage />} />
+            <Route path="/update-apartment/:apartmentId" element={<UpdateApartmentPage />} />
+            <Route path="/orders" element={<OrdersPage />} />
+            <Route path="/tariffs/:tariffId?" element={<TariffsPage />} />
+            {/*{CONSTANTS.SERVER_TYPE === SERVER_TYPE.DEVELOPMENT &&  <Route path="/dev" element={<DevPage/>}/>}*/}
+            <Route path="/order/:apartmentId" element={<OrderPage />} />
+            <Route path="/calendar/:apartmentId" element={<CalendarPage />} />
+            <Route path="/calendar" element={<CalendarPage />} />
+            <Route path="/favorites" element={<FavoriteListPage />} />
+            <Route path="/404" element={<div>404</div>} />
+         </ReactRoutes>
+      </BrowserRouter>
+   );
 }

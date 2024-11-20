@@ -1,3 +1,3 @@
-import {ModalStore} from "../../../shared/ui/modal-store";
+import { ModalStore } from "../../../shared/ui/modal-store";
 
-export const selectAmenitiesGroupModalStore = new ModalStore()
+export const selectAmenitiesGroupModalStore = new ModalStore();

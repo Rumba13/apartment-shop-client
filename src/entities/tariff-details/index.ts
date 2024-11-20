@@ -1,1 +1,1 @@
-export { TariffDetails } from './ui/ui';
+export { TariffDetails } from "./ui/ui";

@@ -1,6 +1,6 @@
-import {Currency} from "./currency";
+import { Currency } from "./currency";
 
 export type Price = {
-    amount: number,
-    currency: Currency
+   amount: number;
+   currency: Currency;
 };

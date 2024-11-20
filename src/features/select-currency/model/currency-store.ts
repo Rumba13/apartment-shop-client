@@ -1,18 +1,18 @@
-import {makeAutoObservable} from "mobx";
-import {Currency} from "../../../shared/api/types/currency";
+import { makeAutoObservable } from "mobx";
+import { Currency } from "../../../shared/api/types/currency";
 
 class CurrencyStore {
-    constructor() {
-        makeAutoObservable(this);
-    }
+   constructor() {
+      makeAutoObservable(this);
+   }
 
-    public currencies: Currency[] = ["USD", "BYN", "RUB"]
+   public currencies: Currency[] = ["USD", "BYN", "RUB"];
 
-    public currency: Currency = "BYN";
+   public currency: Currency = "BYN";
 
-    public setCurrency(currency: Currency) {
-        this.currency = currency;
-    }
+   public setCurrency(currency: Currency) {
+      this.currency = currency;
+   }
 }
 
 export const currencyStore = new CurrencyStore();

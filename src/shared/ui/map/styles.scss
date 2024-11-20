@@ -1,7 +1,7 @@
 .map {
-  & .ymaps-2-1-79-map {
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 16 / 9;
-  }
+   & .ymaps-2-1-79-map {
+      aspect-ratio: 16 / 9;
+      width: 100% !important;
+      height: auto !important;
+   }
 }

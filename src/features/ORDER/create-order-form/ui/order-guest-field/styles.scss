@@ -1,0 +1,20 @@
+.order-guest-field {
+   display: flex;
+   align-items: center;
+
+   & .order-guest-field-container {
+      margin-right: auto;
+
+      & .order-guest-field__title {
+         margin-bottom: 2px;
+         font-weight: 700;
+      }
+
+      & .order-guest-field__sub-title {
+         line-height: 24px;
+      }
+   }
+
+   & .order-guest-field__button {
+   }
+}

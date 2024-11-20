@@ -1,1 +1,1 @@
-export {SelectAmenitiesGroupForm} from "./ui/ui";
+export { SelectAmenitiesGroupForm } from "./ui/ui";

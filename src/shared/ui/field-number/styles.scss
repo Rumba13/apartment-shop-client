@@ -1,57 +1,59 @@
 .field {
-  &:hover .field__field, .field__field:focus {
-    border-color: var(--azure);
-  }
-  & .field__field {
-    transition: border-color 110ms;
-  }
-  & .field-input-wrapper {
-    position: relative;
+   &:hover .field__field,
+   .field__field:focus {
+      border-color: var(--azure);
+   }
+   & .field__field {
+      transition: border-color 110ms;
+   }
+   & .field-input-wrapper {
+      position: relative;
 
-    & .field__field {
-      width: 100%;
-    }
-
-    & .field__increase-button, .field__decrease-button {
-      position: absolute;
-      right: 0;
-      z-index: 2;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--white-gray);
-      height: 50%;
-      box-sizing: border-box;
-      width: 36px;
-
-      &.disabled {
-        background-color: var(--white-gray);
-        cursor: not-allowed;
+      & .field__field {
+         width: 100%;
       }
 
-      &:not(.disabled):hover {
-        background-color: var(--white-gray-active);
+      & .field__increase-button,
+      .field__decrease-button {
+         display: inline-flex;
+         position: absolute;
+         right: 0;
+         justify-content: center;
+         align-items: center;
+         z-index: 2;
+         box-sizing: border-box;
+         border: 1px solid var(--white-gray);
+         width: 36px;
+         height: 50%;
+
+         &.disabled {
+            cursor: not-allowed;
+            background-color: var(--white-gray);
+         }
+
+         &:not(.disabled):hover {
+            background-color: var(--white-gray-active);
+         }
+
+         & .svg-icon {
+            width: 12px;
+            height: 12px;
+            color: var(--slate-gray);
+         }
       }
 
-      & .svg-icon {
-        height: 12px;
-        width: 12px;
-        color: var(--slate-gray);
+      & .field__decrease-button {
+         bottom: 0;
+         border-top: 0;
+         border-bottom-right-radius: 8px;
+
+         & .svg-icon {
+            transform: rotate(180deg);
+         }
       }
-    }
 
-    & .field__decrease-button {
-      bottom: 0;
-      border-bottom-right-radius: 8px;
-      border-top: 0;
-
-      & .svg-icon {
-        transform: rotate(180deg);
+      & .field__increase-button {
+         border-top-right-radius: 8px;
       }
-    }
-
-    & .field__increase-button {
-      border-top-right-radius: 8px;
-    }
-  }
+   }
 }

@@ -1,95 +1,88 @@
 import "./styles.scss";
-import {Breadcrumbs} from "../../../../shared/ui/bread-crumbs";
-import {apartmentDetailsStore} from "../../../../entities/apartment-details/model/apartment-details-store";
-import {useEffect} from "react";
-import {BreadcrumbType} from "../../../../shared/api/types/breadcrumb-type";
-import {orderApartmentStore} from "../../../../features/APARTMENT/order-apartment";
-import {observer} from "mobx-react";
-import {apartmentCalendarStore} from "../../../../entities/calendar/model/apartment-calendar-store";
-import {tariffDetailsStore} from "../../../../entities/tariff-details/model/tariff-details-store";
+import { Breadcrumbs } from "../../../../shared/ui/bread-crumbs";
+import { apartmentDetailsStore } from "../../../../entities/apartment-details/model/apartment-details-store";
+import { useEffect } from "react";
+import { BreadcrumbType } from "../../../../shared/api/types/breadcrumb-type";
+import { observer } from "mobx-react";
+import { apartmentCalendarStore } from "../../../../entities/calendar/model/apartment-calendar-store";
+import { tariffDetailsStore } from "../../../../entities/tariff-details/model/tariff-details-store";
 
 export const HeaderBreadcrumbs = observer(() => {
-    useEffect(() => {
-    }, [apartmentDetailsStore.apartment, orderApartmentStore.currentApartment, apartmentCalendarStore.apartment, tariffDetailsStore.tariffDetails]);
+   useEffect(() => {}, [apartmentDetailsStore.apartment, apartmentCalendarStore.apartment, tariffDetailsStore.tariffDetails]);
 
-    const breadcrumbContents = window.location.pathname.split("/").filter(Boolean);
-    const breadCrumbs: BreadcrumbType[] = []
+   const breadcrumbContents = window.location.pathname.split("/").filter(Boolean);
+   const breadCrumbs: BreadcrumbType[] = [];
 
-    breadCrumbs.unshift({
-        item: "Главная",
-        href: "/",
-    })
+   breadCrumbs.unshift({
+      item: "Главная",
+      href: "/",
+   });
 
-    for (let i = 0; i < breadcrumbContents.length; i++) {
-        const breadcrumb = breadcrumbContents[i];
+   for (let i = 0; i < breadcrumbContents.length; i++) {
+      const breadcrumb = breadcrumbContents[i];
 
-        if (breadcrumb === "apartment-details") {
-            if (!apartmentDetailsStore.apartment) return <></>
-            breadCrumbs.push({
-                item: "Квартиры в Гомеле",
-                href: ""
-            })
-            breadCrumbs.push({
-                item: apartmentDetailsStore.apartment.title,
-                href: "",
-            })
-        } else if (breadcrumb === "order") {
-            if (!orderApartmentStore.currentApartment) return <></>
-            breadCrumbs.push({
-                item: "Арендовать",
-                href: ""
-            })
-            breadCrumbs.push({
-                item: orderApartmentStore.currentApartment.title,
-                href: "/apartment-details/" + orderApartmentStore.currentApartment.id,
-            })
-        } else if (breadcrumb === "orders") {
-            breadCrumbs.push({
-                item: "Заказы",
-                href: "/orders"
-            })
-        } else if (breadcrumb === "tariffs") {
-            if (!tariffDetailsStore.tariffDetails) return <></>
-            breadCrumbs.push({
-                item: "Тарифы",
-                href: "/tariffs"
-            })
-            if (breadcrumbContents[i + 1]) {
-
-                breadCrumbs.push({
-                    item: tariffDetailsStore.tariffDetails.title,
-                    href: ""
-                })
-            }
-        } else if (breadcrumb === "calendar") {
-            if (!apartmentCalendarStore.apartment || !apartmentCalendarStore.tariff) return <></>
-            breadCrumbs.push({
-                item: "Календарь",
-                href: "/calendar"
-            })
-
-            breadCrumbs.push({
-                item: `${apartmentCalendarStore.apartment.title} (${apartmentCalendarStore.tariff.title})`,
-                href: ""
-            })
-        }
-        else if (breadcrumb === "favorites") {
-            breadCrumbs.push({
-                item: "Избранное",
-                href: ""
-            })
-        }
-    }
-
-
-    if(breadCrumbs.length === 1)
-    {
-        breadCrumbs.push({
+      if (breadcrumb === "apartment-details") {
+         if (!apartmentDetailsStore.apartment) return <></>;
+         breadCrumbs.push({
             item: "Квартиры в Гомеле",
-            href: ""
-        })
-    }
+            href: "",
+         });
+         breadCrumbs.push({
+            item: apartmentDetailsStore.apartment.title,
+            href: "",
+         });
+      } else if (breadcrumb === "order") {
+         // if (!orderApartmentStore.currentApartment) return <></>
+         // breadCrumbs.push({
+         //     item: "Арендовать",
+         //     href: ""
+         // })
+         // breadCrumbs.push({
+         //     item: orderApartmentStore.currentApartment.title,
+         //     href: "/apartment-details/" + orderApartmentStore.currentApartment.id,
+         // })
+      } else if (breadcrumb === "orders") {
+         breadCrumbs.push({
+            item: "Заказы",
+            href: "/orders",
+         });
+      } else if (breadcrumb === "tariffs") {
+         if (!tariffDetailsStore.tariffDetails) return <></>;
+         breadCrumbs.push({
+            item: "Тарифы",
+            href: "/tariffs",
+         });
+         if (breadcrumbContents[i + 1]) {
+            breadCrumbs.push({
+               item: tariffDetailsStore.tariffDetails.title,
+               href: "",
+            });
+         }
+      } else if (breadcrumb === "calendar") {
+         if (!apartmentCalendarStore.apartment || !apartmentCalendarStore.tariff) return <></>;
+         breadCrumbs.push({
+            item: "Календарь",
+            href: "/calendar",
+         });
 
-    return <Breadcrumbs className="header-breadcrumbs"
-                        items={breadCrumbs}/>;
-})
+         breadCrumbs.push({
+            item: `${apartmentCalendarStore.apartment.title} (${apartmentCalendarStore.tariff.title})`,
+            href: "",
+         });
+      } else if (breadcrumb === "favorites") {
+         breadCrumbs.push({
+            item: "Избранное",
+            href: "",
+         });
+      }
+   }
+
+   if (breadCrumbs.length === 1) {
+      breadCrumbs.push({
+         item: "Квартиры в Гомеле",
+         href: "",
+      });
+   }
+
+   return <Breadcrumbs className="header-breadcrumbs" items={breadCrumbs} />;
+});

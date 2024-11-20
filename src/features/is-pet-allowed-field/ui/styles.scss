@@ -1,7 +1,7 @@
 .field.is-pet-allowed-field {
-  height: fit-content;
+   height: fit-content;
 
-  & .ant-select  {
-    height: 48px;
-  }
+   & .ant-select {
+      height: 48px;
+   }
 }

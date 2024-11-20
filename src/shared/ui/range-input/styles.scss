@@ -1,34 +1,34 @@
 .range-inputs {
-  display: flex;
-  height: 100%;
-  border-radius: 8px;
-  border: 1px solid var(--white-gray);
-  padding-right: 4px; //To prevent no border in angles(browser bug)
+   display: flex;
+   border: 1px solid var(--white-gray);
+   border-radius: 8px;
+   padding-right: 4px; //To prevent no border in angles(browser bug)
+   height: 100%;
 
-  & .range-input {
-    display: flex;
-    flex-grow:1;
+   & .range-input {
+      display: flex;
+      flex-grow: 1;
 
-    &._max {
-      border-left: 1px solid var(--white-gray);
-    }
-  }
+      &._max {
+         border-left: 1px solid var(--white-gray);
+      }
+   }
 
-  & .range-input__title {
-    font-size: 14px;
-    line-height: 20px;
-    font-family: "CeraPro", Arial, sans-serif;
-    color: var(--slate-gray);
-    height: 20px;
-    margin: auto 0;
-    padding-left: 10px;
-  }
+   & .range-input__title {
+      margin: auto 0;
+      padding-left: 10px;
+      height: 20px;
+      color: var(--slate-gray);
+      font-size: 14px;
+      line-height: 20px;
+      font-family: "CeraPro", Arial, sans-serif;
+   }
 
-  & .range-input__input {
-    width: 100%;
-    padding: 10px 10px;
-    font-family: "CeraPro", Arial, sans-serif;
-    font-size: 14px;
-    line-height: 20px;
-  }
+   & .range-input__input {
+      padding: 10px 10px;
+      width: 100%;
+      font-size: 14px;
+      line-height: 20px;
+      font-family: "CeraPro", Arial, sans-serif;
+   }
 }

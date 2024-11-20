@@ -1,29 +1,27 @@
 .icon-with-two-titles {
-  display: flex;
+   display: flex;
 
+   & .svg-icon {
+      width: 30px;
+      height: 46px;
+   }
 
-  & .svg-icon {
-    width: 30px;
-    height: 46px;
-  }
+   & .titles-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin-left: 16px;
 
+      & .title {
+         margin-top: 2px;
+         font-weight: 700;
+         font-size: 18px;
+         font-family: "CeraPro", Arial, sans-serif;
+      }
 
-  & .titles-wrapper {
-    display: flex;
-    flex-direction: column;
-    margin-left: 16px;
-
-    & .title {
-      margin-top: 2px;
-      font-weight: 700;
-      font-size: 18px;
-      font-family: "CeraPro", Arial, sans-serif;
-    }
-
-    & .sub-title {
-      font-size: 14px;
-      font-family: "CeraPro", Arial, sans-serif;
-      color: var(--sheet-metal);
-    }
-  }
+      & .sub-title {
+         color: var(--sheet-metal);
+         font-size: 14px;
+         font-family: "CeraPro", Arial, sans-serif;
+      }
+   }
 }

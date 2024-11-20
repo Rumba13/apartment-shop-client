@@ -1,21 +1,18 @@
-import './styles.scss';
-import {MinimalLayout} from "../../minimal-layout";
-import React, {useEffect} from "react";
-import {favoritesStore} from "../../../features/APARTMENT/add-apartment-to-favorites/model/favorites-store";
-import {FavoriteList} from "../../../widgets/favorite-list";
-import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
+import "./styles.scss";
+import React, { useEffect } from "react";
+import { FavoriteList } from "../../../widgets/favorite-list";
+import { useTypedTranslation } from "../../../app/i18n/use-typed-translation";
+import { MinimalLayout } from "../../../widgets/layouts/minimal-layout";
 
 export function FavoriteListPage() {
+   const { t } = useTypedTranslation();
 
-    const {t} = useTypedTranslation();
+   useEffect(() => {}, []);
 
-    useEffect(() => {
-    }, []);
-
-    return (
-        <MinimalLayout className={"dev-page"}>
-            <h2 className="page__title">Избранное</h2>
-            <FavoriteList favoriteApartmentIds={favoritesStore.favorites}/>
-        </MinimalLayout>
-    )
+   return (
+      <MinimalLayout className={"dev-page"}>
+         <h2 className="page__title">Избранное</h2>
+         <FavoriteList />
+      </MinimalLayout>
+   );
 }

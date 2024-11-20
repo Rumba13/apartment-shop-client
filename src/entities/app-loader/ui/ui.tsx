@@ -1,7 +1,5 @@
-import './styles.scss';
+import "./styles.scss";
 
 export function AppLoader() {
-    return (
-        <div>Загрузка...</div>
-    )
+   return <div>Загрузка...</div>;
 }

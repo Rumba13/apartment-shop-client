@@ -1,13 +1,13 @@
 .title-with-icon {
-  display: flex;
-  align-items: center;
-  color: var(--dark-sheet-metal);
-  font-size: 14px;
-  font-family: "CeraPro", Arial, sans-serif;
+   display: flex;
+   align-items: center;
+   color: var(--dark-sheet-metal);
+   font-size: 14px;
+   font-family: "CeraPro", Arial, sans-serif;
 
-  & .svg-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 4px;
-  }
+   & .svg-icon {
+      margin-right: 4px;
+      width: 20px;
+      height: 20px;
+   }
 }

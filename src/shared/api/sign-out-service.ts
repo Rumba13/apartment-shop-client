@@ -1,16 +1,21 @@
-import {serverConnection} from "./server-connection";
+import { serverConnection } from "./server-connection";
 
 class SignOutService {
-    constructor() {
-    }
+   constructor() {}
 
-    public async signOut(refreshToken: string): Promise<any> {
-        return (await serverConnection.post("auth/sign-out", {}, {
-            headers: {
-                Authorization: "Bearer " + refreshToken
+   public async signOut(refreshToken: string): Promise<any> {
+      return (
+         await serverConnection.post(
+            "auth/sign-out",
+            {},
+            {
+               headers: {
+                  Authorization: "Bearer " + refreshToken,
+               },
             }
-        })).data;
-    }
+         )
+      ).data;
+   }
 }
 
-export const signOutService = new SignOutService()
+export const signOutService = new SignOutService();

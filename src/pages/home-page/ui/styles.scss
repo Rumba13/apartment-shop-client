@@ -1,66 +1,63 @@
 .home-page .content {
+   & .home-page-top {
+      display: flex;
+      justify-content: end;
+      align-items: stretch;
+      margin-top: 5px;
+      width: 100%;
+      height: 36px;
 
-  & .home-page-top {
-    display: flex;
-    justify-content: end;
-    align-items: stretch;
-    width: 100%;
-    margin-top: 5px;
-    height: 36px;
+      & .open-create-apartment-page-button {
+         margin-left: auto;
+         border-radius: 50px;
+         padding: 0 15px;
 
-    & .open-create-apartment-page-button {
-      margin-left: auto;
-      border-radius: 50px;
-      padding: 0 15px;
-
-      &:hover {
-        border-color: var(--weak-gray);
-      }
-    }
-
-    & .sort-by {
-      padding: 0 !important;
-      margin-left: 5px;
-      height: 100%;
-
-      & .ant-select-selector {
-        padding: 0 17px;
-
-        & .ant-select-selection-item {
-        }
-
-
-        &:hover {
-        }
-
-        border-radius: 20px !important;
+         &:hover {
+            border-color: var(--weak-gray);
+         }
       }
 
-      & .ant-select-arrow {
+      & .sort-by {
+         margin-left: 5px;
+         padding: 0 !important;
+         height: 100%;
+
+         & .ant-select-selector {
+            border-radius: 20px !important;
+            padding: 0 17px;
+
+            & .ant-select-selection-item {
+            }
+
+            &:hover {
+            }
+         }
+
+         & .ant-select-arrow {
+         }
       }
-    }
-  }
+   }
 
-  & .pagination {
-    padding-bottom: 30px;
-    padding-top: 30px;
-  }
+   & .pagination {
+      padding-top: 30px;
+      padding-bottom: 30px;
+   }
 
-  & .home-page__pagination-details {
-    display: none;
-    align-self: center;
-    font-family: var(--default-font), sans-serif;
-    font-size: 14px;
-  }
+   & .home-page__pagination-details {
+      display: none;
+      align-self: center;
+      font-size: 14px;
+      font-family: var(--default-font), sans-serif;
+   }
 }
 
-@media(width <= 950px) {
-  .home-page .content {
-    & .home-page__title {
-    }
+@media (width <= 950px) {
+   .home-page .content {
+      & .home-page__title {
+      }
 
-    & .home-page__pagination-details {
-      display: block;
-    }
-  }
+      & .home-page__pagination-details {
+         display: block;
+      }
+   }
 }

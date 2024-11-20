@@ -1,0 +1,27 @@
+.apartment-tabs {
+   display: flex;
+   margin-top: 35px;
+   border-bottom: 1px solid #e5e7e9;
+   width: 100%;
+
+   & .apartment-tabs__tab {
+      display: block;
+      transition: color 130ms;
+      cursor: pointer;
+      padding: 0 0 15px;
+      color: var(--dark-blue);
+      font-size: 16px;
+      font-family: "CeraPro", sans-serif;
+
+      &.active,
+      &:hover {
+         margin-bottom: -1px;
+         border-bottom: 2px solid var(--azure);
+         color: var(--azure);
+      }
+
+      &:not(:last-child) {
+         margin-right: 30px;
+      }
+   }
+}

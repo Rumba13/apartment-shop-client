@@ -1,21 +1,21 @@
 .tariffs-page .content {
-  & .tariff-actions {
-    display: flex;
-  }
+   & .tariff-actions {
+      display: flex;
+   }
 
-  & .wrapper {
-    display: flex;
-    margin-top: 5px;
+   & .wrapper {
+      display: flex;
+      margin-top: 5px;
 
+      & .tariff-list,
+      & .tariff-details {
+         flex-grow: 1;
+         border: 1px solid var(--white-gray);
+         border-radius: 4px;
+      }
 
-    & .tariff-list, & .tariff-details {
-      border: 1px solid var(--white-gray);
-      border-radius: 4px;
-      flex-grow: 1;
-    }
-
-    & .tariff-list {
-      max-width: 200px;
-    }
-  }
+      & .tariff-list {
+         max-width: 200px;
+      }
+   }
 }

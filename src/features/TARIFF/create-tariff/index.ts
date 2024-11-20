@@ -1,1 +1,1 @@
-export { CreateTariffForm } from './ui/ui';
+export { CreateTariffForm } from "./ui/ui";

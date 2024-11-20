@@ -1,14 +1,14 @@
 .price-field {
-  display: flex;
+   display: flex;
 
-  & .field {
-    margin: 0;
-    padding: 0;
-  }
+   & .field {
+      margin: 0;
+      padding: 0;
+   }
 
-  & .select-currency-dropdown-wrapper {
-    height: 48px;
-    margin-top: auto;
-    margin-left: 10px;
-  }
+   & .select-currency-dropdown-wrapper {
+      margin-top: auto;
+      margin-left: 10px;
+      height: 48px;
+   }
 }

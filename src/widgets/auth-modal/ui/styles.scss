@@ -1,35 +1,35 @@
 .auth-modal {
-  max-width: 430px;
-  border-radius: 10px;
+   border-radius: 10px;
+   max-width: 430px;
 
-  & .auth-modal-tabs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border-bottom: 1px solid var(--gains-boro);
+   & .auth-modal-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--gains-boro);
 
-    & .auth-modal-tab {
-      display: block;
-      padding: 20px 0;
-      font-size: 20px;
-      font-family: "CeraPro", Arial, sans-serif;
-      font-weight: 700;
+      & .auth-modal-tab {
+         display: block;
+         padding: 20px 0;
+         font-weight: 700;
+         font-size: 20px;
+         font-family: "CeraPro", Arial, sans-serif;
 
-      &.active {
-        color: var(--azure);
-        border-bottom: 3px solid var(--azure);
-        margin-bottom: -3px;
+         &.active {
+            margin-bottom: -3px;
+            border-bottom: 3px solid var(--azure);
+            color: var(--azure);
+         }
       }
-    }
-  }
+   }
 
-  & .content {
-    width: 100%;
-    padding: 20px 40px 35px;
-  }
+   & .content {
+      padding: 20px 40px 35px;
+      width: 100%;
+   }
 
-  & .auth-modal-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
+   & .auth-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+   }
 }

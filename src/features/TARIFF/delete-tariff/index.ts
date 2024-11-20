@@ -1,1 +1,1 @@
-export { DeleteTariff } from './ui/ui';
+export { DeleteTariff } from "./ui/ui";

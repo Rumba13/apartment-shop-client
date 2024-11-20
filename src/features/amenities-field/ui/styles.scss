@@ -1,9 +1,7 @@
 .amenities-field {
-
-  & .ant-select {
-    & .ant-select-selector {
-      min-height: 48px;
-    }
-  }
+   & .ant-select {
+      & .ant-select-selector {
+         min-height: 48px;
+      }
+   }
 }
-

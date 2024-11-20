@@ -1,10 +1,10 @@
-.sign-in-form{
- & .field {
-   &:not(:last-child) {
-     margin-bottom: 15px;
+.sign-in-form {
+   & .field {
+      &:not(:last-child) {
+         margin-bottom: 15px;
+      }
    }
- }
-  & .submit-button {
-    width: 100%;
-  }
+   & .submit-button {
+      width: 100%;
+   }
 }

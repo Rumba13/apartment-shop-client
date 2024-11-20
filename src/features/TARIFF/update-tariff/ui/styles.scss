@@ -1,23 +1,23 @@
 .update-tariff-form {
-  padding: 10px;
+   padding: 10px;
 
-  & .select-currency-dropdown-wrapper {
-    height: 48px;
-    margin-top: 8px;
-    border-radius: 8px;
-  }
+   & .select-currency-dropdown-wrapper {
+      margin-top: 8px;
+      border-radius: 8px;
+      height: 48px;
+   }
 
-  & .submit-button {
-    width: 100%;
-    height: min-content;
-  }
+   & .submit-button {
+      width: 100%;
+      height: min-content;
+   }
 
-  & .wrapper {
-    display: flex;
-    align-items: center;
+   & .wrapper {
+      display: flex;
+      align-items: center;
 
-    & .field {
-      flex: 1;
-    }
-  }
+      & .field {
+         flex: 1;
+      }
+   }
 }

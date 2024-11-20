@@ -1,58 +1,59 @@
 .order {
-  display: grid;
-  grid-template-columns: 100px 1fr 1fr 1fr;
-  grid-template-rows: 100%;
-  height: 150px;
-  padding: 8px;
+   display: grid;
+   grid-template-rows: 100%;
+   grid-template-columns: 100px 1fr 1fr 1fr;
+   padding: 8px;
+   height: 150px;
 
-  & .created-at {
-  }
+   & .created-at {
+   }
 
-  & .order-main {
-    display: grid;
-    grid-column-gap: 10px;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: 1fr auto;
-    grid-template-areas:
-  "image title"
-  "image price";
+   & .order-main {
+      display: grid;
+      grid-column-gap: 10px;
+      grid-template-rows: 1fr auto;
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+         "image title"
+         "image price";
 
-    & .order-photo-wrapper {
-      grid-area: image;
-    }
+      & .order-photo-wrapper {
+         grid-area: image;
+      }
 
-    & .order-photo {
-      height: 100%;
-      width: 100%;
-      border-radius: 8px;
-    }
+      & .order-photo {
+         border-radius: 8px;
+         width: 100%;
+         height: 100%;
+      }
 
-    & .order__title {
+      & .order__title {
+         grid-area: title;
+         height: min-content;
+         font-family: "CeraPro", Arial, sans-serif;
+      }
+
+      & .order__price {
+         grid-area: price;
+         margin-bottom: 5px;
+         color: var(--dark-blue);
+         font-weight: 700;
+         font-size: 18px;
+         font-family: "CeraPro", Arial, sans-serif;
+      }
+   }
+
+   & .order-status {
+      & .order-approve,
+      & .order-reject {
+         width: 100%;
+      }
+   }
+
+   & .book-period {
+      padding-right: 20px;
+      padding-left: 20px;
+      font-size: 16px;
       font-family: "CeraPro", Arial, sans-serif;
-      grid-area: title;
-      height: min-content;
-    }
-
-    & .order__price {
-      grid-area: price;
-      font-family: "CeraPro", Arial, sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-      color: var(--dark-blue);
-      margin-bottom: 5px;
-    }
-  }
-
-  & .order-status {
-    & .order-approve, & .order-reject {
-      width: 100%;
-    }
-  }
-
-  & .book-period {
-    font-size: 16px;
-    font-family: "CeraPro", Arial, sans-serif;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
+   }
 }

@@ -1,54 +1,50 @@
 .apartment-details-skeleton {
-
-
-  & .skeleton-top {
-    margin-bottom: 20px;
-    display: grid;
-    grid-template-columns: 700fr 323fr;
-    grid-template-rows: min-content;
-    margin-top: 20px;
-
-    & .skeleton-slider {
+   & .skeleton-top {
       display: grid;
-      grid-template-columns: 12fr 80fr;
-      grid-template-rows: auto;
-      max-height: 100%;
-      margin-right: 25px;
-      margin-left: 3px;
+      grid-template-rows: min-content;
+      grid-template-columns: 700fr 323fr;
+      margin-top: 20px;
+      margin-bottom: 20px;
 
-      & .thumbs {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(5, 1fr);
-        gap: 10px;
-        margin-right: 20px;
+      & .skeleton-slider {
+         display: grid;
+         grid-template-rows: auto;
+         grid-template-columns: 12fr 80fr;
+         margin-right: 25px;
+         margin-left: 3px;
+         max-height: 100%;
 
-        & > .ant-skeleton {
-          aspect-ratio: 1;
-        }
+         & .thumbs {
+            display: grid;
+            grid-template-rows: repeat(5, 1fr);
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-right: 20px;
+
+            & > .ant-skeleton {
+               aspect-ratio: 1;
+            }
+         }
       }
-    }
+   }
 
-  }
+   & .ant-skeleton {
+      & .ant-skeleton-input {
+         border-radius: 16px;
+         width: 100%;
+         min-width: 0;
+         height: 100%;
+      }
+   }
 
-  & .ant-skeleton {
-    & .ant-skeleton-input {
+   & .ant-skeleton-input.skeleton-block {
       width: 100%;
-      height: 100%;
-      min-width: 0;
-      border-radius: 16px;
-    }
-  }
+      height: 60%;
+   }
 
-  & .ant-skeleton-input.skeleton-block {
-    width: 100%;
-    height: 60%;
-
-  }
-
-  & .skeleton-tab {
-    height: 50px;
-    width: 80%;
-    margin-bottom: 20px;
-  }
+   & .skeleton-tab {
+      margin-bottom: 20px;
+      width: 80%;
+      height: 50px;
+   }
 }

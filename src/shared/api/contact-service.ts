@@ -1,7 +1,7 @@
 export class ContactService {
-    public async loadContact(): Promise<string> {
-        return Promise.resolve("+375293218813")
-    }
+   public async loadContact(): Promise<string> {
+      return Promise.resolve("+375293218813");
+   }
 }
 
-export const contactService = new ContactService()
+export const contactService = new ContactService();

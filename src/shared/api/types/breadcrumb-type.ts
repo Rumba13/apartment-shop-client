@@ -1,6 +1,6 @@
-import {ReactNode} from "react";
+import { ReactNode } from "react";
 
 export type BreadcrumbType = {
-    href: string,
-    item: ReactNode
-}
+   href: string;
+   item: ReactNode;
+};

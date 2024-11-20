@@ -1,34 +1,34 @@
 .search {
-  --search-padding: 10px;
-  background: white;
-  border-radius: 82px;
-  height: 83px;
-  margin: 20px auto 0 auto;
-  padding: var(--search-padding);
-  max-width: 960px;
-  display: flex;
-  column-gap: 5px;
+   --search-padding: 10px;
+   display: flex;
+   column-gap: 5px;
+   margin: 20px auto 0 auto;
+   border-radius: 82px;
+   background: white;
+   padding: var(--search-padding);
+   max-width: 960px;
+   height: 83px;
 
-  & .select-city-big-dropdown,
-  & .apartment-date-filter,
-  & .select-guests-count-input-number,
-  & .search-button {
-    border-radius: inherit;
-    height: 100%;
-    flex-grow: 1;
-  }
-  & .select-guests-count-input-number {
-    flex-grow: 2;
-  }
+   & .select-city-big-dropdown,
+   & .apartment-date-filter,
+   & .select-guests-count-input-number,
+   & .search-button {
+      flex-grow: 1;
+      border-radius: inherit;
+      height: 100%;
+   }
+   & .select-guests-count-input-number {
+      flex-grow: 2;
+   }
 
-  & .select-city-big-dropdown {
-    flex-grow: 1;
-  }
-  & .search-button {
+   & .select-city-big-dropdown {
+      flex-grow: 1;
+   }
+   & .search-button {
       max-width: fit-content;
-  }
-  & .apartment-date-filter, {
-    flex-grow: 1;
-    max-width: fit-content;
-  }
+   }
+   & .apartment-date-filter {
+      flex-grow: 1;
+      max-width: fit-content;
+   }
 }

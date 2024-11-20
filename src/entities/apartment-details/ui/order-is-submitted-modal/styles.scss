@@ -1,0 +1,25 @@
+.order-is-submitted-modal {
+   box-shadow: 3px 3px 40px rgba(0, 0, 0, 0.9);
+
+   & h2.modal__title {
+      font-size: 22px;
+   }
+
+   & .content {
+      display: flex;
+      flex-direction: column;
+      margin-top: 5px;
+      padding: 0 15px 15px;
+      font-size: 18px;
+      line-height: 22px;
+      font-family: var(--default-font), sans-serif;
+      text-align: center;
+
+      & .submit-button {
+         align-self: center;
+         margin-top: 8px;
+         padding: 7px 30px;
+         width: fit-content;
+      }
+   }
+}

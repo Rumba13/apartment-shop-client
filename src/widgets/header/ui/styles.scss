@@ -1,108 +1,105 @@
 @import "../../../app/styles/variables";
 
 .header {
-
-  & .header-top {
-    display: grid;
-    grid-template-areas:
-    "logo select-city . . select-currency  open-wish-list user-menu user-menu";
-    grid-template-columns:  auto auto 1fr min-content min-content auto auto;
-    grid-template-rows: 100%;
-    align-items: center;
-    margin: 0 auto;
-    height: 80px;
-    max-width: $content-width;
-
-    & > .logo {
-      grid-area: logo;
-    }
-
-    & > .select-city-dropdown-wrapper {
-      grid-area: select-city;
-    }
-
-    & > .select-currency-dropdown-wrapper {
-      grid-area: select-currency;
-    }
-
-    & > .open-favorites-button {
-      grid-area: open-wish-list;
-      margin-right: 35px;
-      margin-left: 15px;
-    }
-
-    & > .user-menu {
-      grid-area: user-menu;
-    }
-  }
-
-  & .header-bottom {
-    width: 100%;
-    padding: 110px 0 44px;
-    background: url("../../../assets/images/temp/home-top.webp") center no-repeat;
-    background-size: cover;
-
-    & .header-bottom-container {
-      max-width: $content-width;
+   & .header-top {
+      display: grid;
+      grid-template-rows: 100%;
+      grid-template-columns: auto auto 1fr min-content min-content auto auto;
+      grid-template-areas: "logo select-city . . select-currency  open-wish-list user-menu user-menu";
+      align-items: center;
       margin: 0 auto;
-      padding: 0 40px;
+      max-width: $content-width;
+      height: 80px;
 
-      & .header-bottom__title, & .header-bottom__sub-title {
-        color: white;
-        font-family: "CeraPro", Arial, sans-serif;
-        text-align: center;
-        margin: 0 auto;
+      & > .logo {
+         grid-area: logo;
       }
 
-      & .header-bottom__title {
-        font-size: 50px;
-        margin-bottom: 20px;
+      & > .select-city-dropdown-wrapper {
+         grid-area: select-city;
       }
 
-      & .header-bottom__sub-title {
-        font-size: 20px;
-        max-width: 88%;
+      & > .select-currency-dropdown-wrapper {
+         grid-area: select-currency;
       }
-    }
-  }
+
+      & > .open-favorites-button {
+         grid-area: open-wish-list;
+         margin-right: 18px;
+         margin-left: 15px;
+      }
+
+      & > .user-menu {
+         grid-area: user-menu;
+      }
+   }
+
+   & .header-bottom {
+      background: url("../../../assets/images/temp/home-top.webp") center no-repeat;
+      background-size: cover;
+      padding: 110px 0 44px;
+      width: 100%;
+
+      & .header-bottom-container {
+         margin: 0 auto;
+         padding: 0 40px;
+         max-width: $content-width;
+
+         & .header-bottom__title,
+         & .header-bottom__sub-title {
+            margin: 0 auto;
+            color: white;
+            font-family: "CeraPro", Arial, sans-serif;
+            text-align: center;
+         }
+
+         & .header-bottom__title {
+            margin-bottom: 20px;
+            font-size: 50px;
+         }
+
+         & .header-bottom__sub-title {
+            max-width: 88%;
+            font-size: 20px;
+         }
+      }
+   }
 }
 
-@media(width <= 780px) {
-  .header {
-    & .header-bottom {
-      padding-top: 70px;
-      & .header-bottom-container {
+@media (width <= 780px) {
+   .header {
+      & .header-bottom {
+         padding-top: 70px;
+         & .header-bottom-container {
+            & h1.header-bottom__title {
+               font-size: 40px;
+            }
 
-
-        & h1.header-bottom__title {
-          font-size: 40px;
-        }
-
-        & h2.header-bottom__sub-title {
-          font-size: 18px;
-          max-width: 94%;
-        }
+            & h2.header-bottom__sub-title {
+               max-width: 94%;
+               font-size: 18px;
+            }
+         }
       }
-    }
-  }
+   }
 }
 
-@media(width <= 600px) {
-  .header {
-    & .header-bottom {
-      padding-top: 30px;
-      & .header-bottom-container {
-        padding: 0 20px;
+@media (width <= 600px) {
+   .header {
+      & .header-bottom {
+         padding-top: 30px;
+         & .header-bottom-container {
+            padding: 0 20px;
 
-        & h1.header-bottom__title {
-          font-size: 30px;
-        }
+            & h1.header-bottom__title {
+               font-size: 30px;
+            }
 
-        & h2.header-bottom__sub-title {
-          font-size: 16px;
-          max-width: 100%;
-        }
+            & h2.header-bottom__sub-title {
+               max-width: 100%;
+               font-size: 16px;
+            }
+         }
       }
-    }
-  }
+   }
 }

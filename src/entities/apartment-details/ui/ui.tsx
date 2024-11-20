@@ -1,277 +1,114 @@
-import './styles.scss';
-import GeoIcon from "../../../assets/images/geo-location-colorfull.svg";
+import "./styles.scss";
 import RoomsIcon from "../../../assets/images/sleeping-man.svg";
 import BedIcon from "../../../assets/images/bed.svg";
 import GuestsIcon from "../../../assets/images/people.svg";
 import ApartmentAreaIcon from "../../../assets/images/apartment-area.svg";
-import MarkIcon from "../../../assets/images/check.svg";
-import React, {useEffect, useRef, useState} from "react";
-import {TitleWithIcon} from "../../../shared/ui/title-with-icon";
-import {useTypedTranslation} from "../../../app/i18n/use-typed-translation";
-import {currencyToPostfixMap} from "../../../shared/lib/currency-to-postfix-map";
-import {OpenOrderModalButton} from "./open-order-modal/ui";
-import {observer} from "mobx-react";
-import {IconWithTwoTitles} from "../../../shared/ui/icon-with-two-titles";
-import {useTranslation} from "react-i18next";
-import {UUID} from "../../../shared/api/types/uuid";
-import {apartmentDetailsStore} from "../model/apartment-details-store";
-import {userStore} from "../../user";
-import {currencyStore} from "../../../features/select-currency";
-import {useNavigate} from "react-router-dom";
-import {DeleteApartment} from "./delete-apartment-button";
-import {Slider} from "../../../shared/ui/slider";
-import {SwiperSlide} from "swiper/react";
-import {Button} from "../../../shared/ui/button";
+import React, { useEffect, useRef, useState } from "react";
+import { useTypedTranslation } from "../../../app/i18n/use-typed-translation";
+import { observer } from "mobx-react";
+import { IconWithTwoTitles } from "../../../shared/ui/icon-with-two-titles";
+import { useTranslation } from "react-i18next";
+import { UUID } from "../../../shared/api/types/uuid";
+import { apartmentDetailsStore } from "../model/apartment-details-store";
+import { userStore } from "../../user";
+import { currencyStore } from "../../../features/select-currency";
+import { useNavigate } from "react-router-dom";
+import { DeleteApartment } from "./delete-apartment-button";
+import { Button } from "../../../shared/ui/button";
 import UpdateIcon from "../../../assets/images/refresh.svg";
-import clsx from "clsx";
-import ImageNotFound from "../../../assets/images/no-image.jpg";
-import {Map} from "../../../shared/ui/map";
-import {ApartmentDetailsSkeleton} from "./skeleton";
-import {CONSTANTS} from "../../../shared/lib/constants";
-import {SvgIcon} from "../../../shared/ui/svg-icon";
-import ArrowIcon from "../../../assets/images/arrow.svg"
-import CalendarIcon from "../../../assets/images/calendar.svg"
-import {AddApartmentToFavorites} from "../../../features/APARTMENT/add-apartment-to-favorites";
-import {OrderIsSubmittedModal} from "../../../features/APARTMENT/order-apartment/ui/order-is-submitted-modal";
+import { Map } from "../../../shared/ui/map";
+import { ApartmentDetailsSkeleton } from "./skeleton";
+import CalendarIcon from "../../../assets/images/calendar.svg";
+import { AddApartmentToFavorites } from "../../../features/APARTMENT/add-apartment-to-favorites";
+import { OrderIsSubmittedModal } from "./order-is-submitted-modal";
+import { ApartmentDetailsSlider } from "./slider";
+import { Tabs } from "./tabs";
+import { ApartmentDetailsAside } from "./apartment-details-aside";
+import { ApartmentDetailsAmenities } from "./apartment-details-amenities";
+import { ApartmentDetailsDescription } from "./apartment-details-description";
 
 type PropsType = {
-    apartmentId: UUID
-}
+   apartmentId: UUID;
+};
 
-export const ApartmentDetails = observer(({
-                                              apartmentId
-                                          }: PropsType) => {
-    const {t} = useTypedTranslation()
-    const navigate = useNavigate()
-    const {t: tr} = useTranslation()
-    const [isCollapsibleExpanded, setIsCollapsibleExpanded] = useState<boolean>(false)
-    const [isDescriptionExpanded, setIsDescriptionExpanded] = useState<boolean>(false)
-    const [currentTab, setCurrentTab] = useState(0);
-    const mapRef = useRef<HTMLDivElement>(null)
-    const descriptionRef = useRef<HTMLDivElement>(null)
-    const tagsRef = useRef<HTMLDivElement>(null)
-    const rulesRef = useRef<HTMLDivElement>(null)
-    const nearToApartmentRef = useRef<HTMLDivElement>(null)
-    const descriptionContentRef = useRef<HTMLDivElement>(null)
+export const ApartmentDetails = observer(({ apartmentId }: PropsType) => {
+   const navigate = useNavigate();
+   const { t } = useTranslation();
+   const mapRef = useRef<HTMLDivElement>(null);
+   const descriptionRef = useRef<HTMLDivElement>(null);
+   const tagsRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        apartmentDetailsStore.loadApartmentDetails(apartmentId, currencyStore.currency);
-    }, [currencyStore.currency]);
+   const tabs = [
+      {
+         title: t("On Map"),
+         onClick: () => mapRef.current?.scrollIntoView(),
+      },
+      {
+         title: t("Description"),
+         onClick: () => descriptionRef.current?.scrollIntoView(),
+      },
+      {
+         title: t("Amenities"),
+         onClick: () => tagsRef.current?.scrollIntoView(),
+      },
+   ];
 
-    useEffect(() => {
-    }, [descriptionContentRef?.current]);
+   useEffect(() => {
+      apartmentDetailsStore.loadApartmentDetails(apartmentId, currencyStore.currency);
+   }, [currencyStore.currency]);
 
-    const expandDescription = () => {
-        if (!descriptionContentRef.current) return;
-        descriptionContentRef.current.style.setProperty("--scroll-height", descriptionContentRef.current.scrollHeight + "px");
-        setIsDescriptionExpanded(true);
-    }
+   useEffect(() => {}, [userStore.user]);
 
-    if (apartmentDetailsStore.isError) {
-        return <div>Error!</div>
-    }
-    if (apartmentDetailsStore.isLoading || !apartmentDetailsStore.apartment) {
-        return <div className="apartment-details"><ApartmentDetailsSkeleton/></div>
-    }
-    const {
-        price,
-        id,
-        description,
-        photos,
-        title,
-        guestQuantity,
-        bedQuantity,
-        roomQuantity,
-        area,
-        amenityGroups,
-        landlordId,
-        address,
-        sleepPlaces,
-        rules,
-        mainInfoItems
-    } = apartmentDetailsStore.apartment;
+   if (apartmentDetailsStore.isError) {
+      return <div className="apartment-details">{t("Some error has occurred")}</div>;
+   }
+   if (apartmentDetailsStore.isLoading) {
+      return (
+         <div className="apartment-details">
+            <ApartmentDetailsSkeleton />
+         </div>
+      );
+   }
+   if (!apartmentDetailsStore.apartment) {
+      return <div className="apartment-details"></div>;
+   }
 
-    return <div className="apartment-details">
-        <div className="apartment-details-top">
-            <div className="max-width-wrapper">
-            </div>
-            {userStore.user?.isSuperuser && <>
-                <DeleteApartment apartmentId={apartmentId}/>
-                <Button icon={CalendarIcon}
-                        onClick={() => navigate(`/calendar/${apartmentId}`)}
-                        title={t("Calendar")}/>
-                <Button icon={UpdateIcon}
-                        onClick={() => navigate(`/update-apartment/${apartmentId}`)}
-                        title={"Обновить"}/>
-            </>}
-            <AddApartmentToFavorites apartmentId={apartmentId}/>
-        </div>
-        <div className="apartment-details-mid">
+   const { price, description, photos, title, guestQuantity, roomQuantity, area, amenityGroups, address, sleepPlaces } = apartmentDetailsStore.apartment;
+
+   return (
+      <div className="apartment-details">
+         <OrderIsSubmittedModal />
+
+         <div className="apartment-details-actions">
+            {userStore.user?.isSuperuser && (
+               <>
+                  <DeleteApartment apartmentId={apartmentId} />
+                  <Button icon={CalendarIcon} onClick={() => navigate(`/calendar/${apartmentId}`)} title={t("Calendar")} />
+                  <Button icon={UpdateIcon} onClick={() => navigate(`/update-apartment/${apartmentId}`)} title={"Обновить"} />
+               </>
+            )}
+            <AddApartmentToFavorites apartmentId={apartmentId} />
+         </div>
+
+         <div className="apartment-details-mid">
             <div className="apartment-details-wrapper">
-                <div className="apartment-images">
-                    <Slider loop
-                            items={(!photos[0] ? [ImageNotFound] : photos).map(image =>
-                                <SwiperSlide key={image}>
-                                    <img src={image}
-                                         alt=""></img>
-                                </SwiperSlide>)}
-                    />
-                </div>
-                <div className="apartment-tabs">
-
-                    {[
-                        {
-                            title: t("On Map"),
-                            onClick: () => mapRef.current?.scrollIntoView()
-                        },
-                        {
-                            title: t("Description"),
-                            onClick: () => descriptionRef.current?.scrollIntoView()
-                        },
-                        // {
-                        //     title: t("Rules Of Residence"),
-                        //     onClick: () => rulesRef.current?.scrollIntoView()
-                        // },
-                        {
-                            title: t("Amenities"),
-                            onClick: () => tagsRef.current?.scrollIntoView()
-                        },
-                        // {
-                        //     title: t("Near The House"),
-                        //     onClick: () => nearToApartmentRef.current?.scrollIntoView()
-                        // },
-                    ]
-                        .map((tab, index) =>
-                            <span className={clsx("apartment-tabs__tab", currentTab === index && "active")}
-                                  key={tab.title}
-                                  onClick={() => {
-                                      tab.onClick();
-                                      setCurrentTab(index)
-                                  }}>{tab.title}</span>)}
-                </div>
-                <div className="apartment-properties">
-                    {/*TODO refactor*/}
-                    <IconWithTwoTitles icon={RoomsIcon}
-                                       title={roomQuantity}
-                                       subTitle={tr("Room", {count: roomQuantity})}
-                    />
-                    <IconWithTwoTitles icon={BedIcon}
-                                       title={sleepPlaces}
-                                       subTitle={t("Sleep places")}
-                    />
-                    <IconWithTwoTitles icon={GuestsIcon}
-                                       title={guestQuantity}
-                                       subTitle={tr("Guest", {count: guestQuantity})}
-                    />
-                    <IconWithTwoTitles icon={ApartmentAreaIcon}
-                                       title={area + " м²"}
-                                       subTitle={t("Area")}
-                    />
-                </div>
-                <div className="section map"
-                     ref={mapRef}>
-                    <h3 className="title">{t("On Map")}</h3>
-                    <Map address={address}/>
-                </div>
-                <div className="apartment-description"
-                     ref={descriptionRef}>
-                    <h2 className="apartment-description__title">{t("Description")}</h2>
-                    <span className={clsx("apartment-description__description", isDescriptionExpanded && "expanded")}
-                          ref={descriptionContentRef}
-                    >{description}</span>
-
-                    <button className="apartment-description__button"
-                            onClick={(event) => isDescriptionExpanded ? setIsDescriptionExpanded(false) : expandDescription()}>
-                        {t(isDescriptionExpanded ? "Collapse Description" : "Expand Description")}
-                        <SvgIcon icon={ArrowIcon}
-                                 style={{transform: isDescriptionExpanded ? "" : "rotate(180deg)"}}/>
-                    </button>
-                </div>
-
-                {/*<div className="section rules-of-residence"*/}
-                {/*     ref={rulesRef}>*/}
-                {/*    <h3 className="title">{t("Rules Of Residence")}</h3>*/}
-                {/*    <ul className="tags-list">*/}
-                {/*        {rules.map(rule =>*/}
-                {/*            <TitleWithIcon icon={CONSTANTS.IMAGE_SERVER_URL + rule.iconFilename}*/}
-                {/*                           key={rule.content}>{rule.content}</TitleWithIcon>)}*/}
-                {/*    </ul>*/}
-                {/*</div>*/}
-                <div className="section amenities"
-                     ref={tagsRef}>
-                    <h2 className="amenities__title">{t("Amenities")}</h2>
-                    {amenityGroups.map(amenityGroup =>
-                        <div className="amenities-list-wrapper"
-                             key={amenityGroup.name}>
-                            <h3 className="amenities-list__title">{amenityGroup.name}</h3>
-                            <ul className="amenities-list">
-                                {amenityGroup.amenities.map(li =>
-                                    <TitleWithIcon className={"tags-list__item amenities-list__item"}
-                                                   withLi
-                                                   key={li}
-                                                   icon={MarkIcon}>{li}</TitleWithIcon>)}
-                            </ul>
-                        </div>
-                    )}
-                </div>
-                {/*<div className="section near-the-house"*/}
-                {/*     ref={nearToApartmentRef}>*/}
-                {/*    <h3 className="title">{t("Near The House")}</h3>*/}
-                {/*    <ul className="near-the-house-list">*/}
-                {/*        <li>Центральный детский парк культуры и отдыха им. Максима Горького - 1.15 км</li>*/}
-                {/*        <li>Петропавловский собор - 0.79 км</li>*/}
-                {/*        <li>Белорусский государственный цирк - 0.85 км</li>*/}
-                {/*        {isCollapsibleExpanded && <>*/}
-                {/*            <li>Верхний город - 0.44 км</li>*/}
-                {/*            <li>Ворота Минска - 0.96 км</li>*/}
-                {/*            <li>Государственный музей истории белорусской литературы - 0.96 км</li>*/}
-                {/*            <li>Дворец Республики - 0.43 км</li>*/}
-                {/*            <li>Дом Ваньковичей - 0.6 км</li>*/}
-                {/*            <li>Дом-музей I съезда РСДРП - 1.3 км</li>*/}
-                {/*            <li>Железнодорожный вокзал - 1.07 км</li>*/}
-                {/*        </>}*/}
-                {/*    </ul>*/}
-                {/*    {!isCollapsibleExpanded &&*/}
-                {/*        <button className="show-more"*/}
-                {/*                onClick={() => setIsCollapsibleExpanded(true)}*/}
-                {/*        >{t("Show More")}</button>}*/}
-                {/*</div>*/}
-
+               <ApartmentDetailsSlider images={photos} />
+               <Tabs tabs={tabs} />
+               <div className="apartment-properties">
+                  <IconWithTwoTitles icon={RoomsIcon} title={roomQuantity} subTitle={t("Room", { count: roomQuantity })} />
+                  <IconWithTwoTitles icon={BedIcon} title={sleepPlaces} subTitle={t("Sleep places")} />
+                  <IconWithTwoTitles icon={GuestsIcon} title={guestQuantity} subTitle={t("Guest")} />
+                  <IconWithTwoTitles icon={ApartmentAreaIcon} title={area + " м²"} subTitle={t("Area")} />
+               </div>
+               <div className="map section" ref={mapRef}>
+                  <h3 className="title">{t("On Map")}</h3>
+                  <Map address={address} />
+               </div>
+               <ApartmentDetailsDescription descriptionRef={descriptionRef} description={description} />
+               <ApartmentDetailsAmenities tags={amenityGroups} tagListRef={tagsRef} />
             </div>
-            <div className="order-menu">
-
-                <h2 className="order-menu__title"
-                    title={apartmentId}
-                    onClick={() => document.execCommand("copy")}
-                    onCopy={(event) => {
-                        event.preventDefault();
-                        event.clipboardData && event.clipboardData.setData("text/plain", apartmentId);
-                    }}>{title}</h2>
-                <span className="order-menu__address">{address}</span>
-                <TitleWithIcon className="order-menu__on-map-link"
-                               icon={GeoIcon}
-                               onClick={() => mapRef.current?.scrollIntoView()}
-                >На карте </TitleWithIcon>
-
-                <div className="order-menu-prices">
-                    <div className="price-option">
-                        <span className="price">
-                        {t("From")}
-                            <span
-                                className="price-option__price"
-                            > {price.amount}{currencyToPostfixMap[price.currency]}. </span>
-                         / {t("Day")}
-                        </span>
-                    </div>
-                </div>
-                <div className="price-chips">
-                    <div className="price-chip">
-                        {t("Day")}
-                        <span className="price-chip__price">{price.amount}{currencyToPostfixMap[price.currency]}.</span>
-                    </div>
-                </div>
-                <OpenOrderModalButton apartmentId={apartmentId}/>
-            </div>
-        </div>
-    </div>
+            <ApartmentDetailsAside scrollToMap={() => mapRef.current?.scrollIntoView()} apartmentId={apartmentId} title={title} address={address} price={price} />
+         </div>
+      </div>
+   );
 });

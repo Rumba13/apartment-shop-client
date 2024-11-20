@@ -1,4 +1,4 @@
 export type DescriptionListItem = {
-    content: string,
-    iconFilename: string
-}
+   content: string;
+   iconFilename: string;
+};

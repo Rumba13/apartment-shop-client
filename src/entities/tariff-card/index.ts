@@ -1,1 +1,1 @@
-export { TariffCard } from './ui/ui';
+export { TariffCard } from "./ui/ui";

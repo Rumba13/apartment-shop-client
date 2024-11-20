@@ -1,25 +1,25 @@
 .select-currency-dropdown-wrapper {
-  height: 40px;
-  width: 70px;
-  text-overflow: clip;
-  font-size: 15px;
-  font-family: var(--default-font), sans-serif;
+   width: 70px;
+   height: 40px;
+   font-size: 15px;
+   font-family: var(--default-font), sans-serif;
+   text-overflow: clip;
 
-  & * {
-    border: none !important;
-    outline: none !important;
-  }
+   & * {
+      outline: none !important;
+      border: none !important;
+   }
 
-  & .ant-select-selector {
-    border-radius: 8px;
-    font-size: inherit;
-    border: none !important;
-    outline: none !important;
-    inset: 0px !important;
+   & .ant-select-selector {
+      inset: 0px !important;
+      outline: none !important;
+      border: none !important;
+      border-radius: 8px;
+      font-size: inherit;
+   }
 
-  }
-
-  & .ant-select-selection-item, & .ant-select-item-option-content {
-    text-overflow: clip;
-  }
+   & .ant-select-selection-item,
+   & .ant-select-item-option-content {
+      text-overflow: clip;
+   }
 }

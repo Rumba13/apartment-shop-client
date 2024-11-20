@@ -1,2 +1,2 @@
-export { CreateTariffModal } from './ui/ui';
-export {tariffModalStore} from "./model/tariff-modal-store"
+export { CreateTariffModal } from "./ui/ui";
+export { tariffModalStore } from "./model/tariff-modal-store";

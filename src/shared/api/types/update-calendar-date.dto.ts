@@ -1,4 +1,4 @@
 export type UpdateCalendarDateDto = {
-    isBooked:boolean,
-    price:number
-}
+   isBooked: boolean;
+   price: number;
+};

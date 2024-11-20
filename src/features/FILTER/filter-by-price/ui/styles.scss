@@ -1,19 +1,18 @@
 .filter-by-price {
-
-  & .range-wrapper {
-    position: relative;
-    width: 80%;
-    margin: 45px auto 0;
-
-    & .range-wrapper__image {
-      position: absolute;
-      bottom: 55%;
-      right: 50%;
-      transform: translateX(50%);
+   & .range-wrapper {
+      position: relative;
+      margin: 45px auto 0;
       width: 80%;
-      user-select: none;
-      -webkit-user-drag: none;
-      pointer-events: none;
-    }
-  }
+
+      & .range-wrapper__image {
+         position: absolute;
+         right: 50%;
+         bottom: 55%;
+         transform: translateX(50%);
+         width: 80%;
+         pointer-events: none;
+         user-select: none;
+         -webkit-user-drag: none;
+      }
+   }
 }

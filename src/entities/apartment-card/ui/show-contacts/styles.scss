@@ -1,27 +1,27 @@
 .show-contacts-button {
-  justify-content: space-around;
-  align-items: center;
-  font-family: var(--default-font), sans-serif;
-  color: white;
-  background-color: var(--white-blue);
-  cursor: pointer;
-  gap: 7px;
-  padding: 0 10px;
+   justify-content: space-around;
+   align-items: center;
+   gap: 7px;
+   cursor: pointer;
+   background-color: var(--white-blue);
+   padding: 0 10px;
+   color: white;
+   font-family: var(--default-font), sans-serif;
 
-  &.expanded {
-    background-color: var(--azure);
-  }
+   &.expanded {
+      background-color: var(--azure);
+   }
 
-  & .show-contacts-button__title {
-    font-size: 16px;
-    color: var(--azure);
-  }
+   & .show-contacts-button__title {
+      color: var(--azure);
+      font-size: 16px;
+   }
 
-  & .show-contacts__phone {
-    font-size: 15px;
-    margin-left: auto;
-  }
+   & .show-contacts__phone {
+      margin-left: auto;
+      font-size: 15px;
+   }
 
-  & .show-contacts__name {
-  }
+   & .show-contacts__name {
+   }
 }

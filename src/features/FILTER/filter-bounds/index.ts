@@ -1,1 +1,1 @@
-export {filterBoundsStore} from "./model/filter-bounds-store"
+export { filterBoundsStore } from "./model/filter-bounds-store";

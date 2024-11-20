@@ -1,94 +1,93 @@
 .input-number {
-  position: relative;
+   position: relative;
 
-  & .input-number__input:focus {
-    & ~ .input-number__increase-button {
-      border-top-color: var(--azure);
-      border-right-color: var(--azure);
-    }
-
-    & ~ .input-number__decrease-button {
-      border-bottom-color: var(--azure);
-      border-right-color: var(--azure);
-    }
-
-    border-color: var(--azure);
-  }
-
-  &:hover:not(.disable) {
-    & .input-number__increase-button {
-      border-top-color: var(--azure);
-      border-right-color: var(--azure);
-    }
-
-    & .input-number__decrease-button {
-      border-bottom-color: var(--azure);
-      border-right-color: var(--azure);
-    }
-
-    & .input-number__input, {
+   & .input-number__input:focus {
       border-color: var(--azure);
-    }
-  }
-
-  & .input-number__input {
-    width: 100%;
-    border: 1px solid var(--white-gray);
-    border-radius: 8px;
-    padding: 14px 20px;
-    padding-right: 36px;
-    font-size: 14px;
-    font-family: "CeraPro", Arial, sans-serif;
-    transition: border-color 110ms;
-
-    &.disable {
-      &:hover {
-        border-color: var(--white-gray);
+      & ~ .input-number__increase-button {
+         border-top-color: var(--azure);
+         border-right-color: var(--azure);
       }
-    }
-  }
 
+      & ~ .input-number__decrease-button {
+         border-right-color: var(--azure);
+         border-bottom-color: var(--azure);
+      }
+   }
 
-  & .input-number__increase-button, .input-number__decrease-button {
-    position: absolute;
-    right: 0;
-    z-index: 2;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--white-gray);
-    height: 50%;
-    box-sizing: border-box;
-    width: 36px;
-    transition: border-color 110ms;
+   &:hover:not(.disable) {
+      & .input-number__increase-button {
+         border-top-color: var(--azure);
+         border-right-color: var(--azure);
+      }
 
-    &.disabled {
-      background-color: #e0e0e0;
-      cursor: not-allowed;
-    }
+      & .input-number__decrease-button {
+         border-right-color: var(--azure);
+         border-bottom-color: var(--azure);
+      }
 
-    &:not(.disabled):hover {
-      background-color: var(--white-gray-active);
-    }
+      & .input-number__input {
+         border-color: var(--azure);
+      }
+   }
 
-    & .svg-icon {
-      height: 12px;
-      width: 12px;
-      color: var(--slate-gray);
-    }
-  }
+   & .input-number__input {
+      transition: border-color 110ms;
+      border: 1px solid var(--white-gray);
+      border-radius: 8px;
+      padding: 14px 20px;
+      padding-right: 36px;
+      width: 100%;
+      font-size: 14px;
+      font-family: "CeraPro", Arial, sans-serif;
 
-  & .input-number__decrease-button {
-    bottom: 0;
-    border-bottom-right-radius: 8px;
-    border-top: 0;
+      &.disable {
+         &:hover {
+            border-color: var(--white-gray);
+         }
+      }
+   }
 
-    & .svg-icon {
-      transform: rotate(180deg);
-    }
-  }
+   & .input-number__increase-button,
+   .input-number__decrease-button {
+      display: inline-flex;
+      position: absolute;
+      right: 0;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+      transition: border-color 110ms;
+      box-sizing: border-box;
+      border: 1px solid var(--white-gray);
+      width: 36px;
+      height: 50%;
 
-  & .input-number__increase-button {
-    border-top-right-radius: 8px;
-  }
+      &.disabled {
+         cursor: not-allowed;
+         background-color: #e0e0e0;
+      }
+
+      &:not(.disabled):hover {
+         background-color: var(--white-gray-active);
+      }
+
+      & .svg-icon {
+         width: 12px;
+         height: 12px;
+         color: var(--slate-gray);
+      }
+   }
+
+   & .input-number__decrease-button {
+      bottom: 0;
+      border-top: 0;
+      border-bottom-right-radius: 8px;
+
+      & .svg-icon {
+         transform: rotate(180deg);
+      }
+   }
+
+   & .input-number__increase-button {
+      border-top-right-radius: 8px;
+   }
 }

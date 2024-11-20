@@ -1,44 +1,37 @@
 .apartment-calendar {
-  display: flex;
-  height: 100%;
-  max-width: 90%;
+   display: flex;
+   max-width: 90%;
+   height: 100%;
 
-
-  & .ant-picker-calendar {
-    &:last-child {
-    }
-  }
-
-  & tbody {
-    border-left: 1px solid var(--weak-white) !important;
-    border-right: 1px solid var(--weak-white) !important;
-
-
-    & tr {
-      border-bottom: 1px solid var(--weak-white) !important;
-
-      &:first-child {
-        border-top: 1px solid var(--weak-white) !important;
+   & .ant-picker-calendar {
+      &:last-child {
       }
+   }
 
-      & td {
-        aspect-ratio: 1;
+   & tbody {
+      border-right: 1px solid var(--weak-white) !important;
+      border-left: 1px solid var(--weak-white) !important;
 
-        border-right: 1px solid var(--weak-white) !important;
+      & tr {
+         border-bottom: 1px solid var(--weak-white) !important;
+
+         &:first-child {
+            border-top: 1px solid var(--weak-white) !important;
+         }
+
+         & td {
+            border-right: 1px solid var(--weak-white) !important;
+            aspect-ratio: 1;
+         }
       }
+   }
+   & th {
+      text-align: left;
+   }
 
-    }
-
-  }
-  & th {
-    text-align: left;
-  }
-
-  & .apartment-details {
-    display: flex;
-    min-width: 250px;
-    margin-right: 10px;
-  }
-
-
+   & .apartment-details {
+      display: flex;
+      margin-right: 10px;
+      min-width: 250px;
+   }
 }

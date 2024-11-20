@@ -1,12 +1,12 @@
 .sort-by {
-  width: 200px;
+   width: 200px;
 
-  & .ant-select-selection-item {
-    font-family: "CeraPro", system-ui;
-    font-size: 16px;
+   & .ant-select-selection-item {
+      font-size: 16px;
+      font-family: "CeraPro", system-ui;
 
-    &:hover {
-      border-color: var(--light-azure-active);
-    }
-  }
+      &:hover {
+         border-color: var(--light-azure-active);
+      }
+   }
 }

@@ -1,0 +1,17 @@
+@import "../../../../app/styles/variables";
+
+.minimal-layout {
+   //TODO remove styles after mvp, cause there will be no need in it after making footer
+   height: 100%;
+
+   & .minimal-layout-wrapper {
+      display: flex;
+      margin: 0 auto;
+      max-width: $content-width;
+      height: 100%;
+
+      & .content {
+         width: 100%;
+      }
+   }
+}

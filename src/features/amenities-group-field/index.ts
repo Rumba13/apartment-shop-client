@@ -1,1 +1,1 @@
-export {AmenitiesGroupField} from "./ui/ui"
+export { AmenitiesGroupField } from "./ui/ui";

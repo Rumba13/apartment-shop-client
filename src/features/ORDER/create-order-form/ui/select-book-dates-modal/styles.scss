@@ -1,0 +1,51 @@
+.select-book-dates-modal {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-self: center;
+   padding: 15px;
+   width: fit-content;
+
+   & .ant-picker-panel-container {
+      box-shadow: none !important;
+   }
+
+   & .ant-picker-panel {
+      width: 100%;
+
+      & .ant-picker-year-panel,
+      & .ant-picker-month-panel {
+         margin: 0 auto;
+      }
+   }
+
+   & .ant-picker-range-separator,
+   & .ant-picker-suffix,
+   & .ant-picker-active-bar {
+      display: none;
+   }
+
+   & .ant-picker-input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+   }
+
+   & .modal__title {
+      margin-bottom: 10px;
+   }
+
+   & .next-button {
+      padding: 10px 20px;
+   }
+
+   & .select-dates {
+      position: static !important;
+      width: fit-content;
+      min-width: 0 !important;
+
+      & .ant-picker-range-wrapper {
+         width: fit-content;
+      }
+   }
+}

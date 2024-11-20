@@ -1,43 +1,45 @@
 div.welcome-modal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 15px;
-  width: fit-content;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 15px;
+   width: fit-content;
 
-  & .date-filter {
-    margin-bottom: 5px;
+   & .date-filter {
+      margin-bottom: 5px;
 
-    & .ant-picker-panel-container {
-      box-shadow: none !important;
-    }
-  }
+      & .ant-picker-panel-container {
+         box-shadow: none !important;
+      }
+   }
 
-  & .ant-picker-range-separator, & .ant-picker-suffix, & .ant-picker-active-bar {
-    display: none;
-  }
+   & .ant-picker-range-separator,
+   & .ant-picker-suffix,
+   & .ant-picker-active-bar {
+      display: none;
+   }
 
-  & .ant-picker-input {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-  }
+   & .ant-picker-input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+   }
 
-  & .modal__title {
-    margin-bottom: 10px;
-  }
+   & .modal__title {
+      margin-bottom: 10px;
+   }
 
-  & .next-button {
-    padding: 10px 20px;
-  }
+   & .next-button {
+      padding: 10px 20px;
+   }
 
-  & .select-dates {
-    width: fit-content;
-    position: static !important;
-    min-width: 0 !important;
-
-    & .ant-picker-range-wrapper {
+   & .select-dates {
+      position: static !important;
       width: fit-content;
-    }
-  }
+      min-width: 0 !important;
+
+      & .ant-picker-range-wrapper {
+         width: fit-content;
+      }
+   }
 }

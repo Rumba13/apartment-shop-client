@@ -3,79 +3,79 @@
 @import "./fonts";
 
 html {
-  scroll-behavior: smooth;
+   scroll-behavior: smooth;
 }
 
 body {
-  overflow-y: scroll;
-  --scroll-width: 0px;
+   overflow-y: scroll;
+   --scroll-width: 0px;
 
-  &.animating-scroll,
-  &.hide-scroll {
-    padding-right: var(--scroll-width);
-    overflow-y: hidden;
-  }
+   &.animating-scroll,
+   &.hide-scroll {
+      padding-right: var(--scroll-width);
+      overflow-y: hidden;
+   }
 }
 
 .submit-button {
-  background-color: var(--deep-azure);
-  font-family: "CeraPro", Arial, sans-serif;
-  font-size: 16px;
-  color: white;
-  padding: 13px 31px;
-  border-radius: 8px;
-  transition: background-color 210ms;
+   transition: background-color 210ms;
+   border-radius: 8px;
+   background-color: var(--deep-azure);
+   padding: 13px 31px;
+   color: white;
+   font-size: 16px;
+   font-family: "CeraPro", Arial, sans-serif;
 
-  &:hover {
-    background-color: var(--light-azure-active);
-  }
+   &:hover {
+      background-color: var(--light-azure-active);
+   }
 }
 
 .ant-picker-range.date-picker {
-  &:focus {
-    background-color: red !important;
-  }
+   &:focus {
+      background-color: red !important;
+   }
 }
 
 .app {
-  margin-bottom: 40px;
+   margin-bottom: 40px;
 }
 
 .guest-modal {
-  & .form-title {
-    font-weight: 700;
-    font-size: 19px;
-    font-family: var(--default-font), sans-serif;
-    margin-bottom: 25px;
-  }
+   & .form-title {
+      margin-bottom: 25px;
+      font-weight: 700;
+      font-size: 19px;
+      font-family: var(--default-font), sans-serif;
+   }
 
-  & .select-guests-form-field {
-    margin-bottom: 20px;
-  }
+   & .select-guests-form-field {
+      margin-bottom: 20px;
+   }
 
-  & .submit-button {
-    width: 100%;
-    padding: 8px;
-    font-size: 14px;
-  }
+   & .submit-button {
+      padding: 8px;
+      width: 100%;
+      font-size: 14px;
+   }
 
-  & .total-price {
-    display: flex;
-    margin-bottom: 20px;
-    font-family: var(--default-font), sans-serif;
-    font-weight: 700;
+   & .total-price {
+      display: flex;
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-family: var(--default-font), sans-serif;
 
-    & .total-price__title {
-      display: block;
-    }
+      & .total-price__title {
+         display: block;
+      }
 
-    & .spring {
-      flex: 1;
-      border-bottom: 1px dashed var(--taupe-gray);
-    }
+      & .spring {
+         flex: 1;
+         border-bottom: 1px dashed var(--taupe-gray);
+      }
 
-    & .total-price__price {
-      margin-left: auto;
-    }
-  }
+      & .total-price__price {
+         margin-left: auto;
+      }
+   }
 }

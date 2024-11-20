@@ -1,25 +1,26 @@
-import {Currency} from "./types/currency";
-import {serverConnection} from "./server-connection";
-import {FilterBounds} from "./types/filters-bounds";
+import { Currency } from "./types/currency";
+import { serverConnection } from "./server-connection";
+import { FilterBounds } from "./types/filters-bounds";
 
 class FiltersBoundsService {
-    constructor() {
-    }
+   constructor() {}
 
-    public async loadFiltersBound(resultCurrency: Currency): Promise<FilterBounds> {
-        const response =  (await serverConnection.get("apartments/minmax-price-area", {
+   public async loadFiltersBound(resultCurrency: Currency): Promise<FilterBounds> {
+      const response = (
+         await serverConnection.get("apartments/minmax-price-area", {
             params: {
-                resultCurrency
-            }
-        })).data as FilterBounds;
+               resultCurrency,
+            },
+         })
+      ).data as FilterBounds;
 
-        response.minPrice = +response.minPrice;
-        response.maxPrice = +response.maxPrice;
-        response.minArea = +response.minArea;
-        response.maxArea = +response.maxArea;
+      response.minPrice = +response.minPrice;
+      response.maxPrice = +response.maxPrice;
+      response.minArea = +response.minArea;
+      response.maxArea = +response.maxArea;
 
-        return response;
-    }
+      return response;
+   }
 }
 
 export const filtersBoundsService = new FiltersBoundsService();

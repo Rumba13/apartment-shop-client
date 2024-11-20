@@ -1,31 +1,31 @@
 .open-favorites-button {
-  position: relative;
-  cursor: pointer;
-  width: min-content;
+   position: relative;
+   cursor: pointer;
+   width: min-content;
 
-  & .open-favorites-button__count {
-    position: absolute;
-    right: -15%;
-    top: -15%;
-    z-index: 2;
-    border-radius: 50%;
-    width: var(--favorites-count-size);
-    height: var(--favorites-count-size);
-    text-align: center;
-    line-height: var(--favorites-count-size);
-    background-color: var(--azure);
-    color: white;
-    font-size: 11px;
-    font-family: "CeraPro", sans-serif;
+   & .open-favorites-button__count {
+      position: absolute;
+      top: -15%;
+      right: -15%;
+      z-index: 2;
 
-    box-sizing: content-box;
-    border: 2px white solid;
-    --favorites-count-size: 16px;
-  }
+      box-sizing: content-box;
+      border: 2px white solid;
+      border-radius: 50%;
+      background-color: var(--azure);
+      width: var(--favorites-count-size);
+      height: var(--favorites-count-size);
+      color: white;
+      font-size: 11px;
+      line-height: var(--favorites-count-size);
+      font-family: "CeraPro", sans-serif;
+      text-align: center;
+      --favorites-count-size: 16px;
+   }
 
-  & .heart-icon {
-    width: 30px;
-    height: 30px;
-    color:gray;
-  }
+   & .heart-icon {
+      width: 30px;
+      height: 30px;
+      color: gray;
+   }
 }

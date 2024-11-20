@@ -1,0 +1,23 @@
+.select-dates-field {
+   display: flex;
+
+   & .select-dates-field-container {
+      & .select-dates-container__title {
+         margin-bottom: 2px;
+         font-weight: 700;
+      }
+   }
+
+   & .container-separator {
+      align-self: end;
+      margin: 0 12px 11px;
+      background: #262626;
+      min-width: 16px;
+      max-width: 16px;
+      height: 1px;
+   }
+
+   & .select-dates-field__button {
+      margin-left: auto;
+   }
+}

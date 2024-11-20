@@ -1,1 +1,1 @@
-export { IsPetAllowedField } from './ui/ui';
+export { IsPetAllowedField } from "./ui/ui";

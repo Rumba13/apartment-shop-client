@@ -1,10 +1,10 @@
 div.ant-picker-dropdown {
-  &.only-dropdown {
-    position: static;
-    max-width: fit-content;
-  }
+   &.only-dropdown {
+      position: static;
+      max-width: fit-content;
+   }
 }
 
 div.ant-picker-range-arrow {
    display: none;
- }
+}

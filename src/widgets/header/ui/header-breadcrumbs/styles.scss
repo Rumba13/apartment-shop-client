@@ -1,8 +1,8 @@
 @import "../../../../app/styles/variables";
 
 .header-breadcrumbs {
-  max-width: $content-width;
-  margin: 17px auto 0 auto;
-  font-weight: 500;
-  font-family: var(--default-font), sans-serif;
+   margin: 17px auto 0 auto;
+   max-width: $content-width;
+   font-weight: 500;
+   font-family: var(--default-font), sans-serif;
 }

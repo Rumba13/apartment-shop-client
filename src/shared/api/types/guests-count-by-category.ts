@@ -1,7 +1,7 @@
 export type GuestsCountByCategory = {
-    adultCount: number,
-    teenCount: number,
-    kidCount: number,
-    babyCount: number,
-    petCount: number,
-}
+   adultCount: number;
+   teenCount: number;
+   kidCount: number;
+   babyCount: number;
+   petCount: number;
+};

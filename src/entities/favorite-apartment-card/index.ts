@@ -1,1 +1,1 @@
-export { FavoriteApartmentCard } from './ui/ui';
+export { FavoriteApartmentCard } from "./ui/ui";

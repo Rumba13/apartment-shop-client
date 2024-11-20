@@ -1,29 +1,29 @@
 .tariff-card {
-  position: relative;
-  border: 2px solid var(--white-gray);
-  border-radius: 4px;
-  margin: 3px;
-  padding: 18px 12px;
-  transition: border 140ms;
-  cursor: pointer;
+   position: relative;
+   transition: border 140ms;
+   cursor: pointer;
+   margin: 3px;
+   border: 2px solid var(--white-gray);
+   border-radius: 4px;
+   padding: 18px 12px;
 
-  &:hover {
-    border-color: var(--azure);
-  }
+   &:hover {
+      border-color: var(--azure);
+   }
 
-  &.selected {
-    border-color: var(--azure);
-  }
+   &.selected {
+      border-color: var(--azure);
+   }
 
-  & .tariff-card__title {
-    text-align: center;
-    font-family: var(--default-font), sans-serif;
-    padding-right: 10px;
-  }
+   & .tariff-card__title {
+      padding-right: 10px;
+      font-family: var(--default-font), sans-serif;
+      text-align: center;
+   }
 
-  & .delete-tariff-button {
-    position: absolute;
-    top: 6px;
-    right: 2px;
-  }
+   & .delete-tariff-button {
+      position: absolute;
+      top: 6px;
+      right: 2px;
+   }
 }

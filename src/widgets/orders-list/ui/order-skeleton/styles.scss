@@ -1,17 +1,17 @@
 .order-skeleton {
-  display: flex;
+   display: flex;
 
-  & .small-skeleton {
-    width: 9%;
-    margin-right: 20px;
-  }
-  & .ant-skeleton-element {
-    min-height:calc(100%);
-    aspect-ratio: 1;
-    margin-right: 20px;
+   & .small-skeleton {
+      margin-right: 20px;
+      width: 9%;
+   }
+   & .ant-skeleton-element {
+      margin-right: 20px;
+      aspect-ratio: 1;
+      min-height: calc(100%);
 
-    & .ant-skeleton-image {
-      width: 100%;
-    }
-  }
+      & .ant-skeleton-image {
+         width: 100%;
+      }
+   }
 }

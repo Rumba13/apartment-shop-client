@@ -1,7 +1,7 @@
-import {Price} from "./price";
+import { Price } from "./price";
 
 export type BookDate = {
-    date: string,
-    price: Price,
-    isBooked: boolean
-}
+   date: string;
+   price: Price;
+   isBooked: boolean;
+};

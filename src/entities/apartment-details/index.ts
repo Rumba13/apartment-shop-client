@@ -1,1 +1,1 @@
-export { ApartmentDetails } from './ui/ui';
+export { ApartmentDetails } from "./ui/ui";

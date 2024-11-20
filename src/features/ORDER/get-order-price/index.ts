@@ -1,1 +1,1 @@
-export {getOrderPriceStore} from "./model/get-order-price-store"
+export { orderPriceStore } from "./model/order-price-store";

@@ -1,23 +1,21 @@
 .apartment-date-filter {
-  display: flex;
-  border: 1px solid var(--gains-boro);
-  align-items: center;
-  padding: 5px;
-  border-radius: 8px;
+   display: flex;
+   align-items: center;
+   border: 1px solid var(--gains-boro);
+   border-radius: 8px;
+   padding: 5px;
 
-  & .ant-picker-input {
+   & .ant-picker-input {
+      & input {
+         margin-left: 8px;
+         font-size: 15px;
+         font-family: var(--default-font), sans-serif;
+         text-align: left;
+      }
+   }
 
-    & input {
-      font-family: var(--default-font), sans-serif;
-      font-size: 15px;
-      text-align: left;
-      margin-left: 8px;
-    }
-  }
-
-  & .ant-picker-input:first-child {
-  }
-  & .ant-picker-input:nth-child(2) {
-
-  }
+   & .ant-picker-input:first-child {
+   }
+   & .ant-picker-input:nth-child(2) {
+   }
 }

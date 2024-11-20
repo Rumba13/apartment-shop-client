@@ -1,22 +1,61 @@
 .order-page {
-  & .order-form {
-    min-width: 550px;
-  }
+   background-color: var(--dirty-white);
+   min-height: 100vh;
 
-  & .content {
-    display: grid;
-    grid-template-columns: 20fr 8fr;
-    margin-top: 10px;
-
-    & .order-form {
-
-    }
-
-    & .apartment-details {
-      & .apartment-details__image {
-        border-radius: 10px;
-        margin-bottom: 5px;
+   & .order-main {
+      & .create-order-form {
       }
-    }
-  }
+   }
+
+   & .header {
+      background-color: white;
+   }
+
+   & .page__title {
+      margin-bottom: 24px;
+      font-weight: 700;
+      font-size: 24px;
+      font-family: var(--default-font), sans-serif;
+   }
+
+   & .header-breadcrumbs {
+      display: none;
+      margin: 0 auto;
+   }
+
+   & .order-form {
+      min-width: 550px;
+   }
+
+   & .content {
+      & .order-form {
+      }
+
+      & .apartment-details {
+         & .apartment-details__image {
+            margin-bottom: 5px;
+            border-radius: 10px;
+         }
+      }
+   }
+}
+
+.app:has(.order-page) {
+   margin-bottom: 0;
+}
+
+@media (width < 850px) {
+   .order-page {
+      & .order-main {
+         & .create-order-form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            & .container {
+               max-width: 100%;
+            }
+         }
+      }
+   }
 }

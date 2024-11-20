@@ -1,28 +1,28 @@
 .slider {
-  display: block;
+   display: block;
 
-  & > span.MuiSlider-thumb {
-    border: 3px solid var(--azure);
-    background: white;
-    height: 20px;
-    width: 20px;
-    box-shadow: none;
-  }
+   & > span.MuiSlider-thumb {
+      box-shadow: none;
+      border: 3px solid var(--azure);
+      background: white;
+      width: 20px;
+      height: 20px;
+   }
 
-  & .MuiSlider-valueLabel {
-    border: 1px solid #cccccc;
-    border-radius: 7px;
-    background-color: white;
-    font-size: 14px;
-    font-weight: 400;
-    font-family: Arial, sans-serif;
-    color: black;
-    padding: 2px 5px;
+   & .MuiSlider-valueLabel {
+      border: 1px solid #cccccc;
+      border-radius: 7px;
+      background-color: white;
+      padding: 2px 5px;
+      color: black;
+      font-weight: 400;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
 
-    &:before {
-      margin-bottom: -1px;
-      border-bottom: 1px solid #cccccc;
-      border-right: 1px solid #cccccc;
-    }
-  }
+      &:before {
+         margin-bottom: -1px;
+         border-right: 1px solid #cccccc;
+         border-bottom: 1px solid #cccccc;
+      }
+   }
 }

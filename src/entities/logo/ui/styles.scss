@@ -1,12 +1,12 @@
 .logo {
-  font-family: "CeraPro", Arial, sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 3px;
-  max-height: 100% ;
+   margin-bottom: 3px;
+   max-height: 100%;
+   font-weight: 500;
+   font-size: 20px;
+   font-family: "CeraPro", Arial, sans-serif;
 
-  & .logo__image {
-    max-height: 100%;
-    max-width: 150px;
-  }
+   & .logo__image {
+      max-width: 150px;
+      max-height: 100%;
+   }
 }
