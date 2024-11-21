@@ -2,12 +2,12 @@ import "./styles.scss";
 import { Modal } from "../../../shared/ui/modal";
 import { observer } from "mobx-react";
 import { selectDatesModalStore } from "../model/select-dates-modal-store";
-import { useTypedTranslation } from "../../../app/i18n/use-typed-translation";
 import dayjs from "dayjs";
 import { filterByDateStore } from "../../../features/FILTER/filter-by-date";
 import { DatePicker } from "antd";
 import { ButtonCool } from "../../../shared/ui/button-cool";
 import { rangeDatePickerDisableDateBeforeToday } from "../../../shared/lib/range-date-picker-disable-date-before-today";
+import { useTranslation } from "react-i18next";
 
 const { RangePicker } = DatePicker;
 
@@ -16,7 +16,7 @@ type PropsType = {
 };
 
 export const SelectDatesModal = observer(({ onNextButtonClick }: PropsType) => {
-   const { t } = useTypedTranslation();
+   const { t } = useTranslation();
    const [dateFrom, dateTo] = filterByDateStore.dates;
 
    return (
@@ -24,7 +24,7 @@ export const SelectDatesModal = observer(({ onNextButtonClick }: PropsType) => {
          <RangePicker
             className="date-filter"
             popupClassName="select-dates"
-            variant={"borderless"}
+            variant="borderless"
             disabledDate={rangeDatePickerDisableDateBeforeToday}
             open
             hidden

@@ -8,6 +8,11 @@ div.welcome-modal {
    & .date-filter {
       margin-bottom: 5px;
 
+      & .ant-picker-header-super-next-btn,
+      & .ant-picker-header-super-prev-btn  {
+         display: none;
+      }
+
       & .ant-picker-panel-container {
          box-shadow: none !important;
       }
