@@ -2,11 +2,8 @@ import "./styles.scss";
 import { Form, Formik, FormikValues } from "formik";
 import React from "react";
 import { Field } from "../../../../shared/ui/field/ui";
-import { useTypedTranslation } from "../../../../app/i18n/use-typed-translation";
 import { useNavigate } from "react-router-dom";
 import { createApartment } from "../api/create-apartment";
-import useLocalStorageState from "use-local-storage-state";
-import { SelectGuestsFormModal, selectGuestModalStore } from "../../../../widgets/select-guests-modal";
 import { ButtonCool } from "../../../../shared/ui/button-cool";
 import { FieldNumber } from "../../../../shared/ui/field-number";
 import { TariffField } from "../../../tariff-field";
@@ -17,9 +14,9 @@ import { t } from "i18next";
 import { SelectGuestPricesModal, selectGuestPricesModalStore } from "../../../../widgets/select-guests-prices-modal";
 import { GuestPricesByCategory } from "../../../../shared/api/types/guest-prices-by-category";
 import { Currency } from "../../../../shared/api/types/currency";
-import { SelectCurrencyDropdown } from "../../../select-currency";
-import { PriceField } from "../../../price-field";
 import { IsPetAllowedField } from "../../../is-pet-allowed-field";
+import { useTranslation } from "react-i18next";
+import { ACCESS_TOKEN_NAME } from "../../../../shared/lib/constants";
 
 export type ValuesType = {
    title: string;
@@ -70,15 +67,12 @@ const schema = object().shape({
 } as { [key in keyof ValuesType]: any });
 
 export function CreateApartmentForm() {
-   const { t } = useTypedTranslation();
+   const { t } = useTranslation();
    const navigate = useNavigate();
-   const [accessToken] = useLocalStorageState<string>("ACCESS-TOKEN", {
-      defaultValue: "",
-   });
 
    const submit = (values: ValuesType) => {
       console.log(values);
-      createApartment(values, accessToken, (id: UUID) => navigate("/apartment-details/" + id, {}));
+      createApartment(values, localStorage.getItem(ACCESS_TOKEN_NAME) || "", (id: UUID) => navigate("/apartment-details/" + id, {}));
    };
 
    return (

@@ -14,14 +14,13 @@ class UserStore {
    public isError: boolean = false;
    public setIsError = (isError: boolean) => (this.isError = isError);
 
-   public async auth(accessToken: string, refreshToken: string, updateTokens: (accessToken: string, refreshToken: string) => void) {
+   public async auth(accessToken: string | null, refreshToken: string | null, updateTokens: (accessToken: string, refreshToken: string) => void) {
       this.setIsLoading(true);
       this.setIsError(false);
 
       try {
          const user = await authService.auth(accessToken);
          this.setUser(user); //User by access_token
-         console.log("ACCEss TOKEN");
       } catch (err) {
          try {
             const refreshResponse = await authService.refresh(refreshToken); //User by refresh_token

@@ -7,25 +7,17 @@ import { apartmentService } from "../../../shared/api/apartment-service";
 import { currencyStore } from "../../../features/select-currency";
 import { setPhotosAbsolutePath } from "../../../shared/lib/set-photos-absolute-path";
 import { favoritesStore } from "../../../features/APARTMENT/add-apartment-to-favorites/model/favorites-store";
+import { favoriteListStore } from "../model/favorite-list-store";
 
 type PropsType = {};
 
 export const FavoriteList = observer(({}: PropsType) => {
-   const [apartments, setApartments] = React.useState<Apartment[] | null>(null);
 
    useEffect(() => {
-      favoritesStore.favorites.forEach(id => {
-         apartmentService
-            .getApartmentById(id, currencyStore.currency)
-            .then(apartment => {
-               apartment && setPhotosAbsolutePath(apartment.photos);
-               setApartments(apartments => [...(apartments || []), apartment]);
-            })
-            .catch(console.log);
-      });
+      favoriteListStore.loadFavoriteList(favoritesStore.favorites)
    }, [favoritesStore.favorites, currencyStore.currency]);
 
-   if (apartments === null) {
+   if (favoriteListStore.isLoading) {
       return (
          <div className="favorite-list">
             <ApartmentCardSkeleton />
@@ -36,10 +28,15 @@ export const FavoriteList = observer(({}: PropsType) => {
          </div>
       );
    }
+   if (!favoriteListStore.favoriteApartments) {
+      return (
+         <div className="favorite-list"></div>
+      );
+   }
 
    return (
       <div className="favorite-list">
-         {apartments.map(apartment => (
+         {favoriteListStore.favoriteApartments.map(apartment => (
             <ApartmentCard apartment={apartment} />
          ))}
       </div>

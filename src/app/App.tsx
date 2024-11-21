@@ -8,14 +8,12 @@ import "dayjs/locale/ru.js";
 import dayjs from "dayjs";
 import { observer } from "mobx-react";
 import { SnackBar } from "../shared/ui/snack-bar/ui";
-import useLocalStorageState from "use-local-storage-state";
 import { ConfirmModal } from "../shared/ui/confirm-modal/ui";
 import { favoritesStore } from "../features/APARTMENT/add-apartment-to-favorites/model/favorites-store";
+import { ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME } from "../shared/lib/constants";
 
 export const App = observer(() => {
    const { i18n } = useTypedTranslation();
-   const [accessToken, setAccessToken, { removeItem: removeAccessToken }] = useLocalStorageState<string>("ACCESS-TOKEN", { defaultValue: "" });
-   const [refreshToken, setRefreshToken, { removeItem: removeRefreshToken }] = useLocalStorageState<string>("REFRESH-TOKEN", { defaultValue: "" });
 
    useEffect(() => {
       i18n.changeLanguage("ru");
@@ -23,9 +21,9 @@ export const App = observer(() => {
       overlayStore.updateScrollWidth();
       favoritesStore.loadFavoriteListFromLocalStorage();
 
-      userStore.auth(accessToken, refreshToken, (accessToken, refreshToken) => {
-         setAccessToken(accessToken);
-         setRefreshToken(refreshToken);
+      userStore.auth(localStorage.getItem(ACCESS_TOKEN_NAME), localStorage.getItem(REFRESH_TOKEN_NAME), (accessToken, refreshToken) => {
+         localStorage.setItem(ACCESS_TOKEN_NAME, accessToken);
+         localStorage.setItem(REFRESH_TOKEN_NAME, refreshToken);
       });
    }, []);
 

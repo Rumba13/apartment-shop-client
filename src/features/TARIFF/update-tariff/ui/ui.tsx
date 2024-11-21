@@ -2,12 +2,10 @@ import "./styles.scss";
 import { Form, Formik } from "formik";
 import { FieldNumber } from "../../../../shared/ui/field-number";
 import { CreateTariffDto } from "../../../../shared/api/types/create-tariff.dto";
-import { currencyStore, SelectCurrencyDropdown } from "../../../select-currency";
-import { useTypedTranslation } from "../../../../app/i18n/use-typed-translation";
+import { SelectCurrencyDropdown } from "../../../select-currency";
 import { Field } from "../../../../shared/ui/field/ui";
 import { tariffService } from "../../../../shared/api/tariff-service";
 import { UUID } from "../../../../shared/api/types/uuid";
-import useLocalStorageState from "use-local-storage-state";
 import { snackBarStore } from "../../../../shared/ui/snack-bar/snack-bar-store";
 import { Tariff } from "../../../../shared/api/types/tariff";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +15,8 @@ import { tariffsListStore } from "../../../../widgets/tariffs-list/model/tariffs
 import { tariffDetailsStore } from "../../../../entities/tariff-details/model/tariff-details-store";
 import { observer } from "mobx-react";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { ACCESS_TOKEN_NAME } from "../../../../shared/lib/constants";
 
 function onSubmit(values: CreateTariffDto, tariffId: UUID, accessToken: UUID, onSuccess: (tariff: Tariff) => void, onFail: (err: AxiosError) => void) {
    tariffService.updateTariff(values, tariffId, accessToken).then(onSuccess).catch(onFail);
@@ -27,13 +27,11 @@ type PropsType = {
 };
 
 export const UpdateTariffForm = observer(({ tariff }: PropsType) => {
-   const { t } = useTypedTranslation();
-   const [accessToken] = useLocalStorageState<string>("ACCESS-TOKEN", {
-      defaultValue: "",
-   });
+   const { t } = useTranslation();
    const navigate = useNavigate();
 
-   useEffect(() => {}, [tariff]);
+   useEffect(() => {
+   }, [tariff]);
 
    function onSuccess(newTariff: Tariff) {
       snackBarStore.showSnackBar("Тариф успешно обновлён!");
@@ -56,15 +54,15 @@ export const UpdateTariffForm = observer(({ tariff }: PropsType) => {
    return (
       <Formik
          initialValues={tariff}
-         onSubmit={(values, { setFieldError, resetForm }) => {
+         onSubmit={(values, { setFieldError }) => {
             onSubmit(
                values,
                tariff.id,
-               accessToken,
+               localStorage.getItem(ACCESS_TOKEN_NAME) || "",
                () => {
                   onSuccess(values);
                },
-               err => onFail(err, setFieldError)
+               err => onFail(err, setFieldError),
             );
          }}>
          {({}) => (

@@ -1,9 +1,9 @@
 div.welcome-modal {
    display: flex;
    flex-direction: column;
-   align-items: center;
    padding: 15px;
    width: fit-content;
+   max-width: 95vw;
 
    & .date-filter {
       margin-bottom: 5px;
@@ -34,8 +34,19 @@ div.welcome-modal {
       margin-bottom: 10px;
    }
 
-   & .next-button {
-      padding: 10px 20px;
+   & .next-button,
+   & .cancel-button {
+      width: 120px;
+      max-width: 120px;
+   }
+
+   & .cancel-button {
+   }
+
+   & .modal-footer {
+      display: flex;
+      column-gap: 12px;
+      justify-content: center;
    }
 
    & .select-dates {

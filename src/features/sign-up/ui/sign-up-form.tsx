@@ -1,11 +1,11 @@
 import "./sign-up-form.scss";
 import { Form, Formik } from "formik";
 import { Field } from "../../../shared/ui/field/ui";
-import { useTypedTranslation } from "../../../app/i18n/use-typed-translation";
 import { signUpService } from "../../../shared/api/sign-up-service";
 import { SignUpDto } from "../../../shared/api/types/sign-up.dto";
 import { userStore } from "../../../entities/user";
-import useLocalStorageState from "use-local-storage-state";
+import { ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME } from "../../../shared/lib/constants";
+import { useTranslation } from "react-i18next";
 
 type ValuesType = SignUpDto;
 
@@ -14,9 +14,8 @@ type PropsType = {
 };
 
 export function SignUpForm({ onSignUp }: PropsType) {
-   const { t } = useTypedTranslation();
-   const [accessToken, setAccessToken, { removeItem: removeAccessToken }] = useLocalStorageState<string>("ACCESS-TOKEN", { defaultValue: "" });
-   const [refreshToken, setRefreshToken, { removeItem: removeRefreshToken }] = useLocalStorageState<string>("REFRESH-TOKEN", { defaultValue: "" });
+   const { t } = useTranslation();
+
    return (
       <Formik<ValuesType>
          initialValues={{ username: "", email: "", password: "" }}
@@ -24,11 +23,12 @@ export function SignUpForm({ onSignUp }: PropsType) {
             signUpService
                .signUp(signUpDto)
                .then(response => {
-                  setAccessToken(response.access_token);
-                  setRefreshToken(response.refresh_token);
+                  localStorage.setItem(ACCESS_TOKEN_NAME, response.access_token)
+                  localStorage.setItem(REFRESH_TOKEN_NAME, response.refresh_token)
+
                   userStore.auth(response.access_token, response.refresh_token, (accessToken, refreshToken) => {
-                     setAccessToken(accessToken);
-                     setRefreshToken(refreshToken);
+                     localStorage.setItem(ACCESS_TOKEN_NAME, accessToken)
+                     localStorage.setItem(REFRESH_TOKEN_NAME, refreshToken)
                   });
                   onSignUp?.();
                })

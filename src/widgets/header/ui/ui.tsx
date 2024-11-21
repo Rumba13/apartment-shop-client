@@ -1,7 +1,6 @@
 import "./styles.scss";
 import { Logo } from "../../../entities/logo";
 import { SelectCurrencyDropdown } from "../../../features/select-currency";
-import { useTypedTranslation } from "../../../app/i18n/use-typed-translation";
 import { AuthModal } from "../../auth-modal";
 import { observer } from "mobx-react";
 import React, { useEffect } from "react";
@@ -9,13 +8,14 @@ import { userStore } from "../../../entities/user";
 import { UserMenu } from "./user-menu/ui";
 import { HeaderBreadcrumbs } from "./header-breadcrumbs";
 import { FavoritesCount } from "../../../features/APARTMENT/add-apartment-to-favorites";
+import { useTranslation } from "react-i18next";
 
 type PropsType = {
    noSearch?: boolean;
 };
 
 export const Header = observer(({ noSearch = false }: PropsType) => {
-   const { t } = useTypedTranslation();
+   const { t } = useTranslation();
 
    useEffect(() => {}, [userStore.user]);
 
@@ -37,6 +37,7 @@ export const Header = observer(({ noSearch = false }: PropsType) => {
                </div>
             </div>
          )}
+
          <HeaderBreadcrumbs />
       </header>
    );

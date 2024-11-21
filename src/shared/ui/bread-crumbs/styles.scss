@@ -1,6 +1,16 @@
-a.ant-breadcrumb-link {
-   &:hover {
+
+.breadcrumbs {
+  display: flex;
+
+  & a.ant-breadcrumb-link {
+    &:hover {
       background-color: unset;
       color: var(--azure) !important;
-   }
+    }
+  }
+
+  & .ant-breadcrumb-separator {
+    display: flex;
+    align-items: center;
+  }
 }

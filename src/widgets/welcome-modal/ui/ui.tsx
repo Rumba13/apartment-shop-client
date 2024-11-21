@@ -35,9 +35,14 @@ export const SelectDatesModal = observer(({ onNextButtonClick }: PropsType) => {
                onNextButtonClick?.();
             }}
          />
-         <ButtonCool className="next-button" onClick={onNextButtonClick}>
-            {t("Confirm")}
-         </ButtonCool>
+         <div className="modal-footer">
+            <ButtonCool className="cancel-button" onClick={selectDatesModalStore.close}>
+               {t("Cancel")}
+            </ButtonCool>
+            <ButtonCool className="next-button" onClick={onNextButtonClick}>
+               {t("Confirm")}
+            </ButtonCool>
+         </div>
       </Modal>
    );
 });

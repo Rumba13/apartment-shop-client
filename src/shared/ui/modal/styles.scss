@@ -7,8 +7,8 @@
    opacity: 0;
    z-index: 20222;
    transition:
-      opacity 300ms,
-      visibility 300ms;
+      opacity 200ms,
+      visibility 200ms;
    border-radius: 10px;
    background-color: white;
    width: 430px;
@@ -22,7 +22,7 @@
       position: absolute;
       top: 5px;
       right: 5px;
-      transition: background-color 70ms;
+      transition: background-color 160ms;
 
       &:hover {
          background-color: var(--gains-boro);

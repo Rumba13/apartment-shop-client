@@ -1,27 +1,25 @@
 import "./styles.scss";
 import { Form, Formik, FormikValues } from "formik";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Field } from "../../../../shared/ui/field/ui";
-import { useTypedTranslation } from "../../../../app/i18n/use-typed-translation";
 import { apartmentService } from "../../../../shared/api/apartment-service";
 import { UUID } from "../../../../shared/api/types/uuid";
 import { Apartment } from "../../../../shared/api/types/apartment";
 import { currencyStore } from "../../../select-currency";
 import { useNavigate } from "react-router-dom";
 import { updateApartment } from "../api/update-apartment";
-import useLocalStorageState from "use-local-storage-state";
 import { FieldNumber } from "../../../../shared/ui/field-number";
 import { IsPetAllowedField } from "../../../is-pet-allowed-field";
 import { SelectGuestPricesModal, selectGuestPricesModalStore } from "../../../../widgets/select-guests-prices-modal";
 import { ButtonCool } from "../../../../shared/ui/button-cool";
 import { TariffField } from "../../../tariff-field";
 import { AmenitiesGroupField } from "../../../amenities-group-field";
-import { boolean, number, string } from "yup";
 import { Currency } from "../../../../shared/api/types/currency";
 import { GuestPricesByCategory } from "../../../../shared/api/types/guest-prices-by-category";
 import { mapApartmentAmenitiesToObject } from "../../../../shared/lib/map-apartment-amenities-to-object";
-import { CONSTANTS } from "../../../../shared/lib/constants";
 import { setPhotosAbsolutePath } from "../../../../shared/lib/set-photos-absolute-path";
+import { useTranslation } from "react-i18next";
+import { ACCESS_TOKEN_NAME } from "../../../../shared/lib/constants";
 
 const validate = (values: FormikValues) => {
    const errors: any = {};
@@ -96,11 +94,8 @@ const loadBlobbedApartmentImages = async (imageUrls: string[]) => {
 };
 
 export function UpdateApartmentForm({ apartmentId }: PropsType) {
-   const { t } = useTypedTranslation();
+   const { t } = useTranslation();
    const navigate = useNavigate();
-   const [accessToken] = useLocalStorageState<string>("ACCESS-TOKEN", {
-      defaultValue: "",
-   });
    const [updatedApartment, setUpdateApartment] = useState<Apartment | null>(null);
 
    useEffect(() => {
@@ -148,11 +143,12 @@ export function UpdateApartmentForm({ apartmentId }: PropsType) {
                _newAmenityGroup: "",
             }}
             validate={validate}
-            onSubmit={(values, { setSubmitting }) => updateApartment(values, accessToken, apartmentId, (id: UUID) => navigate("/apartment-details/" + id))}>
+            onSubmit={(values, { setSubmitting }) => updateApartment(values, localStorage.getItem(ACCESS_TOKEN_NAME) || "", apartmentId, (id: UUID) => navigate("/apartment-details/" + id))}>
             {({ setFieldValue, values }) => (
                <Form className="update-apartment-form" id="update-apartment-form">
                   <Field name="title" placeholder={"Название квартиры"} label={t("Title")} />
-                  <Field name="description" as="textarea" style={{ maxHeight: 500 }} label={t("Apartment Description")} />
+                  <Field name="description" as="textarea" style={{ maxHeight: 500 }}
+                         label={t("Apartment Description")} />
                   <FieldNumber name="roomCount" min={1} type="number" label={t("Rooms Quantity")} />
                   <FieldNumber name="guestCount" min={1} type="guest" label={t("Number Of People")} />
 

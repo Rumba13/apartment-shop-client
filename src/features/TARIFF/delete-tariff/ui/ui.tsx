@@ -1,14 +1,14 @@
 import "./styles.scss";
 import { UUID } from "../../../../shared/api/types/uuid";
 import { snackBarStore } from "../../../../shared/ui/snack-bar/snack-bar-store";
-import { useTypedTranslation } from "../../../../app/i18n/use-typed-translation";
 import { useNavigate } from "react-router-dom";
-import useLocalStorageState from "use-local-storage-state";
 import { ConfirmModalOptions } from "../../../../shared/api/types/confirm-modal-options";
 import { Button } from "../../../../shared/ui/button";
 import BinIcon from "../../../../assets/images/bin.svg";
 import { confirmModalStore } from "../../../../shared/ui/confirm-modal/confirm-modal-store";
 import { tariffService } from "../../../../shared/api/tariff-service";
+import { useTranslation } from "react-i18next";
+import { ACCESS_TOKEN_NAME } from "../../../../shared/lib/constants";
 
 async function deleteTariff(tariffId: UUID, accessToken: string, onSuccess: Function) {
    try {
@@ -25,11 +25,8 @@ type PropsType = {
 };
 
 export function DeleteTariff({ tariffId }: PropsType) {
-   const { t } = useTypedTranslation();
+   const { t } = useTranslation();
    const navigate = useNavigate();
-   const [accessToken] = useLocalStorageState<string>("ACCESS-TOKEN", {
-      defaultValue: "",
-   });
 
    const confirmOptions: ConfirmModalOptions = {
       description: t("Definitely delete tariff?"),
@@ -43,7 +40,7 @@ export function DeleteTariff({ tariffId }: PropsType) {
          onClick={() =>
             confirmModalStore
                .askForConfirm(confirmOptions)
-               .then(() => deleteTariff(tariffId, accessToken, () => navigate("/tariffs")))
+               .then(() => deleteTariff(tariffId, localStorage.getItem(ACCESS_TOKEN_NAME) || "", () => navigate("/tariffs")))
                .catch(console.error)
          }
          title=""

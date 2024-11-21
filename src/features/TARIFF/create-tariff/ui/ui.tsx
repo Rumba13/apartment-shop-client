@@ -3,16 +3,16 @@ import { Form, Formik } from "formik";
 import { FieldNumber } from "../../../../shared/ui/field-number";
 import { CreateTariffDto } from "../../../../shared/api/types/create-tariff.dto";
 import { currencyStore, SelectCurrencyDropdown } from "../../../select-currency";
-import { useTypedTranslation } from "../../../../app/i18n/use-typed-translation";
 import { Field } from "../../../../shared/ui/field/ui";
 import { tariffService } from "../../../../shared/api/tariff-service";
 import { UUID } from "../../../../shared/api/types/uuid";
-import useLocalStorageState from "use-local-storage-state";
 import { snackBarStore } from "../../../../shared/ui/snack-bar/snack-bar-store";
 import { Tariff } from "../../../../shared/api/types/tariff";
 import { tariffModalStore } from "../../../../widgets/create-tariff-modal";
 import { useNavigate } from "react-router-dom";
 import { AxiosError, AxiosResponse } from "axios";
+import { ACCESS_TOKEN_NAME } from "../../../../shared/lib/constants";
+import { useTranslation } from "react-i18next";
 
 const initialValues: CreateTariffDto = {
    title: "",
@@ -31,11 +31,8 @@ function onSubmit(values: CreateTariffDto, accessToken: UUID, onSuccess: (tariff
 }
 
 export function CreateTariffForm() {
-   const { t } = useTypedTranslation();
-   const [accessToken] = useLocalStorageState<string>("ACCESS-TOKEN", {
-      defaultValue: "",
-   });
    const navigate = useNavigate();
+   const { t } = useTranslation();
 
    function onSuccess(tariff: Tariff) {
       snackBarStore.showSnackBar("Тариф успешно создан!");
@@ -57,12 +54,12 @@ export function CreateTariffForm() {
          onSubmit={(values, { setFieldError, resetForm }) => {
             onSubmit(
                values,
-               accessToken,
+               localStorage.getItem(ACCESS_TOKEN_NAME) || "",
                (tariff: Tariff) => {
                   onSuccess(tariff);
                   resetForm();
                },
-               err => onFail(err, setFieldError)
+               err => onFail(err, setFieldError),
             );
          }}>
          {({}) => (

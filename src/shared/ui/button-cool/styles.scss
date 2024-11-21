@@ -1,6 +1,7 @@
 .button-cool {
    display: flex;
-   transition: background-color 30ms;
+   justify-content: center;
+   transition: background-color 7ms;
    border: 1px solid var(--white-gray);
    border-radius: 8px;
    padding: 13px 15px 14px;
