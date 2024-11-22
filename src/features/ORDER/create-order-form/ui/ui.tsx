@@ -24,6 +24,7 @@ import { dateFormat } from "../../../../shared/lib/date-format";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { t } from "i18next";
 import { orderIsSubmittedModalStore } from "../../../../entities/apartment-details/ui/order-is-submitted-modal/order-is-submitted-modal-store";
+import { OrderApartmentFormSkeleton } from "./skeleton";
 
 type PropsType = {
    apartmentId: UUID;
@@ -93,7 +94,7 @@ export const CreateOrderForm = observer(({ apartmentId }: PropsType) => {
 
    const navigate = useNavigate();
 
-   if (createOrderFormStore.isLoading) return <></>;
+   if (createOrderFormStore.isLoading) return <div className="create-order-form"><OrderApartmentFormSkeleton/></div>;
 
    return (
       <Formik initialValues={initialValues} onSubmit={(values, formikHelpers) => orderApartment(apartmentId, values, formikHelpers, navigate)}>
