@@ -94,7 +94,12 @@ export const CreateOrderForm = observer(({ apartmentId }: PropsType) => {
 
    const navigate = useNavigate();
 
-   if (createOrderFormStore.isLoading) return <div className="create-order-form"><OrderApartmentFormSkeleton/></div>;
+   if (createOrderFormStore.isLoading)
+      return (
+         <div className="create-order-form">
+            <OrderApartmentFormSkeleton />
+         </div>
+      );
 
    return (
       <Formik initialValues={initialValues} onSubmit={(values, formikHelpers) => orderApartment(apartmentId, values, formikHelpers, navigate)}>

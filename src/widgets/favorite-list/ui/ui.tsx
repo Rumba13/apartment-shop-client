@@ -12,9 +12,8 @@ import { favoriteListStore } from "../model/favorite-list-store";
 type PropsType = {};
 
 export const FavoriteList = observer(({}: PropsType) => {
-
    useEffect(() => {
-      favoriteListStore.loadFavoriteList(favoritesStore.favorites)
+      favoriteListStore.loadFavoriteList(favoritesStore.favorites);
    }, [favoritesStore.favorites, currencyStore.currency]);
 
    if (favoriteListStore.isLoading) {
@@ -29,9 +28,7 @@ export const FavoriteList = observer(({}: PropsType) => {
       );
    }
    if (!favoriteListStore.favoriteApartments) {
-      return (
-         <div className="favorite-list"></div>
-      );
+      return <div className="favorite-list"></div>;
    }
 
    return (

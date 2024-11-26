@@ -45,7 +45,8 @@ export const UserMenu = observer(() => {
 
    useEffect(() => {
       if (userStore.user?.isSuperuser) {
-         orderService.getAllOrders().then(orderPagination => { //TODO Delegate to backend
+         orderService.getAllOrders().then(orderPagination => {
+            //TODO Delegate to backend
             setPendingOrderCount(0);
 
             let _pendingOrderCount = 0;
@@ -58,8 +59,7 @@ export const UserMenu = observer(() => {
          });
       }
    }, [userStore.user, ordersListStore.orders]);
-   useEffect(() => {
-   }, [userStore.user]);
+   useEffect(() => {}, [userStore.user]);
 
    if (userStore.isLoading) {
       return (
@@ -93,8 +93,7 @@ export const UserMenu = observer(() => {
 
             {userStore.user?.isSuperuser && (
                <>
-                  <Link className={clsx("user-menu-option", window.location.pathname === "/orders" && "active")}
-                        to={"/orders"} onClick={userMenuPopupStore.close}>
+                  <Link className={clsx("user-menu-option", window.location.pathname === "/orders" && "active")} to={"/orders"} onClick={userMenuPopupStore.close}>
                      <SvgIcon icon={OrdersIcon} className="user-menu-option__icon" />
                      <span className="user-menu-option__title">{t("Orders")}</span>
                      {pendingOrderCount !== 0 && (
@@ -103,8 +102,7 @@ export const UserMenu = observer(() => {
                         </span>
                      )}
                   </Link>
-                  <Link className={clsx("user-menu-option", window.location.pathname === "/tariffs" && "active")}
-                        onClick={userMenuPopupStore.close} to={"/tariffs"}>
+                  <Link className={clsx("user-menu-option", window.location.pathname === "/tariffs" && "active")} onClick={userMenuPopupStore.close} to={"/tariffs"}>
                      <SvgIcon icon={TariffIcon} className="user-menu-option__icon" />
                      <span className="user-menu-option__title">{t("Tariffs")}</span>
                   </Link>

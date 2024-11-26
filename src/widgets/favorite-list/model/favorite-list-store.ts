@@ -23,7 +23,6 @@ class FavoriteListStore extends LoadingStore {
    public favoriteApartments: Apartment[] | null = null;
    public setFavoriteApartments = (apartment: Apartment[] | null) => (this.favoriteApartments = apartment);
 
-
    public async loadFavoriteList(apartmentIds: UUID[]): Promise<void> {
       this.setIsLoading(true);
 
@@ -32,12 +31,11 @@ class FavoriteListStore extends LoadingStore {
          const apartmentPromises: Promise<void | Apartment>[] = [];
 
          apartmentIds.forEach(id => {
-            apartmentPromises.push(apartmentService
-               .getApartmentById(id, currencyStore.currency)
-               .then(apartment => {
+            apartmentPromises.push(
+               apartmentService.getApartmentById(id, currencyStore.currency).then(apartment => {
                   apartments.push(apartment);
-               }));
-
+               })
+            );
          });
 
          await Promise.all(apartmentPromises);
@@ -49,7 +47,6 @@ class FavoriteListStore extends LoadingStore {
          this.setIsLoading(false);
       }
    }
-
 }
 
 export const favoriteListStore = new FavoriteListStore();

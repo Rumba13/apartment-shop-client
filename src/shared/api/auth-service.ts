@@ -13,7 +13,7 @@ class AuthService {
       ).data;
    }
 
-   public async refresh(refreshToken: string| null): Promise<AuthResult> {
+   public async refresh(refreshToken: string | null): Promise<AuthResult> {
       return (
          await serverConnection.get("users/me", {
             headers: refreshToken ? { Authorization: "Bearer " + refreshToken || "" } : undefined,

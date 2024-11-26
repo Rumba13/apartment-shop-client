@@ -147,8 +147,7 @@ export function UpdateApartmentForm({ apartmentId }: PropsType) {
             {({ setFieldValue, values }) => (
                <Form className="update-apartment-form" id="update-apartment-form">
                   <Field name="title" placeholder={"Название квартиры"} label={t("Title")} />
-                  <Field name="description" as="textarea" style={{ maxHeight: 500 }}
-                         label={t("Apartment Description")} />
+                  <Field name="description" as="textarea" style={{ maxHeight: 500 }} label={t("Apartment Description")} />
                   <FieldNumber name="roomCount" min={1} type="number" label={t("Rooms Quantity")} />
                   <FieldNumber name="guestCount" min={1} type="guest" label={t("Number Of People")} />
 

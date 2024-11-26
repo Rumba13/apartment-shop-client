@@ -23,12 +23,12 @@ export function SignUpForm({ onSignUp }: PropsType) {
             signUpService
                .signUp(signUpDto)
                .then(response => {
-                  localStorage.setItem(ACCESS_TOKEN_NAME, response.access_token)
-                  localStorage.setItem(REFRESH_TOKEN_NAME, response.refresh_token)
+                  localStorage.setItem(ACCESS_TOKEN_NAME, response.access_token);
+                  localStorage.setItem(REFRESH_TOKEN_NAME, response.refresh_token);
 
                   userStore.auth(response.access_token, response.refresh_token, (accessToken, refreshToken) => {
-                     localStorage.setItem(ACCESS_TOKEN_NAME, accessToken)
-                     localStorage.setItem(REFRESH_TOKEN_NAME, refreshToken)
+                     localStorage.setItem(ACCESS_TOKEN_NAME, accessToken);
+                     localStorage.setItem(REFRESH_TOKEN_NAME, refreshToken);
                   });
                   onSignUp?.();
                })

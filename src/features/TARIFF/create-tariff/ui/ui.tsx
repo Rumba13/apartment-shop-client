@@ -59,7 +59,7 @@ export function CreateTariffForm() {
                   onSuccess(tariff);
                   resetForm();
                },
-               err => onFail(err, setFieldError),
+               err => onFail(err, setFieldError)
             );
          }}>
          {({}) => (

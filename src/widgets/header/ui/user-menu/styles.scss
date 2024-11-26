@@ -15,8 +15,8 @@
       width: 75px;
       height: 35px;
 
-      & .ant-skeleton-input { //TODO copy style from button
-         border-radius: 8px;
+      & .ant-skeleton-input {
+         border-radius: 8px; //TODO copy style from button
          width: 100%;
          min-width: 0 !important;
          height: 100%;
@@ -41,8 +41,8 @@
 
    & .user-menu__auth-button {
       padding: 7px 15px 7px;
-      font-weight: 400;
       height: 100%;
+      font-weight: 400;
    }
 
    & .user-menu-options {

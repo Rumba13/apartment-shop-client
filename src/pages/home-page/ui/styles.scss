@@ -23,17 +23,8 @@
          height: 100%;
 
          & .ant-select-selector {
-            border-radius: 20px !important;
+            border-radius: 15px !important;
             padding: 0 17px;
-
-            & .ant-select-selection-item {
-            }
-
-            &:hover {
-            }
-         }
-
-         & .ant-select-arrow {
          }
       }
    }

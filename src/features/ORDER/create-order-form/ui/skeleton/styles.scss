@@ -1,47 +1,47 @@
 .order-apartment-form-skeleton {
-  display: flex;
-  width: 100%;
-  column-gap: 16px;
+   display: flex;
+   column-gap: 16px;
+   width: 100%;
 
-  & .container {
-    width: 680px;
-
-    & .ant-skeleton-input {
-      height: 100%;
-    }
-  }
-
-  & .aside-skeleton {
-    flex-grow: 1;
-    max-width: 380px;
-
-    & .ant-skeleton {
-      width: 100%;
+   & .container {
+      width: 680px;
 
       & .ant-skeleton-input {
-        height: 237px;
+         height: 100%;
       }
-    }
-  }
+   }
 
-  & .ant-skeleton {
-    flex-grow: 1;
+   & .aside-skeleton {
+      flex-grow: 1;
+      max-width: 380px;
 
-    & .ant-skeleton-input {
-      width: 100%;
-      border-radius: 8px;
-    }
-  }
+      & .ant-skeleton {
+         width: 100%;
+
+         & .ant-skeleton-input {
+            height: 237px;
+         }
+      }
+   }
+
+   & .ant-skeleton {
+      flex-grow: 1;
+
+      & .ant-skeleton-input {
+         border-radius: 8px;
+         width: 100%;
+      }
+   }
 }
 
 @media (width < 850px) {
-       .order-apartment-form-skeleton {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
+   .order-apartment-form-skeleton {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
 
-        & .container {
-          max-width: 100%;
-        }
+      & .container {
+         max-width: 100%;
       }
+   }
 }

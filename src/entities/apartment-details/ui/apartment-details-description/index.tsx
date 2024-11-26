@@ -24,18 +24,13 @@ export function ApartmentDetailsDescription({ descriptionRef, description }: Pro
    return (
       <div className="apartment-description" ref={descriptionRef}>
          <h2 className="apartment-description__title">{t("Description")}</h2>
-         <span className={clsx("apartment-description__description", isDescriptionExpanded && "expanded")}
-               ref={descriptionContentRef}>
+         <span className={clsx("apartment-description__description", isDescriptionExpanded && "expanded")} ref={descriptionContentRef}>
             {description}
          </span>
 
-         <button className="apartment-description__button"
-                 onClick={() => (isDescriptionExpanded ? setIsDescriptionExpanded(false) : expandDescription())}>
+         <button className="apartment-description__button" onClick={() => (isDescriptionExpanded ? setIsDescriptionExpanded(false) : expandDescription())}>
             {t(isDescriptionExpanded ? "Collapse Description" : "Expand Description")}
-            <SvgIcon
-               icon={ArrowIcon}
-               style={{ transform: isDescriptionExpanded ? "" : "rotate(180deg)" }}
-            />
+            <SvgIcon icon={ArrowIcon} style={{ transform: isDescriptionExpanded ? "" : "rotate(180deg)" }} />
          </button>
       </div>
    );

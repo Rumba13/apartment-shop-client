@@ -11,7 +11,7 @@ import { AddApartmentToFavorites } from "../../../features/APARTMENT/add-apartme
 type PropsType = {
    apartmentId: string;
 };
-
+//TODO Legacy, remove
 export const FavoriteApartmentCard = observer(({ apartmentId }: PropsType) => {
    const [apartment, setApartment] = useState<Apartment | null>(null);
 

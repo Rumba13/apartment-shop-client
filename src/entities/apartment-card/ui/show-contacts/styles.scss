@@ -2,12 +2,12 @@
    justify-content: space-around;
    align-items: center;
    gap: 7px;
+   transition: background-color 120ms;
    cursor: pointer;
    background-color: var(--white-blue);
    padding: 0 10px;
    color: white;
    font-family: var(--default-font), sans-serif;
-   transition: background-color 120ms;
 
    &:hover {
       background-color: var(--white-blue-active);

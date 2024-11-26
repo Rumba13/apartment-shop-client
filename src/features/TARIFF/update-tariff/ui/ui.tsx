@@ -30,8 +30,7 @@ export const UpdateTariffForm = observer(({ tariff }: PropsType) => {
    const { t } = useTranslation();
    const navigate = useNavigate();
 
-   useEffect(() => {
-   }, [tariff]);
+   useEffect(() => {}, [tariff]);
 
    function onSuccess(newTariff: Tariff) {
       snackBarStore.showSnackBar("Тариф успешно обновлён!");
@@ -62,7 +61,7 @@ export const UpdateTariffForm = observer(({ tariff }: PropsType) => {
                () => {
                   onSuccess(values);
                },
-               err => onFail(err, setFieldError),
+               err => onFail(err, setFieldError)
             );
          }}>
          {({}) => (
