@@ -2,8 +2,8 @@ import "./styles.scss";
 import { TitleWithIcon } from "../../../../shared/ui/title-with-icon";
 import MarkIcon from "../../../../assets/images/check.svg";
 import React from "react";
-import { useTypedTranslation } from "../../../../app/i18n/use-typed-translation";
 import { AmenityGroup } from "../../../../shared/api/types/amenity-groups-from-backend";
+import { useTranslation } from "react-i18next";
 
 type PropsType = {
    tagListRef: React.RefObject<HTMLDivElement>;
@@ -11,7 +11,7 @@ type PropsType = {
 };
 
 export function ApartmentDetailsAmenities({ tagListRef, tags }: PropsType) {
-   const { t } = useTypedTranslation();
+   const { t } = useTranslation();
 
    return (
       <div className="tags section" ref={tagListRef}>

@@ -3,6 +3,7 @@ import { useTypedTranslation } from "../../../app/i18n/use-typed-translation";
 import { observer } from "mobx-react";
 import clsx from "clsx";
 import { InputNumber } from "../input-number";
+import { useTranslation } from "react-i18next";
 
 type PropsType = {
    className?: string;
@@ -13,24 +14,33 @@ type PropsType = {
 };
 
 export const RangeInput = observer(({ values, onChange, className, min, max }: PropsType) => {
-   const { t } = useTypedTranslation();
+   const { t } = useTranslation();
 
    return (
       <div className={clsx("range-inputs", className)}>
          <div className="range-input _min">
             <span className="range-input__title">{t("From")}</span>
 
-            {/*<InputNumber className="range-input__input"*/}
-            {/*             value={values[0]}*/}
-            {/*             onChange={(value) => onChange([value, values[1]])}*/}
-            {/*             min={min}*/}
-            {/*             max={max}/>*/}
+            <InputNumber className="input-number"
+                         value={values[0]}
+                         onChange={(value) => onChange([value, values[1]])}
+                         min={min}
+                         max={max}/>
 
-            <input type="number" className="range-input__input" value={values[0]} onChange={({ target: { value } }) => onChange([parseInt(value) || min, values[1]])} />
+
+
+            {/*<input type="number" className="range-input__input" value={values[0]} onChange={({ target: { value } }) => onChange([parseInt(value) || min, values[1]])} />*/}
          </div>
          <div className="range-input _max">
             <span className="range-input__title">{t("To")}</span>
-            <input type="number" className="range-input__input" value={values[1]} onChange={({ target: { value } }) => onChange([values[0], parseInt(value) || max])} />
+
+            <InputNumber className="input-number"
+                         value={values[1]}
+                         onChange={(value) => onChange([values[0], value])}
+                         min={min}
+                         max={max}/>
+
+            {/*<input type="number" className="range-input__input" value={values[1]} onChange={({ target: { value } }) => onChange([values[0], parseInt(value) || max])} />*/}
          </div>
       </div>
    );

@@ -1,13 +1,12 @@
 import "./styles.scss";
 import { TitleWithIcon } from "../../../../shared/ui/title-with-icon";
 import GeoIcon from "../../../../assets/images/geo-location-colorfull.svg";
-import { currencyToPostfixMap } from "../../../../shared/lib/currency-to-postfix-map";
 import { OrderMenuButton } from "../open-order-modal/ui";
 import React, { MouseEventHandler } from "react";
-import { useTypedTranslation } from "../../../../app/i18n/use-typed-translation";
 import { Price } from "../../../../shared/api/types/price";
 import { UUID } from "../../../../shared/api/types/uuid";
 import { formatPriceMini } from "../../../../shared/lib/format-price";
+import { useTranslation } from "react-i18next";
 
 type PropsType = {
    title: string;
@@ -18,7 +17,7 @@ type PropsType = {
 };
 
 export function ApartmentDetailsAside({ title, address, price, apartmentId, scrollToMap }: PropsType) {
-   const { t } = useTypedTranslation();
+   const { t } = useTranslation();
 
    return (
       <div className="apartment-details-aside">

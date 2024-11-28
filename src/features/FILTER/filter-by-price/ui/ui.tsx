@@ -1,5 +1,4 @@
 import "./styles.scss";
-import { useTypedTranslation } from "../../../../app/i18n/use-typed-translation";
 import { observer } from "mobx-react";
 import { priceFilterStore } from "../model/price-filter-store";
 import { currencyStore } from "../../../select-currency";
@@ -8,9 +7,10 @@ import RangeImage from "../../../../assets/images/mocked/price-range.png";
 import { Slider } from "../../../../shared/ui/range/ui";
 import { RangeInput } from "../../../../shared/ui/range-input/ui";
 import { currencyToPostfixMap } from "../../../../shared/lib/currency-to-postfix-map";
+import { useTranslation } from "react-i18next";
 
 export const PriceFilter = observer(() => {
-   const { t } = useTypedTranslation();
+   const { t } = useTranslation();
 
    useEffect(() => {}, [currencyStore.currency]);
 

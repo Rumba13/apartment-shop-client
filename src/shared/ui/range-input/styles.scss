@@ -1,34 +1,46 @@
 .range-inputs {
-   display: flex;
-   border: 1px solid var(--white-gray);
-   border-radius: 8px;
-   padding-right: 4px; //To prevent no border in angles(browser bug)
-   height: 100%;
+  display: flex;
+  border: 1px solid var(--white-gray);
+  border-radius: 8px;
+  padding-right: 4px; //To prevent no border in angles(browser bug)
+  height: 100%;
 
-   & .range-input {
-      display: flex;
-      flex-grow: 1;
+  & .input-number {
 
-      &._max {
-         border-left: 1px solid var(--white-gray);
-      }
-   }
+    & .input-number__input {
 
-   & .range-input__title {
-      margin: auto 0;
-      padding-left: 10px;
-      height: 20px;
-      color: var(--slate-gray);
-      font-size: 14px;
-      line-height: 20px;
-      font-family: "CeraPro", Arial, sans-serif;
-   }
+      border: 0 !important;
+    }
 
-   & .range-input__input {
-      padding: 10px 10px;
-      width: 100%;
-      font-size: 14px;
-      line-height: 20px;
-      font-family: "CeraPro", Arial, sans-serif;
-   }
+    & .input-number__increase-button,& .input-number__decrease-button {
+      display: none;
+    }
+  }
+
+  & .range-input {
+    display: flex;
+    flex-grow: 1;
+
+    &._max {
+      border-left: 1px solid var(--white-gray);
+    }
+  }
+
+  & .range-input__title {
+    margin: auto 0;
+    padding-left: 10px;
+    height: 20px;
+    color: var(--slate-gray);
+    font-size: 14px;
+    line-height: 20px;
+    font-family: "CeraPro", Arial, sans-serif;
+  }
+
+  & .range-input__input {
+    padding: 10px 10px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 20px;
+    font-family: "CeraPro", Arial, sans-serif;
+  }
 }

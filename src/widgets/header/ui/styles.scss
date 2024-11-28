@@ -70,6 +70,7 @@
    .header {
       & .header-bottom {
          padding-top: 70px;
+
          & .header-bottom-container {
             & h1.header-bottom__title {
                font-size: 40px;
@@ -88,6 +89,7 @@
    .header {
       & .header-bottom {
          padding-top: 30px;
+
          & .header-bottom-container {
             padding: 0 20px;
 
@@ -99,6 +101,16 @@
                max-width: 100%;
                font-size: 16px;
             }
+         }
+      }
+   }
+}
+
+@media (width <= 400px) {
+   .header {
+      & .header-top {
+         & a.open-favorites-button {
+            margin: 0;
          }
       }
    }

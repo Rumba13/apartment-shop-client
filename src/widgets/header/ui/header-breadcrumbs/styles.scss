@@ -2,7 +2,13 @@
 
 .header-breadcrumbs {
    margin: 17px auto 0 auto;
+
    max-width: $content-width;
    font-weight: 500;
    font-family: var(--default-font), sans-serif;
+}
+@media (width < 1200px) {
+   .header-breadcrumbs {
+      margin: 17px auto 0 5px;
+   }
 }

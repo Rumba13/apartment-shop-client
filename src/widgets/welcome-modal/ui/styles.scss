@@ -1,61 +1,100 @@
+@import "../../../app/styles/hide-scrollbar";
+
 div.welcome-modal {
-   display: flex;
-   flex-direction: column;
-   padding: 15px;
-   width: fit-content;
-   max-width: 95vw;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  width: fit-content;
+  max-width: 95vw;
 
-   & .date-filter {
-      margin-bottom: 5px;
+  & .date-filter {
+    margin-bottom: 5px;
 
-      & .ant-picker-header-super-next-btn,
-      & .ant-picker-header-super-prev-btn {
-         display: none;
-      }
-
-      & .ant-picker-panel-container {
-         box-shadow: none !important;
-      }
-   }
-
-   & .ant-picker-range-separator,
-   & .ant-picker-suffix,
-   & .ant-picker-active-bar {
+    & .ant-picker-header-super-next-btn,
+    & .ant-picker-header-super-prev-btn {
       display: none;
-   }
+    }
 
-   & .ant-picker-input {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-   }
+    & .ant-picker-panel-container {
+      box-shadow: none !important;
+    }
+  }
 
-   & .modal__title {
-      margin-bottom: 10px;
-   }
+  & .ant-picker-range-separator,
+  & .ant-picker-suffix,
+  & .ant-picker-active-bar {
+    display: none;
+  }
 
-   & .next-button,
-   & .cancel-button {
-      width: 120px;
-      max-width: 120px;
-   }
+  & .ant-picker-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
 
-   & .cancel-button {
-   }
+  & .modal__title {
+    margin-bottom: 10px;
+  }
 
-   & .modal-footer {
-      display: flex;
-      column-gap: 12px;
-      justify-content: center;
-   }
+  & .next-button,
+  & .cancel-button {
+    width: 120px;
+    max-width: 120px;
+  }
 
-   & .select-dates {
-      position: static !important;
+  & .cancel-button {
+  }
+
+  & .modal-footer {
+    display: flex;
+    column-gap: 12px;
+    justify-content: center;
+  }
+
+  & .select-dates {
+    position: static !important;
+    width: fit-content;
+    min-width: 0 !important;
+
+    & .ant-picker-range-wrapper {
       width: fit-content;
-      min-width: 0 !important;
+    }
+  }
+}
 
-      & .ant-picker-range-wrapper {
-         width: fit-content;
+@media (width < 680px) {
+  div.welcome-modal {
+    width: 100vw;
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow-y: auto;
+    @include hide-scrollbar;
+
+    & .date-filter {
+      height: auto;
+
+      & .ant-picker-panels {
+        flex-direction: column;
+
+        & .ant-picker-date-panel {
+          width: 100%;
+        }
       }
-   }
+    }
+  }
+}
+
+@media (width < 400px) {
+  div.welcome-modal {
+
+    & .date-filter {
+      margin: 0;
+      padding: 0;
+      height: auto;
+
+      & .ant-picker-body {
+        padding: 0;
+      }
+    }
+  }
 }

@@ -1,12 +1,6 @@
 import "./styles.scss";
-import RoomsIcon from "../../../assets/images/sleeping-man.svg";
-import BedIcon from "../../../assets/images/bed.svg";
-import GuestsIcon from "../../../assets/images/people.svg";
-import ApartmentAreaIcon from "../../../assets/images/apartment-area.svg";
 import React, { useEffect, useRef, useState } from "react";
-import { useTypedTranslation } from "../../../app/i18n/use-typed-translation";
 import { observer } from "mobx-react";
-import { IconWithTwoTitles } from "../../../shared/ui/icon-with-two-titles";
 import { useTranslation } from "react-i18next";
 import { UUID } from "../../../shared/api/types/uuid";
 import { apartmentDetailsStore } from "../model/apartment-details-store";
@@ -26,10 +20,15 @@ import { Tabs } from "./tabs";
 import { ApartmentDetailsAside } from "./apartment-details-aside";
 import { ApartmentDetailsAmenities } from "./apartment-details-amenities";
 import { ApartmentDetailsDescription } from "./apartment-details-description";
+import { useScreenWidth } from "../../../shared/ui/use-screen-width";
+import clsx from "clsx";
+import { ApartmentMainProperties } from "./apartment-main-properties";
 
 type PropsType = {
    apartmentId: UUID;
 };
+
+const apartmentDetailsAsideBreakpointPx = 900;
 
 export const ApartmentDetails = observer(({ apartmentId }: PropsType) => {
    const navigate = useNavigate();
@@ -37,6 +36,7 @@ export const ApartmentDetails = observer(({ apartmentId }: PropsType) => {
    const mapRef = useRef<HTMLDivElement>(null);
    const descriptionRef = useRef<HTMLDivElement>(null);
    const tagsRef = useRef<HTMLDivElement>(null);
+   const screenWidth = useScreenWidth();
 
    const tabs = [
       {
@@ -57,7 +57,8 @@ export const ApartmentDetails = observer(({ apartmentId }: PropsType) => {
       apartmentDetailsStore.loadApartmentDetails(apartmentId, currencyStore.currency);
    }, [currencyStore.currency]);
 
-   useEffect(() => {}, [userStore.user]);
+   useEffect(() => {
+   }, [userStore.user]);
 
    if (apartmentDetailsStore.isError) {
       return <div className="apartment-details">{t("Some error has occurred")}</div>;
@@ -73,7 +74,24 @@ export const ApartmentDetails = observer(({ apartmentId }: PropsType) => {
       return <div className="apartment-details"></div>;
    }
 
-   const { price, description, photos, title, guestQuantity, roomQuantity, area, amenityGroups, address, sleepPlaces } = apartmentDetailsStore.apartment;
+
+   const {
+      price,
+      description,
+      photos,
+      title,
+      guestQuantity,
+      roomQuantity,
+      area,
+      amenityGroups,
+      address,
+      sleepPlaces,
+   } = apartmentDetailsStore.apartment;
+
+   const ApartmentDetailsAsideComponent = <ApartmentDetailsAside scrollToMap={() => mapRef.current?.scrollIntoView()}
+                                                                 apartmentId={apartmentId}
+                                                                 title={title} address={address} price={price} />;
+
 
    return (
       <div className="apartment-details">
@@ -83,23 +101,23 @@ export const ApartmentDetails = observer(({ apartmentId }: PropsType) => {
             {userStore.user?.isSuperuser && (
                <>
                   <DeleteApartment apartmentId={apartmentId} />
-                  <Button icon={CalendarIcon} onClick={() => navigate(`/calendar/${apartmentId}`)} title={t("Calendar")} />
-                  <Button icon={UpdateIcon} onClick={() => navigate(`/update-apartment/${apartmentId}`)} title={"Обновить"} />
+                  <Button icon={CalendarIcon} onClick={() => navigate(`/calendar/${apartmentId}`)}
+                          title={t("Calendar")} />
+                  <Button icon={UpdateIcon} onClick={() => navigate(`/update-apartment/${apartmentId}`)}
+                          title={"Обновить"} />
                </>
             )}
             <AddApartmentToFavorites apartmentId={apartmentId} />
          </div>
 
-         <div className="apartment-details-mid">
+         <div className={clsx("apartment-details-mid", screenWidth <= apartmentDetailsAsideBreakpointPx && "no-aside")}>
             <div className="apartment-details-wrapper">
                <ApartmentDetailsSlider images={photos} />
+               {screenWidth <= apartmentDetailsAsideBreakpointPx && ApartmentDetailsAsideComponent}
+
                <Tabs tabs={tabs} />
-               <div className="apartment-properties">
-                  <IconWithTwoTitles icon={RoomsIcon} title={roomQuantity} subTitle={t("Room", { count: roomQuantity })} />
-                  <IconWithTwoTitles icon={BedIcon} title={sleepPlaces} subTitle={t("Sleep places")} />
-                  <IconWithTwoTitles icon={GuestsIcon} title={guestQuantity} subTitle={t("Guest")} />
-                  <IconWithTwoTitles icon={ApartmentAreaIcon} title={area + " м²"} subTitle={t("Area")} />
-               </div>
+               <ApartmentMainProperties area={area} guestQuantity={guestQuantity} roomQuantity={roomQuantity}
+                                        sleepPlaces={sleepPlaces} />
                <div className="map section" ref={mapRef}>
                   <h3 className="title">{t("On Map")}</h3>
                   <Map address={address} />
@@ -107,7 +125,7 @@ export const ApartmentDetails = observer(({ apartmentId }: PropsType) => {
                <ApartmentDetailsDescription descriptionRef={descriptionRef} description={description} />
                <ApartmentDetailsAmenities tags={amenityGroups} tagListRef={tagsRef} />
             </div>
-            <ApartmentDetailsAside scrollToMap={() => mapRef.current?.scrollIntoView()} apartmentId={apartmentId} title={title} address={address} price={price} />
+            {screenWidth >= apartmentDetailsAsideBreakpointPx && ApartmentDetailsAsideComponent}
          </div>
       </div>
    );

@@ -1,0 +1,17 @@
+ .apartment-properties {
+  display: flex;
+  border-bottom: 1px solid #e5e7e9;
+  padding: 30px 0;
+
+   &.grid {
+    display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+     row-gap: 10px;
+   }
+
+  & .icon-with-two-titles {
+    &:not(:last-child) {
+      margin-right: 80px;
+    }
+  }
+}
