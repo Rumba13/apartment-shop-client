@@ -3,12 +3,12 @@ import { observer } from "mobx-react";
 import { CheckBox } from "../../../shared/ui/check-box/ui";
 import { useEffect } from "react";
 import { tagsFilterStore } from "../model/tags-filter-store";
-import { useTypedTranslation } from "../../../app/i18n/use-typed-translation";
-import { Skeleton } from "antd";
 import { TagSkeleton } from "./tag-skeleton";
+import { useTranslation } from "react-i18next";
+import { favoritesStore } from "../../APARTMENT/add-apartment-to-favorites/model/favorites-store";
 
 export const TagsList = observer(() => {
-   const { t } = useTypedTranslation();
+   const { t } = useTranslation();
 
    useEffect(() => {
       tagsFilterStore.loadTags();
@@ -18,7 +18,6 @@ export const TagsList = observer(() => {
       return (
          <div className="tags">
             <span className="filters__title tags__title">{t("Amenities")}</span>
-
             <TagSkeleton textSkeletonWidth="80%" />
             <TagSkeleton textSkeletonWidth="95%" />
             <TagSkeleton textSkeletonWidth="10%" />
@@ -35,9 +34,10 @@ export const TagsList = observer(() => {
       <div className="tags">
          <span className="filters__title tags__title">{t("Amenities")}</span>
 
-         {tagsFilterStore.tags.map(tag => (
-            <CheckBox value={tagsFilterStore.selectedTags[tag]} name={tag} key={tag} onValueChange={() => tagsFilterStore.toggleIsTagSelected(tag)} />
-         ))}
+            {tagsFilterStore.tags.map(tag => (
+               <CheckBox value={tagsFilterStore.selectedTags[tag]} name={tag} key={tag}
+                         onValueChange={() => tagsFilterStore.toggleIsTagSelected(tag)} />
+            ))}
       </div>
    );
 });
