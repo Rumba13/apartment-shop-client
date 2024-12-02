@@ -25,6 +25,7 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import { t } from "i18next";
 import { orderIsSubmittedModalStore } from "../../../../entities/apartment-details/ui/order-is-submitted-modal/order-is-submitted-modal-store";
 import { OrderApartmentFormSkeleton } from "./skeleton";
+import { mixed, number, object, string } from "yup";
 
 type PropsType = {
    apartmentId: UUID;
@@ -52,6 +53,20 @@ const initialValues: ValuesType = {
    firstName: "",
    comment: "",
 };
+
+const schema = object().shape({
+   babyCount: number(),
+   kidCount: number(),
+   teenCount: number(),
+   adultCount: number(),
+   petCount: number(),
+   checkInDate: string(),
+   checkOutDate: string(),
+   lastName: string().required(t("Required Field")),
+   phone: string().required(t("Required Field")),
+   firstName: string().required(t("Required Field")),
+   comment: string(),
+} as { [key in keyof ValuesType]: any });
 
 const orderApartment = async (apartmentId: UUID, values: ValuesType, formikHelpers: FormikHelpers<ValuesType>, navigate: NavigateFunction) => {
    if (!values.checkInDate || !values.checkOutDate) return;
@@ -102,7 +117,7 @@ export const CreateOrderForm = observer(({ apartmentId }: PropsType) => {
       );
 
    return (
-      <Formik initialValues={initialValues} onSubmit={(values, formikHelpers) => orderApartment(apartmentId, values, formikHelpers, navigate)}>
+      <Formik initialValues={initialValues} validationSchema={schema} onSubmit={(values, formikHelpers) => orderApartment(apartmentId, values, formikHelpers, navigate)}>
          {({ values }) => {
             useEffect(() => {
                updateOrderPrice(apartmentId, values, [values.checkInDate, values.checkOutDate]);
