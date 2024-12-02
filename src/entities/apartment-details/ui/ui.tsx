@@ -92,7 +92,6 @@ export const ApartmentDetails = observer(({ apartmentId }: PropsType) => {
                                                                  apartmentId={apartmentId}
                                                                  title={title} address={address} price={price} />;
 
-
    return (
       <div className="apartment-details">
          <OrderIsSubmittedModal />
@@ -107,11 +106,11 @@ export const ApartmentDetails = observer(({ apartmentId }: PropsType) => {
                           title={"Обновить"} />
                </>
             )}
-            <AddApartmentToFavorites apartmentId={apartmentId} />
          </div>
 
          <div className={clsx("apartment-details-mid", screenWidth <= apartmentDetailsAsideBreakpointPx && "no-aside")}>
             <div className="apartment-details-wrapper">
+               <AddApartmentToFavorites apartmentId={apartmentId} variant="mini" />
                <ApartmentDetailsSlider images={photos} />
                {screenWidth <= apartmentDetailsAsideBreakpointPx && ApartmentDetailsAsideComponent}
 

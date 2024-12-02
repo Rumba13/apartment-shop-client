@@ -34,9 +34,7 @@
       font-family: "CeraPro", Arial, sans-serif;
     }
 
-    & .add-to-wish-list-button {
-      margin-right: 5px;
-    }
+
   }
 
   & .apartment-details-mid {
@@ -84,8 +82,19 @@
     }
 
     & .apartment-details-wrapper {
+      position: relative;
       display: flex;
       flex-direction: column;
+
+      & .add-to-wish-list-button {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 100;
+        width: 28px;
+        height: 28px;
+        box-shadow: 2px 2px 14px rgba(0,0,0,0.3);
+      }
 
       & .house-description {
         border-bottom: 1px solid #e5e7e9;
