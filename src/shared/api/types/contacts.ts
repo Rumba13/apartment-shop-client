@@ -1,4 +1,4 @@
-export type Contact = {
+export type Contacts = {
    name: string | null;
    phone: string | null;
 };

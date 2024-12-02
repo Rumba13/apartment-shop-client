@@ -19,8 +19,8 @@ export default [
       },
    },
    {
-      rules:{
+      rules: {
          "react/react-in-jsx-scope": "off",
-      }
-   }
+      },
+   },
 ];

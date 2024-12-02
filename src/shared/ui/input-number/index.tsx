@@ -51,14 +51,10 @@ export const InputNumber = ({ min, value, onChange, max, name, id, className, di
                setValue(parseNumber(event.target.value) || min);
             }}
          />
-         <button disabled={disabled} tabIndex={-1}
-                 className={clsx("input-number__increase-button", (max === value || disabled) && "disabled")}
-                 type="button" onClick={(event: React.ChangeEvent<any>) => setValue(value + 1)}>
+         <button disabled={disabled} tabIndex={-1} className={clsx("input-number__increase-button", (max === value || disabled) && "disabled")} type="button" onClick={(event: React.ChangeEvent<any>) => setValue(value + 1)}>
             <SvgIcon icon={Arrow} />
          </button>
-         <button disabled={disabled} tabIndex={-1}
-                 className={clsx("input-number__decrease-button", (min === value || disabled) && "disabled")}
-                 type="button" onClick={(event: React.ChangeEvent<any>) => setValue(value - 1)}>
+         <button disabled={disabled} tabIndex={-1} className={clsx("input-number__decrease-button", (min === value || disabled) && "disabled")} type="button" onClick={(event: React.ChangeEvent<any>) => setValue(value - 1)}>
             <SvgIcon icon={Arrow} />
          </button>
       </div>

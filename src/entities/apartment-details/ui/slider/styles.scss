@@ -1,41 +1,39 @@
 .apartment-details-slider {
-  border-radius: 15px;
+   border-radius: 15px;
 
-  & .swiper {
-    border-radius: inherit;
-    aspect-ratio: 580 / 387;
+   & .swiper {
+      border-radius: inherit;
+      aspect-ratio: 580 / 387;
 
-    & .swiper-slide {
-      cursor: pointer;
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    &.slider {
-      margin-left: 20px;
-
-      & img {
-        object-fit: contain;
+      & .swiper-slide {
+         cursor: pointer;
+         border-radius: 16px;
+         overflow: hidden;
       }
-    }
-  }
+
+      &.slider {
+         margin-left: 20px;
+
+         & img {
+            object-fit: contain;
+         }
+      }
+   }
 }
 
 @media (width < 600px) {
+   .apartment-details-slider {
+      display: flex;
+      flex-direction: column;
 
-  .apartment-details-slider {
-    display: flex;
-    flex-direction: column;
-
-
-    & .swiper.slider {
-      margin: 0;
-    }
-    & .thumbs {
-      display: none;
-      height: 60px;
-      width: 100%;
-      margin: 0;
-    }
-  }
+      & .swiper.slider {
+         margin: 0;
+      }
+      & .thumbs {
+         display: none;
+         margin: 0;
+         width: 100%;
+         height: 60px;
+      }
+   }
 }

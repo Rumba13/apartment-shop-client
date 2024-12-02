@@ -57,8 +57,7 @@ export const ApartmentDetails = observer(({ apartmentId }: PropsType) => {
       apartmentDetailsStore.loadApartmentDetails(apartmentId, currencyStore.currency);
    }, [currencyStore.currency]);
 
-   useEffect(() => {
-   }, [userStore.user]);
+   useEffect(() => {}, [userStore.user]);
 
    if (apartmentDetailsStore.isError) {
       return <div className="apartment-details">{t("Some error has occurred")}</div>;
@@ -74,23 +73,11 @@ export const ApartmentDetails = observer(({ apartmentId }: PropsType) => {
       return <div className="apartment-details"></div>;
    }
 
+   const { price, description, photos, title, guestQuantity, roomQuantity, area, amenityGroups, address, sleepPlaces, landlordPhoneNumber, landlordFirstName } = apartmentDetailsStore.apartment;
 
-   const {
-      price,
-      description,
-      photos,
-      title,
-      guestQuantity,
-      roomQuantity,
-      area,
-      amenityGroups,
-      address,
-      sleepPlaces,
-   } = apartmentDetailsStore.apartment;
-
-   const ApartmentDetailsAsideComponent = <ApartmentDetailsAside scrollToMap={() => mapRef.current?.scrollIntoView()}
-                                                                 apartmentId={apartmentId}
-                                                                 title={title} address={address} price={price} />;
+   const ApartmentDetailsAsideComponent = (
+      <ApartmentDetailsAside contact={{ phone: landlordPhoneNumber, name: landlordFirstName }} scrollToMap={() => mapRef.current?.scrollIntoView()} apartmentId={apartmentId} title={title} address={address} price={price} />
+   );
 
    return (
       <div className="apartment-details">
@@ -100,10 +87,8 @@ export const ApartmentDetails = observer(({ apartmentId }: PropsType) => {
             {userStore.user?.isSuperuser && (
                <>
                   <DeleteApartment apartmentId={apartmentId} />
-                  <Button icon={CalendarIcon} onClick={() => navigate(`/calendar/${apartmentId}`)}
-                          title={t("Calendar")} />
-                  <Button icon={UpdateIcon} onClick={() => navigate(`/update-apartment/${apartmentId}`)}
-                          title={"Обновить"} />
+                  <Button icon={CalendarIcon} onClick={() => navigate(`/calendar/${apartmentId}`)} title={t("Calendar")} />
+                  <Button icon={UpdateIcon} onClick={() => navigate(`/update-apartment/${apartmentId}`)} title={"Обновить"} />
                </>
             )}
          </div>
@@ -115,8 +100,7 @@ export const ApartmentDetails = observer(({ apartmentId }: PropsType) => {
                {screenWidth <= apartmentDetailsAsideBreakpointPx && ApartmentDetailsAsideComponent}
 
                <Tabs tabs={tabs} />
-               <ApartmentMainProperties area={area} guestQuantity={guestQuantity} roomQuantity={roomQuantity}
-                                        sleepPlaces={sleepPlaces} />
+               <ApartmentMainProperties area={area} guestQuantity={guestQuantity} roomQuantity={roomQuantity} sleepPlaces={sleepPlaces} />
                <div className="map section" ref={mapRef}>
                   <h3 className="title">{t("On Map")}</h3>
                   <Map address={address} />

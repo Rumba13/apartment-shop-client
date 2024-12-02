@@ -1,112 +1,116 @@
 .apartment-details-aside {
-  position: sticky;
-  top: 15px;
-  display: inline-block;
-  margin-left: 25px;
-  box-shadow: 0 20px 40px rgba(44, 57, 78, 0.08);
-  border: 1px solid var(--gains-boro);
-  border-radius: 15px;
-  padding: 20px 30px;
-  height: min-content;
+   display: inline-block;
+   position: sticky;
+   top: 15px;
+   margin-left: 25px;
+   box-shadow: 0 20px 40px rgba(44, 57, 78, 0.08);
+   border: 1px solid var(--gains-boro);
+   border-radius: 15px;
+   padding: 20px 30px;
+   height: min-content;
 
-  & .apartment-details-aside__title {
-    margin-bottom: 10px;
-    color: var(--dark-blue);
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 26px;
-    font-family: "CeraPro", Arial, sans-serif;
-  }
+   & .contact {
+      margin-top: 15px;
+   }
 
-  & .apartment-details-aside__on-map-link {
-    display: inline;
-    cursor: pointer;
-    color: var(--azure);
-    text-decoration: underline;
-    white-space: nowrap;
-
-    & .svg-icon {
-      width: 16px;
-      height: 16px;
-    }
-  }
-
-  & .apartment-details-aside__address {
-    display: inline;
-    margin-right: 5px;
-    color: var(--sheet-metal);
-    font-size: 14px;
-    font-family: "CeraPro", Arial, sans-serif;
-  }
-
-  & .apartment-details-aside__metro-station {
-    margin-top: 5px;
-
-    & .svg-icon {
-      width: 21px;
-      height: 12px;
-    }
-
-    & .title-with-icon__title {
-      font-size: 14px;
-    }
-  }
-
-  & .apartment-details-aside-prices {
-    margin-top: 15px;
-    border-radius: 10px;
-    background-color: var(--light-ghost-white);
-    padding: 10px 20px;
-
-    & .price-option {
-      display: flex;
-      align-items: end;
-      color: var(--azure-dragon);
-      font-size: 16px;
+   & .apartment-details-aside__title {
+      margin-bottom: 10px;
+      color: var(--dark-blue);
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 26px;
       font-family: "CeraPro", Arial, sans-serif;
+   }
+
+   & .apartment-details-aside__on-map-link {
+      display: inline;
+      cursor: pointer;
+      color: var(--azure);
+      text-decoration: underline;
       white-space: nowrap;
 
-      & .rating {
-        display: flex;
-        align-self: end;
-        margin-bottom: 3px;
-        margin-left: auto;
-        padding-left: 10px;
-
-        & .svg-icon {
-          width: 12px;
-          height: 12px;
-        }
+      & .svg-icon {
+         width: 16px;
+         height: 16px;
       }
+   }
 
-      & b {
-        font-weight: 700;
-        font-size: 24px;
-        font-family: "CeraPro", Arial, sans-serif;
-      }
-    }
-  }
-
-  & .price-chips {
-    margin-top: 20px;
-
-    & .price-chip {
-      border: 1px solid var(--bubbles-green);
-      border-radius: 6px;
-      background-color: var(--bubbles-green-weak);
-      padding: 3px 9px;
-      width: min-content;
-      color: var(--green);
-      font-weight: 500;
-      font-size: 12px;
+   & .apartment-details-aside__address {
+      display: inline;
+      margin-right: 5px;
+      color: var(--sheet-metal);
+      font-size: 14px;
       font-family: "CeraPro", Arial, sans-serif;
-      text-align: center;
+   }
 
-      & .price-chip__price {
-        display: block;
-        margin-top: 3px;
-        font-size: 14px;
+   & .apartment-details-aside__metro-station {
+      margin-top: 5px;
+
+      & .svg-icon {
+         width: 21px;
+         height: 12px;
       }
-    }
-  }
+
+      & .title-with-icon__title {
+         font-size: 14px;
+      }
+   }
+
+   & .apartment-details-aside-prices {
+      margin-top: 15px;
+      border-radius: 10px;
+      background-color: var(--light-ghost-white);
+      padding: 10px 20px;
+
+      & .price-option {
+         display: flex;
+         align-items: end;
+         color: var(--azure-dragon);
+         font-size: 16px;
+         font-family: "CeraPro", Arial, sans-serif;
+         white-space: nowrap;
+
+         & .rating {
+            display: flex;
+            align-self: end;
+            margin-bottom: 3px;
+            margin-left: auto;
+            padding-left: 10px;
+
+            & .svg-icon {
+               width: 12px;
+               height: 12px;
+            }
+         }
+
+         & b {
+            font-weight: 700;
+            font-size: 24px;
+            font-family: "CeraPro", Arial, sans-serif;
+         }
+      }
+   }
+
+   & .price-chips {
+      margin-top: 20px;
+
+      & .price-chip {
+         border: 1px solid var(--bubbles-green);
+         border-radius: 6px;
+         background-color: var(--bubbles-green-weak);
+         padding: 3px 9px;
+         width: min-content;
+         color: var(--green);
+         font-weight: 500;
+         font-size: 12px;
+         font-family: "CeraPro", Arial, sans-serif;
+         text-align: center;
+
+         & .price-chip__price {
+            display: block;
+            margin-top: 3px;
+            font-size: 14px;
+         }
+      }
+   }
 }

@@ -1,177 +1,182 @@
 .apartment-details {
-  display: flex;
-  flex-direction: column;
+   display: flex;
+   flex-direction: column;
 
-  & .tag {
-    & .tag__title {
-      margin-left: 8px;
-    }
-
-    & .tag__icon {
-    }
-  }
-
-  & .apartment-details-actions {
-    display: flex;
-    justify-content: end;
-    align-items: end;
-    width: 100%;
-
-    &:first-child {
-      margin-left: auto;
-    }
-
-    & .max-width-wrapper {
-      margin-right: auto;
-      max-width: 882px;
-    }
-
-    & .top__title {
-      display: inline;
-      color: var(--dark-blue);
-      font-weight: 600;
-      font-size: 30px;
-      font-family: "CeraPro", Arial, sans-serif;
-    }
-
-
-  }
-
-  & .apartment-details-mid {
-    display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: 700fr 353fr;
-    padding-top: 20px;
-
-    &.no-aside {
-      grid-template-columns: 1fr;
-
-      & .apartment-details-aside {
-        border: 0;
-        margin-left: 0;
-        padding: 20px;
+   & .tag {
+      & .tag__title {
+         margin-left: 8px;
       }
-      & .apartment-tabs {
+
+      & .tag__icon {
       }
-    }
+   }
 
-    & .title {
-      margin-bottom: 5px;
-      color: var(--dark-blue);
-      font-weight: 700;
-      font-size: 24px;
-      font-family: "CeraPro", sans-serif;
-    }
-
-    & .tags-list {
-      display: grid;
-      grid-template-columns: repeat(3, auto);
-      grid-auto-columns: 1fr;
-
-      & .tags-list__item {
-        margin: 0 0 11px;
-        font-size: 16px;
-        font-family: "CeraPro", sans-serif;
-      }
-    }
-
-    & .section {
-      border-bottom: 1px solid #e5e7e9;
-      padding-top: 30px;
-      padding-bottom: 30px;
-    }
-
-    & .apartment-details-wrapper {
-      position: relative;
+   & .apartment-details-actions {
       display: flex;
-      flex-direction: column;
+      justify-content: end;
+      align-items: end;
+      width: 100%;
 
-      & .add-to-wish-list-button {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        z-index: 100;
-        width: 28px;
-        height: 28px;
-        box-shadow: 2px 2px 14px rgba(0,0,0,0.3);
+      &:first-child {
+         margin-left: auto;
       }
 
-      & .house-description {
-        border-bottom: 1px solid #e5e7e9;
-        padding-bottom: 30px;
+      & .max-width-wrapper {
+         margin-right: auto;
+         max-width: 882px;
+      }
 
-        & .house-description__title {
-          margin-top: 30px;
-          margin-bottom: 20px;
-          color: var(--dark-blue);
-          font-weight: 700;
-          font-size: 24px;
-          font-family: "CeraPro", sans-serif;
-        }
+      & .top__title {
+         display: inline;
+         color: var(--dark-blue);
+         font-weight: 600;
+         font-size: 30px;
+         font-family: "CeraPro", Arial, sans-serif;
+      }
+   }
 
-        & .house-description-list {
-          display: grid;
-          grid-template-columns: repeat(3, auto);
-          grid-auto-columns: 1fr;
+   & .apartment-details-mid {
+      display: grid;
+      grid-template-rows: auto;
+      grid-template-columns: 700fr 353fr;
+      padding-top: 20px;
 
-          & .house-description__item {
+      &.no-aside {
+         grid-template-columns: 1fr;
+
+         & .apartment-details-aside {
+            margin-left: 0;
+            border: 0;
+            padding: 20px;
+         }
+         & .apartment-tabs {
+         }
+      }
+
+      & .title {
+         margin-bottom: 5px;
+         color: var(--dark-blue);
+         font-weight: 700;
+         font-size: 24px;
+         font-family: "CeraPro", sans-serif;
+      }
+
+      & .tags-list {
+         display: grid;
+         grid-template-columns: repeat(3, auto);
+         grid-auto-columns: 1fr;
+
+         & .tags-list__item {
             margin: 0 0 11px;
             font-size: 16px;
             font-family: "CeraPro", sans-serif;
-          }
-        }
+         }
       }
 
-      & .rules-of-residence {
-        & .title {
-          margin-bottom: 30px;
-        }
+      & .section {
+         border-bottom: 1px solid #e5e7e9;
+         padding-top: 30px;
+         padding-bottom: 30px;
       }
 
-      & .methods-of-payments {
-        & .title {
-          margin-bottom: 30px;
-        }
+      & .apartment-details-wrapper {
+         display: flex;
+         position: relative;
+         flex-direction: column;
 
-        & .tags-list {
-          grid-template-columns: repeat(2, auto);
+         & .add-to-wish-list-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 100;
+            box-shadow: 2px 2px 14px rgba(0, 0, 0, 0.3);
+            width: 28px;
+            height: 28px;
+         }
 
-          & .tags-list__item {
-            margin: 0 0 22px;
-          }
-        }
+         & .house-description {
+            border-bottom: 1px solid #e5e7e9;
+            padding-bottom: 30px;
+
+            & .house-description__title {
+               margin-top: 30px;
+               margin-bottom: 20px;
+               color: var(--dark-blue);
+               font-weight: 700;
+               font-size: 24px;
+               font-family: "CeraPro", sans-serif;
+            }
+
+            & .house-description-list {
+               display: grid;
+               grid-template-columns: repeat(3, auto);
+               grid-auto-columns: 1fr;
+
+               & .house-description__item {
+                  margin: 0 0 11px;
+                  font-size: 16px;
+                  font-family: "CeraPro", sans-serif;
+               }
+            }
+         }
+
+         & .rules-of-residence {
+            & .title {
+               margin-bottom: 30px;
+            }
+         }
+
+         & .methods-of-payments {
+            & .title {
+               margin-bottom: 30px;
+            }
+
+            & .tags-list {
+               grid-template-columns: repeat(2, auto);
+
+               & .tags-list__item {
+                  margin: 0 0 22px;
+               }
+            }
+         }
+
+         & .near-the-house {
+            & .show-more {
+               color: var(--azure);
+               font-family: "CeraPro", Arial, sans-serif;
+
+               &:hover {
+                  font-size: 16px;
+                  text-decoration: underline;
+               }
+            }
+
+            & .near-the-house-list {
+               & li {
+                  color: var(--dark-blue);
+                  font-size: 16px;
+                  font-family: "CeraPro", Arial, sans-serif;
+               }
+            }
+         }
       }
-
-      & .near-the-house {
-        & .show-more {
-          color: var(--azure);
-          font-family: "CeraPro", Arial, sans-serif;
-
-          &:hover {
-            font-size: 16px;
-            text-decoration: underline;
-          }
-        }
-
-        & .near-the-house-list {
-          & li {
-            color: var(--dark-blue);
-            font-size: 16px;
-            font-family: "CeraPro", Arial, sans-serif;
-          }
-        }
-      }
-    }
-  }
+   }
 }
 
 @media (width <= 1000px) {
-  .apartment-details {
-    padding: 0 10px;
+   .apartment-details {
+      padding: 0 10px;
 
-    & .apartment-details-mid {
-      padding-top: 10px;
-    }
-  }
+      & .apartment-details-aside {
+         position: static;
+         & .contact {
+            margin: 15px auto 0 auto;
+            max-width: fit-content;
+         }
+      }
 
+      & .apartment-details-mid {
+         padding-top: 10px;
+      }
+   }
 }

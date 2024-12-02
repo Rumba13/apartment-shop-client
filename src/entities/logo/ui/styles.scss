@@ -1,7 +1,7 @@
 .logo {
    margin-bottom: 3px;
-   max-height: 100%;
    margin-left: 6px;
+   max-height: 100%;
    font-weight: 500;
    font-size: 20px;
    font-family: "CeraPro", Arial, sans-serif;
@@ -20,15 +20,11 @@
 
 @media (width <= 1000px) {
    .logo {
-
-
    }
 }
 
-
 @media (width <= 400px) {
    .logo {
-
       & .logo__image {
          max-width: 130px;
       }

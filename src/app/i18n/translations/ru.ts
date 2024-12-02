@@ -166,6 +166,7 @@ export const russianTranslation = {
    "Pet Price": "Цена за Питомца",
    "Are Pets Allowed?": "Разрешены ли питомцы?",
    "Select Amenities": "Выберите Удобства",
+   "Show": "Показать"
 };
 
 export type Translation = typeof russianTranslation;

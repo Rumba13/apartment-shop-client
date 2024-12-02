@@ -35,7 +35,13 @@ export const ApartmentCard = observer(({ apartment: { title, guestQuantity, room
             <TitleWithIcon className="apartment-details__max-quests-quantity" icon={UsersIcon}>
                {t("guest", { count: guestQuantity })}
             </TitleWithIcon>
-            <a className="apartment-details__address" href={"./"}>
+            <a
+               className="apartment-details__address"
+               onClick={e => {
+                  mapModalStore.showModal(address);
+                  e.preventDefault();
+                  return false;
+               }}>
                {address}
             </a>
             <TitleWithIcon className="apartment-details__on-map-link" icon={GeoIcon} onClick={() => mapModalStore.showModal(address)}>

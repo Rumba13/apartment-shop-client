@@ -7,6 +7,8 @@ import { Price } from "../../../../shared/api/types/price";
 import { UUID } from "../../../../shared/api/types/uuid";
 import { formatPriceMini } from "../../../../shared/lib/format-price";
 import { useTranslation } from "react-i18next";
+import { Contacts } from "../../../../shared/api/types/contacts";
+import { Contact } from "../../../contact";
 
 type PropsType = {
    title: string;
@@ -14,9 +16,10 @@ type PropsType = {
    price: Price;
    apartmentId: UUID;
    scrollToMap: MouseEventHandler<HTMLElement>;
+   contact: Contacts;
 };
 
-export function ApartmentDetailsAside({ title, address, price, apartmentId, scrollToMap }: PropsType) {
+export function ApartmentDetailsAside({ title, address, price, apartmentId, scrollToMap, contact }: PropsType) {
    const { t } = useTranslation();
 
    return (
@@ -40,6 +43,8 @@ export function ApartmentDetailsAside({ title, address, price, apartmentId, scro
                <span className="price-chip__price">{formatPriceMini(price)}.</span>
             </div>
          </div>
+
+         <Contact contact={contact} />
 
          <OrderMenuButton apartmentId={apartmentId} />
       </div>

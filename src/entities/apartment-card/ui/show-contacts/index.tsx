@@ -2,14 +2,14 @@ import "./styles.scss";
 import React, { useState } from "react";
 import clsx from "clsx";
 import { observer } from "mobx-react";
-import { Contact } from "../../../../shared/api/types/contact";
+import { Contacts } from "../../../../shared/api/types/contacts";
 import ViberIcon from "../../../../assets/images/viber.svg";
 import TelegramIcon from "../../../../assets/images/telegram.svg";
 import { ContactIcon } from "./contact-icon";
 import { useTranslation } from "react-i18next";
 
 type Props = {
-   contact: Contact;
+   contact: Contacts;
 };
 
 export const ShowContactsButton = observer(({ contact }: Props) => {

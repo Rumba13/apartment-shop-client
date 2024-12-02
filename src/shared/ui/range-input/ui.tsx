@@ -21,24 +21,14 @@ export const RangeInput = observer(({ values, onChange, className, min, max }: P
          <div className="range-input _min">
             <span className="range-input__title">{t("From")}</span>
 
-            <InputNumber className="input-number"
-                         value={values[0]}
-                         onChange={(value) => onChange([value, values[1]])}
-                         min={min}
-                         max={max}/>
-
-
+            <InputNumber className="input-number" value={values[0]} onChange={value => onChange([value, values[1]])} min={min} max={max} />
 
             {/*<input type="number" className="range-input__input" value={values[0]} onChange={({ target: { value } }) => onChange([parseInt(value) || min, values[1]])} />*/}
          </div>
          <div className="range-input _max">
             <span className="range-input__title">{t("To")}</span>
 
-            <InputNumber className="input-number"
-                         value={values[1]}
-                         onChange={(value) => onChange([values[0], value])}
-                         min={min}
-                         max={max}/>
+            <InputNumber className="input-number" value={values[1]} onChange={value => onChange([values[0], value])} min={min} max={max} />
 
             {/*<input type="number" className="range-input__input" value={values[1]} onChange={({ target: { value } }) => onChange([values[0], parseInt(value) || max])} />*/}
          </div>

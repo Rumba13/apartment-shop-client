@@ -36,7 +36,7 @@ export class FavoriteListStore extends LoadingStore {
             apartmentPromises.push(
                apartmentService.getApartmentById(id, currency).then(apartment => {
                   apartments.push(apartment);
-               }),
+               })
             );
          });
 
@@ -50,11 +50,10 @@ export class FavoriteListStore extends LoadingStore {
       }
    }
 
-   public removeNotFavoriteApartments(favoriteApartmentIds:UUID[])
-   {
-      if(!this.favoriteApartments) return;
+   public removeNotFavoriteApartments(favoriteApartmentIds: UUID[]) {
+      if (!this.favoriteApartments) return;
       const newFavoriteApartments = this.favoriteApartments.filter(apartment => favoriteApartmentIds.includes(apartment.id));
-      this.setFavoriteApartments(newFavoriteApartments)
+      this.setFavoriteApartments(newFavoriteApartments);
    }
 }
 

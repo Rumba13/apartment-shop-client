@@ -21,7 +21,7 @@ export const App = observer(() => {
       dayjs.locale("ru");
       overlayStore.updateScrollWidth();
       favoritesStore.loadFavoriteListFromLocalStorage();
-      configure({ enforceActions: 'observed' })
+      configure({ enforceActions: "observed" });
 
       userStore.auth(localStorage.getItem(ACCESS_TOKEN_NAME), localStorage.getItem(REFRESH_TOKEN_NAME), (accessToken, refreshToken) => {
          localStorage.setItem(ACCESS_TOKEN_NAME, accessToken);

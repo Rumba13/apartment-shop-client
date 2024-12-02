@@ -34,10 +34,9 @@ export const TagsList = observer(() => {
       <div className="tags">
          <span className="filters__title tags__title">{t("Amenities")}</span>
 
-            {tagsFilterStore.tags.map(tag => (
-               <CheckBox value={tagsFilterStore.selectedTags[tag]} name={tag} key={tag}
-                         onValueChange={() => tagsFilterStore.toggleIsTagSelected(tag)} />
-            ))}
+         {tagsFilterStore.tags.map(tag => (
+            <CheckBox value={tagsFilterStore.selectedTags[tag]} name={tag} key={tag} onValueChange={() => tagsFilterStore.toggleIsTagSelected(tag)} />
+         ))}
       </div>
    );
 });
