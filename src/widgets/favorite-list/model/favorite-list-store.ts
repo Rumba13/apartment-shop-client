@@ -6,8 +6,9 @@ import { UUID } from "../../../shared/api/types/uuid";
 import { favoritesStore } from "../../../features/APARTMENT/add-apartment-to-favorites/model/favorites-store";
 import { currencyStore } from "../../../features/select-currency";
 import { setPhotosAbsolutePath } from "../../../shared/lib/set-photos-absolute-path";
+import { Currency } from "../../../shared/api/types/currency";
 
-class FavoriteListStore extends LoadingStore {
+export class FavoriteListStore extends LoadingStore {
    constructor() {
       super();
       makeObservable(this, {
@@ -23,8 +24,9 @@ class FavoriteListStore extends LoadingStore {
    public favoriteApartments: Apartment[] | null = null;
    public setFavoriteApartments = (apartment: Apartment[] | null) => (this.favoriteApartments = apartment);
 
-   public async loadFavoriteList(apartmentIds: UUID[]): Promise<void> {
+   public async loadFavoriteList(apartmentIds: UUID[], currency: Currency): Promise<void> {
       this.setIsLoading(true);
+      this.setFavoriteApartments(null);
 
       try {
          const apartments: Apartment[] = [];
@@ -32,9 +34,9 @@ class FavoriteListStore extends LoadingStore {
 
          apartmentIds.forEach(id => {
             apartmentPromises.push(
-               apartmentService.getApartmentById(id, currencyStore.currency).then(apartment => {
+               apartmentService.getApartmentById(id, currency).then(apartment => {
                   apartments.push(apartment);
-               })
+               }),
             );
          });
 

@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { UUID } from "../../../../shared/api/types/uuid";
 
-class FavoritesStore {
+export class FavoritesStore {
    constructor() {
       makeAutoObservable(this);
    }

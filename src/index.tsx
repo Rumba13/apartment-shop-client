@@ -7,10 +7,13 @@ import ruRu from "antd/lib/locale/ru_RU";
 import { ConfigProvider } from "antd";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+
+
+
 root.render(
    <ConfigProvider locale={ruRu}>
-      <App />
-   </ConfigProvider>
+         <App />
+   </ConfigProvider>,
 );
 
 // If you want to start measuring performance in your app, pass a function

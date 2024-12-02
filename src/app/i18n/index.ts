@@ -30,7 +30,6 @@ declare module "i18next" {
    interface CustomTypeOptions {
       defaultNS: "ru";
       resources: {
-         en: typeof englishTranslation;
          ru: typeof russianTranslation;
       };
    }

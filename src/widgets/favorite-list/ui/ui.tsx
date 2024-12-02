@@ -2,38 +2,43 @@ import "./styles.scss";
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { ApartmentCard, ApartmentCardSkeleton } from "../../../entities/apartment-card";
+import {
+   FavoritesStore,
+} from "../../../features/APARTMENT/add-apartment-to-favorites/model/favorites-store";
+import { FavoriteListStore } from "../model/favorite-list-store";
+import { useTranslation } from "react-i18next";
+import { match, P } from "ts-pattern";
 import { currencyStore } from "../../../features/select-currency";
-import { favoritesStore } from "../../../features/APARTMENT/add-apartment-to-favorites/model/favorites-store";
-import { favoriteListStore } from "../model/favorite-list-store";
 
-type PropsType = {};
+type PropsType = {
+   favoriteListStore: FavoriteListStore,
+   favoritesStore: FavoritesStore
+};
 
-export const FavoriteList = observer(({}: PropsType) => {
+export const FavoriteList = observer(({ favoriteListStore, favoritesStore }: PropsType) => {
+   const { t } = useTranslation();
+
    useEffect(() => {
-      favoriteListStore.loadFavoriteList(favoritesStore.favorites);
+      favoriteListStore.loadFavoriteList(favoritesStore.favorites, currencyStore.currency);
    }, [favoritesStore.favorites, currencyStore.currency]);
 
-   console.log(favoritesStore.favoritesCount)
-
-   if (favoriteListStore.isLoading) {
-
-      return (
-         <div className="favorite-list">
-            {Array.from({ length: favoritesStore.favoritesCount }, (_, i) => (
-               <ApartmentCardSkeleton key={i} />
-            ))}
-         </div>
-      );
-   }
-   if (!favoriteListStore.favoriteApartments) {
-      return <div className="favorite-list"></div>;
-   }
+   const renderContent = match(favoriteListStore)
+      .with({ isError: true }, () => <>{t("Some error has occurred")}</>)
+      .with({ isLoading: true }, () =>
+         <>
+            {Array.from({ length: favoritesStore.favoritesCount }, (_, i) => <ApartmentCardSkeleton key={i} />)}
+         </>,
+      )
+      .with({ favoriteApartments: P.union(P.not(P.nullish), []) }, ({ favoriteApartments }) => <>
+         {favoriteApartments.map(apartment => <ApartmentCard apartment={apartment} />)}
+      </>)
+      .with({ favoriteApartments: null }, () => <></>)
+      .with({ favoriteApartments: [] }, () => <>{t("Nothing Found")}</>)
+      .exhaustive();
 
    return (
       <div className="favorite-list">
-         {favoriteListStore.favoriteApartments.map(apartment => (
-            <ApartmentCard apartment={apartment} />
-         ))}
+         {renderContent}
       </div>
    );
 });

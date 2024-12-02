@@ -11,6 +11,7 @@ import { SnackBar } from "../shared/ui/snack-bar/ui";
 import { ConfirmModal } from "../shared/ui/confirm-modal/ui";
 import { favoritesStore } from "../features/APARTMENT/add-apartment-to-favorites/model/favorites-store";
 import { ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME } from "../shared/lib/constants";
+import { configure } from "mobx";
 
 export const App = observer(() => {
    const { i18n } = useTypedTranslation();
@@ -20,6 +21,7 @@ export const App = observer(() => {
       dayjs.locale("ru");
       overlayStore.updateScrollWidth();
       favoritesStore.loadFavoriteListFromLocalStorage();
+      configure({ enforceActions: 'observed' })
 
       userStore.auth(localStorage.getItem(ACCESS_TOKEN_NAME), localStorage.getItem(REFRESH_TOKEN_NAME), (accessToken, refreshToken) => {
          localStorage.setItem(ACCESS_TOKEN_NAME, accessToken);

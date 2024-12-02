@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 type PropsType = {
    className?: string;
-   icon: any;
+   icon: string;
    onClick?: MouseEventHandler<HTMLButtonElement>;
    title: string;
 };
