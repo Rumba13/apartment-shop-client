@@ -6,7 +6,7 @@ export const englishTranslation: Translation = {
    "Sign In": "Sign In",
    "Daily rent from owners all over Belarus": "Daily rent from owners all over Belarus", //Belarus for english-speakers
    "You can rent apartment":
-      "On the XXX website you can rent an apartment for a day for work and leisure, rent a house and estate for a country holiday, find with us the most advantageous offers for daily rent of apartments and estates without intermediaries",
+      "On the 24kv.by website you can rent an apartment for a day for work and leisure, rent a house and estate for a country holiday, find with us the most advantageous offers for daily rent of apartments and estates without intermediaries",
    "Gomel": "Gomel",
    "Brest": "Brest",
    "Grodno": "Grodno",

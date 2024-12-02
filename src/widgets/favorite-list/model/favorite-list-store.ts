@@ -49,6 +49,13 @@ export class FavoriteListStore extends LoadingStore {
          this.setIsLoading(false);
       }
    }
+
+   public removeNotFavoriteApartments(favoriteApartmentIds:UUID[])
+   {
+      if(!this.favoriteApartments) return;
+      const newFavoriteApartments = this.favoriteApartments.filter(apartment => favoriteApartmentIds.includes(apartment.id));
+      this.setFavoriteApartments(newFavoriteApartments)
+   }
 }
 
 export const favoriteListStore = new FavoriteListStore();

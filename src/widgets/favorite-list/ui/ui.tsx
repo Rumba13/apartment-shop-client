@@ -20,7 +20,11 @@ export const FavoriteList = observer(({ favoriteListStore, favoritesStore }: Pro
 
    useEffect(() => {
       favoriteListStore.loadFavoriteList(favoritesStore.favorites, currencyStore.currency);
-   }, [favoritesStore.favorites, currencyStore.currency]);
+   }, [currencyStore.currency]);
+
+   useEffect(() => {
+      favoriteListStore.removeNotFavoriteApartments(favoritesStore.favorites);
+   }, [favoritesStore.favorites]);
 
    const renderContent = match(favoriteListStore)
       .with({ isError: true }, () => <>{t("Some error has occurred")}</>)
