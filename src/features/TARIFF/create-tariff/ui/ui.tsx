@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { AxiosError, AxiosResponse } from "axios";
 import { ACCESS_TOKEN_NAME } from "../../../../shared/lib/constants";
 import { useTranslation } from "react-i18next";
+import { ROUTES } from "../../../../shared/lib/routes";
 
 const initialValues: CreateTariffDto = {
    title: "",
@@ -37,7 +38,7 @@ export function CreateTariffForm() {
    function onSuccess(tariff: Tariff) {
       snackBarStore.showSnackBar("Тариф успешно создан!");
       tariffModalStore.setIsOpened(false);
-      navigate("/tariffs/" + tariff.id, { replace: true });
+      navigate(`${ROUTES.TARIFFS_PAGE}/` + tariff.id, { replace: true });
    }
 
    function onFail(err: AxiosError, setFieldError: (field: string, message: string) => void) {

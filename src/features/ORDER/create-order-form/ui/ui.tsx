@@ -26,6 +26,7 @@ import { t } from "i18next";
 import { orderIsSubmittedModalStore } from "../../../../entities/apartment-details/ui/order-is-submitted-modal/order-is-submitted-modal-store";
 import { OrderApartmentFormSkeleton } from "./skeleton";
 import { mixed, number, object, string } from "yup";
+import { ROUTES } from "../../../../shared/lib/routes";
 
 type PropsType = {
    apartmentId: UUID;
@@ -90,7 +91,7 @@ const orderApartment = async (apartmentId: UUID, values: ValuesType, formikHelpe
 
       orderIsSubmittedModalStore.setIsOpened(true);
       formikHelpers.resetForm();
-      navigate("/apartment-details/" + apartmentId, { relative: "route" });
+      navigate(`${ROUTES.APARTMENT_DETAILS}/${apartmentId}`, { relative: "route" });
    } catch (err) {
       snackBarStore.showSnackBar(t("Some error has occurred"), {
          icon: CrossIcon,

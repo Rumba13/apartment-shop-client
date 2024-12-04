@@ -17,6 +17,7 @@ import { observer } from "mobx-react";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { ACCESS_TOKEN_NAME } from "../../../../shared/lib/constants";
+import { ROUTES } from "../../../../shared/lib/routes";
 
 function onSubmit(values: CreateTariffDto, tariffId: UUID, accessToken: UUID, onSuccess: (tariff: Tariff) => void, onFail: (err: AxiosError) => void) {
    tariffService.updateTariff(values, tariffId, accessToken).then(onSuccess).catch(onFail);
@@ -35,7 +36,7 @@ export const UpdateTariffForm = observer(({ tariff }: PropsType) => {
    function onSuccess(newTariff: Tariff) {
       snackBarStore.showSnackBar("Тариф успешно обновлён!");
       updateTariffModalStore.setIsOpened(false);
-      navigate("/tariffs/" + tariff.id, { replace: true });
+      navigate(`${ROUTES.TARIFFS_PAGE}/${tariff.id}`, { replace: true });
 
       tariffsListStore.loadTariffs();
 

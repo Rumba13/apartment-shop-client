@@ -6,6 +6,7 @@ import { BreadcrumbType } from "../../../../shared/api/types/breadcrumb-type";
 import { observer } from "mobx-react";
 import { apartmentCalendarStore } from "../../../../entities/calendar/model/apartment-calendar-store";
 import { tariffDetailsStore } from "../../../../entities/tariff-details/model/tariff-details-store";
+import { ROUTES } from "../../../../shared/lib/routes";
 
 export const HeaderBreadcrumbs = observer(() => {
    useEffect(() => {}, [apartmentDetailsStore.apartment, apartmentCalendarStore.apartment, tariffDetailsStore.tariffDetails]);
@@ -44,13 +45,13 @@ export const HeaderBreadcrumbs = observer(() => {
       } else if (breadcrumb === "orders") {
          breadCrumbs.push({
             item: "Заказы",
-            href: "/orders",
+            href: ROUTES.ORDERS_PAGE,
          });
       } else if (breadcrumb === "tariffs") {
          if (!tariffDetailsStore.tariffDetails) return <></>;
          breadCrumbs.push({
             item: "Тарифы",
-            href: "/tariffs",
+            href: ROUTES.TARIFFS_PAGE + "/",
          });
          if (breadcrumbContents[i + 1]) {
             breadCrumbs.push({
@@ -62,7 +63,7 @@ export const HeaderBreadcrumbs = observer(() => {
          if (!apartmentCalendarStore.apartment || !apartmentCalendarStore.tariff) return <></>;
          breadCrumbs.push({
             item: "Календарь",
-            href: "/calendar",
+            href: ROUTES.CALENDAR_PAGE,
          });
 
          breadCrumbs.push({

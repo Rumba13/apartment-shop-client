@@ -23,6 +23,7 @@ import { ApartmentDetailsDescription } from "./apartment-details-description";
 import { useScreenWidth } from "../../../shared/ui/use-screen-width";
 import clsx from "clsx";
 import { ApartmentMainProperties } from "./apartment-main-properties";
+import { ROUTES } from "../../../shared/lib/routes";
 
 type PropsType = {
    apartmentId: UUID;
@@ -78,7 +79,6 @@ export const ApartmentDetails = observer(({ apartmentId }: PropsType) => {
    const ApartmentDetailsAsideComponent = (
       <ApartmentDetailsAside contact={{ phone: landlordPhoneNumber, name: landlordFirstName }} scrollToMap={() => mapRef.current?.scrollIntoView()} apartmentId={apartmentId} title={title} address={address} price={price} />
    );
-
    return (
       <div className="apartment-details">
          <OrderIsSubmittedModal />
@@ -87,8 +87,8 @@ export const ApartmentDetails = observer(({ apartmentId }: PropsType) => {
             {userStore.user?.isSuperuser && (
                <>
                   <DeleteApartment apartmentId={apartmentId} />
-                  <Button icon={CalendarIcon} onClick={() => navigate(`/calendar/${apartmentId}`)} title={t("Calendar")} />
-                  <Button icon={UpdateIcon} onClick={() => navigate(`/update-apartment/${apartmentId}`)} title={"Обновить"} />
+                  <Button icon={CalendarIcon} onClick={() => navigate(`${ROUTES.CALENDAR_PAGE}/${apartmentId}`)} title={t("Calendar")} />
+                  <Button icon={UpdateIcon} onClick={() => navigate(`${ROUTES.UPDATE_APARTMENT_PAGE}/${apartmentId}`)} title={"Обновить"} />
                </>
             )}
          </div>
