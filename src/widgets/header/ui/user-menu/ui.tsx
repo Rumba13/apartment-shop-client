@@ -9,7 +9,7 @@ import { ConfirmModalOptions } from "../../../../shared/api/types/confirm-modal-
 import clsx from "clsx";
 import { userMenuPopupStore } from "./user-menu-popup-store";
 import { Popup } from "../../../../shared/ui/popup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { confirmModalStore } from "../../../../shared/ui/confirm-modal/confirm-modal-store";
 import { signOutService } from "../../../../shared/api/sign-out-service";
 import { ButtonCool } from "../../../../shared/ui/button-cool";
@@ -21,8 +21,10 @@ import { orderService } from "../../../../shared/api/order-service";
 import { useTranslation } from "react-i18next";
 import { ordersListStore } from "../../../orders-list/model/orders-list-store";
 import { ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME } from "../../../../shared/lib/constants";
+import { ROUTES } from "../../../../shared/lib/routes";
 
 export const UserMenu = observer(() => {
+   const navigate = useNavigate();
    const { t } = useTranslation();
    const [pendingOrderCount, setPendingOrderCount] = useState<number>(0);
 
@@ -39,6 +41,7 @@ export const UserMenu = observer(() => {
          .then(() => {
             localStorage.removeItem(ACCESS_TOKEN_NAME);
             localStorage.removeItem(REFRESH_TOKEN_NAME);
+            navigate(ROUTES.HOME_PAGE);
          })
          .catch(err => console.log(err));
    };

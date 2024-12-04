@@ -168,7 +168,7 @@ export const englishTranslation: Translation = {
    "Are Pets Allowed?": "Is pets allowed?",
    "Select Amenities": "Select Amenities",
    "Saved": "Saved",
-   "Show": "Show"
+   "Show": "Show",
 };
 
 /*

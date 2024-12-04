@@ -18,11 +18,17 @@ export function Contact({ contact }: PropsType) {
       <div className={clsx("contact", isOpened && "opened")}>
          <SvgIcon className="contact__phone-icon" icon={PhoneIcon} />
 
-         <a className="contact__phone" href={`tel: ${contact.phone}`}>{contact.phone}</a>
+         <a className="contact__phone" href={`tel: ${contact.phone}`}>
+            {contact.phone}
+         </a>
 
-
-         {isOpened ? <span className="contact__name">{contact.name}</span> :
-            <span className="contact__button" onClick={() => setIsOpened(true)}>{t("Show")}</span>}
+         {isOpened ? (
+            <span className="contact__name">{contact.name}</span>
+         ) : (
+            <span className="contact__button" onClick={() => setIsOpened(true)}>
+               {t("Show")}
+            </span>
+         )}
 
          <div className="overlay"></div>
       </div>

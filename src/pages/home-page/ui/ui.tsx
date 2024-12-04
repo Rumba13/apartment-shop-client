@@ -12,6 +12,7 @@ import { selectGuestModalStore, SelectGuestsModal } from "../../../widgets/selec
 import { guestsCountStore } from "../../../features/FILTER/filter-by-guests";
 import { filterByDateStore } from "../../../features/FILTER/filter-by-date";
 import { StandartLayout } from "../../../widgets/layouts/standart-layout";
+import { Link } from "react-router-dom";
 
 export const HomePage = observer(() => {
    const paginationDetails = `${apartmentListStore.currentPage * apartmentListStore.pageSize - apartmentListStore.pageSize + 1}-${apartmentListStore.currentPage * apartmentListStore.pageSize} из ${apartmentListStore.totalPages * apartmentListStore.pageSize}`;

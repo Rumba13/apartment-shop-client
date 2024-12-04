@@ -10,6 +10,7 @@ import { snackBarStore } from "../../../../../shared/ui/snack-bar/snack-bar-stor
 import { SvgButton } from "../../../../../shared/ui/svg-button";
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 type PropsType = {
    apartmentId: UUID;
@@ -17,7 +18,8 @@ type PropsType = {
 };
 
 export const AddApartmentToFavorites = observer(({ apartmentId, variant = "medium" }: PropsType) => {
-   const { t } = useTranslation();
+   const { t }:{t: typeof i18next.t} = useTranslation();
+
 
    const toggleInFavoriteList = () => {
       favoritesStore.toggleApartmentInFavorites(apartmentId);

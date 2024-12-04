@@ -15,7 +15,7 @@ export function OrderMenuButton({ apartmentId }: PropsType) {
    const { t } = useTranslation();
 
    return (
-      <Link to={`/${ROUTES.ORDER_APARTMENT_PAGE}/${apartmentId}`}>
+      <Link to={`${ROUTES.ORDER_APARTMENT_PAGE}/${apartmentId}`}>
          <Button className="open-order-modal-button" icon={OrderIcon} onClick={() => {}} title={t("Leave Request")} />
       </Link>
    );

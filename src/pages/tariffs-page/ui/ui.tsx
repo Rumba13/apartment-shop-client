@@ -14,15 +14,7 @@ import { UpdateTariffModal, updateTariffModalStore } from "../../../widgets/upda
 import { MinimalLayout } from "../../../widgets/layouts/minimal-layout";
 
 export const TariffsPage = observer(() => {
-   const navigate = useNavigate();
    const { tariffId } = useParams();
-
-   if (userStore.isLoading) return <AppLoader />;
-
-   if (!userStore.user?.isSuperuser) {
-      navigate("/");
-      return <></>;
-   }
 
    return (
       <MinimalLayout className="tariffs-page">
