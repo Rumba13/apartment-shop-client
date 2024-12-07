@@ -35,9 +35,7 @@ export const FavoriteList = observer(({ favoriteListStore, favoritesStore }: Pro
       ))
       .with({ favoriteApartments: P.union(P.not(P.nullish), []) }, ({ favoriteApartments }) => (
          <>
-            {favoriteApartments.map(apartment => (
-               <ApartmentCard apartment={apartment} />
-            ))}
+            {favoriteApartments.map(apartment => <ApartmentCard apartment={apartment} />)}
          </>
       ))
       .with({ favoriteApartments: null }, () => <></>)
