@@ -24,7 +24,7 @@ export function Routes() {
             <Route path={ROUTES.APARTMENT_DETAILS + "/:apartmentId"} element={<ApartmentDetailsPage />} />
             <Route path={ROUTES.NOT_PERMITTED_PAGE} element={<div>Not permitted</div>} />
             <Route path="*" element={<div>404</div>} />
-
+            {/*TODO separate 404 page to another component*/}
             <Route element={<AdminRoutes />}>
                <Route path={ROUTES.ORDERS_PAGE} element={<OrdersPage />} />
                <Route path={ROUTES.TARIFFS_PAGE + "/:tariffId?"} element={<TariffsPage />} />

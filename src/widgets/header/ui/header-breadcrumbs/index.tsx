@@ -9,7 +9,7 @@ import { tariffDetailsStore } from "../../../../entities/tariff-details/model/ta
 import { ROUTES } from "../../../../shared/lib/routes";
 
 export const HeaderBreadcrumbs = observer(() => {
-   useEffect(() => {}, [apartmentDetailsStore.apartment, apartmentCalendarStore.apartment, tariffDetailsStore.tariffDetails]);
+   useEffect(() => {}, [apartmentDetailsStore.apartment, apartmentCalendarStore.apartment, tariffDetailsStore.tariff]);
 
    const breadcrumbContents = window.location.pathname.split("/").filter(Boolean);
    const breadCrumbs: BreadcrumbType[] = [];
@@ -48,14 +48,14 @@ export const HeaderBreadcrumbs = observer(() => {
             href: ROUTES.ORDERS_PAGE,
          });
       } else if (breadcrumb === "tariffs") {
-         if (!tariffDetailsStore.tariffDetails) return <></>;
+         if (!tariffDetailsStore.tariff) return <></>;
          breadCrumbs.push({
             item: "Тарифы",
             href: ROUTES.TARIFFS_PAGE + "/",
          });
          if (breadcrumbContents[i + 1]) {
             breadCrumbs.push({
-               item: tariffDetailsStore.tariffDetails.title,
+               item: tariffDetailsStore.tariff.title,
                href: "",
             });
          }
