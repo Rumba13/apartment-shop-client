@@ -19,7 +19,7 @@ export const TariffDetails = observer(({ id }: PropsType) => {
       id && tariffDetailsStore.loadTariffDetails(id);
    }, [id]);
 
-   useEffect(() => {}, [tariffDetailsStore.tariffDetails]);
+   useEffect(() => {}, [tariffDetailsStore.tariff]);
 
    if (!id) return <div className="tariff-details">{t("Choose tariff")}</div>;
    if (tariffDetailsStore.isLoading)
@@ -28,10 +28,10 @@ export const TariffDetails = observer(({ id }: PropsType) => {
             <AppLoader />
          </div>
       );
-   if (tariffDetailsStore.tariffDetails === null) return <div className="tariff-details">{t("Nothing Found")}</div>;
+   if (tariffDetailsStore.tariff === null) return <div className="tariff-details">{t("Nothing Found")}</div>;
    if (tariffDetailsStore.isError) return <div className="tariff-details">{t("Some error has occurred")}</div>;
 
-   const { fridayPrice, mondayPrice, saturdayPrice, sundayPrice, wednesdayPrice, thursdayPrice, tuesdayPrice } = tariffDetailsStore.tariffDetails;
+   const { fridayPrice, mondayPrice, saturdayPrice, sundayPrice, wednesdayPrice, thursdayPrice, tuesdayPrice } = tariffDetailsStore.tariff;
 
    const tariffsOnWeek = [mondayPrice, tuesdayPrice, wednesdayPrice, fridayPrice, thursdayPrice, saturdayPrice, sundayPrice];
 
@@ -43,7 +43,7 @@ export const TariffDetails = observer(({ id }: PropsType) => {
                price={{
                   amount: tariff,
                   //@ts-ignore //TODO fix typescript types warning
-                  currency: tariffDetailsStore.tariffDetails.currency,
+                  currency: tariffDetailsStore.tariff.currency,
                }}
             />
          ))}

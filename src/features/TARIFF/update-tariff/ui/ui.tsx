@@ -14,7 +14,6 @@ import { updateTariffModalStore } from "../../../../widgets/update-tariff-modal"
 import { tariffsListStore } from "../../../../widgets/tariffs-list/model/tariffs-list-store";
 import { tariffDetailsStore } from "../../../../entities/tariff-details/model/tariff-details-store";
 import { observer } from "mobx-react";
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { ACCESS_TOKEN_NAME } from "../../../../shared/lib/constants";
 import { ROUTES } from "../../../../shared/lib/routes";
@@ -30,8 +29,6 @@ type PropsType = {
 export const UpdateTariffForm = observer(({ tariff }: PropsType) => {
    const { t } = useTranslation();
    const navigate = useNavigate();
-
-   useEffect(() => {}, [tariff]);
 
    function onSuccess(newTariff: Tariff) {
       snackBarStore.showSnackBar("Тариф успешно обновлён!");
@@ -54,6 +51,7 @@ export const UpdateTariffForm = observer(({ tariff }: PropsType) => {
    return (
       <Formik
          initialValues={tariff}
+         enableReinitialize
          onSubmit={(values, { setFieldError }) => {
             onSubmit(
                values,

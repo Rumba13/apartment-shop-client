@@ -12,13 +12,13 @@ class TariffDetailsStore extends LoadingStore {
          isError: override,
          setIsError: override,
          setIsLoading: override,
-         tariffDetails: observable,
-         setTariffDetails: action,
+         tariff: observable,
+         setTariff: action,
       });
    }
 
-   public tariffDetails: Tariff | null = null;
-   public setTariffDetails = (tariffDetails: Tariff) => (this.tariffDetails = tariffDetails);
+   public tariff: Tariff | null = null;
+   public setTariff = (tariff: Tariff) => this.tariff = tariff;
 
    public async loadTariffDetails(tariffId: UUID) {
       this.setIsLoading(true);
@@ -26,7 +26,7 @@ class TariffDetailsStore extends LoadingStore {
 
       try {
          const tariff = await tariffService.loadTariff(tariffId);
-         this.setTariffDetails(tariff);
+         this.setTariff(tariff);
       } catch (err) {
          this.setIsError(true);
          console.error(err);
